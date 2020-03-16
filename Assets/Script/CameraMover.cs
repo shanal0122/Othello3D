@@ -8,6 +8,7 @@ public class CameraMover : MonoBehaviour
     private float squaredDistance; //カメラを球面状で動かす時の半径
     private float upLimit; //カメラの上方向に動く限界のy座標
     private float downLimit; //カメラの上方向に動く限界のy座標
+    public GameObject board;
     private Vector3 defaultPosition; //カメラの初期位置 （推奨 : (1.5f,1.5f,-5.1f)）
     private Transform mainCameraTransform;
     private Vector3 center;  //オセロ盤の中心位置
@@ -15,12 +16,20 @@ public class CameraMover : MonoBehaviour
 
     void Start()
     {
-        center = new Vector3(1.5f,1.5f,1.5f); //中心位置の定義
+        float xCenterCoordi = (board.GetComponent<CreateBoard>().xMaxNumGet - 1f)/2f;
+        float yCenterCoordi = (board.GetComponent<CreateBoard>().yMaxNumGet - 1f)/2f;
+        float zCenterCoordi = (board.GetComponent<CreateBoard>().zMaxNumGet - 1f)/2f;
+        center = new Vector3(xCenterCoordi,yCenterCoordi,zCenterCoordi); //中心位置の定義
+
         mainCameraTransform = this.gameObject.transform;
+        int maxCenterCoordi = Mathf.Max(board.GetComponent<CreateBoard>().xMaxNumGet,board.GetComponent<CreateBoard>().yMaxNumGet,board.GetComponent<CreateBoard>().zMaxNumGet);
+        mainCameraTransform.position = new Vector3 (xCenterCoordi, yCenterCoordi, zCenterCoordi - 1.65f * maxCenterCoordi);
         defaultPosition = mainCameraTransform.position;
+
         squaredDistance = (defaultPosition.x - center.x) * (defaultPosition.x - center.x) + (defaultPosition.y - center.y) * (defaultPosition.y - center.y) + (defaultPosition.z - center.z) * (defaultPosition.z - center.z);
         upLimit = center.y + Mathf.Sqrt(squaredDistance) - 0.5f;
         downLimit = center.y - Mathf.Sqrt(squaredDistance) + 0.5f;
+        
         mainCameraTransform.LookAt(center,Vector3.up);
     }
 

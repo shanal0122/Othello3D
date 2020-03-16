@@ -559,6 +559,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c53e53b2b2db418e93c84e6fa93bfd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xMaxNum: 4
+  yMaxNum: 4
+  zMaxNum: 4
   flameWidge: 0.01
   boardPrefab: {fileID: 7655188390237905131, guid: efadfbdcd38f44f149186c9e9ce645ac,
     type: 3}
@@ -589,7 +592,7 @@ GameObject:
   m_Component:
   - component: {fileID: 657703183}
   m_Layer: 0
-  m_Name: InicialStoneSample
+  m_Name: 4*4*4InicialStoneSample
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -720,6 +723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movingSpeed: 10
+  board: {fileID: 628560662}
 --- !u!1 &873601790
 GameObject:
   m_ObjectHideFlags: 0

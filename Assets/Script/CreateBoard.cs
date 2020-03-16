@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CreateBoard : MonoBehaviour
 {
+    [SerializeField] private int xMaxNum = 4;
+    [SerializeField] private int yMaxNum = 4;
+    [SerializeField] private int zMaxNum = 4;
     [SerializeField,Range(0f,0.05f)] private float flameWidge = 0.01f; //オセロ盤のフレームの幅
     public GameObject boardPrefab;
     public GameObject board;
@@ -12,11 +15,11 @@ public class CreateBoard : MonoBehaviour
     void Start()
     {
         SetBoardFlameWidge();
-        for(int y=0; y<4; y++)
+        for(int y=0; y<yMaxNum; y++)
         {
-          for(int z=0; z<4; z++)
+          for(int z=0; z<zMaxNum; z++)
           {
-            for(int x=0; x<4; x++)
+            for(int x=0; x<xMaxNum ; x++)
             {
               GameObject b = Instantiate(boardPrefab, board.transform);
               b.transform.position = new Vector3(x,y,z);
@@ -60,7 +63,12 @@ public class CreateBoard : MonoBehaviour
       boardTransform.GetChild(8).gameObject.transform.localScale = new Vector3(1,f,f);
       boardTransform.GetChild(9).gameObject.transform.localScale = new Vector3(f,f,1);
       boardTransform.GetChild(10).gameObject.transform.localScale = new Vector3(1,f,f);
-      boardTransform.GetChild(11
-      ).gameObject.transform.localScale = new Vector3(f,f,1);
+      boardTransform.GetChild(11).gameObject.transform.localScale = new Vector3(f,f,1);
     }
+
+    public int xMaxNumGet { get {return this.xMaxNum;} }
+
+    public int yMaxNumGet { get {return this.yMaxNum;} }
+
+    public int zMaxNumGet { get {return this.zMaxNum;} }
 }
