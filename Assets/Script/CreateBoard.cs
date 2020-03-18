@@ -19,7 +19,7 @@ public class CreateBoard : MonoBehaviour
         {
           for(int z=0; z<zMaxNum; z++)
           {
-            for(int x=0; x<xMaxNum ; x++)
+            for(int x=0; x<xMaxNum; x++)
             {
               GameObject b = Instantiate(boardPrefab, board.transform);
               b.transform.position = new Vector3(x,y,z);
@@ -66,9 +66,9 @@ public class CreateBoard : MonoBehaviour
       boardTransform.GetChild(11).gameObject.transform.localScale = new Vector3(f,f,1);
     }
 
-    public int xMaxNumGet { get {return this.xMaxNum;} }
+    public int XMaxNum { get {return this.xMaxNum;} } //CameraMoverに渡す
 
-    public int yMaxNumGet { get {return this.yMaxNum;} }
+    public int YMaxNum { get {return this.yMaxNum;} }
 
-    public int zMaxNumGet { get {return this.zMaxNum;} }
+    public int ZMaxNum { get {return this.zMaxNum;} }
 }
