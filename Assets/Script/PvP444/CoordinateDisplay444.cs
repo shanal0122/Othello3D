@@ -5,22 +5,9 @@ using UnityEngine.UI;
 
 public class CoordinateDisplay444 : MonoBehaviour //座標を表すテキストを配置
 {
-    public GameObject mainCamera;
     public GameObject coordinateCanvas;
     public GameObject coordinateTextPrefab;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     private void RemoveCoordinateDisplay()
     {
@@ -41,7 +28,6 @@ public class CoordinateDisplay444 : MonoBehaviour //座標を表すテキスト�
           GameObject d = Instantiate(coordinateTextPrefab,coordinateCanvas.transform);
           d.GetComponent<Text>().text = (x+1).ToString();
           d.transform.position = new Vector3 (1.1f*x-0.15f, 4.5f*n-0.75f, 1.5f);
-          //d.transform.LookAt(-mainCamera.GetComponent<CameraMover444>().MainCameraTransformPosition,Vector3.up);
           d.tag = "CoordinateDisplay";
         }
       }

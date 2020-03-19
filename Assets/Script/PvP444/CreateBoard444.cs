@@ -30,12 +30,6 @@ public class CreateBoard444 : MonoBehaviour
     }
 
 
-    void Update()
-    {
-
-    }
-
-
     private void SetBoardFlameWidge() //オセロ盤のフレームの幅を設定
     {
       float f = flameWidge;

@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Game444 : MonoBehaviour
 {
+    private Vector3 standard; //CoordinateDisplayクラスのテキストの向きを定めるために用いる
     private int turn = 1;
     public int XCoordi {get; set;}
     public int YCoordi {get; set;}
     public int ZCoordi {get; set;}
     private bool beforePressed,afterXPressed, afterZPressed, afterYPressed; //オセロ盤の状態を管理するための変数
     public bool EnterPressed {get; set;}
+    public GameObject mainCamera;
     public GameObject stones;
     public GameObject colorManager;
     public GameObject keyDetector;
@@ -18,6 +20,8 @@ public class Game444 : MonoBehaviour
 
     void Start()
     {
+      standard = new Vector3 (3,3,3);
+
       stones.GetComponent<Stone444>().PutStone(1,1,1,1);
       stones.GetComponent<Stone444>().PutStone(1,2,1,2);
       stones.GetComponent<Stone444>().PutStone(-1,1,1,2);
@@ -33,6 +37,10 @@ public class Game444 : MonoBehaviour
       keyDetector.GetComponent<KeyDetector444>().NumKeyDetect();
       keyDetector.GetComponent<KeyDetector444>().BackSpaceDetect();
       PlayGame();
+      foreach(GameObject display in GameObject.FindGameObjectsWithTag("CoordinateDisplay")) //CoordinateDisplayクラスのテキストの向きを定める
+      {
+        display.transform.LookAt(standard - mainCamera.GetComponent<CameraMover444>().MainCameraTransformPosition,Vector3.up);
+      }
     }
 
 
