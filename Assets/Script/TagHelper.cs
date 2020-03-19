@@ -14,6 +14,7 @@ public class TagHelper : MonoBehaviour
           for(int x=0; x<4; x++)
           {
             AddTag("tagS" + x + y + z);
+            AddTag("tagB" + x + y + z);
           }
         }
       }

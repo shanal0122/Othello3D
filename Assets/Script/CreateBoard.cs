@@ -23,6 +23,7 @@ public class CreateBoard : MonoBehaviour
             {
               GameObject b = Instantiate(boardPrefab, board.transform);
               b.transform.position = new Vector3(x,y,z);
+              b.tag = "tagB" + x + y + z;
             }
           }
         }

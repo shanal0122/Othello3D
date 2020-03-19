@@ -4,41 +4,85 @@ using UnityEngine;
 
 public class KeyDetector : MonoBehaviour
 {
+    private readonly string[] keys = {"1", "2", "3", "4"};
     private int x = 0;
     private int y = 0;
     private int z = 0;
+    public GameObject master;
 
 
-    // Start is called before the first frame update
-    void Start()
+    public void NumKeyDetect() //x,z,y,Enterの順でキーが押されると順にGameクラスの変数に代入
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    private void NumKeyDetect(ref int n) //1~4が押されたら検出しnに代入
-    {
-      string[] keys = {"1", "2", "3", "4"};
-      if(Input.anyKeyDown)
-      {
-        foreach(string key in keys)
+        if(x == 0)
         {
-          if(Input.GetKeyDown(key))
-          {
-            Debug.Log("押されたキー : " + key); ///////////////////////////////////////
-            n = int.Parse(key);
-          }
+            foreach(string key in keys)
+            {
+                if(Input.GetKeyDown(key))
+                {
+                    Debug.Log("押されたキー : " + key); ///////////////////////////////////////
+                    x = int.Parse(key);
+                    master.GetComponent<Game>().XCoordi = x;
+                }
+            }
+        }else if(z == 0)
+        {
+            foreach(string key in keys)
+            {
+                if(Input.GetKeyDown(key))
+                {
+                    Debug.Log("押されたキー : " + key); ///////////////////////////////////////
+                    z = int.Parse(key);
+                    master.GetComponent<Game>().ZCoordi = z;
+                }
+            }
+        }else if(y == 0)
+        {
+            foreach(string key in keys)
+            {
+                if(Input.GetKeyDown(key))
+                {
+                    Debug.Log("押されたキー : " + key); ///////////////////////////////////////
+                    y = int.Parse(key);
+                    master.GetComponent<Game>().YCoordi = y;
+                }
+            }
+        }else
+        {
+            if(Input.GetKeyDown("return"))
+            {
+                Debug.Log("押されたキー : Enter"); ///////////////////////////////////////
+                master.GetComponent<Game>().EnterPressed = true;
+                x = y = z = 0;
+            }
         }
-      }
     }
 
-    public void KeyDetect()
+    public void BackSpaceDetect() //backspaceが押されたらx,z,yに0を代入
     {
-      
+        if(y != 0)
+        {
+            if(Input.GetKeyDown("backspace"))
+            {
+                Debug.Log("押されたキー : backspace"); ///////////////////////////////////////
+                y = 0;
+                master.GetComponent<Game>().YCoordi = 0;
+            }
+        }else if(z != 0)
+        {
+            if(Input.GetKeyDown("backspace"))
+            {
+                Debug.Log("押されたキー : backspace"); ///////////////////////////////////////
+                z = 0;
+                master.GetComponent<Game>().ZCoordi = 0;
+            }
+        }else if(x != 0)
+        {
+            if(Input.GetKeyDown("backspace"))
+            {
+                Debug.Log("押されたキー : backspace"); ///////////////////////////////////////
+                x = 0;
+                master.GetComponent<Game>().XCoordi = 0;
+            }
+        }
     }
 }
