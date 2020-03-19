@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stone : MonoBehaviour
+public class Stone444 : MonoBehaviour
 {
     private int[,,] square = new int[4,4,4];
     private readonly int[,] vector = new int[,]{{0,1,0},{1,1,0},{0,1,1},{-1,1,0},{0,1,-1},{1,0,0},{1,0,1},{0,0,1},{-1,0,1},{-1,0,0},{-1,0,-1},{0,0,-1},{1,0,-1},{1,-1,0},{0,-1,1},{-1,-1,0},{0,-1,-1},{0,-1,0}};
@@ -12,16 +12,6 @@ public class Stone : MonoBehaviour
     public GameObject stones; //stone=0
     public GameObject master; //GameからTurnを受け取る
 
-
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
 
     private int FlipNum(int stone, int x, int y, int z, int vec) //stone{1,-1}を座標(x,y,z)に置いた時vec方向のコマを返せる個数を返す
     {
@@ -71,13 +61,13 @@ public class Stone : MonoBehaviour
       }
     }
 
-    public void RemoveStone(int x, int y, int z) //座標(x,y,z)の石を取り除く
+    private void RemoveStone(int x, int y, int z) //座標(x,y,z)の石を取り除く
     {
       Destroy(GameObject.FindGameObjectWithTag("tagS" + x + y + z));
       square[x,y,z] = 0;
     }
 
-    public int VecFlipStone(int stone, int x, int y, int z, int vec) //stone{-1,1}を座標(x,z)に置いた時のvec方向のstoneを裏返す。戻り値は裏返す石の数
+    private int VecFlipStone(int stone, int x, int y, int z, int vec) //stone{-1,1}を座標(x,z)に置いた時のvec方向のstoneを裏返す。戻り値は裏返す石の数
     {
       int flipNum = FlipNum(stone, x, y, z, vec);
       for(int n=1; n<=flipNum; n++)
@@ -100,7 +90,7 @@ public class Stone : MonoBehaviour
         if(sumOfFlipNum != 0)
         {
           PutStone(stone,x,y,z);
-          master.GetComponent<Game>().Turn *= -1;
+          master.GetComponent<Game444>().Turn *= -1;
         }
       }
     }

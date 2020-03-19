@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyDetector : MonoBehaviour
+public class KeyDetector444 : MonoBehaviour
 {
     private readonly string[] keys = {"1", "2", "3", "4"};
     private int x = 0;
@@ -21,7 +21,7 @@ public class KeyDetector : MonoBehaviour
                 {
                     Debug.Log("押されたキー : " + key); ///////////////////////////////////////
                     x = int.Parse(key);
-                    master.GetComponent<Game>().XCoordi = x;
+                    master.GetComponent<Game444>().XCoordi = x;
                 }
             }
         }else if(z == 0)
@@ -32,7 +32,7 @@ public class KeyDetector : MonoBehaviour
                 {
                     Debug.Log("押されたキー : " + key); ///////////////////////////////////////
                     z = int.Parse(key);
-                    master.GetComponent<Game>().ZCoordi = z;
+                    master.GetComponent<Game444>().ZCoordi = z;
                 }
             }
         }else if(y == 0)
@@ -43,7 +43,7 @@ public class KeyDetector : MonoBehaviour
                 {
                     Debug.Log("押されたキー : " + key); ///////////////////////////////////////
                     y = int.Parse(key);
-                    master.GetComponent<Game>().YCoordi = y;
+                    master.GetComponent<Game444>().YCoordi = y;
                 }
             }
         }else
@@ -51,7 +51,7 @@ public class KeyDetector : MonoBehaviour
             if(Input.GetKeyDown("return"))
             {
                 Debug.Log("押されたキー : Enter"); ///////////////////////////////////////
-                master.GetComponent<Game>().EnterPressed = true;
+                master.GetComponent<Game444>().EnterPressed = true;
                 x = y = z = 0;
             }
         }
@@ -65,7 +65,7 @@ public class KeyDetector : MonoBehaviour
             {
                 Debug.Log("押されたキー : backspace"); ///////////////////////////////////////
                 y = 0;
-                master.GetComponent<Game>().YCoordi = 0;
+                master.GetComponent<Game444>().YCoordi = 0;
             }
         }else if(z != 0)
         {
@@ -73,7 +73,7 @@ public class KeyDetector : MonoBehaviour
             {
                 Debug.Log("押されたキー : backspace"); ///////////////////////////////////////
                 z = 0;
-                master.GetComponent<Game>().ZCoordi = 0;
+                master.GetComponent<Game444>().ZCoordi = 0;
             }
         }else if(x != 0)
         {
@@ -81,7 +81,7 @@ public class KeyDetector : MonoBehaviour
             {
                 Debug.Log("押されたキー : backspace"); ///////////////////////////////////////
                 x = 0;
-                master.GetComponent<Game>().XCoordi = 0;
+                master.GetComponent<Game444>().XCoordi = 0;
             }
         }
     }

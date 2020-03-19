@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CreateBoard : MonoBehaviour
+public class CreateBoard444 : MonoBehaviour
 {
-    [SerializeField] private int xMaxNum = 4;
-    [SerializeField] private int yMaxNum = 4;
-    [SerializeField] private int zMaxNum = 4;
+    private int xMaxNum = 4;
+    private int yMaxNum = 4;
+    private int zMaxNum = 4;
     [SerializeField,Range(0f,0.05f)] private float flameWidge = 0.01f; //オセロ盤のフレームの幅
     public GameObject boardPrefab;
     public GameObject board;
@@ -67,9 +67,9 @@ public class CreateBoard : MonoBehaviour
       boardTransform.GetChild(11).gameObject.transform.localScale = new Vector3(f,f,1);
     }
 
-    public int XMaxNum { get {return this.xMaxNum;} } //CameraMoverに渡す
+    public int XMaxNum { set {xMaxNum = value;} get {return this.xMaxNum;} } //CameraMoverに渡す
 
-    public int YMaxNum { get {return this.yMaxNum;} }
+    public int YMaxNum { set {yMaxNum = value;} get {return this.yMaxNum;} }
 
-    public int ZMaxNum { get {return this.zMaxNum;} }
+    public int ZMaxNum { set {zMaxNum = value;} get {return this.zMaxNum;} }
 }

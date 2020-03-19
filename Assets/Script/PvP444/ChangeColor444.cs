@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChangeColor : MonoBehaviour
+public class ChangeColor444 : MonoBehaviour
 {
     public Material clearBoard;
     public Material shinyBoard;
+    public GameObject board; //MaxNumを受け取る
 
 
     public void UndoBoardColor(int x, int y, int z)
@@ -20,11 +21,11 @@ public class ChangeColor : MonoBehaviour
 
     public void UndoAllBoardColor()
     {
-      for(int y=0; y<4; y++)
+      for(int y=0; y<board.GetComponent<CreateBoard444>().YMaxNum; y++)
       {
-        for(int z=0; z<4; z++)
+        for(int z=0; z<board.GetComponent<CreateBoard444>().ZMaxNum; z++)
         {
-          for(int x=0; x<4; x++)
+          for(int x=0; x<board.GetComponent<CreateBoard444>().XMaxNum; x++)
           {
             UndoBoardColor(x,y,z);
           }

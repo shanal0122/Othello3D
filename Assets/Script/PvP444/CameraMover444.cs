@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraMover : MonoBehaviour
+public class CameraMover444 : MonoBehaviour
 {
     [SerializeField,Range(5f,15f)] private float movingSpeed = 10f; //カメラの動くスピードを設定
     private float squaredDistance; //カメラを球面状で動かす時の半径の二乗
@@ -16,13 +16,13 @@ public class CameraMover : MonoBehaviour
 
     void Start()
     {
-        float xCenterCoordi = (board.GetComponent<CreateBoard>().XMaxNum - 1f)/2f;
-        float yCenterCoordi = (board.GetComponent<CreateBoard>().YMaxNum - 1f)/2f;
-        float zCenterCoordi = (board.GetComponent<CreateBoard>().ZMaxNum - 1f)/2f;
+        float xCenterCoordi = (board.GetComponent<CreateBoard444>().XMaxNum - 1f)/2f;
+        float yCenterCoordi = (board.GetComponent<CreateBoard444>().YMaxNum - 1f)/2f;
+        float zCenterCoordi = (board.GetComponent<CreateBoard444>().ZMaxNum - 1f)/2f;
         center = new Vector3(xCenterCoordi,yCenterCoordi,zCenterCoordi); //中心位置の定義
 
         mainCameraTransform = this.gameObject.transform;
-        int maxCenterCoordi = Mathf.Max(board.GetComponent<CreateBoard>().XMaxNum,board.GetComponent<CreateBoard>().YMaxNum,board.GetComponent<CreateBoard>().ZMaxNum);
+        int maxCenterCoordi = Mathf.Max(board.GetComponent<CreateBoard444>().XMaxNum,board.GetComponent<CreateBoard444>().YMaxNum,board.GetComponent<CreateBoard444>().ZMaxNum);
         mainCameraTransform.position = new Vector3 (xCenterCoordi, yCenterCoordi, zCenterCoordi - 1.65f * maxCenterCoordi);
         defaultPosition = mainCameraTransform.position;
 
@@ -88,4 +88,6 @@ public class CameraMover : MonoBehaviour
       }
       mainCameraTransform.LookAt(center,Vector3.up);
     }
+
+    public Vector3 MainCameraTransformPosition {get {return this.mainCameraTransform.position;} }
 }

@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class TagHelper : MonoBehaviour
+public class TagHelper444 : MonoBehaviour
 {
+    public GameObject board; //MaxNumを受け取る
+
+
     void Awake()
     {
-      for(int y=0; y<4; y++)
+      for(int y=0; y<board.GetComponent<CreateBoard444>().YMaxNum; y++)
       {
-        for(int z=0; z<4; z++)
+        for(int z=0; z<board.GetComponent<CreateBoard444>().ZMaxNum; z++)
         {
-          for(int x=0; x<4; x++)
+          for(int x=0; x<board.GetComponent<CreateBoard444>().XMaxNum; x++)
           {
             AddTag("tagS" + x + y + z);
             AddTag("tagB" + x + y + z);
