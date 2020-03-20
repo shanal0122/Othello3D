@@ -14,7 +14,7 @@ public class CreateBoard444 : MonoBehaviour
 
     void Start()
     {
-        SetBoardFlameWidge();
+        //SetBoardFlameWidge();
         for(int y=0; y<yMaxNum; y++)
         {
           for(int z=0; z<zMaxNum; z++)
@@ -30,7 +30,7 @@ public class CreateBoard444 : MonoBehaviour
     }
 
 
-    private void SetBoardFlameWidge() //オセロ盤のフレームの幅を設定
+    /*private void SetBoardFlameWidge() //オセロ盤のフレームの幅を設定
     {
       float f = flameWidge;
       float p = (1-f)/2;
@@ -59,7 +59,7 @@ public class CreateBoard444 : MonoBehaviour
       boardTransform.GetChild(9).gameObject.transform.localScale = new Vector3(f,f,1);
       boardTransform.GetChild(10).gameObject.transform.localScale = new Vector3(1,f,f);
       boardTransform.GetChild(11).gameObject.transform.localScale = new Vector3(f,f,1);
-    }
+    }*/
 
     public int XMaxNum { set {xMaxNum = value;} get {return this.xMaxNum;} } //CameraMoverに渡す
 

@@ -23,7 +23,7 @@ public class CameraMover444 : MonoBehaviour
 
         mainCameraTransform = this.gameObject.transform;
         int maxCenterCoordi = Mathf.Max(board.GetComponent<CreateBoard444>().XMaxNum,board.GetComponent<CreateBoard444>().YMaxNum,board.GetComponent<CreateBoard444>().ZMaxNum);
-        mainCameraTransform.position = new Vector3 (xCenterCoordi, yCenterCoordi, zCenterCoordi - 1.65f * maxCenterCoordi);
+        mainCameraTransform.position = new Vector3 (xCenterCoordi, yCenterCoordi, zCenterCoordi - 2f * maxCenterCoordi);
         defaultPosition = mainCameraTransform.position;
 
         squaredDistance = (defaultPosition.x - center.x) * (defaultPosition.x - center.x) + (defaultPosition.y - center.y) * (defaultPosition.y - center.y) + (defaultPosition.z - center.z) * (defaultPosition.z - center.z);
