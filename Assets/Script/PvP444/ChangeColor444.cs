@@ -6,12 +6,11 @@ public class ChangeColor444 : MonoBehaviour
 {
     public Material clearBoard;
     public Material shinyBoard;
-    public GameObject board; //MaxNumを受け取る
 
 
     public void UndoBoardColor(int x, int y, int z)
     {
-      GameObject.FindGameObjectWithTag("tagB" + x + y + z).GetComponent<Renderer>().material.color = clearBoard.color;
+      GameObject.FindGameObjectWithTag("tagB" + x + y + z).GetComponent<Renderer>().sharedMaterial.color = clearBoard.color;
     }
 
     public void ShineBoardColor(int x, int y, int z)
@@ -21,11 +20,11 @@ public class ChangeColor444 : MonoBehaviour
 
     public void UndoAllBoardColor()
     {
-      for(int y=0; y<board.GetComponent<CreateBoard444>().YMaxNum; y++)
+      for(int y=0; y<4; y++)
       {
-        for(int z=0; z<board.GetComponent<CreateBoard444>().ZMaxNum; z++)
+        for(int z=0; z<4; z++)
         {
-          for(int x=0; x<board.GetComponent<CreateBoard444>().XMaxNum; x++)
+          for(int x=0; x<4; x++)
           {
             UndoBoardColor(x,y,z);
           }

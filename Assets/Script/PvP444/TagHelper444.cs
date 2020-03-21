@@ -10,11 +10,11 @@ public class TagHelper444 : MonoBehaviour
 
     void Awake()
     {
-      for(int y=0; y<board.GetComponent<CreateBoard444>().YMaxNum; y++)
+      for(int y=0; y<4; y++)
       {
-        for(int z=0; z<board.GetComponent<CreateBoard444>().ZMaxNum; z++)
+        for(int z=0; z<4; z++)
         {
-          for(int x=0; x<board.GetComponent<CreateBoard444>().XMaxNum; x++)
+          for(int x=0; x<4; x++)
           {
             AddTag("tagS" + x + y + z);
             AddTag("tagB" + x + y + z);
