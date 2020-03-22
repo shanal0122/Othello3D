@@ -6,7 +6,7 @@ namespace PvP444
 {
   public class Game444 : MonoBehaviour
   {
-      private bool putableInform = true; //置く場所を光らせるならtrue。（Menu画面で変更可能）////////////////////////////////////////////////////////////////まだ未完成
+      private bool putableInform = true; //置く場所を光らせるならtrue。（Menu画面で変更可能）//////////////////////////////////////////////////////////////まだ未完成
       private Vector3 standard; //CoordinateDisplayクラスのテキストの向きを定めるために用いる
       private int turn = 1; //ターン入れ替えは"StoneXXX/FlipStone"で行っている
       private bool keyDetectable = true; //falseのときカメラ移動とキー入力を受け付けない
@@ -32,7 +32,10 @@ namespace PvP444
         stones.GetComponent<Stone444>().PutStone(1,2,1,2);
         stones.GetComponent<Stone444>().PutStone(-1,1,1,2);
         stones.GetComponent<Stone444>().PutStone(-1,2,1,1);
-
+        stones.GetComponent<Stone444>().PutStone(1,1,2,2);
+        stones.GetComponent<Stone444>().PutStone(1,2,2,1);
+        stones.GetComponent<Stone444>().PutStone(-1,1,2,1);
+        stones.GetComponent<Stone444>().PutStone(-1,2,2,2);
         infoDisplay.GetComponent<InfoDisplay444>().TurnIndicate();
         infoDisplay.GetComponent<InfoDisplay444>().StoneNumIndicate();
       }
