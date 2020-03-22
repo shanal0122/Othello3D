@@ -3,42 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class TagHelper444 : MonoBehaviour
+namespace PvP444
 {
-    public GameObject board; //MaxNumを受け取る
+  public class TagHelper444 : MonoBehaviour
+  {
+      public GameObject board; //MaxNumを受け取る
 
 
-    void Awake()
-    {
-      for(int y=0; y<4; y++)
+      void Awake()
       {
-        for(int z=0; z<4; z++)
+        for(int y=0; y<4; y++)
         {
-          for(int x=0; x<4; x++)
+          for(int z=0; z<4; z++)
           {
-            AddTag("tagS" + x + y + z);
-            AddTag("tagB" + x + y + z);
+            for(int x=0; x<4; x++)
+            {
+              AddTag("tagS" + x + y + z);
+              AddTag("tagB" + x + y + z);
+            }
           }
         }
       }
-    }
 
-    private static void AddTag(string tagname)
-    {
-        UnityEngine.Object[] asset = AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/TagManager.asset");
-        if ((asset != null) && (asset.Length > 0))
-        {
-          SerializedObject so = new SerializedObject(asset[0]);
-          SerializedProperty tags = so.FindProperty("tags");
-          for (int i = 0; i < tags.arraySize; ++i)
+      private static void AddTag(string tagname) //タグの生成
+      {
+          UnityEngine.Object[] asset = AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/TagManager.asset");
+          if ((asset != null) && (asset.Length > 0))
           {
-            if (tags.GetArrayElementAtIndex(i).stringValue == tagname){return;}
+            SerializedObject so = new SerializedObject(asset[0]);
+            SerializedProperty tags = so.FindProperty("tags");
+            for (int i = 0; i < tags.arraySize; ++i)
+            {
+              if (tags.GetArrayElementAtIndex(i).stringValue == tagname){return;}
+            }
+            int index = tags.arraySize;
+            tags.InsertArrayElementAtIndex(index);
+            tags.GetArrayElementAtIndex(index).stringValue = tagname;
+            so.ApplyModifiedProperties();
+            so.Update();
           }
-          int index = tags.arraySize;
-          tags.InsertArrayElementAtIndex(index);
-          tags.GetArrayElementAtIndex(index).stringValue = tagname;
-          so.ApplyModifiedProperties();
-          so.Update();
-        }
-    }
+      }
+  }
+
 }
