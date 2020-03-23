@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace PvP444
 {
-  public class CameraMover444 : MonoBehaviour
+  public class CameraMover : MonoBehaviour
   {
       [SerializeField,Range(5f,15f)] private float movingSpeed = 10f; //カメラの動くスピードを設定
       private float squaredDistance; //カメラを球面状で動かす時の半径の二乗
@@ -37,7 +37,7 @@ namespace PvP444
 
       void LateUpdate()
       {
-          if(master.GetComponent<Game444>().KeyDetectable) {CameraPosotionControlByKey();}
+          if(master.GetComponent<Game>().KeyDetectable) {CameraPosotionControlByKey();}
       }
 
       private void CameraPosotionControlByKey() //矢印キーでメインカメラを動かす

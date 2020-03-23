@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace PvP444
 {
-  public class Stone444 : MonoBehaviour
+  public class Stone : MonoBehaviour
   {
       private int[,,] square = new int[4,4,4]; //noStone : 0, blackStone : 1, whiteStone : -1
       private readonly int[,] vector = new int[,]{{0,1,0},{1,1,0},{0,1,1},{-1,1,0},{0,1,-1},{1,0,0},{1,0,1},{0,0,1},{-1,0,1},{-1,0,0},{-1,0,-1},{0,0,-1},{1,0,-1},{1,-1,0},{0,-1,1},{-1,-1,0},{0,-1,-1},{0,-1,0}};
@@ -13,6 +13,7 @@ namespace PvP444
       public GameObject whiteStone;
       public GameObject master; //GameからTurnを受け取る
       public GameObject colorManager; //CanPutAndInformで置ける場所を光らせる
+      public GameObject infoDisplay;
 
 
       private int FlipNum(int stone, int x, int y, int z, int vec) //stone{1,-1}を座標(x,y,z)に置いた時vec方向のコマを返せる個数を返す
@@ -84,7 +85,7 @@ namespace PvP444
         return flipNum;
       }
 
-      public void FlipStone(int stone, int x, int y, int z) //座標(x,y,z)に石をおき裏返しturnを変更する。置けない時は何もしない
+      public void FlipStone(int stone, int x, int y, int z) //座標(x,y,z)に石をおき裏返しturnを変更する。置けない時は何もしない。Game.squareListに盤の情報を格納
       {
         if(square[x,y,z] == 0)
         {
@@ -96,9 +97,47 @@ namespace PvP444
           if(sumOfFlipNum != 0)
           {
             PutStone(stone,x,y,z);
-            master.GetComponent<Game444>().Turn *= -1;
+            master.GetComponent<Game>().Turn *= -1;
+            Game.totalTurn++;
+            int[] temp = new int[64]; //待った機能のための情報の格納
+            for(int _y=0; _y<4; _y++)
+            {
+              for(int _z=0; _z<4; _z++)
+              {
+                for(int _x=0; _x<4; _x++)
+                {
+                  temp[16*_y+4*_z+_x] = square[_x,_y,_z];
+                }
+              }
+            }
+            Game.squareList.Add(temp);
+          }else {infoDisplay.GetComponent<InfoDisplay>().CantPutIndicate();}
+        }
+      }
+
+      public void PutAllStoneAsList() //待ったが押された時盤面を元に戻す
+      {
+        for(int _y=0; _y<4; _y++)
+        {
+          for(int _z=0; _z<4; _z++)
+          {
+            for(int _x=0; _x<4; _x++)
+            {
+              RemoveStone(_x,_y,_z);
+              square[_x,_y,_z] = Game.squareList[Game.totalTurn-1][16*_y+4*_z+_x];
+              if(square[_x,_y,_z] == 1 || square[_x,_y,_z] == -1)
+              {
+                PutStone(square[_x,_y,_z],_x,_y,_z);
+              }
+            }
           }
         }
+        master.GetComponent<Game>().SetBeforePressed = false;
+        master.GetComponent<Game>().SetAfterXPressed = false;
+        master.GetComponent<Game>().SetAfterZPressed = false;
+        master.GetComponent<Game>().SetAfterYPressed = false;
+        master.GetComponent<Game>().SetEnterPressed = false;
+        master.GetComponent<Game>().XCoordi = master.GetComponent<Game>().YCoordi = master.GetComponent<Game>().ZCoordi = 0;
       }
 
 
@@ -158,7 +197,7 @@ namespace PvP444
                     canPut = true;
                   }
                 }
-                if(cp) {colorManager.GetComponent<ChangeColor444>().InformShineBoardColor(x,y,z);} //光らせる
+                if(cp) {colorManager.GetComponent<ChangeColor>().InformShineBoardColor(x,y,z);} //光らせる
             }
           }
         }
@@ -178,9 +217,11 @@ namespace PvP444
           {
             if(FlipNum(stone,x,y,z,n) != 0) { cp = true; break; }
           }
-          if(cp) {colorManager.GetComponent<ChangeColor444>().InformShineBoardColor(x,y,z);}
+          if(cp) {colorManager.GetComponent<ChangeColor>().InformShineBoardColor(x,y,z);}
         }
       }
+
+      public int[,,] Square { get {return square;} }
   }
 
 }

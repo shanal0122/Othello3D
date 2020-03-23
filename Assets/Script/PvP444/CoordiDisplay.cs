@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace PvP444
 {
-  public class CoordiDisplay444 : MonoBehaviour //座標を表すテキストを配置
+  public class CoordiDisplay : MonoBehaviour //座標を表すテキストを配置
   {
       public GameObject coordinateCanvas;
       public GameObject coordinateTextPrefab;

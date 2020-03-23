@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace PvP444
 {
-  public class CreateBoard444 : MonoBehaviour //全ての盤にタグ付けする
+  public class CreateBoard : MonoBehaviour //全ての盤にタグ付けする
   {
       public GameObject boardPrefab;
       public Transform boardTransform;

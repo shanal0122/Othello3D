@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace PvP444
 {
-  public class ChangeColor444 : MonoBehaviour
+  public class ChangeColor : MonoBehaviour
   {
       public Material clearBoard;
       public Material shinyBoard;

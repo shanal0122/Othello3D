@@ -5,7 +5,7 @@ using UnityEditor;
 
 namespace PvP444
 {
-  public class TagHelper444 : MonoBehaviour
+  public class TagHelper : MonoBehaviour
   {
       public GameObject board; //MaxNumを受け取る
 
