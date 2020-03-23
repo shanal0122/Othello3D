@@ -97,6 +97,8 @@ namespace PvP444
         coordiDisplay.GetComponent<CoordiDisplay>().BeforePressedIndicate();
         infoDisplay.GetComponent<InfoDisplay>().TurnIndicate();
         infoDisplay.GetComponent<InfoDisplay>().StoneNumIndicate();
+        beforePressed = true;
+        afterXPressed = false;
       }
 
       private void AfterXPressed() //x座標を確定した後に一度だけ実行される
