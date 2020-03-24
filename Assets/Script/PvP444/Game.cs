@@ -11,7 +11,7 @@ namespace PvP444
       public static int totalTurn = 0; //待った機能のための情報の格納に用いる。現在の累計ターン数を表す
       private Vector3 standard; //CoordinateDisplayクラスのテキストの向きを定めるために用いる
       private int turn = 1; //ターン入れ替えは"StoneXXX/FlipStone"で行っている
-      private bool keyDetectable = true; //falseのときカメラ移動とキー入力を受け付けない
+      private bool keyDetectable = true; //falseのときカメラ移動とキー入力を受け付けない（ゲームセット時、Menuを開いた時）
       public int XCoordi {get; set;}
       public int YCoordi {get; set;}
       public int ZCoordi {get; set;}
@@ -197,7 +197,7 @@ namespace PvP444
 
       public int Turn{ get {return turn;} set {this.turn = value;} }
 
-      public bool KeyDetectable{ get {return keyDetectable;} }
+      public bool KeyDetectable{ get {return keyDetectable;} set {keyDetectable = value;}}
 
       public bool SetBeforePressed{ get {return beforePressed;} set {beforePressed = value;} }
 
