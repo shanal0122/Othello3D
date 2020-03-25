@@ -29,7 +29,7 @@ namespace PvP666
           {
             GameObject d = Instantiate(coordinateTextPrefab,coordinateCanvas.transform);
             d.GetComponent<Text>().text = (x+1).ToString();
-            d.transform.position = new Vector3 (1.1f*x-0.15f, 5f*n-0.75f, 1.5f);
+            d.transform.position = new Vector3 (1.1f*x-0.15f, 7f*n-0.75f, 2.5f);
             d.tag = "CoordinateDisplay";
           }
         }
@@ -44,7 +44,7 @@ namespace PvP666
           {
             GameObject d = Instantiate(coordinateTextPrefab,coordinateCanvas.transform);
             d.GetComponent<Text>().text = (x+1).ToString();
-            d.transform.position = new Vector3 (1.5f, 5f*n-0.75f, 1.1f*x-0.15f);
+            d.transform.position = new Vector3 (2.5f, 7f*n-0.75f, 1.1f*x-0.15f);
             d.tag = "CoordinateDisplay";
           }
         }
@@ -59,7 +59,7 @@ namespace PvP666
           {
             GameObject d = Instantiate(coordinateTextPrefab,coordinateCanvas.transform);
             d.GetComponent<Text>().text = (x+1).ToString();
-            d.transform.position = new Vector3 (5f*n-0.75f, 1.1f*x-0.15f, 1.5f);
+            d.transform.position = new Vector3 (7f*n-0.75f, 1.1f*x-0.15f, 2.5f);
             d.tag = "CoordinateDisplay";
           }
         }
