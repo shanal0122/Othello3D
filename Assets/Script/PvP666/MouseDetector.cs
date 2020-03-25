@@ -1,11 +1,11 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace PvP444
+namespace PvP666
 {
-  public class MouseDetect : MonoBehaviour
+  public class MouseDetector : MonoBehaviour
   {
       public GameObject stones;
       public GameObject master;
