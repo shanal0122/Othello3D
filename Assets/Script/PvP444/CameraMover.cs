@@ -6,7 +6,7 @@ namespace PvP444
 {
   public class CameraMover : MonoBehaviour
   {
-      private float movingSpeed = 10f; //カメラの動くスピードを設定
+      private float movingSpeed = 15f; //カメラの動くスピードを設定
       private float squaredDistance; //カメラを球面状で動かす時の半径の二乗
       private float upLimit; //カメラの上方向に動く限界のy座標
       private float downLimit; //カメラの上方向に動く限界のy座標
