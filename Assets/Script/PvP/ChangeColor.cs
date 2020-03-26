@@ -1,11 +1,15 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Choose;
 
-namespace PvP666
+namespace PvP
 {
   public class ChangeColor : MonoBehaviour
   {
+      private int xLength = InitialSetting.xLength; //盤の一辺の長さ
+      private int yLength = InitialSetting.yLength;
+      private int zLength = InitialSetting.zLength;
       public Material clearBoard;
       public Material shinyBoard;
       public Material informShinyBoard;
@@ -28,11 +32,11 @@ namespace PvP666
 
       public void UndoAllBoardColor() //全ての盤の色を元に戻す
       {
-        for(int y=0; y<6; y++)
+        for(int y=0; y<yLength; y++)
         {
-          for(int z=0; z<6; z++)
+          for(int z=0; z<zLength; z++)
           {
-            for(int x=0; x<6; x++)
+            for(int x=0; x<xLength; x++)
             {
               UndoBoardColor(x,y,z);
             }

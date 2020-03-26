@@ -2,12 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Choose;
 
-namespace PvP444
+namespace PvP
 {
   public class Stone : MonoBehaviour
   {
-      private int[,,] square = new int[4,4,4]; //noStone : 0, blackStone : 1, whiteStone : -1
+      private int xLength = InitialSetting.xLength; //盤の一辺の長さ
+      private int yLength = InitialSetting.yLength;
+      private int zLength = InitialSetting.zLength;
+      private int[,,] square; //noStone : 0, blackStone : 1, whiteStone : -1
       private readonly int[,] vector = new int[,]{{0,1,0},{1,1,0},{0,1,1},{-1,1,0},{0,1,-1},{1,0,0},{1,0,1},{0,0,1},{-1,0,1},{-1,0,0},{-1,0,-1},{0,0,-1},{1,0,-1},{1,-1,0},{0,-1,1},{-1,-1,0},{0,-1,-1},{0,-1,0}};
       public GameObject blackStone;
       public GameObject whiteStone;
@@ -15,6 +19,11 @@ namespace PvP444
       public GameObject colorManager; //CanPutAndInformで置ける場所を光らせる
       public GameObject infoDisplay;
 
+
+      void Start()
+      {
+         square = new int[xLength,yLength,zLength];
+      }
 
       private int FlipNum(int stone, int x, int y, int z, int vec) //stone{1,-1}を座標(x,y,z)に置いた時vec方向のコマを返せる個数を返す
       {
@@ -99,13 +108,13 @@ namespace PvP444
             PutStone(stone,x,y,z);
             master.GetComponent<Game>().Turn *= -1;
             Game.totalTurn++; //待った機能のための情報の格納
-            for(int _y=0; _y<4; _y++)
+            for(int _y=0; _y<yLength; _y++)
             {
-              for(int _z=0; _z<4; _z++)
+              for(int _z=0; _z<zLength; _z++)
               {
-                for(int _x=0; _x<4; _x++)
+                for(int _x=0; _x<xLength; _x++)
                 {
-                  Game.squareList[Game.totalTurn,16*_y+4*_z+_x] = square[_x,_y,_z];
+                  Game.squareList[Game.totalTurn, xLength * zLength * _y + xLength * _z + _x] = square[_x,_y,_z];
                 }
               }
             }
@@ -116,14 +125,14 @@ namespace PvP444
 
       public void PutAllStoneAsList() //待ったが押された時盤面を元に戻す
       {
-        for(int _y=0; _y<4; _y++)
+        for(int _y=0; _y<yLength; _y++)
         {
-          for(int _z=0; _z<4; _z++)
+          for(int _z=0; _z<zLength; _z++)
           {
-            for(int _x=0; _x<4; _x++)
+            for(int _x=0; _x<xLength; _x++)
             {
               RemoveStone(_x,_y,_z);
-              square[_x,_y,_z] = Game.squareList[Game.totalTurn-1,16*_y+4*_z+_x];
+              square[_x,_y,_z] = Game.squareList[Game.totalTurn-1, xLength * zLength * _y + xLength * _z + _x];
               if(square[_x,_y,_z] == 1 || square[_x,_y,_z] == -1)
               {
                 PutStone(square[_x,_y,_z],_x,_y,_z);
@@ -157,11 +166,11 @@ namespace PvP444
         {
           Debug.Log("Error : Stone/CanPut");//////////////////////////////////////////////////////////////////////////////////////
         }
-        for(int y=0; y<4; y++)
+        for(int y=0; y<yLength; y++)
         {
-          for(int z=0; z<4; z++)
+          for(int z=0; z<zLength; z++)
           {
-            for(int x=0; x<4; x++)
+            for(int x=0; x<xLength; x++)
             {
               for(int n=0; n<vector.GetLength(0); n++)
               {
@@ -181,11 +190,11 @@ namespace PvP444
         }
         bool canPut = false;
         bool cp = false; //各マスの少なくとも1つの方向で石が返せるならtrue。これにより各マスの置ける場所を光らせる
-        for(int y=0; y<4; y++)
+        for(int y=0; y<yLength; y++)
         {
-          for(int z=0; z<4; z++)
+          for(int z=0; z<zLength; z++)
           {
-            for(int x=0; x<4; x++)
+            for(int x=0; x<xLength; x++)
             {
                 cp = false;
                 for(int n=0; n<vector.GetLength(0); n++)

@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Choose;
 
-namespace PvP444
+namespace PvP
 {
   public class Game : MonoBehaviour
   {
+      private int xLength = InitialSetting.xLength; //盤の一辺の長さ
+      private int yLength = InitialSetting.yLength;
+      private int zLength = InitialSetting.zLength;
       private bool putableInform = true; //置く場所を光らせるならtrue。（Menu画面で変更可能）
-      public static int[,] squareList = new int[56,64]; //待った機能のためにマスの情報を格納する。
+      public static int[,] squareList; //待った機能のためにマスの情報を格納する。
       public static int totalTurn = 0; //待った機能のための情報の格納に用いる。現在の累計ターン数を表す
       private Vector3 standard; //CoordinateDisplayクラスのテキストの向きを定めるために用いる
       private int turn = 1; //ターン入れ替えは"StoneXXX/FlipStone"で行っている
@@ -27,23 +31,25 @@ namespace PvP444
 
       void Start()
       {
-        standard = new Vector3 (3,3,3);
-        stones.GetComponent<Stone>().PutStone(1,1,1,1);
-        stones.GetComponent<Stone>().PutStone(1,2,1,2);
-        stones.GetComponent<Stone>().PutStone(-1,1,1,2);
-        stones.GetComponent<Stone>().PutStone(-1,2,1,1);
-        stones.GetComponent<Stone>().PutStone(1,1,2,2);
-        stones.GetComponent<Stone>().PutStone(1,2,2,1);
-        stones.GetComponent<Stone>().PutStone(-1,1,2,1);
-        stones.GetComponent<Stone>().PutStone(-1,2,2,2);
+        squareList = new int[xLength*yLength*zLength-8,xLength*yLength*zLength];
+        standard = new Vector3 (xLength-1f, yLength-1f, zLength-1f);
+        int a = xLength/2; ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////今後盤の種類を増やすかも
+        stones.GetComponent<Stone>().PutStone(1,a-1,a-1,a-1);
+        stones.GetComponent<Stone>().PutStone(1,a,a-1,a);
+        stones.GetComponent<Stone>().PutStone(-1,a-1,a-1,a);
+        stones.GetComponent<Stone>().PutStone(-1,a,a-1,a-1);
+        stones.GetComponent<Stone>().PutStone(1,a-1,a,a);
+        stones.GetComponent<Stone>().PutStone(1,a,a,a-1);
+        stones.GetComponent<Stone>().PutStone(-1,a-1,a,a-1);
+        stones.GetComponent<Stone>().PutStone(-1,a,a,a); /////////////////////////////////////////////////////////////////////////////////////////////
 
-        for(int _y=0; _y<4; _y++) //待った機能のための情報の格納
+        for(int _y=0; _y<yLength; _y++) //待った機能のための情報の格納
         {
-          for(int _z=0; _z<4; _z++)
+          for(int _z=0; _z<zLength; _z++)
           {
-            for(int _x=0; _x<4; _x++)
+            for(int _x=0; _x<xLength; _x++)
             {
-              squareList[0,16*_y+4*_z+_x] = stones.GetComponent<Stone>().Square[_x,_y,_z];
+              squareList[0, xLength * zLength * _y + xLength * _z + _x] = stones.GetComponent<Stone>().Square[_x,_y,_z];
             }
           }
         }
@@ -103,9 +109,9 @@ namespace PvP444
       private void AfterXPressed() //x座標を確定した後に一度だけ実行される
       {
         colorManager.GetComponent<ChangeColor>().UndoAllBoardColor();
-        for(int y=0; y<4; y++)
+        for(int y=0; y<yLength; y++)
         {
-            for(int z=0; z<4; z++)
+            for(int z=0; z<zLength; z++)
             {
                 colorManager.GetComponent<ChangeColor>().ShineBoardColor(XCoordi-1,y,z);
                 if(putableInform) {stones.GetComponent<Stone>().Inform(turn,XCoordi-1,y,z);}
@@ -120,7 +126,7 @@ namespace PvP444
       private void AfterZPressed() //z座標を確定した後に一度だけ実行される
       {
         colorManager.GetComponent<ChangeColor>().UndoAllBoardColor();
-        for(int y=0; y<4; y++)
+        for(int y=0; y<yLength; y++)
         {
             colorManager.GetComponent<ChangeColor>().ShineBoardColor(XCoordi-1,y,ZCoordi-1);
             if(putableInform) {stones.GetComponent<Stone>().Inform(turn,XCoordi-1,y,ZCoordi-1);}

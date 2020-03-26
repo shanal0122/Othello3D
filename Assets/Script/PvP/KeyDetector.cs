@@ -1,16 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Choose;
 
-namespace PvP444
+namespace PvP
 {
   public class KeyDetector : MonoBehaviour
   {
-      private readonly string[] keys = {"1", "2", "3", "4"};
+      private int xLength = InitialSetting.xLength; //盤の一辺の長さ
+      private int yLength = InitialSetting.yLength;
+      private int zLength = InitialSetting.zLength;
+      private string[] keys;
       private int x = 0; //GameObject.csのXCoordiに連動
       private int y = 0;
       private int z = 0;
       public GameObject master;
+
+
+      void Start()//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      {
+        if(xLength == 4){keys = new string[4]{"1", "2", "3", "4"};}
+        if(xLength == 6){keys = new string[6]{"1", "2", "3", "4", "5", "6"};}
+      }
 
 
       public void NumKeyDetect() //x,z,y,Enterの順でキーが押されると順にGameクラスの変数に代入

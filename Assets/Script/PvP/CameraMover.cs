@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Choose;
 
-namespace PvP444
+namespace PvP
 {
   public class CameraMover : MonoBehaviour
   {
+      private int xLength = InitialSetting.xLength;
+      private int yLength = InitialSetting.yLength;
+      private int zLength = InitialSetting.zLength;
       private float movingSpeed = 15f; //カメラの動くスピードを設定
       private float squaredDistance; //カメラを球面状で動かす時の半径の二乗
       private float upLimit; //カメラの上方向に動く限界のy座標
@@ -18,13 +22,13 @@ namespace PvP444
 
       void Start()
       {
-          float xCenterCoordi =1.5f;
-          float yCenterCoordi =1.5f;
-          float zCenterCoordi =1.5f;
+          float xCenterCoordi = (xLength - 1f)/2f;
+          float yCenterCoordi = (yLength - 1f)/2f;
+          float zCenterCoordi = (zLength - 1f)/2f;
           center = new Vector3(xCenterCoordi,yCenterCoordi,zCenterCoordi); //中心位置の定義
 
           mainCameraTransform = this.gameObject.transform;
-          mainCameraTransform.position = new Vector3 (xCenterCoordi, yCenterCoordi, zCenterCoordi - 8f);
+          mainCameraTransform.position = new Vector3 (xCenterCoordi, yCenterCoordi, zCenterCoordi - 2f * yLength);
           defaultPosition = mainCameraTransform.position;
 
           squaredDistance = (defaultPosition.x - center.x) * (defaultPosition.x - center.x) + (defaultPosition.y - center.y) * (defaultPosition.y - center.y) + (defaultPosition.z - center.z) * (defaultPosition.z - center.z);

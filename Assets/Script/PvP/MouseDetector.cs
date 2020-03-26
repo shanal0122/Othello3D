@@ -1,9 +1,9 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace PvP666
+namespace PvP
 {
   public class MouseDetector : MonoBehaviour
   {
