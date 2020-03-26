@@ -14,7 +14,7 @@ namespace PvP
       private int x = 0; //GameObject.csのXCoordiに連動
       private int y = 0;
       private int z = 0;
-      public GameObject master;
+      public Game game;
 
 
       void Start()//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -33,7 +33,7 @@ namespace PvP
                   if(Input.GetKeyDown(key))
                   {
                       x = int.Parse(key);
-                      master.GetComponent<Game>().XCoordi = x;
+                      game.XCoordi = x;
                   }
               }
           }else if(z == 0)
@@ -43,7 +43,7 @@ namespace PvP
                   if(Input.GetKeyDown(key))
                   {
                       z = int.Parse(key);
-                      master.GetComponent<Game>().ZCoordi = z;
+                      game.ZCoordi = z;
                   }
               }
           }else if(y == 0)
@@ -53,14 +53,14 @@ namespace PvP
                   if(Input.GetKeyDown(key))
                   {
                       y = int.Parse(key);
-                      master.GetComponent<Game>().YCoordi = y;
+                      game.YCoordi = y;
                   }
               }
           }else
           {
               if(Input.GetKeyDown("return"))
               {
-                  master.GetComponent<Game>().SetEnterPressed = true;
+                  game.SetEnterPressed = true;
                   x = y = z = 0;
               }
           }
@@ -73,21 +73,21 @@ namespace PvP
               if(Input.GetKeyDown("backspace"))
               {
                   y = 0;
-                  master.GetComponent<Game>().YCoordi = 0;
+                  game.YCoordi = 0;
               }
           }else if(z != 0)
           {
               if(Input.GetKeyDown("backspace"))
               {
                   z = 0;
-                  master.GetComponent<Game>().ZCoordi = 0;
+                  game.ZCoordi = 0;
               }
           }else if(x != 0)
           {
               if(Input.GetKeyDown("backspace"))
               {
                   x = 0;
-                  master.GetComponent<Game>().XCoordi = 0;
+                  game.XCoordi = 0;
               }
           }
       }

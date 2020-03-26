@@ -165,7 +165,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &10028365
 GameObject:
@@ -968,7 +968,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f2c1a6a7801645e6b6d77a21cb91658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  board: {fileID: 854900983}
 --- !u!4 &158727890
 Transform:
   m_ObjectHideFlags: 0
@@ -981,7 +980,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &160540036
 GameObject:
@@ -3237,7 +3236,7 @@ RectTransform:
   m_Children:
   - {fileID: 351303592}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3537,7 +3536,7 @@ Transform:
   - {fileID: 685221980}
   - {fileID: 160540037}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &420782571
 GameObject:
@@ -4292,7 +4291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a942d2f7479747468403e0599bc6709, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  master: {fileID: 1675065424}
+  game: {fileID: 1675065425}
 --- !u!4 &500567304
 Transform:
   m_ObjectHideFlags: 0
@@ -4305,7 +4304,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &508330380
 GameObject:
@@ -6323,8 +6322,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ade16af582d8b4c9abe812d567006466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stones: {fileID: 1116699600}
-  master: {fileID: 1675065424}
+  stone: {fileID: 1116699601}
+  game: {fileID: 1675065425}
   blackTurnText: {fileID: 104240948}
   whiteTurnText: {fileID: 638202237}
   blackStoneNumText: {fileID: 508330383}
@@ -6343,7 +6342,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &747128364
 GameObject:
@@ -7577,7 +7576,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &856951959
 GameObject:
@@ -7708,7 +7707,7 @@ RectTransform:
   - {fileID: 673296945}
   - {fileID: 1045494910}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -8160,7 +8159,7 @@ RectTransform:
   m_Children:
   - {fileID: 117342653}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -9897,9 +9896,9 @@ MonoBehaviour:
     type: 3}
   whiteStone: {fileID: 8436403583759325846, guid: fbf73deb42dd74d169a4f46272b6b6cd,
     type: 3}
-  master: {fileID: 1675065424}
-  colorManager: {fileID: 8791422}
-  infoDisplay: {fileID: 721127459}
+  game: {fileID: 1675065425}
+  changeColor: {fileID: 8791423}
+  infoDisplay: {fileID: 721127460}
 --- !u!4 &1116699602
 Transform:
   m_ObjectHideFlags: 0
@@ -9912,7 +9911,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1137148020
 GameObject:
@@ -10032,7 +10031,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1164126467
 GameObject:
@@ -10435,11 +10434,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe401067c202b43258cc82d961a2d3d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stones: {fileID: 1116699600}
-  master: {fileID: 1675065424}
+  stone: {fileID: 1116699601}
+  game: {fileID: 1675065425}
   menuCanvas: {fileID: 395119603}
   cameraSensiSlider: {fileID: 2122174938}
-  mainCamera: {fileID: 2022872706}
+  cameraMover: {fileID: 2022872707}
   putableSlider: {fileID: 260951387}
   putableOnOffText: {fileID: 192769582}
   instructionCanvas: {fileID: 1786924970}
@@ -10455,7 +10454,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1185902203
 GameObject:
@@ -10642,7 +10641,7 @@ RectTransform:
   m_Children:
   - {fileID: 176434633}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -13636,7 +13635,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1549957448
 GameObject:
@@ -14748,15 +14747,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1675065424}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef7145b7d5b95463e8cf670a5e3d2706, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e1a42896e23d4183b10597e43d5891a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 2022872706}
-  stones: {fileID: 1116699600}
-  colorManager: {fileID: 8791422}
-  keyDetector: {fileID: 500567302}
-  coordiDisplay: {fileID: 1148499625}
-  infoDisplay: {fileID: 721127459}
+  cameraMover: {fileID: 2022872707}
+  stone: {fileID: 1116699601}
+  changeColor: {fileID: 8791423}
+  keyDetector: {fileID: 500567303}
+  coordiDisplay: {fileID: 1148499626}
+  infoDisplay: {fileID: 721127460}
   centerCanvas: {fileID: 1196088027}
 --- !u!4 &1675065426
 Transform:
@@ -14770,7 +14769,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1699375763
 GameObject:
@@ -14839,7 +14838,7 @@ Transform:
   - {fileID: 1753900747}
   - {fileID: 370043690}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1709534772
 GameObject:
@@ -15420,7 +15419,7 @@ RectTransform:
   m_Children:
   - {fileID: 64967615}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -16601,7 +16600,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 70, y: 0, z: 0}
 --- !u!1 &1954161714
 GameObject:
@@ -17345,7 +17344,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -17383,7 +17382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6056a017585eb4837ab96b63bb1453dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  master: {fileID: 1675065424}
+  game: {fileID: 1675065425}
 --- !u!81 &2022872708
 AudioListener:
   m_ObjectHideFlags: 0
@@ -17443,7 +17442,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2022872706}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 1.5, z: -6.5}
+  m_LocalPosition: {x: 2.5, y: 2.5, z: -9.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418195770}

@@ -7,8 +7,8 @@ namespace PvP
 {
   public class InfoDisplay : MonoBehaviour
   {
-      public GameObject stones;
-      public GameObject master;
+      public Stone stone;
+      public Game game;
       public Text blackTurnText;
       public Text whiteTurnText;
       public Text blackStoneNumText;
@@ -19,7 +19,7 @@ namespace PvP
 
       public void TurnIndicate() //テキストにターンを表示する
       {
-        int turn = master.GetComponent<Game>().Turn;
+        int turn = game.Turn;
         if(turn == 1)
         {
           blackTurnText.text = "あなたの番です";
@@ -38,17 +38,17 @@ namespace PvP
 
       public void StoneNumIndicate() //テキストに各色の石の数を表示する
       {
-        int bl = stones.GetComponent<Stone>().CountStone(1);
+        int bl = stone.CountStone(1);
         blackStoneNumText.text = bl.ToString();
-        int wh = stones.GetComponent<Stone>().CountStone(-1);
+        int wh = stone.CountStone(-1);
         whiteStoneNumText.text = wh.ToString();
       }
 
       public void ResultIndicate() //リザルト画面を表示する
       {
-        int bl = stones.GetComponent<Stone>().CountStone(1);
+        int bl = stone.CountStone(1);
         blackStoneNumText.text = bl.ToString();
-        int wh = stones.GetComponent<Stone>().CountStone(-1);
+        int wh = stone.CountStone(-1);
         whiteStoneNumText.text = wh.ToString();
         if(bl > wh) {resultText.text = "ゲームセット\n\n黒の勝ち";}
         if(bl == wh) {resultText.text = "ゲームセット\n\n引き分け";}

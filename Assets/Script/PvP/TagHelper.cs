@@ -11,7 +11,6 @@ namespace PvP
       private int xLength = InitialSetting.xLength; //盤の一辺の長さ
       private int yLength = InitialSetting.yLength;
       private int zLength = InitialSetting.zLength;
-      public GameObject board; //MaxNumを受け取る
 
 
       void Awake()

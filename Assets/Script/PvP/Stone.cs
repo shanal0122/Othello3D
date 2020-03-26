@@ -15,9 +15,9 @@ namespace PvP
       private readonly int[,] vector = new int[,]{{0,1,0},{1,1,0},{0,1,1},{-1,1,0},{0,1,-1},{1,0,0},{1,0,1},{0,0,1},{-1,0,1},{-1,0,0},{-1,0,-1},{0,0,-1},{1,0,-1},{1,-1,0},{0,-1,1},{-1,-1,0},{0,-1,-1},{0,-1,0}};
       public GameObject blackStone;
       public GameObject whiteStone;
-      public GameObject master; //GameからTurnを受け取る
-      public GameObject colorManager; //CanPutAndInformで置ける場所を光らせる
-      public GameObject infoDisplay;
+      public Game game; //GameからTurnを受け取る
+      public ChangeColor changeColor; //CanPutAndInformで置ける場所を光らせる
+      public InfoDisplay infoDisplay;
 
 
       void Start()
@@ -106,7 +106,7 @@ namespace PvP
           if(sumOfFlipNum != 0)
           {
             PutStone(stone,x,y,z);
-            master.GetComponent<Game>().Turn *= -1;
+            game.Turn *= -1;
             Game.totalTurn++; //待った機能のための情報の格納
             for(int _y=0; _y<yLength; _y++)
             {
@@ -119,7 +119,7 @@ namespace PvP
               }
             }
 
-          }else {infoDisplay.GetComponent<InfoDisplay>().CantPutIndicate();}
+          }else {infoDisplay.CantPutIndicate();}
         }
       }
 
@@ -140,12 +140,12 @@ namespace PvP
             }
           }
         }
-        master.GetComponent<Game>().SetBeforePressed = false;
-        master.GetComponent<Game>().SetAfterXPressed = false;
-        master.GetComponent<Game>().SetAfterZPressed = false;
-        master.GetComponent<Game>().SetAfterYPressed = false;
-        master.GetComponent<Game>().SetEnterPressed = false;
-        master.GetComponent<Game>().XCoordi = master.GetComponent<Game>().YCoordi = master.GetComponent<Game>().ZCoordi = 0;
+        game.SetBeforePressed = false;
+        game.SetAfterXPressed = false;
+        game.SetAfterZPressed = false;
+        game.SetAfterYPressed = false;
+        game.SetEnterPressed = false;
+        game.XCoordi = game.YCoordi = game.ZCoordi = 0;
       }
 
 
@@ -205,7 +205,7 @@ namespace PvP
                     canPut = true;
                   }
                 }
-                if(cp) {colorManager.GetComponent<ChangeColor>().InformShineBoardColor(x,y,z);} //光らせる
+                if(cp) {changeColor.InformShineBoardColor(x,y,z);} //光らせる
             }
           }
         }
@@ -225,7 +225,7 @@ namespace PvP
           {
             if(FlipNum(stone,x,y,z,n) != 0) { cp = true; break; }
           }
-          if(cp) {colorManager.GetComponent<ChangeColor>().InformShineBoardColor(x,y,z);}
+          if(cp) {changeColor.InformShineBoardColor(x,y,z);}
         }
       }
 

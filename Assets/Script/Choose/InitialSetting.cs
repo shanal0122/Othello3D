@@ -7,7 +7,7 @@ namespace Choose
 {
   public class InitialSetting : MonoBehaviour
   {
-      public static int xLength;
+      public static int xLength; //オセロ版の一辺の長さ
       public static int yLength;
       public static int zLength;
 

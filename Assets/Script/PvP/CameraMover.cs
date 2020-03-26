@@ -15,9 +15,9 @@ namespace PvP
       private float upLimit; //カメラの上方向に動く限界のy座標
       private float downLimit; //カメラの上方向に動く限界のy座標
       private Vector3 defaultPosition; //カメラの初期位置
-      private Transform mainCameraTransform;
       private Vector3 center;  //オセロ盤の中心位置
-      public GameObject master;
+      private Transform mainCameraTransform;
+      public Game game;
 
 
       void Start()
@@ -38,11 +38,11 @@ namespace PvP
           mainCameraTransform.LookAt(center,Vector3.up);
       }
 
-
       void LateUpdate()
       {
-          if(master.GetComponent<Game>().KeyDetectable) {CameraPosotionControlByKey();}
+          if(game.KeyDetectable) {CameraPosotionControlByKey();}
       }
+
 
       private void CameraPosotionControlByKey() //矢印キーでメインカメラを動かす
       {

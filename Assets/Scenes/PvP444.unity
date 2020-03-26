@@ -336,7 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a942d2f7479747468403e0599bc6709, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  master: {fileID: 1995446425}
+  game: {fileID: 1995446426}
 --- !u!4 &33320607
 Transform:
   m_ObjectHideFlags: 0
@@ -4955,9 +4955,9 @@ MonoBehaviour:
     type: 3}
   whiteStone: {fileID: 8436403583759325846, guid: fbf73deb42dd74d169a4f46272b6b6cd,
     type: 3}
-  master: {fileID: 1995446425}
-  colorManager: {fileID: 1276949603}
-  infoDisplay: {fileID: 1322617654}
+  game: {fileID: 1995446426}
+  changeColor: {fileID: 1276949605}
+  infoDisplay: {fileID: 1322617655}
 --- !u!4 &725947590
 Transform:
   m_ObjectHideFlags: 0
@@ -5687,7 +5687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6056a017585eb4837ab96b63bb1453dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  master: {fileID: 1995446425}
+  game: {fileID: 1995446426}
 --- !u!1 &816991874
 GameObject:
   m_ObjectHideFlags: 0
@@ -6101,11 +6101,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe401067c202b43258cc82d961a2d3d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stones: {fileID: 725947588}
-  master: {fileID: 1995446425}
+  stone: {fileID: 725947589}
+  game: {fileID: 1995446426}
   menuCanvas: {fileID: 1068638337}
   cameraSensiSlider: {fileID: 2064726562}
-  mainCamera: {fileID: 814876966}
+  cameraMover: {fileID: 814876970}
   putableSlider: {fileID: 551152703}
   putableOnOffText: {fileID: 356685336}
   instructionCanvas: {fileID: 1092162504}
@@ -8232,8 +8232,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ade16af582d8b4c9abe812d567006466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stones: {fileID: 725947588}
-  master: {fileID: 1995446425}
+  stone: {fileID: 725947589}
+  game: {fileID: 1995446426}
   blackTurnText: {fileID: 734005650}
   whiteTurnText: {fileID: 1688197141}
   blackStoneNumText: {fileID: 2034461924}
@@ -9745,7 +9745,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f2c1a6a7801645e6b6d77a21cb91658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  board: {fileID: 628560662}
 --- !u!4 &1558269257
 Transform:
   m_ObjectHideFlags: 0
@@ -10926,15 +10925,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1995446425}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef7145b7d5b95463e8cf670a5e3d2706, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e1a42896e23d4183b10597e43d5891a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 814876966}
-  stones: {fileID: 725947588}
-  colorManager: {fileID: 1276949603}
-  keyDetector: {fileID: 33320605}
-  coordiDisplay: {fileID: 1233863959}
-  infoDisplay: {fileID: 1322617654}
+  cameraMover: {fileID: 814876970}
+  stone: {fileID: 725947589}
+  changeColor: {fileID: 1276949605}
+  keyDetector: {fileID: 33320606}
+  coordiDisplay: {fileID: 1233863960}
+  infoDisplay: {fileID: 1322617655}
   centerCanvas: {fileID: 958602082}
 --- !u!4 &1995446427
 Transform:

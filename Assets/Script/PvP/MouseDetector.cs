@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,11 +7,11 @@ namespace PvP
 {
   public class MouseDetector : MonoBehaviour
   {
-      public GameObject stones;
-      public GameObject master;
+      public Stone stone;
+      public Game game;
       public GameObject menuCanvas;
       public GameObject cameraSensiSlider;
-      public GameObject mainCamera;
+      public CameraMover cameraMover;
       public GameObject putableSlider;
       public Text putableOnOffText;
       public GameObject instructionCanvas;
@@ -19,10 +19,10 @@ namespace PvP
 
       public void OnCancelClick() //待ったを押した時の処理。CameraMover.csのsquareListにリプレイ情報を格納している
       {
-        if(Game.totalTurn > 0 && master.GetComponent<Game>().KeyDetectable)
+        if(Game.totalTurn > 0 && game.KeyDetectable)
         {
-          stones.GetComponent<Stone>().PutAllStoneAsList();
-          master.GetComponent<Game>().Turn *= -1;
+          stone.PutAllStoneAsList();
+          game.Turn *= -1;
           Game.totalTurn--;
         }
       }
@@ -30,18 +30,18 @@ namespace PvP
       public void OnMenuClick() //Menuボタンを押した時メニューウィンドウを表示させる
       {
         menuCanvas.GetComponent<Canvas>().enabled = true;
-        master.GetComponent<Game>().KeyDetectable = false;
+        game.KeyDetectable = false;
       }
 
       public void OnMenuCloseClick() //メニューウィンドウのバツボタンを押した時メニューウィンドウを消す
       {
         menuCanvas.GetComponent<Canvas>().enabled = false;
-        master.GetComponent<Game>().KeyDetectable = true;
+        game.KeyDetectable = true;
       }
 
       public void OnCameraSensiSlide() //カメラ感度のスライダーの値を取得
       {
-        mainCamera.GetComponent<CameraMover>().MovingSpeed = 5 * cameraSensiSlider.GetComponent<Slider>().value / 3;
+        cameraMover.MovingSpeed = 5 * cameraSensiSlider.GetComponent<Slider>().value / 3;
       }
 
       public void OnPutableSlide() //お助け機能のスライダーの値を取得
@@ -49,12 +49,12 @@ namespace PvP
         float s = putableSlider.GetComponent<Slider>().value;
         if(s == 0)
         {
-          master.GetComponent<Game>().PutableInform = false;
+          game.PutableInform = false;
           putableOnOffText.text = "オフ";
         }
         if(s == 1)
         {
-          master.GetComponent<Game>().PutableInform = true;
+          game.PutableInform = true;
           putableOnOffText.text = "オン";
         }
       }

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Choose;
@@ -7,7 +7,7 @@ namespace PvP
 {
   public class Game : MonoBehaviour
   {
-      private int xLength = InitialSetting.xLength; //盤の一辺の長さ
+      private int xLength = InitialSetting.xLength; //オセロ盤の一辺の長さ
       private int yLength = InitialSetting.yLength;
       private int zLength = InitialSetting.zLength;
       private bool putableInform = true; //置く場所を光らせるならtrue。（Menu画面で変更可能）
@@ -20,12 +20,12 @@ namespace PvP
       public int YCoordi {get; set;}
       public int ZCoordi {get; set;}
       private bool beforePressed,afterXPressed, afterZPressed, afterYPressed, enterPressed; //オセロ盤の状態を管理するための変数
-      public GameObject mainCamera;
-      public GameObject stones;
-      public GameObject colorManager;
-      public GameObject keyDetector;
-      public GameObject coordiDisplay;
-      public GameObject infoDisplay;
+      public CameraMover cameraMover;
+      public Stone stone;
+      public ChangeColor changeColor;
+      public KeyDetector keyDetector;
+      public CoordiDisplay coordiDisplay;
+      public InfoDisplay infoDisplay;
       public GameObject centerCanvas;
 
 
@@ -34,14 +34,14 @@ namespace PvP
         squareList = new int[xLength*yLength*zLength-8,xLength*yLength*zLength];
         standard = new Vector3 (xLength-1f, yLength-1f, zLength-1f);
         int a = xLength/2; ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////今後盤の種類を増やすかも
-        stones.GetComponent<Stone>().PutStone(1,a-1,a-1,a-1);
-        stones.GetComponent<Stone>().PutStone(1,a,a-1,a);
-        stones.GetComponent<Stone>().PutStone(-1,a-1,a-1,a);
-        stones.GetComponent<Stone>().PutStone(-1,a,a-1,a-1);
-        stones.GetComponent<Stone>().PutStone(1,a-1,a,a);
-        stones.GetComponent<Stone>().PutStone(1,a,a,a-1);
-        stones.GetComponent<Stone>().PutStone(-1,a-1,a,a-1);
-        stones.GetComponent<Stone>().PutStone(-1,a,a,a); /////////////////////////////////////////////////////////////////////////////////////////////
+        stone.PutStone(1,a-1,a-1,a-1);
+        stone.PutStone(1,a,a-1,a);
+        stone.PutStone(-1,a-1,a-1,a);
+        stone.PutStone(-1,a,a-1,a-1);
+        stone.PutStone(1,a-1,a,a);
+        stone.PutStone(1,a,a,a-1);
+        stone.PutStone(-1,a-1,a,a-1);
+        stone.PutStone(-1,a,a,a); /////////////////////////////////////////////////////////////////////////////////////////////
 
         for(int _y=0; _y<yLength; _y++) //待った機能のための情報の格納
         {
@@ -49,7 +49,7 @@ namespace PvP
           {
             for(int _x=0; _x<xLength; _x++)
             {
-              squareList[0, xLength * zLength * _y + xLength * _z + _x] = stones.GetComponent<Stone>().Square[_x,_y,_z];
+              squareList[0, xLength * zLength * _y + xLength * _z + _x] = stone.Square[_x,_y,_z];
             }
           }
         }
@@ -60,12 +60,12 @@ namespace PvP
       {
         if(keyDetectable)
         {
-          keyDetector.GetComponent<KeyDetector>().NumKeyDetect();
-          keyDetector.GetComponent<KeyDetector>().BackSpaceDetect();
+          keyDetector.NumKeyDetect();
+          keyDetector.BackSpaceDetect();
           PlayGame();
           foreach(GameObject display in GameObject.FindGameObjectsWithTag("CoordinateDisplay")) //CoordinateDisplayクラスのテキストの向きを定める
           {
-            display.transform.LookAt(standard - mainCamera.GetComponent<CameraMover>().MainCameraTransformPosition,Vector3.up);
+            display.transform.LookAt(standard - cameraMover.MainCameraTransformPosition,Vector3.up);
           }
         }
       }
@@ -94,30 +94,30 @@ namespace PvP
 
       private void BeforePressed() //キーを押す前に一度だけ実行される
       {
-        colorManager.GetComponent<ChangeColor>().UndoAllBoardColor();
+        changeColor.UndoAllBoardColor();
         if(putableInform)
         {
           CanPutAndInform();
         }else { CanPut(); }
-        coordiDisplay.GetComponent<CoordiDisplay>().BeforePressedIndicate();
-        infoDisplay.GetComponent<InfoDisplay>().TurnIndicate();
-        infoDisplay.GetComponent<InfoDisplay>().StoneNumIndicate();
+        coordiDisplay.BeforePressedIndicate();
+        infoDisplay.TurnIndicate();
+        infoDisplay.StoneNumIndicate();
         beforePressed = true;
         afterXPressed = false;
       }
 
       private void AfterXPressed() //x座標を確定した後に一度だけ実行される
       {
-        colorManager.GetComponent<ChangeColor>().UndoAllBoardColor();
+        changeColor.UndoAllBoardColor();
         for(int y=0; y<yLength; y++)
         {
             for(int z=0; z<zLength; z++)
             {
-                colorManager.GetComponent<ChangeColor>().ShineBoardColor(XCoordi-1,y,z);
-                if(putableInform) {stones.GetComponent<Stone>().Inform(turn,XCoordi-1,y,z);}
+                changeColor.ShineBoardColor(XCoordi-1,y,z);
+                if(putableInform) {stone.Inform(turn,XCoordi-1,y,z);}
             }
         }
-        coordiDisplay.GetComponent<CoordiDisplay>().AfterXPressedIndicate();
+        coordiDisplay.AfterXPressedIndicate();
         beforePressed = false;
         afterXPressed = true;
         afterZPressed = false;
@@ -125,13 +125,13 @@ namespace PvP
 
       private void AfterZPressed() //z座標を確定した後に一度だけ実行される
       {
-        colorManager.GetComponent<ChangeColor>().UndoAllBoardColor();
+        changeColor.UndoAllBoardColor();
         for(int y=0; y<yLength; y++)
         {
-            colorManager.GetComponent<ChangeColor>().ShineBoardColor(XCoordi-1,y,ZCoordi-1);
-            if(putableInform) {stones.GetComponent<Stone>().Inform(turn,XCoordi-1,y,ZCoordi-1);}
+            changeColor.ShineBoardColor(XCoordi-1,y,ZCoordi-1);
+            if(putableInform) {stone.Inform(turn,XCoordi-1,y,ZCoordi-1);}
         }
-        coordiDisplay.GetComponent<CoordiDisplay>().AfterZPressedIndicate();
+        coordiDisplay.AfterZPressedIndicate();
         afterXPressed = false;
         afterZPressed = true;
         afterYPressed = false;
@@ -139,17 +139,17 @@ namespace PvP
 
       private void AfterYPressed() //y座標を確定した後に一度だけ実行される
       {
-        colorManager.GetComponent<ChangeColor>().UndoAllBoardColor();
-        colorManager.GetComponent<ChangeColor>().ShineBoardColor(XCoordi-1,YCoordi-1,ZCoordi-1);
-        if(putableInform) {stones.GetComponent<Stone>().Inform(turn,XCoordi-1,YCoordi-1,ZCoordi-1);}
-        coordiDisplay.GetComponent<CoordiDisplay>().AfterYPressedDisplay();
+        changeColor.UndoAllBoardColor();
+        changeColor.ShineBoardColor(XCoordi-1,YCoordi-1,ZCoordi-1);
+        if(putableInform) {stone.Inform(turn,XCoordi-1,YCoordi-1,ZCoordi-1);}
+        coordiDisplay.AfterYPressedDisplay();
         afterZPressed = false;
         afterYPressed = true;
       }
 
       private void AfterEnterPressed() //エンターキーを押した後に一度だけ実行される
       {
-        stones.GetComponent<Stone>().FlipStone(turn,XCoordi-1,YCoordi-1,ZCoordi-1); //ここでturnを変更している
+        stone.FlipStone(turn,XCoordi-1,YCoordi-1,ZCoordi-1); //ここでturnを変更している
         CanPut();
         afterYPressed= false;
         XCoordi = YCoordi = ZCoordi = 0;
@@ -159,13 +159,13 @@ namespace PvP
 
       private void CanPut() //置く場所がなければパスしたりリザルト画面を表示したりする。putableInformがtrueなら置ける場所を光らせる
       {
-        bool canPut = stones.GetComponent<Stone>().CanPut(turn);
+        bool canPut = stone.CanPut(turn);
         if(!canPut)
         {
-            canPut = stones.GetComponent<Stone>().CanPut(-1*turn);
+            canPut = stone.CanPut(-1*turn);
             if(canPut)
             {
-              infoDisplay.GetComponent<InfoDisplay>().PassedIndicate(turn);
+              infoDisplay.PassedIndicate(turn);
               turn *= -1;
             }else
             {
@@ -176,13 +176,13 @@ namespace PvP
 
       private void CanPutAndInform() //置く場所がなければパスしたりリザルト画面を表示したりする。putableInformがtrueなら置ける場所を光らせる
       {
-        bool canPut = stones.GetComponent<Stone>().CanPutAndInform(turn);
+        bool canPut = stone.CanPutAndInform(turn);
         if(!canPut)
         {
-            canPut = stones.GetComponent<Stone>().CanPutAndInform(-1*turn);
+            canPut = stone.CanPutAndInform(-1*turn);
             if(canPut)
             {
-              infoDisplay.GetComponent<InfoDisplay>().PassedIndicate(turn);
+              infoDisplay.PassedIndicate(turn);
               turn *= -1;
             }else
             {
@@ -195,7 +195,7 @@ namespace PvP
       {
         keyDetectable = false;
         centerCanvas.GetComponent<Canvas>().enabled = true;
-        infoDisplay.GetComponent<InfoDisplay>().ResultIndicate();
+        infoDisplay.ResultIndicate();
 
       }
 
