@@ -45,9 +45,10 @@ namespace PvP
 
       private void CameraPosotionControlByKey() //矢印キーでメインカメラを動かす
       {
-        Vector3 pos = mainCameraTransform.position;
+        Vector3 pos;
         if(Input.GetKey(KeyCode.RightArrow))
         {
+          pos = mainCameraTransform.position;
           float r = Mathf.Sqrt(squaredDistance-(pos.y-center.y)*(pos.y-center.y));
           float d = Time.deltaTime * movingSpeed;
           float x = center.x + (pos.x-center.x) * Mathf.Cos(d/r) - (pos.z-center.z) * Mathf.Sin(d/r);
@@ -56,6 +57,7 @@ namespace PvP
         }
         if(Input.GetKey(KeyCode.LeftArrow))
         {
+          pos = mainCameraTransform.position;
           float r = Mathf.Sqrt(squaredDistance-(pos.y-center.y)*(pos.y-center.y));
           float d = Time.deltaTime * movingSpeed;
           float x = center.x + (pos.x-center.x) * Mathf.Cos(d/r) + (pos.z-center.z) * Mathf.Sin(d/r);
@@ -64,6 +66,7 @@ namespace PvP
         }
         if(Input.GetKey(KeyCode.UpArrow))
         {
+          pos = mainCameraTransform.position;
           if(pos.y <= upLimit)
           {
             float r = Mathf.Sqrt(squaredDistance);
@@ -78,6 +81,7 @@ namespace PvP
         }
         if(Input.GetKey(KeyCode.DownArrow))
         {
+          pos = mainCameraTransform.position;
           if(pos.y >= downLimit)
           {
             float r = Mathf.Sqrt(squaredDistance);
