@@ -1,15 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Choose;
 
 namespace PvP
 {
   public class CameraMover : MonoBehaviour
   {
-      private int xLength = InitialSetting.xLength;
-      private int yLength = InitialSetting.yLength;
-      private int zLength = InitialSetting.zLength;
+      private int xLength = Choose.InitialSetting.xLength;
+      private int yLength = Choose.InitialSetting.yLength;
+      private int zLength = Choose.InitialSetting.zLength;
       private float movingSpeed = 15f; //カメラの動くスピードを設定
       private float squaredDistance; //カメラを球面状で動かす時の半径の二乗
       private float upLimit; //カメラの上方向に動く限界のy座標

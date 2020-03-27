@@ -1,15 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Choose;
 
 namespace PvP
 {
   public class Game : MonoBehaviour
   {
-      private int xLength = InitialSetting.xLength; //オセロ盤の一辺の長さ
-      private int yLength = InitialSetting.yLength;
-      private int zLength = InitialSetting.zLength;
+      private int xLength = Choose.InitialSetting.xLength; //オセロ盤の一辺の長さ
+      private int yLength = Choose.InitialSetting.yLength;
+      private int zLength = Choose.InitialSetting.zLength;
       private bool putableInform = true; //置く場所を光らせるならtrue。（Menu画面で変更可能）
       public static int[,] squareList; //待った機能のためにマスの情報を格納する。
       private int totalTurn = 0; //待った機能のための情報の格納に用いる。現在の累計ターン数を表す

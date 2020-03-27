@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using Choose;
 
 namespace PvP
 {
   public class TagHelper : MonoBehaviour
   {
-      private int xLength = InitialSetting.xLength; //盤の一辺の長さ
-      private int yLength = InitialSetting.yLength;
-      private int zLength = InitialSetting.zLength;
+      private int xLength = Choose.InitialSetting.xLength; //盤の一辺の長さ
+      private int yLength = Choose.InitialSetting.yLength;
+      private int zLength = Choose.InitialSetting.zLength;
 
 
       void Awake()
