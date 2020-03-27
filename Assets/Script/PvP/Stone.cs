@@ -107,14 +107,14 @@ namespace PvP
           {
             PutStone(stone,x,y,z);
             game.Turn *= -1;
-            Game.totalTurn++; //待った機能のための情報の格納
+            game.TotalTurn++; //待った機能のための情報の格納
             for(int _y=0; _y<yLength; _y++)
             {
               for(int _z=0; _z<zLength; _z++)
               {
                 for(int _x=0; _x<xLength; _x++)
                 {
-                  Game.squareList[Game.totalTurn, xLength * zLength * _y + xLength * _z + _x] = square[_x,_y,_z];
+                  Game.squareList[game.TotalTurn, xLength * zLength * _y + xLength * _z + _x] = square[_x,_y,_z];
                 }
               }
             }
@@ -132,7 +132,7 @@ namespace PvP
             for(int _x=0; _x<xLength; _x++)
             {
               RemoveStone(_x,_y,_z);
-              square[_x,_y,_z] = Game.squareList[Game.totalTurn-1, xLength * zLength * _y + xLength * _z + _x];
+              square[_x,_y,_z] = Game.squareList[game.TotalTurn-1, xLength * zLength * _y + xLength * _z + _x];
               if(square[_x,_y,_z] == 1 || square[_x,_y,_z] == -1)
               {
                 PutStone(square[_x,_y,_z],_x,_y,_z);

@@ -12,7 +12,7 @@ namespace PvP
       private int zLength = InitialSetting.zLength;
       private bool putableInform = true; //置く場所を光らせるならtrue。（Menu画面で変更可能）
       public static int[,] squareList; //待った機能のためにマスの情報を格納する。
-      public static int totalTurn = 0; //待った機能のための情報の格納に用いる。現在の累計ターン数を表す
+      private int totalTurn = 0; //待った機能のための情報の格納に用いる。現在の累計ターン数を表す
       private Vector3 standard; //CoordinateDisplayクラスのテキストの向きを定めるために用いる
       private int turn = 1; //ターン入れ替えは"StoneXXX/FlipStone"で行っている
       private bool keyDetectable = true; //falseのときカメラ移動とキー入力を受け付けない（ゲームセット時、Menuを開いた時）
@@ -53,7 +53,6 @@ namespace PvP
             }
           }
         }
-
       }
 
       void Update()
@@ -199,6 +198,7 @@ namespace PvP
 
       }
 
+      public int TotalTurn{ get {return totalTurn;} set {this.totalTurn = value;} }
 
       public int Turn{ get {return turn;} set {this.turn = value;} }
 

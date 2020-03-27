@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace PvP
 {
@@ -19,11 +20,11 @@ namespace PvP
 
       public void OnCancelClick() //待ったを押した時の処理。CameraMover.csのsquareListにリプレイ情報を格納している
       {
-        if(Game.totalTurn > 0 && game.KeyDetectable)
+        if(game.TotalTurn > 0 && game.KeyDetectable)
         {
           stone.PutAllStoneAsList();
           game.Turn *= -1;
-          Game.totalTurn--;
+          game.TotalTurn--;
         }
       }
 
@@ -67,6 +68,11 @@ namespace PvP
       public void OnInstructionCloseClick() //メニューウィンドウのバツボタンを押した時メニューウィンドウを消す
       {
         instructionCanvas.GetComponent<Canvas>().enabled = false;
+      }
+
+      public void OnLoadTitleClick()
+      {
+        SceneManager.LoadScene("Choose");
       }
   }
 }

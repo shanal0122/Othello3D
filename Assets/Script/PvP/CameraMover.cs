@@ -28,7 +28,7 @@ namespace PvP
           center = new Vector3(xCenterCoordi,yCenterCoordi,zCenterCoordi); //中心位置の定義
 
           mainCameraTransform = this.gameObject.transform;
-          mainCameraTransform.position = new Vector3 (xCenterCoordi, yCenterCoordi, zCenterCoordi - 2f * yLength);
+          mainCameraTransform.position = new Vector3 (xCenterCoordi, yCenterCoordi, zCenterCoordi - 1.7f * yLength);
           defaultPosition = mainCameraTransform.position;
 
           squaredDistance = (defaultPosition.x - center.x) * (defaultPosition.x - center.x) + (defaultPosition.y - center.y) * (defaultPosition.y - center.y) + (defaultPosition.z - center.z) * (defaultPosition.z - center.z);
