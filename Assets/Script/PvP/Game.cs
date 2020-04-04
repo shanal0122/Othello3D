@@ -32,15 +32,15 @@ namespace PvP
       {
         squareList = new int[xLength*yLength*zLength-8,xLength*yLength*zLength];
         standard = new Vector3 (xLength-1f, yLength-1f, zLength-1f);
-        int a = xLength/2; ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////今後盤の種類を増やすかも
-        stone.PutStone(1,a-1,a-1,a-1);
-        stone.PutStone(1,a,a-1,a);
-        stone.PutStone(-1,a-1,a-1,a);
-        stone.PutStone(-1,a,a-1,a-1);
-        stone.PutStone(1,a-1,a,a);
-        stone.PutStone(1,a,a,a-1);
-        stone.PutStone(-1,a-1,a,a-1);
-        stone.PutStone(-1,a,a,a); /////////////////////////////////////////////////////////////////////////////////////////////
+        int a = xLength/2; int b = yLength/2; int c = zLength/2;
+        stone.PutStone(1,a-1,b-1,c-1);
+        stone.PutStone(1,a,b-1,c);
+        stone.PutStone(-1,a-1,b-1,c);
+        stone.PutStone(-1,a,b-1,c-1);
+        stone.PutStone(1,a-1,b,c);
+        stone.PutStone(1,a,b,c-1);
+        stone.PutStone(-1,a-1,b,c-1);
+        stone.PutStone(-1,a,b,c); /////////////////////////////////////////////////////////////////////////////////////////////
 
         for(int _y=0; _y<yLength; _y++) //待った機能のための情報の格納
         {

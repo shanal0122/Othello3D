@@ -7,7 +7,7 @@ namespace Choose
 {
   public class InitialSetting : MonoBehaviour
   {
-      public static int xLength; //オセロ版の一辺の長さ
+      public static int xLength; //オセロ版の一辺の長さ、yを最大に
       public static int yLength;
       public static int zLength;
 
@@ -17,15 +17,15 @@ namespace Choose
         xLength = 4;
         yLength = 4;
         zLength = 4;
-        SceneManager.LoadScene("PvP444");
+        SceneManager.LoadScene("PvP");
       }
 
       public void ChoosePvP666()
       {
-        xLength = 6;
+        xLength = 4;
         yLength = 6;
-        zLength = 6;
-        SceneManager.LoadScene("PvP666");
+        zLength = 4;
+        SceneManager.LoadScene("PvP");
       }
   }
 

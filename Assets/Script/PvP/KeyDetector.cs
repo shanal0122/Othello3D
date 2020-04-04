@@ -9,7 +9,9 @@ namespace PvP
       private int xLength = Choose.InitialSetting.xLength; //盤の一辺の長さ
       private int yLength = Choose.InitialSetting.yLength;
       private int zLength = Choose.InitialSetting.zLength;
-      private string[] keys;
+      private string[] xKeys;
+      private string[] yKeys;
+      private string[] zKeys;
       private int x = 0; //GameObject.csのXCoordiに連動
       private int y = 0;
       private int z = 0;
@@ -18,8 +20,12 @@ namespace PvP
 
       void Start()//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       {
-        if(xLength == 4){keys = new string[4]{"1", "2", "3", "4"};}
-        if(xLength == 6){keys = new string[6]{"1", "2", "3", "4", "5", "6"};}
+        if(xLength == 4){xKeys = new string[4]{"1", "2", "3", "4"};}
+        if(xLength == 6){xKeys = new string[6]{"1", "2", "3", "4", "5", "6"};}
+        if(yLength == 4){yKeys = new string[4]{"1", "2", "3", "4"};}
+        if(yLength == 6){yKeys = new string[6]{"1", "2", "3", "4", "5", "6"};}
+        if(zLength == 4){zKeys = new string[4]{"1", "2", "3", "4"};}
+        if(zLength == 6){zKeys = new string[6]{"1", "2", "3", "4", "5", "6"};}
       }
 
 
@@ -27,7 +33,7 @@ namespace PvP
       {
           if(x == 0)
           {
-              foreach(string key in keys)
+              foreach(string key in xKeys)
               {
                   if(Input.GetKeyDown(key))
                   {
@@ -37,7 +43,7 @@ namespace PvP
               }
           }else if(z == 0)
           {
-              foreach(string key in keys)
+              foreach(string key in zKeys)
               {
                   if(Input.GetKeyDown(key))
                   {
@@ -47,7 +53,7 @@ namespace PvP
               }
           }else if(y == 0)
           {
-              foreach(string key in keys)
+              foreach(string key in yKeys)
               {
                   if(Input.GetKeyDown(key))
                   {

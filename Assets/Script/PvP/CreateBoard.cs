@@ -56,23 +56,25 @@ namespace PvP
           }
         }
 
+        flamePrefab.transform.localScale = new Vector3(zLength,flameWidth,flameWidth);
         flamePrefab.transform.eulerAngles = new Vector3(0,90,0);
         for(int y=0; y<=yLength; y++)
         {
-          for(int x=0; x<=zLength; x++)
+          for(int x=0; x<=xLength; x++)
           {
             GameObject f = Instantiate(flamePrefab, flameZTransform);
             f.transform.position = new Vector3(x-0.5f,y-0.5f,zCenter);
           }
         }
 
+        flamePrefab.transform.localScale = new Vector3(yLength,flameWidth,flameWidth);
         flamePrefab.transform.eulerAngles = new Vector3(0,0,90);
-        for(int z=0; z<=yLength; z++)
+        for(int z=0; z<=zLength; z++)
         {
-          for(int x=0; x<=zLength; x++)
+          for(int x=0; x<=xLength; x++)
           {
             GameObject f = Instantiate(flamePrefab, flameYTransform);
-            f.transform.position = new Vector3(x-0.5f,zCenter,z-0.5f);
+            f.transform.position = new Vector3(x-0.5f,yCenter,z-0.5f);
           }
         }
       }
