@@ -56,8 +56,7 @@ namespace PvP
           }
         }
 
-        flamePrefab.transform.localScale = new Vector3(zLength,flameWidth,flameWidth);
-        flamePrefab.transform.eulerAngles = new Vector3(0,90,0);
+        flamePrefab.transform.localScale = new Vector3(flameWidth,flameWidth,zLength);
         for(int y=0; y<=yLength; y++)
         {
           for(int x=0; x<=xLength; x++)
@@ -67,8 +66,7 @@ namespace PvP
           }
         }
 
-        flamePrefab.transform.localScale = new Vector3(yLength,flameWidth,flameWidth);
-        flamePrefab.transform.eulerAngles = new Vector3(0,0,90);
+        flamePrefab.transform.localScale = new Vector3(flameWidth,yLength,flameWidth);
         for(int z=0; z<=zLength; z++)
         {
           for(int x=0; x<=xLength; x++)

@@ -16,6 +16,8 @@ namespace PvP
       public GameObject putableSlider;
       public Text putableOnOffText;
       public GameObject instructionCanvas;
+      public GameObject leftCanvas;
+      public GameObject rightCanvas;
 
 
       public void OnCancelClick() //待ったを押した時の処理。CameraMover.csのsquareListにリプレイ情報を格納している
@@ -28,16 +30,20 @@ namespace PvP
         }
       }
 
-      public void OnMenuClick() //Menuボタンを押した時メニューウィンドウを表示させる
+      public void OnMenuClick() //Menuボタンを押した時メニューウィンドウを表示させる。leftCanvas、rightCanvasを表示させなくする
       {
         menuCanvas.GetComponent<Canvas>().enabled = true;
         game.KeyDetectable = false;
+        leftCanvas.GetComponent<Canvas>().enabled = false;
+        rightCanvas.GetComponent<Canvas>().enabled = false;
       }
 
       public void OnMenuCloseClick() //メニューウィンドウのバツボタンを押した時メニューウィンドウを消す
       {
         menuCanvas.GetComponent<Canvas>().enabled = false;
         game.KeyDetectable = true;
+        leftCanvas.GetComponent<Canvas>().enabled = true;
+        rightCanvas.GetComponent<Canvas>().enabled = true;
       }
 
       public void OnCameraSensiSlide() //カメラ感度のスライダーの値を取得

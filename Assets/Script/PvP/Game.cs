@@ -13,7 +13,7 @@ namespace PvP
       public static int[,] squareList; //待った機能のためにマスの情報を格納する。
       private int totalTurn = 0; //待った機能のための情報の格納に用いる。現在の累計ターン数を表す
       private Vector3 standard; //CoordinateDisplayクラスのテキストの向きを定めるために用いる
-      private int turn = 1; //ターン入れ替えは"StoneXXX/FlipStone"で行っている
+      private int turn = 1; //ターン入れ替えは"Stone/FlipStone"で行っている
       private bool keyDetectable = true; //falseのときカメラ移動とキー入力を受け付けない（ゲームセット時、Menuを開いた時）
       public int XCoordi {get; set;}
       public int YCoordi {get; set;}
@@ -30,7 +30,7 @@ namespace PvP
 
       void Start()
       {
-        squareList = new int[xLength*yLength*zLength-8,xLength*yLength*zLength];
+        squareList = new int[xLength*yLength*zLength-7,xLength*yLength*zLength];
         standard = new Vector3 (xLength-1f, yLength-1f, zLength-1f);
         int a = xLength/2; int b = yLength/2; int c = zLength/2;
         stone.PutStone(1,a-1,b-1,c-1);
@@ -40,7 +40,7 @@ namespace PvP
         stone.PutStone(1,a-1,b,c);
         stone.PutStone(1,a,b,c-1);
         stone.PutStone(-1,a-1,b,c-1);
-        stone.PutStone(-1,a,b,c); /////////////////////////////////////////////////////////////////////////////////////////////
+        stone.PutStone(-1,a,b,c);
 
         for(int _y=0; _y<yLength; _y++) //待った機能のための情報の格納
         {
