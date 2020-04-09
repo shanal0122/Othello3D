@@ -16,7 +16,6 @@ namespace PvP
       private Vector3 defaultPosition; //カメラの初期位置
       private Vector3 center;  //オセロ盤の中心位置
       private Transform mainCameraTransform;
-      public Game game;
 
 
       void Start()
@@ -39,7 +38,7 @@ namespace PvP
 
       void LateUpdate()
       {
-          if(game.KeyDetectable) {CameraPosotionControlByKey();}
+          CameraPosotionControlByKey();
       }
 
 

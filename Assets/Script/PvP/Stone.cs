@@ -119,7 +119,7 @@ namespace PvP
             }
 
           }else {infoDisplay.CantPutIndicate();}
-        }
+        }else {infoDisplay.CantPutIndicate();}
       }
 
       public void PutAllStoneAsList() //待ったが押された時盤面を元に戻す
@@ -179,36 +179,6 @@ namespace PvP
           }
         }
         return false;
-      }
-
-      public bool CanPutAndInform(int stone) //stoneを置ける場所が一つでもあればtrueを返す。置ける場所を光らせる（Menu画面で変更可能）
-      {
-        if(stone != 1 && stone != -1)
-        {
-          Debug.Log("Error : Stone/CanPutAndInform");//////////////////////////////////////////////////////////////////////////////////////
-        }
-        bool canPut = false;
-        bool cp = false; //各マスの少なくとも1つの方向で石が返せるならtrue。これにより各マスの置ける場所を光らせる
-        for(int y=0; y<yLength; y++)
-        {
-          for(int z=0; z<zLength; z++)
-          {
-            for(int x=0; x<xLength; x++)
-            {
-                cp = false;
-                for(int n=0; n<vector.GetLength(0); n++)
-                {
-                  if(square[x,y,z] == 0 && FlipNum(stone,x,y,z,n) != 0)
-                  {
-                    cp = true;
-                    canPut = true;
-                  }
-                }
-                if(cp) {changeColor.InformShineBoardColor(x,y,z);} //光らせる
-            }
-          }
-        }
-        return canPut;
       }
 
       public void Inform(int stone, int x, int y, int z) //(x,y,z)に石が置けるなら光らせる（Menu画面で変更可能）

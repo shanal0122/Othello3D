@@ -13,8 +13,8 @@ namespace PvP
       public static int[,] squareList; //待った機能のためにマスの情報を格納する。
       private int totalTurn = 0; //待った機能のための情報の格納に用いる。現在の累計ターン数を表す
       private Vector3 standard; //CoordinateDisplayクラスのテキストの向きを定めるために用いる
-      private int turn = 1; //ターン入れ替えは"Stone/FlipStone"で行っている
-      private bool keyDetectable = true; //falseのときカメラ移動とキー入力を受け付けない（ゲームセット時、Menuを開いた時）
+      private int turn = 1; //ターン入れ替えは"Stone/FlipStone"で行っている。はじめは黒
+      private bool keyDetectable = true; //falseのときカメラ移動とキー入力を受け付けない（ゲームセット時）
       public int XCoordi {get; set;}
       public int YCoordi {get; set;}
       public int ZCoordi {get; set;}
@@ -41,6 +41,7 @@ namespace PvP
         stone.PutStone(1,a,b,c-1);
         stone.PutStone(-1,a-1,b,c-1);
         stone.PutStone(-1,a,b,c);
+        CanPut();
 
         for(int _y=0; _y<yLength; _y++) //待った機能のための情報の格納
         {
@@ -71,7 +72,7 @@ namespace PvP
 
       private void PlayGame() //KeyDetectorクラスから1~4とbackspaceのキー操作情報を受け取り、UIを変更し石を置く
       {
-          if(XCoordi == 0 && ZCoordi == 0 && YCoordi == 0 && beforePressed== false)
+          if(XCoordi == 0 && ZCoordi == 0 && YCoordi == 0 && beforePressed == false)
           {
               BeforePressed();
           }
@@ -95,8 +96,17 @@ namespace PvP
         changeColor.UndoAllBoardColor();
         if(putableInform)
         {
-          CanPutAndInform();
-        }else { CanPut(); }
+          for(int y=0; y<yLength; y++)
+          {
+            for(int z=0; z<zLength; z++)
+            {
+              for(int x=0; x<xLength; x++)
+              {
+                stone.Inform(turn,x,y,z);
+              }
+            }
+          }
+        }
         coordiDisplay.BeforePressedIndicate();
         infoDisplay.TurnIndicate();
         infoDisplay.StoneNumIndicate();
@@ -172,29 +182,13 @@ namespace PvP
         }
       }
 
-      private void CanPutAndInform() //置く場所がなければパスしたりリザルト画面を表示したりする。putableInformがtrueなら置ける場所を光らせる
-      {
-        bool canPut = stone.CanPutAndInform(turn);
-        if(!canPut)
-        {
-            canPut = stone.CanPutAndInform(-1*turn);
-            if(canPut)
-            {
-              infoDisplay.PassedIndicate(turn);
-              turn *= -1;
-            }else
-            {
-              GameSet();
-            }
-        }
-      }
 
       public void GameSet()
       {
         keyDetectable = false;
+        changeColor.UndoAllBoardColor();
         centerCanvas.GetComponent<Canvas>().enabled = true;
         infoDisplay.ResultIndicate();
-
       }
 
       public int TotalTurn{ get {return totalTurn;} set {this.totalTurn = value;} }

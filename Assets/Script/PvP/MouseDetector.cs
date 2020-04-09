@@ -8,16 +8,18 @@ namespace PvP
 {
   public class MouseDetector : MonoBehaviour
   {
+      private int xLength = Choose.InitialSetting.xLength; //オセロ盤の一辺の長さ
+      private int yLength = Choose.InitialSetting.yLength;
+      private int zLength = Choose.InitialSetting.zLength;
       public Stone stone;
       public Game game;
+      public ChangeColor changeColor;
       public GameObject menuCanvas;
       public GameObject cameraSensiSlider;
       public CameraMover cameraMover;
       public GameObject putableSlider;
       public Text putableOnOffText;
       public GameObject instructionCanvas;
-      public GameObject leftCanvas;
-      public GameObject rightCanvas;
 
 
       public void OnCancelClick() //待ったを押した時の処理。CameraMover.csのsquareListにリプレイ情報を格納している
@@ -30,20 +32,14 @@ namespace PvP
         }
       }
 
-      public void OnMenuClick() //Menuボタンを押した時メニューウィンドウを表示させる。leftCanvas、rightCanvasを表示させなくする
+      public void OnMenuClick() //Menuボタンを押した時メニューウィンドウを表示させる。
       {
         menuCanvas.GetComponent<Canvas>().enabled = true;
-        game.KeyDetectable = false;
-        leftCanvas.GetComponent<Canvas>().enabled = false;
-        rightCanvas.GetComponent<Canvas>().enabled = false;
       }
 
       public void OnMenuCloseClick() //メニューウィンドウのバツボタンを押した時メニューウィンドウを消す
       {
         menuCanvas.GetComponent<Canvas>().enabled = false;
-        game.KeyDetectable = true;
-        leftCanvas.GetComponent<Canvas>().enabled = true;
-        rightCanvas.GetComponent<Canvas>().enabled = true;
       }
 
       public void OnCameraSensiSlide() //カメラ感度のスライダーの値を取得
@@ -56,13 +52,70 @@ namespace PvP
         float s = putableSlider.GetComponent<Slider>().value;
         if(s == 0)
         {
-          game.PutableInform = false;
-          putableOnOffText.text = "オフ";
+            game.PutableInform = false;
+            putableOnOffText.text = "オフ";
+            changeColor.UndoAllBoardColor();
+            if(game.XCoordi == 0 && game.ZCoordi == 0 && game.YCoordi == 0)
+            {
+
+            }
+            else if(game.ZCoordi == 0 && game.YCoordi == 0)
+            {
+                for(int y=0; y<yLength; y++)
+                {
+                    for(int z=0; z<zLength; z++)
+                    {
+                        changeColor.ShineBoardColor(game.XCoordi-1,y,z);
+                    }
+                }
+            }else if(game.YCoordi == 0)
+            {
+                for(int y=0; y<yLength; y++)
+                {
+                    changeColor.ShineBoardColor(game.XCoordi-1,y,game.ZCoordi-1);
+                }
+            }else
+            {
+                changeColor.ShineBoardColor(game.XCoordi-1,game.YCoordi-1,game.ZCoordi-1);
+            }
         }
         if(s == 1)
         {
-          game.PutableInform = true;
-          putableOnOffText.text = "オン";
+            int turn = game.Turn;
+            game.PutableInform = true;
+            putableOnOffText.text = "オン";
+            if(game.XCoordi == 0 && game.ZCoordi == 0 && game.YCoordi == 0)
+            {
+                for(int y=0; y<yLength; y++)
+                {
+                  for(int z=0; z<zLength; z++)
+                  {
+                    for(int x=0; x<xLength; x++)
+                    {
+                      stone.Inform(turn,x,y,z);
+                    }
+                  }
+                }
+            }
+            else if(game.ZCoordi == 0 && game.YCoordi == 0)
+            {
+                for(int y=0; y<yLength; y++)
+                {
+                    for(int z=0; z<zLength; z++)
+                    {
+                        stone.Inform(turn,game.XCoordi-1,y,z);
+                    }
+                }
+            }else if(game.YCoordi == 0)
+            {
+                for(int y=0; y<yLength; y++)
+                {
+                    stone.Inform(turn,game.XCoordi-1,y,game.ZCoordi-1);
+                }
+            }else
+            {
+                stone.Inform(turn,game.XCoordi-1,game.YCoordi-1,game.ZCoordi-1);
+            }
         }
       }
 

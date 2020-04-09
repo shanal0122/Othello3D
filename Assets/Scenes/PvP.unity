@@ -216,7 +216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0.01900063, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 156489269}
   - component: {fileID: 156489268}
   - component: {fileID: 156489267}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: CancelButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -495,7 +495,7 @@ GameObject:
   - component: {fileID: 356685335}
   - component: {fileID: 356685337}
   - component: {fileID: 356685336}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: PutableOnOffText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -570,7 +570,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 412544009}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -609,7 +609,7 @@ GameObject:
   - component: {fileID: 503778272}
   - component: {fileID: 503778271}
   - component: {fileID: 503778270}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: InstructionCloseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -623,17 +623,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 503778268}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.15, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1974492623}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 87, y: 279}
-  m_SizeDelta: {x: 256, y: 256}
+  m_AnchoredPosition: {x: 80, y: 270}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &503778270
 MonoBehaviour:
@@ -648,7 +648,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -736,7 +736,7 @@ GameObject:
   - component: {fileID: 514226057}
   - component: {fileID: 514226059}
   - component: {fileID: 514226058}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -808,7 +808,7 @@ GameObject:
   m_Component:
   - component: {fileID: 551152704}
   - component: {fileID: 551152705}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: PutableSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -851,7 +851,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -976,7 +976,7 @@ GameObject:
   - component: {fileID: 603713662}
   - component: {fileID: 603713664}
   - component: {fileID: 603713663}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1049,7 +1049,7 @@ GameObject:
   - component: {fileID: 607752787}
   - component: {fileID: 607752789}
   - component: {fileID: 607752788}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: MenuPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1177,7 +1177,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 644043861}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1239,7 +1239,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -20}
+  m_AnchoredPosition: {x: 0, y: -45}
   m_SizeDelta: {x: 820, y: 620}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &709067272
@@ -1256,7 +1256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1289,7 +1289,7 @@ GameObject:
   - component: {fileID: 713951607}
   - component: {fileID: 713951609}
   - component: {fileID: 713951608}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1452,7 +1452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1529,7 +1529,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1651,7 +1651,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6056a017585eb4837ab96b63bb1453dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  game: {fileID: 1995446426}
 --- !u!1 &856289766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1825,7 +1824,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1878,6 +1877,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stone: {fileID: 725947589}
   game: {fileID: 1995446426}
+  changeColor: {fileID: 1276949605}
   menuCanvas: {fileID: 1068638337}
   cameraSensiSlider: {fileID: 2064726562}
   cameraMover: {fileID: 814876970}
@@ -1992,7 +1992,7 @@ GameObject:
   - component: {fileID: 1006383439}
   - component: {fileID: 1006383441}
   - component: {fileID: 1006383440}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: LoadTitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2032,7 +2032,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2103,7 +2103,7 @@ GameObject:
   - component: {fileID: 1068638340}
   - component: {fileID: 1068638339}
   - component: {fileID: 1068638338}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: MenuCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2159,7 +2159,7 @@ Canvas:
   m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 131822251}
+  m_Camera: {fileID: 1382713908}
   m_PlaneDistance: 10
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -2202,7 +2202,7 @@ GameObject:
   - component: {fileID: 1092162507}
   - component: {fileID: 1092162506}
   - component: {fileID: 1092162505}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: InstructionCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2258,7 +2258,7 @@ Canvas:
   m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 131822251}
+  m_Camera: {fileID: 1382713908}
   m_PlaneDistance: 10
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -2300,7 +2300,7 @@ GameObject:
   - component: {fileID: 1128681815}
   - component: {fileID: 1128681817}
   - component: {fileID: 1128681816}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: MenuIndicateText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2340,7 +2340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2378,7 +2378,7 @@ GameObject:
   - component: {fileID: 1161338862}
   - component: {fileID: 1161338861}
   - component: {fileID: 1161338860}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: IconCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2434,7 +2434,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 131822251}
+  m_Camera: {fileID: 1382713908}
   m_PlaneDistance: 10
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -2518,7 +2518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2551,7 +2551,7 @@ GameObject:
   - component: {fileID: 1179953699}
   - component: {fileID: 1179953701}
   - component: {fileID: 1179953700}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: MenuButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2935,7 +2935,6 @@ GameObject:
   - component: {fileID: 1398709323}
   - component: {fileID: 1398709322}
   - component: {fileID: 1398709321}
-  - component: {fileID: 1398709320}
   m_Layer: 9
   m_Name: RightCanvas
   m_TagString: Untagged
@@ -2943,23 +2942,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
---- !u!114 &1398709320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1398709319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &1398709321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3035,7 +3017,7 @@ GameObject:
   - component: {fileID: 1423917987}
   - component: {fileID: 1423917989}
   - component: {fileID: 1423917988}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3135,7 +3117,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -180}
+  m_AnchoredPosition: {x: 0, y: -205}
   m_SizeDelta: {x: 820, y: 620}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1431306799
@@ -3152,7 +3134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3265,7 +3247,7 @@ GameObject:
   - component: {fileID: 1488129488}
   - component: {fileID: 1488129490}
   - component: {fileID: 1488129489}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: CancelButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3343,7 +3325,7 @@ GameObject:
   - component: {fileID: 1501461954}
   - component: {fileID: 1501461953}
   - component: {fileID: 1501461952}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: MenuCloseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3470,7 +3452,7 @@ GameObject:
   - component: {fileID: 1524229950}
   - component: {fileID: 1524229952}
   - component: {fileID: 1524229951}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: MenuButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3547,7 +3529,7 @@ GameObject:
   - component: {fileID: 1535264381}
   - component: {fileID: 1535264383}
   - component: {fileID: 1535264382}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3697,7 +3679,7 @@ GameObject:
   - component: {fileID: 1549152697}
   - component: {fileID: 1549152699}
   - component: {fileID: 1549152698}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: LoadTitleOnButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3817,7 +3799,7 @@ GameObject:
   - component: {fileID: 1579709813}
   - component: {fileID: 1579709815}
   - component: {fileID: 1579709814}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3891,7 +3873,7 @@ GameObject:
   - component: {fileID: 1612026469}
   - component: {fileID: 1612026468}
   - component: {fileID: 1612026467}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: MenuButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4017,7 +3999,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1613429098}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4192,7 +4174,7 @@ GameObject:
   - component: {fileID: 1892827774}
   - component: {fileID: 1892827776}
   - component: {fileID: 1892827775}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: CameraSensiText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4232,7 +4214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4267,7 +4249,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1906622716}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4331,7 +4313,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -180}
+  m_AnchoredPosition: {x: 0, y: -205}
   m_SizeDelta: {x: 820, y: 620}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1938132284
@@ -4381,7 +4363,7 @@ GameObject:
   - component: {fileID: 1974492623}
   - component: {fileID: 1974492625}
   - component: {fileID: 1974492624}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: InstructionPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4397,7 +4379,7 @@ RectTransform:
   m_GameObject: {fileID: 1974492622}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.7, z: 1}
   m_Children:
   - {fileID: 503778269}
   - {fileID: 2061243283}
@@ -4406,7 +4388,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 92}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1974492624
@@ -4507,7 +4489,7 @@ GameObject:
   - component: {fileID: 1999241392}
   - component: {fileID: 1999241391}
   - component: {fileID: 1999241390}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: InstructionButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4675,7 +4657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4713,7 +4695,7 @@ GameObject:
   - component: {fileID: 2042886678}
   - component: {fileID: 2042886677}
   - component: {fileID: 2042886676}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: LoadTitleButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4842,7 +4824,7 @@ GameObject:
   - component: {fileID: 2061243283}
   - component: {fileID: 2061243285}
   - component: {fileID: 2061243284}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: InstructionText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4858,14 +4840,14 @@ RectTransform:
   m_GameObject: {fileID: 2061243282}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
+  m_LocalScale: {x: 0.13, y: 0.18, z: 1}
   m_Children: []
   m_Father: {fileID: 1974492623}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 5}
   m_SizeDelta: {x: 1500, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2061243284
@@ -4882,7 +4864,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4921,7 +4903,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2064726563}
   - component: {fileID: 2064726564}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: CameraSensiSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4964,7 +4946,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -5023,7 +5005,7 @@ GameObject:
   - component: {fileID: 2144827252}
   - component: {fileID: 2144827254}
   - component: {fileID: 2144827253}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: PutableText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5063,7 +5045,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
