@@ -9,9 +9,10 @@ namespace PvP
       private int xLength = Choose.InitialSetting.xLength; //オセロ盤の一辺の長さ
       private int yLength = Choose.InitialSetting.yLength;
       private int zLength = Choose.InitialSetting.zLength;
-      private bool putableInform = true; //置く場所を光らせるならtrue。（Menu画面で変更可能）
+      private bool putableInform; //置く場所を光らせるならtrue。（Menu画面で変更可能）
       public static int[,] squareList; //待った機能のためにマスの情報を格納する。
-      private int totalTurn = 0; //待った機能のための情報の格納に用いる。現在の累計ターン数を表す
+      private int totalTurn = 0; //現在の累計ターン数を表す（待った（、リプレイ機能））
+      private int totalValidTurn = 0; //有効な累計ターンを表す。再開後やリプレイ時にこれ以降のsquareListは削除される（待った（、リプレイ機能））
       private Vector3 standard; //CoordinateDisplayクラスのテキストの向きを定めるために用いる
       private int turn = 1; //ターン入れ替えは"Stone/FlipStone"で行っている。はじめは黒
       private bool keyDetectable = true; //falseのときカメラ移動とキー入力を受け付けない（ゲームセット時）
@@ -30,29 +31,30 @@ namespace PvP
 
       void Start()
       {
-        squareList = new int[xLength*yLength*zLength-7,xLength*yLength*zLength];
-        standard = new Vector3 (xLength-1f, yLength-1f, zLength-1f);
-        int a = xLength/2; int b = yLength/2; int c = zLength/2;
-        stone.PutStone(1,a-1,b-1,c-1);
-        stone.PutStone(1,a,b-1,c);
-        stone.PutStone(-1,a-1,b-1,c);
-        stone.PutStone(-1,a,b-1,c-1);
-        stone.PutStone(1,a-1,b,c);
-        stone.PutStone(1,a,b,c-1);
-        stone.PutStone(-1,a-1,b,c-1);
-        stone.PutStone(-1,a,b,c);
-        CanPut();
+          putableInform = PlayerPrefs.GetFloat("Value_of_PutableInform", 1)==1 ? true: false;
+          squareList = new int[xLength*yLength*zLength-7,xLength*yLength*zLength];
+          standard = new Vector3 (xLength-1f, yLength-1f, zLength-1f);
+          int a = xLength/2; int b = yLength/2; int c = zLength/2;
+          stone.PutStone(1,a-1,b-1,c-1);
+          stone.PutStone(1,a,b-1,c);
+          stone.PutStone(-1,a-1,b-1,c);
+          stone.PutStone(-1,a,b-1,c-1);
+          stone.PutStone(1,a-1,b,c);
+          stone.PutStone(1,a,b,c-1);
+          stone.PutStone(-1,a-1,b,c-1);
+          stone.PutStone(-1,a,b,c);
+          CanPut();
 
-        for(int _y=0; _y<yLength; _y++) //待った機能のための情報の格納
-        {
-          for(int _z=0; _z<zLength; _z++)
+          for(int _y=0; _y<yLength; _y++) //待った機能のための情報の格納
           {
-            for(int _x=0; _x<xLength; _x++)
+            for(int _z=0; _z<zLength; _z++)
             {
-              squareList[0, xLength * zLength * _y + xLength * _z + _x] = stone.Square[_x,_y,_z];
+              for(int _x=0; _x<xLength; _x++)
+              {
+                squareList[0, xLength * zLength * _y + xLength * _z + _x] = stone.Square[_x,_y,_z];
+              }
             }
           }
-        }
       }
 
       void Update()
@@ -74,6 +76,7 @@ namespace PvP
       {
           if(XCoordi == 0 && ZCoordi == 0 && YCoordi == 0 && beforePressed == false)
           {
+            Debug.Log(totalTurn + " " + totalValidTurn);
               BeforePressed();
           }
           else if(XCoordi != 0 && ZCoordi == 0 && YCoordi == 0 && afterXPressed == false)
@@ -192,6 +195,8 @@ namespace PvP
       }
 
       public int TotalTurn{ get {return totalTurn;} set {this.totalTurn = value;} }
+
+      public int TotalValidTurn{ get {return totalValidTurn;} set {this.totalValidTurn = value;} }
 
       public int Turn{ get {return turn;} set {this.turn = value;} }
 

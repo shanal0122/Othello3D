@@ -22,6 +22,13 @@ namespace PvP
       public GameObject instructionCanvas;
 
 
+      void Start()
+      {
+          cameraSensiSlider.GetComponent<Slider>().value = 2 * PlayerPrefs.GetFloat("Value_of_MovingSpeed", 20f) / 5;
+          putableSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Value_of_PutableInform", 1);
+      }
+
+
       public void OnCancelClick() //待ったを押した時の処理。CameraMover.csのsquareListにリプレイ情報を格納している
       {
         if(game.TotalTurn > 0 && game.KeyDetectable)
@@ -44,12 +51,14 @@ namespace PvP
 
       public void OnCameraSensiSlide() //カメラ感度のスライダーの値を取得
       {
-        cameraMover.MovingSpeed = 5 * cameraSensiSlider.GetComponent<Slider>().value / 3;
+        cameraMover.MovingSpeed = 5 * cameraSensiSlider.GetComponent<Slider>().value / 2;
+        PlayerPrefs.SetFloat("Value_of_MovingSpeed", cameraMover.MovingSpeed);
       }
 
       public void OnPutableSlide() //お助け機能のスライダーの値を取得
       {
         float s = putableSlider.GetComponent<Slider>().value;
+        PlayerPrefs.SetFloat("Value_of_PutableInform", s);
         if(s == 0)
         {
             game.PutableInform = false;

@@ -7,9 +7,9 @@ namespace Choose
 {
   public class InitialSetting : MonoBehaviour
   {
-      public static int xLength; //オセロ版の一辺の長さ、yを最大に
-      public static int yLength;
-      public static int zLength;
+      public static int xLength = 4; //オセロ版の一辺の長さ、yを最大に
+      public static int yLength = 4;
+      public static int zLength = 4;
 
 
       public void ChoosePvP444()

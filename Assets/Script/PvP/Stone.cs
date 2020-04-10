@@ -10,7 +10,7 @@ namespace PvP
       private int xLength = Choose.InitialSetting.xLength; //盤の一辺の長さ
       private int yLength = Choose.InitialSetting.yLength;
       private int zLength = Choose.InitialSetting.zLength;
-      private int[,,] square; //noStone : 0, blackStone : 1, whiteStone : -1
+      private int[,,] square; //最新の盤面が記録されている。noStone : 0, blackStone : 1, whiteStone : -1
       private readonly int[,] vector = new int[,]{{0,1,0},{1,1,0},{0,1,1},{-1,1,0},{0,1,-1},{1,0,0},{1,0,1},{0,0,1},{-1,0,1},{-1,0,0},{-1,0,-1},{0,0,-1},{1,0,-1},{1,-1,0},{0,-1,1},{-1,-1,0},{0,-1,-1},{0,-1,0}};
       public GameObject blackStone;
       public GameObject whiteStone;
@@ -107,6 +107,7 @@ namespace PvP
             PutStone(stone,x,y,z);
             game.Turn *= -1;
             game.TotalTurn++; //待った機能のための情報の格納
+            game.TotalValidTurn = game.TotalTurn; //待った機能のための情報の格納
             for(int _y=0; _y<yLength; _y++)
             {
               for(int _z=0; _z<zLength; _z++)
@@ -122,7 +123,7 @@ namespace PvP
         }else {infoDisplay.CantPutIndicate();}
       }
 
-      public void PutAllStoneAsList() //待ったが押された時盤面を元に戻す
+      public void PutAllStoneAsList() //待ったが押された時盤面を一つ前に戻す
       {
         for(int _y=0; _y<yLength; _y++)
         {

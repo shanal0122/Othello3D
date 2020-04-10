@@ -9,7 +9,7 @@ namespace PvP
       private int xLength = Choose.InitialSetting.xLength;
       private int yLength = Choose.InitialSetting.yLength;
       private int zLength = Choose.InitialSetting.zLength;
-      private float movingSpeed = 15f; //カメラの動くスピードを設定
+      private float movingSpeed; //カメラの動くスピードを設定
       private float squaredDistance; //カメラを球面状で動かす時の半径の二乗
       private float upLimit; //カメラの上方向に動く限界のy座標
       private float downLimit; //カメラの上方向に動く限界のy座標
@@ -20,13 +20,14 @@ namespace PvP
 
       void Start()
       {
+          movingSpeed = PlayerPrefs.GetFloat("Value_of_MovingSpeed", 20f);
           float xCenterCoordi = (xLength - 1f)/2f;
           float yCenterCoordi = (yLength - 1f)/2f;
           float zCenterCoordi = (zLength - 1f)/2f;
           center = new Vector3(xCenterCoordi,yCenterCoordi,zCenterCoordi); //中心位置の定義
 
           mainCameraTransform = this.gameObject.transform;
-          mainCameraTransform.position = new Vector3 (xCenterCoordi, yCenterCoordi, zCenterCoordi - 1.7f * yLength);
+          mainCameraTransform.position = new Vector3 (xCenterCoordi, yCenterCoordi, zCenterCoordi - 1.8f * yLength);
           defaultPosition = mainCameraTransform.position;
 
           squaredDistance = (defaultPosition.x - center.x) * (defaultPosition.x - center.x) + (defaultPosition.y - center.y) * (defaultPosition.y - center.y) + (defaultPosition.z - center.z) * (defaultPosition.z - center.z);
@@ -38,11 +39,11 @@ namespace PvP
 
       void LateUpdate()
       {
-          CameraPosotionControlByKey();
+          CameraPosotionControl();
       }
 
 
-      private void CameraPosotionControlByKey() //矢印キーでメインカメラを動かす
+      private void CameraPosotionControl() //矢印キーでメインカメラを動かす
       {
         Vector3 pos;
         if(Input.GetKey(KeyCode.RightArrow))
