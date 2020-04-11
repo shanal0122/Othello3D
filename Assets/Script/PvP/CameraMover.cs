@@ -18,9 +18,13 @@ namespace PvP
       private Transform mainCameraTransform;
 
 
-      void Start()
+      void Awake()
       {
           movingSpeed = PlayerPrefs.GetFloat("Value_of_MovingSpeed", 20f);
+      }
+
+      void Start()
+      {
           float xCenterCoordi = (xLength - 1f)/2f;
           float yCenterCoordi = (yLength - 1f)/2f;
           float zCenterCoordi = (zLength - 1f)/2f;

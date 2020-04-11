@@ -10,14 +10,20 @@ namespace Choose
       public static int xLength = 4; //オセロ版の一辺の長さ、yを最大に
       public static int yLength = 4;
       public static int zLength = 4;
-
+      public static int gameMode = 1; //ゲームモードを表す。PlayerPrefsにセーブする時に使う。PvP444:1,PvP464:2（中断後再開機能（、リプレイ機能））
+      public static bool continuation = false; //続きからプレイする時はtrue
+      public GameObject suspendedConfirmCanvas;
 
       public void ChoosePvP444()
       {
         xLength = 4;
         yLength = 4;
         zLength = 4;
-        SceneManager.LoadScene("PvP");
+        gameMode = 1;
+        if(PlayerPrefs.HasKey("Record_of_supended_game_1"))
+        {
+          suspendedConfirmCanvas.GetComponent<Canvas>().enabled = true;
+        }else{SceneManager.LoadScene("PvP");}
       }
 
       public void ChoosePvP666()
@@ -25,7 +31,27 @@ namespace Choose
         xLength = 4;
         yLength = 6;
         zLength = 4;
+        gameMode = 2;
+        if(PlayerPrefs.HasKey("Record_of_supended_game_2"))
+        {
+          suspendedConfirmCanvas.GetComponent<Canvas>().enabled = true;
+        }else{SceneManager.LoadScene("PvP");}
+      }
+
+      public void OnSuspendedYesClick()
+      {
         SceneManager.LoadScene("PvP");
+        continuation = true;
+      }
+
+      public void OnSuspendedNoClick()
+      {
+        SceneManager.LoadScene("PvP");
+      }
+
+      public void OnSuspendedCloseClick()
+      {
+        suspendedConfirmCanvas.GetComponent<Canvas>().enabled = false;
       }
   }
 

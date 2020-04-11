@@ -16,7 +16,6 @@ namespace PvP
       public GameObject whiteStone;
       public Game game; //GameからTurnを受け取る
       public ChangeColor changeColor; //CanPutAndInformで置ける場所を光らせる
-      public InfoDisplay infoDisplay;
 
 
       void Start()
@@ -93,7 +92,7 @@ namespace PvP
         return flipNum;
       }
 
-      public void FlipStone(int stone, int x, int y, int z) //座標(x,y,z)に石をおき裏返しturnを変更する。置けない時は何もしない。Game.squareListに盤の情報を格納
+      public bool FlipStone(int stone, int x, int y, int z) //座標(x,y,z)に石をおき裏返しturnを変更する。置けない時は何もしない。置けたらtrue、置けないならfalseを返す
       {
         if(square[x,y,z] == 0)
         {
@@ -105,26 +104,22 @@ namespace PvP
           if(sumOfFlipNum != 0)
           {
             PutStone(stone,x,y,z);
-            game.Turn *= -1;
-            game.TotalTurn++; //待った機能のための情報の格納
-            game.TotalValidTurn = game.TotalTurn; //待った機能のための情報の格納
-            for(int _y=0; _y<yLength; _y++)
-            {
-              for(int _z=0; _z<zLength; _z++)
-              {
-                for(int _x=0; _x<xLength; _x++)
-                {
-                  Game.squareList[game.TotalTurn, xLength * zLength * _y + xLength * _z + _x] = square[_x,_y,_z];
-                }
-              }
-            }
-
-          }else {infoDisplay.CantPutIndicate();}
-        }else {infoDisplay.CantPutIndicate();}
+            return true;
+          }
+        }
+        return false;
       }
 
-      public void PutAllStoneAsList() //待ったが押された時盤面を一つ前に戻す
+      public void PutAllStoneAsList() //待ったが押された時盤面をリスト通りに置く。セーブ情報を書き換える
       {
+        string[] strArray = game.Recordstr.Split(',');
+        strArray[0] = game.TotalTurn.ToString();
+        strArray[1] = game.Turn.ToString();
+        game.Recordstr = strArray[0];
+        for(int n=1; n<strArray.Length-xLength*yLength*zLength; n++)
+        {
+          game.Recordstr = game.Recordstr + "," + strArray[n];
+        }
         for(int _y=0; _y<yLength; _y++)
         {
           for(int _z=0; _z<zLength; _z++)
@@ -132,7 +127,7 @@ namespace PvP
             for(int _x=0; _x<xLength; _x++)
             {
               RemoveStone(_x,_y,_z);
-              square[_x,_y,_z] = Game.squareList[game.TotalTurn-1, xLength * zLength * _y + xLength * _z + _x];
+              square[_x,_y,_z] = game.SquareList[game.TotalTurn, xLength * zLength * _y + xLength * _z + _x];
               if(square[_x,_y,_z] == 1 || square[_x,_y,_z] == -1)
               {
                 PutStone(square[_x,_y,_z],_x,_y,_z);
@@ -140,6 +135,8 @@ namespace PvP
             }
           }
         }
+        PlayerPrefs.SetString(game.RecordOfSuspendedKeyName, game.Recordstr);
+        PlayerPrefs.Save();
         game.SetBeforePressed = false;
         game.SetAfterXPressed = false;
         game.SetAfterZPressed = false;

@@ -22,7 +22,7 @@ namespace PvP
       public GameObject instructionCanvas;
 
 
-      void Start()
+      void Awake()
       {
           cameraSensiSlider.GetComponent<Slider>().value = 2 * PlayerPrefs.GetFloat("Value_of_MovingSpeed", 20f) / 5;
           putableSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Value_of_PutableInform", 1);
@@ -33,9 +33,9 @@ namespace PvP
       {
         if(game.TotalTurn > 0 && game.KeyDetectable)
         {
-          stone.PutAllStoneAsList();
           game.Turn *= -1;
           game.TotalTurn--;
+          stone.PutAllStoneAsList();
         }
       }
 
@@ -53,12 +53,14 @@ namespace PvP
       {
         cameraMover.MovingSpeed = 5 * cameraSensiSlider.GetComponent<Slider>().value / 2;
         PlayerPrefs.SetFloat("Value_of_MovingSpeed", cameraMover.MovingSpeed);
+        PlayerPrefs.Save();
       }
 
       public void OnPutableSlide() //お助け機能のスライダーの値を取得
       {
         float s = putableSlider.GetComponent<Slider>().value;
         PlayerPrefs.SetFloat("Value_of_PutableInform", s);
+        PlayerPrefs.Save();
         if(s == 0)
         {
             game.PutableInform = false;

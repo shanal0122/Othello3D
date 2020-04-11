@@ -10,11 +10,12 @@ namespace PvP
       private int yLength = Choose.InitialSetting.yLength;
       private int zLength = Choose.InitialSetting.zLength;
       private bool putableInform; //置く場所を光らせるならtrue。（Menu画面で変更可能）
-      public static int[,] squareList; //待った機能のためにマスの情報を格納する。
+      private int[,] squareList; //待った機能のためにマスの情報を格納する。[ターン目,xLength * zLength * _y + xLength * _z + _x]（Game.Start,Game.AfterEnterPressed,Stone.PutAllStoneAsList）
+      private string recordstr; //PlayerPrefsにセーブするためのマスの情報（中断後再開機能（、リプレイ機能））"totalTurn,turn,squareList[0,0],squareList[0,1],squareList[0,2]..."
+      private string recordOfSuspendedKeyName; //PlayerPrefsにセーブするためのマスの情報のキーの名前（中断後再開機能）
       private int totalTurn = 0; //現在の累計ターン数を表す（待った（、リプレイ機能））
-      private int totalValidTurn = 0; //有効な累計ターンを表す。再開後やリプレイ時にこれ以降のsquareListは削除される（待った（、リプレイ機能））
       private Vector3 standard; //CoordinateDisplayクラスのテキストの向きを定めるために用いる
-      private int turn = 1; //ターン入れ替えは"Stone/FlipStone"で行っている。はじめは黒
+      private int turn = 1; //黒が1、白が-1。はじめは黒
       private bool keyDetectable = true; //falseのときカメラ移動とキー入力を受け付けない（ゲームセット時）
       public int XCoordi {get; set;}
       public int YCoordi {get; set;}
@@ -29,32 +30,20 @@ namespace PvP
       public GameObject centerCanvas;
 
 
+      void Awake()
+      {
+        putableInform = PlayerPrefs.GetFloat("Value_of_PutableInform", 1)==1 ? true: false;
+        recordOfSuspendedKeyName = "Record_of_supended_game_" + Choose.InitialSetting.gameMode;
+      }
+
       void Start()
       {
-          putableInform = PlayerPrefs.GetFloat("Value_of_PutableInform", 1)==1 ? true: false;
           squareList = new int[xLength*yLength*zLength-7,xLength*yLength*zLength];
           standard = new Vector3 (xLength-1f, yLength-1f, zLength-1f);
-          int a = xLength/2; int b = yLength/2; int c = zLength/2;
-          stone.PutStone(1,a-1,b-1,c-1);
-          stone.PutStone(1,a,b-1,c);
-          stone.PutStone(-1,a-1,b-1,c);
-          stone.PutStone(-1,a,b-1,c-1);
-          stone.PutStone(1,a-1,b,c);
-          stone.PutStone(1,a,b,c-1);
-          stone.PutStone(-1,a-1,b,c-1);
-          stone.PutStone(-1,a,b,c);
-          CanPut();
-
-          for(int _y=0; _y<yLength; _y++) //待った機能のための情報の格納
+          if(Choose.InitialSetting.continuation)
           {
-            for(int _z=0; _z<zLength; _z++)
-            {
-              for(int _x=0; _x<xLength; _x++)
-              {
-                squareList[0, xLength * zLength * _y + xLength * _z + _x] = stone.Square[_x,_y,_z];
-              }
-            }
-          }
+            ContinueGame();
+          }else{NewGame();}
       }
 
       void Update()
@@ -72,11 +61,76 @@ namespace PvP
       }
 
 
+      private void NewGame()
+      {
+        int a = xLength/2; int b = yLength/2; int c = zLength/2;
+        stone.PutStone(1,a-1,b-1,c-1);
+        stone.PutStone(1,a,b-1,c);
+        stone.PutStone(-1,a-1,b-1,c);
+        stone.PutStone(-1,a,b-1,c-1);
+        stone.PutStone(1,a-1,b,c);
+        stone.PutStone(1,a,b,c-1);
+        stone.PutStone(-1,a-1,b,c-1);
+        stone.PutStone(-1,a,b,c);
+        CanPut();
+
+　　　　　　recordstr = "0,1"; //"totalTurn,turn"
+        for(int _y=0; _y<yLength; _y++) //待った機能、セーブのための情報の格納
+        {
+          for(int _z=0; _z<zLength; _z++)
+          {
+            for(int _x=0; _x<xLength; _x++)
+            {
+              squareList[0, xLength * zLength * _y + xLength * _z + _x] = stone.Square[_x,_y,_z];
+              recordstr = recordstr + "," + squareList[0, xLength * zLength * _y + xLength * _z + _x];
+            }
+          }
+        }
+        PlayerPrefs.SetString(recordOfSuspendedKeyName, recordstr);
+        PlayerPrefs.Save();
+      }
+
+      private void ContinueGame()
+      {
+        recordstr = PlayerPrefs.GetString(recordOfSuspendedKeyName);
+        string[] strArray = recordstr.Split(',');
+        totalTurn = int.Parse(strArray[0]);
+        turn = int.Parse(strArray[1]);
+        for(int t=0; t<=totalTurn; t++)
+        {
+          for(int _y=0; _y<yLength; _y++)
+          {
+            for(int _z=0; _z<zLength; _z++)
+            {
+              for(int _x=0; _x<xLength; _x++)
+              {
+                squareList[t, xLength * zLength * _y + xLength * _z + _x] = int.Parse(strArray[2 + xLength * yLength * zLength * t + xLength * zLength * _y + xLength * _z + _x]);
+              }
+            }
+          }
+        }
+        for(int _y=0; _y<yLength; _y++)
+        {
+          for(int _z=0; _z<zLength; _z++)
+          {
+            for(int _x=0; _x<xLength; _x++)
+            {
+              stone.Square[_x, _y, _z] = squareList[totalTurn, xLength * zLength * _y + xLength * _z + _x];
+              if(stone.Square[_x,_y,_z] == 1 || stone.Square[_x,_y,_z] == -1)
+              {
+                stone.PutStone(stone.Square[_x,_y,_z],_x,_y,_z);
+              }
+            }
+          }
+        }
+        infoDisplay.TurnIndicate();
+        infoDisplay.StoneNumIndicate();
+      }
+
       private void PlayGame() //KeyDetectorクラスから1~4とbackspaceのキー操作情報を受け取り、UIを変更し石を置く
       {
           if(XCoordi == 0 && ZCoordi == 0 && YCoordi == 0 && beforePressed == false)
           {
-            Debug.Log(totalTurn + " " + totalValidTurn);
               BeforePressed();
           }
           else if(XCoordi != 0 && ZCoordi == 0 && YCoordi == 0 && afterXPressed == false)
@@ -111,8 +165,6 @@ namespace PvP
           }
         }
         coordiDisplay.BeforePressedIndicate();
-        infoDisplay.TurnIndicate();
-        infoDisplay.StoneNumIndicate();
         beforePressed = true;
         afterXPressed = false;
       }
@@ -160,7 +212,35 @@ namespace PvP
 
       private void AfterEnterPressed() //エンターキーを押した後に一度だけ実行される
       {
-        stone.FlipStone(turn,XCoordi-1,YCoordi-1,ZCoordi-1); //ここでturnを変更している
+        bool putted = stone.FlipStone(turn,XCoordi-1,YCoordi-1,ZCoordi-1); //石が置けたならtrue、置けなかったならfalseが返される
+        if(putted)
+        {
+          turn *= -1;
+          totalTurn++; //待った機能、セーブのための情報の格納
+          string[] strArray = recordstr.Split(',');
+          strArray[0] = totalTurn.ToString();
+          strArray[1] = turn.ToString();
+          recordstr = strArray[0];
+          for(int n=1; n<strArray.Length; n++)
+          {
+            recordstr = recordstr + "," + strArray[n];
+          }
+          for(int _y=0; _y<yLength; _y++)
+          {
+            for(int _z=0; _z<zLength; _z++)
+            {
+              for(int _x=0; _x<xLength; _x++)
+              {
+                squareList[totalTurn, xLength * zLength * _y + xLength * _z + _x] = stone.Square[_x,_y,_z];
+                recordstr = recordstr + "," + squareList[totalTurn, xLength * zLength * _y + xLength * _z + _x];
+              }
+            }
+          }
+          PlayerPrefs.SetString(recordOfSuspendedKeyName, recordstr);
+          PlayerPrefs.Save();
+          infoDisplay.TurnIndicate();
+          infoDisplay.StoneNumIndicate();
+        }else{infoDisplay.CantPutIndicate();}
         CanPut();
         afterYPressed= false;
         XCoordi = YCoordi = ZCoordi = 0;
@@ -185,18 +265,22 @@ namespace PvP
         }
       }
 
-
-      public void GameSet()
+      private void GameSet()
       {
         keyDetectable = false;
         changeColor.UndoAllBoardColor();
         centerCanvas.GetComponent<Canvas>().enabled = true;
         infoDisplay.ResultIndicate();
+        PlayerPrefs.DeleteKey(recordOfSuspendedKeyName);
       }
 
-      public int TotalTurn{ get {return totalTurn;} set {this.totalTurn = value;} }
+      public int[,] SquareList{ get {return squareList;} set {this.squareList = value;} }
 
-      public int TotalValidTurn{ get {return totalValidTurn;} set {this.totalValidTurn = value;} }
+      public string Recordstr{ get {return recordstr;} set {this.recordstr = value;} }
+
+      public string RecordOfSuspendedKeyName{ get {return recordOfSuspendedKeyName;} set {this.recordOfSuspendedKeyName = value;} }
+
+      public int TotalTurn{ get {return totalTurn;} set {this.totalTurn = value;} }
 
       public int Turn{ get {return turn;} set {this.turn = value;} }
 
