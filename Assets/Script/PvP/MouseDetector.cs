@@ -144,5 +144,10 @@ namespace PvP
       {
         SceneManager.LoadScene("Choose");
       }
+
+      public void OnPlayAgainClick()
+      {
+        SceneManager.LoadScene("PvP");
+      }
   }
 }

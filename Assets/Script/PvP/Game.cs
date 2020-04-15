@@ -88,10 +88,13 @@ namespace PvP
         }
         PlayerPrefs.SetString(recordOfSuspendedKeyName, recordstr);
         PlayerPrefs.Save();
+        infoDisplay.TurnIndicate();
+        infoDisplay.StoneNumIndicate();
       }
 
       private void ContinueGame()
       {
+        Choose.InitialSetting.continuation = false;
         recordstr = PlayerPrefs.GetString(recordOfSuspendedKeyName);
         string[] strArray = recordstr.Split(',');
         totalTurn = int.Parse(strArray[0]);
@@ -195,6 +198,7 @@ namespace PvP
             if(putableInform) {stone.Inform(turn,XCoordi-1,y,ZCoordi-1);}
         }
         coordiDisplay.AfterZPressedIndicate();
+        infoDisplay.StonePlusNumClear(turn);
         afterXPressed = false;
         afterZPressed = true;
         afterYPressed = false;
@@ -206,12 +210,14 @@ namespace PvP
         changeColor.ShineBoardColor(XCoordi-1,YCoordi-1,ZCoordi-1);
         if(putableInform) {stone.Inform(turn,XCoordi-1,YCoordi-1,ZCoordi-1);}
         coordiDisplay.AfterYPressedDisplay();
+        infoDisplay.StonePlusNumIndicate(turn,XCoordi-1,YCoordi-1,ZCoordi-1);
         afterZPressed = false;
         afterYPressed = true;
       }
 
       private void AfterEnterPressed() //エンターキーを押した後に一度だけ実行される
       {
+        infoDisplay.StonePlusNumClear(turn);
         bool putted = stone.FlipStone(turn,XCoordi-1,YCoordi-1,ZCoordi-1); //石が置けたならtrue、置けなかったならfalseが返される
         if(putted)
         {
@@ -272,6 +278,7 @@ namespace PvP
         centerCanvas.GetComponent<Canvas>().enabled = true;
         infoDisplay.ResultIndicate();
         PlayerPrefs.DeleteKey(recordOfSuspendedKeyName);
+
       }
 
       public int[,] SquareList{ get {return squareList;} set {this.squareList = value;} }

@@ -92,7 +92,7 @@ namespace PvP
         return flipNum;
       }
 
-      public bool FlipStone(int stone, int x, int y, int z) //座標(x,y,z)に石をおき裏返しturnを変更する。置けない時は何もしない。置けたらtrue、置けないならfalseを返す
+      public bool FlipStone(int stone, int x, int y, int z) //座標(x,y,z)にstoneをおき裏返しturnを変更する。置けない時は何もしない。置けたらtrue、置けないならfalseを返す
       {
         if(square[x,y,z] == 0)
         {
@@ -108,6 +108,20 @@ namespace PvP
           }
         }
         return false;
+      }
+
+      public int CountStoneWillFlip(int stone, int x, int y, int z) //座標(x,y,z)にstoneをおいた場合に裏返るであろう石の個数を表示する。Game.AfterYPressed()で呼び出される
+      {
+        if(square[x,y,z] == 0)
+        {
+          int sumOfFlipNum = 0;
+          for(int n=0; n<vector.GetLength(0); n++)
+          {
+            sumOfFlipNum += FlipNum(stone, x, y, z, n);
+          }
+          return sumOfFlipNum ;
+        }
+        return 0;
       }
 
       public void PutAllStoneAsList() //待ったが押された時盤面をリスト通りに置く。セーブ情報を書き換える

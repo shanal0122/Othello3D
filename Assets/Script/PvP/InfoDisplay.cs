@@ -13,6 +13,8 @@ namespace PvP
       public Text whiteTurnText;
       public Text blackStoneNumText;
       public Text whiteStoneNumText;
+      public Text blackStonePlusNumText;
+      public Text whiteStonePlusNumText;
       public Text resultText;
       public Text claimText;
 
@@ -42,6 +44,25 @@ namespace PvP
         blackStoneNumText.text = bl.ToString();
         int wh = stone.CountStone(-1);
         whiteStoneNumText.text = wh.ToString();
+      }
+
+      public void StonePlusNumIndicate(int turn, int x, int y, int z)
+      {
+        int s = stone.CountStoneWillFlip(turn, x, y, z);
+        if(turn == 1)
+        {
+          blackStonePlusNumText.text = "+" + s.ToString();
+        }
+        if(turn == -1)
+        {
+          whiteStonePlusNumText.text = "+" + s.ToString();
+        }
+      }
+
+      public void StonePlusNumClear(int turn)
+      {
+        if(turn == 1){blackStonePlusNumText.text = null;}
+        if(turn == -1){whiteStonePlusNumText.text = null;}
       }
 
       public void ResultIndicate() //リザルト画面を表示する
@@ -77,7 +98,7 @@ namespace PvP
 
       public void ClaimTextClear()
       {
-        claimText.text = "";
+        claimText.text = null;
       }
   }
 }
