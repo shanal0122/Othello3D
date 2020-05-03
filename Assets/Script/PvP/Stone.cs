@@ -16,11 +16,30 @@ namespace PvP
       public GameObject whiteStone;
       public Game game; //GameからTurnを受け取る
       public ChangeColor changeColor; //CanPutAndInformで置ける場所を光らせる
+      private GameObject[,,] bs; //[x,y,z]にあるblackStoneを格納
+      private GameObject[,,] ws; //[x,y,z]にあるwhiteStoneを格納
 
 
       void Start()
       {
          square = new int[xLength,yLength,zLength];
+         bs = new GameObject[xLength,yLength,zLength];
+         ws = new GameObject[xLength,yLength,zLength];
+         for(int y=0; y<yLength; y++)
+         {
+           for(int z=0; z<zLength; z++)
+           {
+             for(int x=0; x<xLength; x++)
+             {
+               bs[x,y,z] = Instantiate(blackStone, this.transform);
+               bs[x,y,z].transform.position = new Vector3(x,y,z);
+               bs[x,y,z].SetActive(false);
+               ws[x,y,z] = Instantiate(whiteStone, this.transform);
+               ws[x,y,z].transform.position = new Vector3(x,y,z);
+               ws[x,y,z].SetActive(false);
+             }
+           }
+         }
       }
 
       private int FlipNum(int stone, int x, int y, int z, int vec) //stone{1,-1}を座標(x,y,z)に置いた時vec方向のコマを返せる個数を返す
@@ -57,16 +76,12 @@ namespace PvP
       {
         if(stone == 1)
         {
-          GameObject s = Instantiate(blackStone, this.transform);
-          s.transform.position = new Vector3(x, y, z);
-          s.tag = "tagS" + x + y + z;
+          bs[x,y,z].SetActive(true);
           square[x,y,z] = 1;
         }
         if(stone == -1)
         {
-          GameObject s = Instantiate(whiteStone, this.transform);
-          s.transform.position = new Vector3(x, y, z);
-          s.tag = "tagS" + x + y + z;
+          ws[x,y,z].SetActive(true);
           square[x,y,z] = -1;
         }
         if(stone != 1 && stone != -1)
@@ -77,7 +92,8 @@ namespace PvP
 
       private void RemoveStone(int x, int y, int z) //座標(x,y,z)の石を取り除く
       {
-        Destroy(GameObject.FindGameObjectWithTag("tagS" + x + y + z));
+        if(square[x,y,z] == 1){ bs[x,y,z].SetActive(false); }
+        if(square[x,y,z] == -1){ ws[x,y,z].SetActive(false); }
         square[x,y,z] = 0;
       }
 
