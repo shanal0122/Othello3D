@@ -14,6 +14,11 @@ namespace Choose
       public static bool continuation = false; //続きからプレイする時はtrue
       public GameObject suspendedConfirmCanvas;
 
+      /*void Awake() ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      {
+        PlayerPrefs.DeleteAll();
+      }*/
+
       public void ChoosePvP444()
       {
         xLength = 4;
@@ -36,6 +41,27 @@ namespace Choose
         {
           suspendedConfirmCanvas.GetComponent<Canvas>().enabled = true;
         }else{SceneManager.LoadScene("PvP");}
+      }
+
+      public void ChooseReplay()
+      {
+        if(PlayerPrefs.HasKey("Record_of_finished_gamemode"))
+        {
+          gameMode = PlayerPrefs.GetInt("Record_of_finished_gamemode");
+          if(gameMode == 1)
+          {
+            xLength = 4;
+            yLength = 4;
+            zLength = 4;
+          }
+          if(gameMode == 2)
+          {
+            xLength = 4;
+            yLength = 6;
+            zLength = 4;
+          }
+          SceneManager.LoadScene("Replay");
+        }
       }
 
       public void OnSuspendedYesClick()

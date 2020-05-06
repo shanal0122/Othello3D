@@ -11,12 +11,13 @@ namespace PvP
       private int zLength = Choose.InitialSetting.zLength;
       private bool putableInform; //置く場所を光らせるならtrue。（Menu画面で変更可能）
       private int[,] squareList; //待った機能のためにマスの情報を格納する。[ターン目,xLength * zLength * _y + xLength * _z + _x]（Game.Start,Game.AfterEnterPressed,Stone.PutAllStoneAsList）
-      private string recordstr; //PlayerPrefsにセーブするためのマスの情報（中断後再開機能（、リプレイ機能））"totalTurn,turn,squareList[0,0],squareList[0,1],squareList[0,2]..."
+      private string recordstr; //PlayerPrefsにセーブするためのマスの情報（中断後再開機能、リプレイ機能）"totalTurn,squareList[0,0],squareList[0,1],...,squareList[0,63],0ターン目の後に打つ人のターン"
       private string recordOfSuspendedKeyName; //PlayerPrefsにセーブするためのマスの情報のキーの名前（中断後再開機能）
       private int totalTurn = 0; //現在の累計ターン数を表す（待った（、リプレイ機能））
       private Vector3 standard; //CoordinateDisplayクラスのテキストの向きを定めるために用いる
       private int turn = 1; //黒が1、白が-1。はじめは黒
       private bool keyDetectable = true; //falseのときカメラ移動とキー入力を受け付けない（ゲームセット時）
+      private bool gameSetFlug = false; //CanPut()でどちらも置けないことがわかるとtrueになり、処理が終わるとゲームセット画面に移る
       public int XCoordi {get; set;}
       public int YCoordi {get; set;}
       public int ZCoordi {get; set;}
@@ -74,7 +75,7 @@ namespace PvP
         stone.PutStone(-1,a,b,c);
         CanPut();
 
-　　　　　　recordstr = "0,1"; //"totalTurn,turn"
+　　　　　　recordstr = "0"; //"totalTurn"
         for(int _y=0; _y<yLength; _y++) //待った機能、セーブのための情報の格納
         {
           for(int _z=0; _z<zLength; _z++)
@@ -86,6 +87,7 @@ namespace PvP
             }
           }
         }
+        recordstr = recordstr + "," + 1; //"0ターン目が終わった後に打つ人のターン（黒）"
         PlayerPrefs.SetString(recordOfSuspendedKeyName, recordstr);
         PlayerPrefs.Save();
         infoDisplay.TurnIndicate();
@@ -98,7 +100,7 @@ namespace PvP
         recordstr = PlayerPrefs.GetString(recordOfSuspendedKeyName);
         string[] strArray = recordstr.Split(',');
         totalTurn = int.Parse(strArray[0]);
-        turn = int.Parse(strArray[1]);
+        turn = int.Parse(strArray[(totalTurn + 1) * (xLength * yLength * zLength + 1)]);
         for(int t=0; t<=totalTurn; t++)
         {
           for(int _y=0; _y<yLength; _y++)
@@ -107,7 +109,7 @@ namespace PvP
             {
               for(int _x=0; _x<xLength; _x++)
               {
-                squareList[t, xLength * zLength * _y + xLength * _z + _x] = int.Parse(strArray[2 + xLength * yLength * zLength * t + xLength * zLength * _y + xLength * _z + _x]);
+                squareList[t, xLength * zLength * _y + xLength * _z + _x] = int.Parse(strArray[1 + (xLength * yLength * zLength + 1) * t + xLength * zLength * _y + xLength * _z + _x]);
               }
             }
           }
@@ -222,10 +224,10 @@ namespace PvP
         if(putted)
         {
           turn *= -1;
+          CanPut();
           totalTurn++; //待った機能、セーブのための情報の格納
           string[] strArray = recordstr.Split(',');
           strArray[0] = totalTurn.ToString();
-          strArray[1] = turn.ToString();
           recordstr = strArray[0];
           for(int n=1; n<strArray.Length; n++)
           {
@@ -242,15 +244,16 @@ namespace PvP
               }
             }
           }
+          recordstr = recordstr + "," + turn;
           PlayerPrefs.SetString(recordOfSuspendedKeyName, recordstr);
           PlayerPrefs.Save();
           infoDisplay.TurnIndicate();
           infoDisplay.StoneNumIndicate();
         }else{infoDisplay.CantPutIndicate();}
-        CanPut();
         afterYPressed= false;
         XCoordi = YCoordi = ZCoordi = 0;
         enterPressed = false;
+        if(gameSetFlug){ GameSet(); }
       }
 
 
@@ -266,7 +269,7 @@ namespace PvP
               turn *= -1;
             }else
             {
-              GameSet();
+              gameSetFlug = true;
             }
         }
       }
@@ -277,8 +280,9 @@ namespace PvP
         changeColor.UndoAllBoardColor();
         centerCanvas.GetComponent<Canvas>().enabled = true;
         infoDisplay.ResultIndicate();
+        PlayerPrefs.SetInt("Record_of_finished_gamemode", Choose.InitialSetting.gameMode);
+        PlayerPrefs.SetString("Record_of_finished_game", recordstr);
         PlayerPrefs.DeleteKey(recordOfSuspendedKeyName);
-
       }
 
       public int[,] SquareList{ get {return squareList;} set {this.squareList = value;} }

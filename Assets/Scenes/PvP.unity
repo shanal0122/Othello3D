@@ -1721,6 +1721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fa4eda3d81b64cdcbbd40b398846711, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  diagonal: 0
   blackStone: {fileID: 4480602181400507143, guid: bf1459e995001493c971d570b964ef87,
     type: 3}
   whiteStone: {fileID: 8436403583759325846, guid: fbf73deb42dd74d169a4f46272b6b6cd,
@@ -2187,6 +2188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stone: {fileID: 725947589}
   game: {fileID: 1995446426}
+  infoDisplay: {fileID: 1322617655}
   changeColor: {fileID: 1276949605}
   menuCanvas: {fileID: 1068638337}
   cameraSensiSlider: {fileID: 2064726562}

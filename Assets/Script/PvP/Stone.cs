@@ -11,7 +11,8 @@ namespace PvP
       private int yLength = Choose.InitialSetting.yLength;
       private int zLength = Choose.InitialSetting.zLength;
       private int[,,] square; //最新の盤面が記録されている。noStone : 0, blackStone : 1, whiteStone : -1
-      private readonly int[,] vector = new int[,]{{0,1,0},{1,1,0},{0,1,1},{-1,1,0},{0,1,-1},{1,0,0},{1,0,1},{0,0,1},{-1,0,1},{-1,0,0},{-1,0,-1},{0,0,-1},{1,0,-1},{1,-1,0},{0,-1,1},{-1,-1,0},{0,-1,-1},{0,-1,0}};
+      [SerializeField] private bool diagonal = false; //{1,1,1}系のベクトルを採用するか。採用するならtrue/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      private int[,] vector;
       public GameObject blackStone;
       public GameObject whiteStone;
       public Game game; //GameからTurnを受け取る
@@ -22,6 +23,14 @@ namespace PvP
 
       void Start()
       {
+         if(diagonal) //{1,1,1}系のベクトルを採用するか/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+         {
+           vector = new int[,]{{0,1,0},{1,1,0},{0,1,1},{-1,1,0},{0,1,-1},{1,0,0},{1,0,1},{0,0,1},{-1,0,1},{-1,0,0},{-1,0,-1},{0,0,-1},{1,0,-1},{1,-1,0},{0,-1,1},{-1,-1,0},{0,-1,-1},{0,-1,0},{1,1,1},{1,1,-1},{1,-1,1},{1,-1,-1},{-1,1,1},{-1,1,-1},{-1,-1,1},{-1,-1,-1}};
+         }else
+         {
+           vector = new int[,]{{0,1,0},{1,1,0},{0,1,1},{-1,1,0},{0,1,-1},{1,0,0},{1,0,1},{0,0,1},{-1,0,1},{-1,0,0},{-1,0,-1},{0,0,-1},{1,0,-1},{1,-1,0},{0,-1,1},{-1,-1,0},{0,-1,-1},{0,-1,0}};
+         } //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
          square = new int[xLength,yLength,zLength];
          bs = new GameObject[xLength,yLength,zLength];
          ws = new GameObject[xLength,yLength,zLength];
@@ -144,12 +153,12 @@ namespace PvP
       {
         string[] strArray = game.Recordstr.Split(',');
         strArray[0] = game.TotalTurn.ToString();
-        strArray[1] = game.Turn.ToString();
         game.Recordstr = strArray[0];
-        for(int n=1; n<strArray.Length-xLength*yLength*zLength; n++)
+        for(int n=1; n<strArray.Length-xLength*yLength*zLength-1; n++)
         {
           game.Recordstr = game.Recordstr + "," + strArray[n];
         }
+        game.Turn = int.Parse(strArray[strArray.Length-xLength*yLength*zLength-2]);
         for(int _y=0; _y<yLength; _y++)
         {
           for(int _z=0; _z<zLength; _z++)

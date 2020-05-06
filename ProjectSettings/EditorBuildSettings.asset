@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/PvP.unity
     guid: f991c5b2222d544ffad5532ce1480936
   - enabled: 1
-    path: Assets/Scenes/PvP666.unity
-    guid: 43a5d9c9338b74d09a5c6d5855f61720
+    path: Assets/Scenes/Replay.unity
+    guid: 23cffc459e47649389b6482f9336bf8e
   m_configObjects: {}

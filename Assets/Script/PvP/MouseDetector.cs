@@ -13,6 +13,7 @@ namespace PvP
       private int zLength = Choose.InitialSetting.zLength;
       public Stone stone;
       public Game game;
+      public InfoDisplay infoDisplay;
       public ChangeColor changeColor;
       public GameObject menuCanvas;
       public GameObject cameraSensiSlider;
@@ -33,9 +34,10 @@ namespace PvP
       {
         if(game.TotalTurn > 0 && game.KeyDetectable)
         {
-          game.Turn *= -1;
           game.TotalTurn--;
-          stone.PutAllStoneAsList();
+          stone.PutAllStoneAsList(); //game.Turnはこの先で変更している
+          infoDisplay.TurnIndicate();
+          infoDisplay.StoneNumIndicate();
         }
       }
 
