@@ -49,20 +49,22 @@ namespace PvP
       public void StonePlusNumIndicate(int turn, int x, int y, int z)
       {
         int s = stone.CountStoneWillFlip(turn, x, y, z);
-        if(turn == 1)
+        if(turn == 1 && s > 0)
         {
-          blackStonePlusNumText.text = "+" + s.ToString();
+          blackStonePlusNumText.text = "+" + (s+1).ToString();
+          whiteStonePlusNumText.text = "-" + s.ToString();
         }
-        if(turn == -1)
+        if(turn == -1 && s > 0)
         {
-          whiteStonePlusNumText.text = "+" + s.ToString();
+          whiteStonePlusNumText.text = "+" + (s+1).ToString();
+          blackStonePlusNumText.text = "-" + s.ToString();
         }
       }
 
       public void StonePlusNumClear(int turn)
       {
-        if(turn == 1){blackStonePlusNumText.text = null;}
-        if(turn == -1){whiteStonePlusNumText.text = null;}
+        blackStonePlusNumText.text = null;
+        whiteStonePlusNumText.text = null;
       }
 
       public void ResultIndicate() //リザルト画面を表示する

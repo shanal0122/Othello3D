@@ -20,6 +20,7 @@ namespace PvP
       public CameraMover cameraMover;
       public GameObject putableSlider;
       public Text putableOnOffText;
+      public GameObject stoneSizeSlider;
       public GameObject instructionCanvas;
 
 
@@ -27,6 +28,8 @@ namespace PvP
       {
           cameraSensiSlider.GetComponent<Slider>().value = 2 * PlayerPrefs.GetFloat("Value_of_MovingSpeed", 20f) / 5;
           putableSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Value_of_PutableInform", 1);
+          stoneSizeSlider.GetComponent<Slider>().value = 20 * PlayerPrefs.GetFloat("Value_of_StoneSize", 0.6f);
+          stoneSizeSlider.GetComponent<Slider>().onValueChanged.AddListener(OnStoneSizeSlide);
       }
 
 
@@ -130,6 +133,14 @@ namespace PvP
                 stone.Inform(turn,game.XCoordi-1,game.YCoordi-1,game.ZCoordi-1);
             }
         }
+      }
+
+      public void OnStoneSizeSlide(float value) //石のサイズのスライダーの値を取得
+      {
+        stone.StoneSize = stoneSizeSlider.GetComponent<Slider>().value / 20;
+        PlayerPrefs.SetFloat("Value_of_StoneSize", stone.StoneSize);
+        PlayerPrefs.Save();
+        stone.ChangeStoneSize();
       }
 
       public void OnInstructionClick() //Menuボタンを押した時メニューウィンドウを表示させる

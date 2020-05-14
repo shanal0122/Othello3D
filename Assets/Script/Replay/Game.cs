@@ -17,6 +17,7 @@ namespace Replay
       private int[] turn; //nターン目が終わった後に打つ人のターンを表示する。（はじめは黒なので1）
       private int[,] squareList; //マスの情報を格納する。[ターン目,xLength * zLength * _y + xLength * _z + _x]
       private bool changeIndication = true; //trueになるとターンや手番の表示を変える
+      private float stoneSize;
       public GameObject blackStone;
       public GameObject whiteStone;
       public Transform stone;
@@ -26,6 +27,7 @@ namespace Replay
       public Text whiteStoneNumText;
       public GameObject menuCanvas;
       public GameObject cameraSensiSlider;
+      public GameObject stoneSizeSlider;
       public CameraMover cameraMover;
       public GameObject replaySlider;
       public GameObject instructionCanvas;
@@ -37,6 +39,9 @@ namespace Replay
       void Awake()
       {
           cameraSensiSlider.GetComponent<Slider>().value = 2 * PlayerPrefs.GetFloat("Value_of_MovingSpeed", 20f) / 5;
+          stoneSizeSlider.GetComponent<Slider>().value = 20 * PlayerPrefs.GetFloat("Value_of_StoneSize", 0.6f);
+          stoneSize = PlayerPrefs.GetFloat("Value_of_StoneSize", 0.6f);
+          stoneSizeSlider.GetComponent<Slider>().onValueChanged.AddListener(OnStoneSizeSlide);
       }
 
       void Start()
@@ -149,6 +154,12 @@ namespace Replay
         }
       }
 
+      private void DefStoneSize()
+      {
+        blackStone.transform.localScale = new Vector3(stoneSize, stoneSize, stoneSize);
+        whiteStone.transform.localScale = new Vector3(stoneSize, stoneSize, stoneSize);
+      }
+
       public void StoneNumIndicate() //テキストに現在のターンの各色の石の数を表示する
       {
         int bl = CountStone(1);
@@ -169,6 +180,29 @@ namespace Replay
           Debug.Log("Error : Stone/CountStone");//////////////////////////////////////////////////////////////////////////////////////
         }
         return stoneNum;
+      }
+
+      public void ChangeStoneSize()
+      {
+        DefStoneSize();
+        for(int y=0; y<yLength; y++)
+        {
+          for(int z=0; z<zLength; z++)
+          {
+            for(int x=0; x<xLength; x++)
+            {
+              if(bs[x,y,z] != null){ Destroy(bs[x,y,z]); }
+              if(ws[x,y,z] != null){ Destroy(ws[x,y,z]); }
+              bs[x,y,z] = Instantiate(blackStone, this.transform);
+              bs[x,y,z].transform.position = new Vector3(x,y,z);
+              bs[x,y,z].SetActive(false);
+              ws[x,y,z] = Instantiate(whiteStone, this.transform);
+              ws[x,y,z].transform.position = new Vector3(x,y,z);
+              ws[x,y,z].SetActive(false);
+              Replay(nowTurn);
+            }
+          }
+        }
       }
 
       public void OnBackClick()
@@ -206,6 +240,14 @@ namespace Replay
         cameraMover.MovingSpeed = 5 * cameraSensiSlider.GetComponent<Slider>().value / 2;
         PlayerPrefs.SetFloat("Value_of_MovingSpeed", cameraMover.MovingSpeed);
         PlayerPrefs.Save();
+      }
+
+      public void OnStoneSizeSlide(float value) //石のサイズのスライダーの値を取得
+      {
+        stoneSize = stoneSizeSlider.GetComponent<Slider>().value / 20;
+        PlayerPrefs.SetFloat("Value_of_StoneSize", stoneSize);
+        PlayerPrefs.Save();
+        ChangeStoneSize();
       }
 
       public void OnInstructionClick() //Menuボタンを押した時メニューウィンドウを表示させる

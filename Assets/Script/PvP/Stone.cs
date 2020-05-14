@@ -10,6 +10,7 @@ namespace PvP
       private int xLength = Choose.InitialSetting.xLength; //盤の一辺の長さ
       private int yLength = Choose.InitialSetting.yLength;
       private int zLength = Choose.InitialSetting.zLength;
+      private float stoneSize;
       private int[,,] square; //最新の盤面が記録されている。noStone : 0, blackStone : 1, whiteStone : -1
       [SerializeField] private bool diagonal = false; //{1,1,1}系のベクトルを採用するか。採用するならtrue/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       private int[,] vector;
@@ -20,6 +21,11 @@ namespace PvP
       private GameObject[,,] bs; //[x,y,z]にあるblackStoneを格納
       private GameObject[,,] ws; //[x,y,z]にあるwhiteStoneを格納
 
+
+      void Awake()
+      {
+          stoneSize = PlayerPrefs.GetFloat("Value_of_StoneSize", 0.6f);
+      }
 
       void Start()
       {
@@ -34,6 +40,7 @@ namespace PvP
          square = new int[xLength,yLength,zLength];
          bs = new GameObject[xLength,yLength,zLength];
          ws = new GameObject[xLength,yLength,zLength];
+         DefStoneSize();
          for(int y=0; y<yLength; y++)
          {
            for(int z=0; z<zLength; z++)
@@ -49,6 +56,13 @@ namespace PvP
              }
            }
          }
+      }
+
+
+      private void DefStoneSize()
+      {
+        blackStone.transform.localScale = new Vector3(stoneSize, stoneSize, stoneSize);
+        whiteStone.transform.localScale = new Vector3(stoneSize, stoneSize, stoneSize);
       }
 
       private int FlipNum(int stone, int x, int y, int z, int vec) //stone{1,-1}を座標(x,y,z)に置いた時vec方向のコマを返せる個数を返す
@@ -234,6 +248,34 @@ namespace PvP
           if(cp) {changeColor.InformShineBoardColor(x,y,z);}
         }
       }
+
+      public void ChangeStoneSize()
+      {
+        DefStoneSize();
+        for(int y=0; y<yLength; y++)
+        {
+          for(int z=0; z<zLength; z++)
+          {
+            for(int x=0; x<xLength; x++)
+            {
+              if(bs[x,y,z] != null){ Destroy(bs[x,y,z]); }
+              if(ws[x,y,z] != null){ Destroy(ws[x,y,z]); }
+              bs[x,y,z] = Instantiate(blackStone, this.transform);
+              bs[x,y,z].transform.position = new Vector3(x,y,z);
+              bs[x,y,z].SetActive(false);
+              ws[x,y,z] = Instantiate(whiteStone, this.transform);
+              ws[x,y,z].transform.position = new Vector3(x,y,z);
+              ws[x,y,z].SetActive(false);
+              if(square[x,y,z] == 1 || square[x,y,z] == -1)
+              {
+                PutStone(square[x,y,z],x,y,z);
+              }
+            }
+          }
+        }
+      }
+
+      public float StoneSize { get {return stoneSize;} set {stoneSize = value;}}
 
       public int[,,] Square { get {return square;} }
   }
