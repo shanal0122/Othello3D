@@ -10,7 +10,7 @@ namespace Choose
       public static int xLength = 4; //オセロ版の一辺の長さ、yを最大に
       public static int yLength = 4;
       public static int zLength = 4;
-      public static int gameMode = 1; //ゲームモードを表す。PlayerPrefsにセーブする時に使う。PvP444:1,PvP464:2（中断後再開機能（、リプレイ機能））
+      public static int gameMode = 1; //ゲームモードを表す。PlayerPrefsにセーブする時に使う。PvP444:1,PvP464:2,PvC444:3,PvC464:4（中断後再開機能（、リプレイ機能））
       public static bool continuation = false; //続きからプレイする時はtrue
       public GameObject suspendedConfirmCanvas;
 
@@ -31,7 +31,7 @@ namespace Choose
         }else{SceneManager.LoadScene("PvP");}
       }
 
-      public void ChoosePvP666()
+      public void ChoosePvP464()
       {
         xLength = 4;
         yLength = 6;

@@ -25,37 +25,33 @@ namespace PvP
       void Awake()
       {
           stoneSize = PlayerPrefs.GetFloat("Value_of_StoneSize", 0.6f);
-      }
+          if(diagonal) //{1,1,1}系のベクトルを採用するか/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+          {
+            vector = new int[,]{{0,1,0},{1,1,0},{0,1,1},{-1,1,0},{0,1,-1},{1,0,0},{1,0,1},{0,0,1},{-1,0,1},{-1,0,0},{-1,0,-1},{0,0,-1},{1,0,-1},{1,-1,0},{0,-1,1},{-1,-1,0},{0,-1,-1},{0,-1,0},{1,1,1},{1,1,-1},{1,-1,1},{1,-1,-1},{-1,1,1},{-1,1,-1},{-1,-1,1},{-1,-1,-1}};
+          }else
+          {
+            vector = new int[,]{{0,1,0},{1,1,0},{0,1,1},{-1,1,0},{0,1,-1},{1,0,0},{1,0,1},{0,0,1},{-1,0,1},{-1,0,0},{-1,0,-1},{0,0,-1},{1,0,-1},{1,-1,0},{0,-1,1},{-1,-1,0},{0,-1,-1},{0,-1,0}};
+          } //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      void Start()
-      {
-         if(diagonal) //{1,1,1}系のベクトルを採用するか/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-         {
-           vector = new int[,]{{0,1,0},{1,1,0},{0,1,1},{-1,1,0},{0,1,-1},{1,0,0},{1,0,1},{0,0,1},{-1,0,1},{-1,0,0},{-1,0,-1},{0,0,-1},{1,0,-1},{1,-1,0},{0,-1,1},{-1,-1,0},{0,-1,-1},{0,-1,0},{1,1,1},{1,1,-1},{1,-1,1},{1,-1,-1},{-1,1,1},{-1,1,-1},{-1,-1,1},{-1,-1,-1}};
-         }else
-         {
-           vector = new int[,]{{0,1,0},{1,1,0},{0,1,1},{-1,1,0},{0,1,-1},{1,0,0},{1,0,1},{0,0,1},{-1,0,1},{-1,0,0},{-1,0,-1},{0,0,-1},{1,0,-1},{1,-1,0},{0,-1,1},{-1,-1,0},{0,-1,-1},{0,-1,0}};
-         } //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-         square = new int[xLength,yLength,zLength];
-         bs = new GameObject[xLength,yLength,zLength];
-         ws = new GameObject[xLength,yLength,zLength];
-         DefStoneSize();
-         for(int y=0; y<yLength; y++)
-         {
-           for(int z=0; z<zLength; z++)
-           {
-             for(int x=0; x<xLength; x++)
-             {
-               bs[x,y,z] = Instantiate(blackStone, this.transform);
-               bs[x,y,z].transform.position = new Vector3(x,y,z);
-               bs[x,y,z].SetActive(false);
-               ws[x,y,z] = Instantiate(whiteStone, this.transform);
-               ws[x,y,z].transform.position = new Vector3(x,y,z);
-               ws[x,y,z].SetActive(false);
-             }
-           }
-         }
+          square = new int[xLength,yLength,zLength];
+          bs = new GameObject[xLength,yLength,zLength];
+          ws = new GameObject[xLength,yLength,zLength];
+          DefStoneSize();
+          for(int y=0; y<yLength; y++)
+          {
+            for(int z=0; z<zLength; z++)
+            {
+              for(int x=0; x<xLength; x++)
+              {
+                bs[x,y,z] = Instantiate(blackStone, this.transform);
+                bs[x,y,z].transform.position = new Vector3(x,y,z);
+                bs[x,y,z].SetActive(false);
+                ws[x,y,z] = Instantiate(whiteStone, this.transform);
+                ws[x,y,z].transform.position = new Vector3(x,y,z);
+                ws[x,y,z].SetActive(false);
+              }
+            }
+          }
       }
 
 
