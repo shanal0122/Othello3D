@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace PvP
+namespace PvC
 {
   public class Game : MonoBehaviour
   {
@@ -14,7 +14,8 @@ namespace PvP
       private string recordOfSuspendedKeyName; //PlayerPrefsにセーブするためのマスの情報のキーの名前（中断後再開機能）
       private int totalTurn = 0; //現在の累計ターン数を表す（待った（、リプレイ機能））
       private Vector3 standard; //CoordinateDisplayクラスのテキストの向きを定めるために用いる
-      private int turn = 1; //黒が1、白が-1。はじめは黒
+      private int turn = 1; //黒が1、白が-1。先行は黒
+      private int playerTurn = Choose.InitialSetting.playerTurn; //プレイヤーの手番
       private bool keyDetectable = true; //falseのときカメラ移動とキー入力を受け付けない（ゲームセット時）
       private bool gameSetFlug = false; //CanPut()でどちらも置けないことがわかるとtrueになり、処理が終わるとゲームセット画面に移る
       public int XCoordi {get; set;}
@@ -27,6 +28,7 @@ namespace PvP
       public KeyDetector keyDetector;
       public CoordiDisplay coordiDisplay;
       public InfoDisplay infoDisplay;
+      public Computer computer;
       public GameObject centerCanvas;
 
 
@@ -49,13 +51,21 @@ namespace PvP
       {
         if(keyDetectable)
         {
-          keyDetector.NumKeyDetect();
-          keyDetector.BackSpaceDetect();
-          PlayGame();
-          foreach(GameObject display in GameObject.FindGameObjectsWithTag("CoordinateDisplay")) //CoordinateDisplayクラスのテキストの向きを定める
+          if(turn == playerTurn)
           {
-            display.transform.LookAt(standard - cameraMover.MainCameraTransformPosition,Vector3.up);
+            keyDetector.NumKeyDetect();
+            keyDetector.BackSpaceDetect();
+            PlayGame();
           }
+          else
+          {
+            Invoke("CPUPlay", 0.1f);
+            keyDetectable = false;
+          }
+        }
+        foreach(GameObject display in GameObject.FindGameObjectsWithTag("CoordinateDisplay")) //CoordinateDisplayクラスのテキストの向きを定める
+        {
+          display.transform.LookAt(standard - cameraMover.MainCameraTransformPosition,Vector3.up);
         }
       }
 
@@ -87,7 +97,6 @@ namespace PvP
         recordstr = recordstr + "," + 1; //"0ターン目が終わった後に打つ人のターン（黒）"
         PlayerPrefs.SetString(recordOfSuspendedKeyName, recordstr);
         PlayerPrefs.Save();
-        infoDisplay.TurnIndicate();
         infoDisplay.StoneNumIndicate();
       }
 
@@ -112,7 +121,6 @@ namespace PvP
             }
           }
         }
-        infoDisplay.TurnIndicate();
         infoDisplay.StoneNumIndicate();
       }
 
@@ -231,12 +239,42 @@ namespace PvP
           recordstr = recordstr + "," + turn;
           PlayerPrefs.SetString(recordOfSuspendedKeyName, recordstr);
           PlayerPrefs.Save();
-          infoDisplay.TurnIndicate();
           infoDisplay.StoneNumIndicate();
         }else{infoDisplay.CantPutIndicate();}
         afterYPressed = false;
         XCoordi = YCoordi = ZCoordi = 0;
         enterPressed = false;
+        if(gameSetFlug){ GameSet(); }
+        keyDetectable = true;
+      }
+
+      private void CPUPlay()
+      {
+        computer.CPU();
+        turn *= -1;
+        CanPut();
+        totalTurn++;
+        string[] strArray = recordstr.Split(',');
+        strArray[0] = totalTurn.ToString();
+        recordstr = strArray[0];
+        for(int n=1; n<strArray.Length; n++)
+        {
+          recordstr = recordstr + "," + strArray[n];
+        }
+        for(int _y=0; _y<yLength; _y++)
+        {
+          for(int _z=0; _z<zLength; _z++)
+          {
+            for(int _x=0; _x<xLength; _x++)
+            {
+              recordstr = recordstr + "," + stone.Square[_x,_y,_z];
+            }
+          }
+        }
+        recordstr = recordstr + "," + turn;
+        PlayerPrefs.SetString(recordOfSuspendedKeyName, recordstr);
+        PlayerPrefs.Save();
+        infoDisplay.StoneNumIndicate();
         keyDetectable = true;
         if(gameSetFlug){ GameSet(); }
       }

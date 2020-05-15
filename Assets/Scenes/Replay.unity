@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 3598096}
   - component: {fileID: 3598098}
   - component: {fileID: 3598097}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: WhiteStoneImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 96370751}
   - component: {fileID: 96370753}
   - component: {fileID: 96370752}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: WhiteCorkBoardImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -325,14 +325,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 96370750}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 0.25000003, y: 0.25000003, z: 1}
   m_Children:
   - {fileID: 480759965}
   - {fileID: 1886418035}
   - {fileID: 3598096}
-  m_Father: {fileID: 1155984256}
+  m_Father: {fileID: 1951363535}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1496,7 +1496,7 @@ GameObject:
   - component: {fileID: 468858955}
   - component: {fileID: 468858956}
   - component: {fileID: 468858957}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: BlackStoneNumText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1573,7 +1573,7 @@ GameObject:
   - component: {fileID: 480759965}
   - component: {fileID: 480759966}
   - component: {fileID: 480759967}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: WhiteTurnText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2733,7 +2733,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 96370751}
+  - {fileID: 2096296866}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3731,7 +3731,7 @@ GameObject:
   - component: {fileID: 1547948825}
   - component: {fileID: 1547948827}
   - component: {fileID: 1547948826}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: BlackStoneImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4272,7 +4272,7 @@ GameObject:
   - component: {fileID: 1886418035}
   - component: {fileID: 1886418036}
   - component: {fileID: 1886418037}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: WhiteStoneNumText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4349,7 +4349,7 @@ GameObject:
   - component: {fileID: 1887305907}
   - component: {fileID: 1887305908}
   - component: {fileID: 1887305909}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: BlackTurnText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4649,7 +4649,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 2096296866}
+  - {fileID: 96370751}
   - {fileID: 1687595803}
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -4918,7 +4918,7 @@ GameObject:
   - component: {fileID: 2096296866}
   - component: {fileID: 2096296868}
   - component: {fileID: 2096296867}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: BlackCorkBoardImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4932,14 +4932,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2096296865}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 0.25000003, y: 0.25000003, z: 1}
   m_Children:
   - {fileID: 1887305907}
   - {fileID: 468858955}
   - {fileID: 1547948825}
-  m_Father: {fileID: 1951363535}
+  m_Father: {fileID: 1155984256}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}

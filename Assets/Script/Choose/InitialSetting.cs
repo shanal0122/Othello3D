@@ -10,7 +10,9 @@ namespace Choose
       public static int xLength = 4; //オセロ版の一辺の長さ、yを最大に
       public static int yLength = 4;
       public static int zLength = 4;
-      public static int gameMode = 1; //ゲームモードを表す。PlayerPrefsにセーブする時に使う。PvP444:1,PvP464:2,PvC444:3,PvC464:4（中断後再開機能（、リプレイ機能））
+      public static int gameMode = 3; //ゲームモードを表す。PlayerPrefsにセーブする時に使う。PvP444:1,PvP464:2,PvC444:3,PvC464:4（中断後再開機能（、リプレイ機能））
+      [SerializeField] int playerTurnDef = 0; //ゲームモードを表す。インスペクターから代入可能/////////////////////////////////////////////////////////////
+      public static int playerTurn = 0; //PvCで用いる。プレイヤーの担当するターンを表す。0のときはCvC
       public static bool continuation = false; //続きからプレイする時はtrue
       public GameObject suspendedConfirmCanvas;
 
@@ -18,6 +20,11 @@ namespace Choose
       {
         PlayerPrefs.DeleteAll();
       }*/
+
+      void Start()
+      {
+        playerTurn = playerTurnDef;
+      }
 
       public void ChoosePvP444()
       {
@@ -43,6 +50,30 @@ namespace Choose
         }else{SceneManager.LoadScene("PvP");}
       }
 
+      public void ChoosePvC444()
+      {
+        xLength = 4;
+        yLength = 4;
+        zLength = 4;
+        gameMode = 3;
+        if(PlayerPrefs.HasKey("Record_of_supended_game_3"))
+        {
+          suspendedConfirmCanvas.GetComponent<Canvas>().enabled = true;
+        }else{SceneManager.LoadScene("PvC");}
+      }
+
+      public void ChoosePvC464()
+      {
+        xLength = 4;
+        yLength = 6;
+        zLength = 4;
+        gameMode = 4;
+        if(PlayerPrefs.HasKey("Record_of_supended_game_4"))
+        {
+          suspendedConfirmCanvas.GetComponent<Canvas>().enabled = true;
+        }else{SceneManager.LoadScene("PvC");}
+      }
+
       public void ChooseReplay()
       {
         if(PlayerPrefs.HasKey("Record_of_finished_gamemode"))
@@ -66,13 +97,22 @@ namespace Choose
 
       public void OnSuspendedYesClick()
       {
-        SceneManager.LoadScene("PvP");
-        continuation = true;
+        if(gameMode == 1 || gameMode == 2)
+        {
+          continuation = true;
+          SceneManager.LoadScene("PvP");
+        }
+        if(gameMode == 3 || gameMode == 4)
+        {
+          continuation = true;
+          SceneManager.LoadScene("PvC");
+        }
       }
 
       public void OnSuspendedNoClick()
       {
-        SceneManager.LoadScene("PvP");
+        if(gameMode == 1 || gameMode == 2){ SceneManager.LoadScene("PvP"); }
+        if(gameMode == 3 || gameMode == 4){ SceneManager.LoadScene("PvC"); }
       }
 
       public void OnSuspendedCloseClick()

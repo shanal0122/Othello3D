@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace PvP
+namespace PvC
 {
   public class Stone : MonoBehaviour
   {
       private int xLength = Choose.InitialSetting.xLength; //盤の一辺の長さ
       private int yLength = Choose.InitialSetting.yLength;
       private int zLength = Choose.InitialSetting.zLength;
+      private int playerTurn = Choose.InitialSetting.playerTurn; //プレイヤーの手番
       private float stoneSize;
       private int[,,] square; //最新の盤面が記録されている。noStone : 0, blackStone : 1, whiteStone : -1
       [SerializeField] private bool diagonal = false; //{1,1,1}系のベクトルを採用するか。採用するならtrue/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -17,6 +18,7 @@ namespace PvP
       public GameObject blackStone;
       public GameObject whiteStone;
       public Game game; //GameからTurnを受け取る
+      public Computer computer;
       public ChangeColor changeColor; //CanPutAndInformで置ける場所を光らせる
       private GameObject[,,] bs; //[x,y,z]にあるblackStoneを格納
       private GameObject[,,] ws; //[x,y,z]にあるwhiteStoneを格納
@@ -32,6 +34,7 @@ namespace PvP
           {
             vector = new int[,]{{0,1,0},{1,1,0},{0,1,1},{-1,1,0},{0,1,-1},{1,0,0},{1,0,1},{0,0,1},{-1,0,1},{-1,0,0},{-1,0,-1},{0,0,-1},{1,0,-1},{1,-1,0},{0,-1,1},{-1,-1,0},{0,-1,-1},{0,-1,0}};
           } //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+          computer.Vector = vector;
 
           square = new int[xLength,yLength,zLength];
           bs = new GameObject[xLength,yLength,zLength];
@@ -61,7 +64,7 @@ namespace PvP
         whiteStone.transform.localScale = new Vector3(stoneSize, stoneSize, stoneSize);
       }
 
-      private int FlipNum(int stone, int x, int y, int z, int vec) //stone{1,-1}を座標(x,y,z)に置いた時vec方向のコマを返せる個数を返す
+      public int FlipNum(int stone, int x, int y, int z, int vec) //stone{1,-1}を座標(x,y,z)に置いた時vec方向のコマを返せる個数を返す
       {
         int flipNum = 0;
         int myStone = stone;
@@ -162,13 +165,24 @@ namespace PvP
       public void PutAllStoneAsList() //待ったが押された時盤面をリスト通りに置く。セーブ情報を書き換える
       {
         string[] strArray = game.Recordstr.Split(',');
+        Debug.Log(game.TotalTurn); ////////////////////////////////////////////////////////////////////////
+        for(int n=game.TotalTurn; n>=0; n--)
+        {
+          if(int.Parse(strArray[n*(xLength*yLength*zLength+1)]) == playerTurn)
+          {
+            game.TotalTurn = n-1;
+            break;
+          }
+          if(n == 0){ game.TotalTurn = 0; }
+        }
+        Debug.Log(game.TotalTurn); ///////////////////////////////////////////////////////////////////////////
         strArray[0] = game.TotalTurn.ToString();
         game.Recordstr = strArray[0];
-        for(int n=1; n<strArray.Length-xLength*yLength*zLength-1; n++)
+        for(int n=1; n<(game.TotalTurn+1)*(xLength*yLength*zLength+1)+1; n++)
         {
           game.Recordstr = game.Recordstr + "," + strArray[n];
         }
-        game.Turn = int.Parse(strArray[strArray.Length-xLength*yLength*zLength-2]);
+        game.Turn = int.Parse(strArray[(game.TotalTurn+1)*(xLength*yLength*zLength+1)]);
         for(int _y=0; _y<yLength; _y++)
         {
           for(int _z=0; _z<zLength; _z++)
@@ -192,7 +206,6 @@ namespace PvP
         game.SetAfterYPressed = false;
         game.SetEnterPressed = false;
         game.XCoordi = game.YCoordi = game.ZCoordi = 0;
-        Debug.Log(game.Recordstr);
       }
 
 
