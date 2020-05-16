@@ -14,6 +14,7 @@ namespace Replay
       private int nowTurn = 0; //今表示しているターン。初期配置は0ターン目
       private int constantTotalTurn; //合計ターン数。定数
       private string recordstr; //PlayerPrefsの"Record_of_finised_game"を格納
+      private int gameMode; //PlayerPrefsの"Record_of_finished_gamemode"を格納
       private int[] turn; //nターン目が終わった後に打つ人のターンを表示する。（はじめは黒なので1）
       private int[,] squareList; //マスの情報を格納する。[ターン目,xLength * zLength * _y + xLength * _z + _x]
       private bool changeIndication = true; //trueになるとターンや手番の表示を変える
@@ -64,6 +65,7 @@ namespace Replay
            }
          }
 
+         gameMode = PlayerPrefs.GetInt("Record_of_finished_gamemode");
          recordstr = PlayerPrefs.GetString("Record_of_finished_game");
          string[] strArray = recordstr.Split(',');
          constantTotalTurn = int.Parse(strArray[0]);
@@ -137,20 +139,41 @@ namespace Replay
 
       private void TurnIndicate() //テキストにターンを表示する
       {
-        int t = turn[nowTurn];
-        if(t == 1)
+        if(gameMode == 1 || gameMode == 2)
         {
-          blackTurnText.text = "あなたの番です";
-          whiteTurnText.text = "相手の番です";
+          int t = turn[nowTurn];
+          if(t == 1)
+          {
+            blackTurnText.text = "あなたの番です";
+            whiteTurnText.text = "相手の番です";
+          }
+          if(t == -1)
+          {
+            blackTurnText.text = "相手の番です";
+            whiteTurnText.text = "あなたの番です";
+          }
+          if(t != 1 && t != -1)
+          {
+            Debug.Log("Error : Game/TurnIndicate");//////////////////////////////////////////////////////////////////////////////////////
+          }
         }
-        if(t == -1)
+        if(gameMode == 3 || gameMode == 4)
         {
-          blackTurnText.text = "相手の番です";
-          whiteTurnText.text = "あなたの番です";
-        }
-        if(t != 1 && t != -1)
-        {
-          Debug.Log("Error : Game/TurnIndicate");//////////////////////////////////////////////////////////////////////////////////////
+          int t = turn[nowTurn];
+          if(t == 1)
+          {
+            blackTurnText.text = "あなたの番です";
+            whiteTurnText.text = "CPU";
+          }
+          if(t == -1)
+          {
+            blackTurnText.text = "あなた";
+            whiteTurnText.text = "CPUの番です";
+          }
+          if(t != 1 && t != -1)
+          {
+            Debug.Log("Error : Game/TurnIndicate");//////////////////////////////////////////////////////////////////////////////////////
+          }
         }
       }
 

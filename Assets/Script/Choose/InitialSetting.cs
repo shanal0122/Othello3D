@@ -11,8 +11,12 @@ namespace Choose
       public static int yLength = 4;
       public static int zLength = 4;
       public static int gameMode = 3; //ゲームモードを表す。PlayerPrefsにセーブする時に使う。PvP444:1,PvP464:2,PvC444:3,PvC464:4（中断後再開機能（、リプレイ機能））
-      [SerializeField] int playerTurnDef = 0; //ゲームモードを表す。インスペクターから代入可能/////////////////////////////////////////////////////////////
+      [SerializeField] int playerTurnDef = 0; //プレイヤーの担当するターンをインスペクターから代入可能/////////////////////////////////////////////////////////////
       public static int playerTurn = 0; //PvCで用いる。プレイヤーの担当するターンを表す。0のときはCvC
+      [SerializeField] int CPUBlackDef = 2; //黒CPUの難易度を表す。インスペクターから代入可能。PvC.Computer.CPUX()に対応////////////////////////////////////////////////////////////
+      public static int CPUBlack = 2;
+      [SerializeField] int CPUWhiteDef = 2; //白CPUの難易度を表す。インスペクターから代入可能。PvC.Computer.CPUX()に対応////////////////////////////////////////////////////////////
+      public static int CPUWhite = 2;
       public static bool continuation = false; //続きからプレイする時はtrue
       public GameObject suspendedConfirmCanvas;
 
@@ -24,6 +28,10 @@ namespace Choose
       void Start()
       {
         playerTurn = playerTurnDef;
+        CPUBlack = CPUBlackDef;
+        CPUWhite = CPUWhiteDef;
+        if(CPUBlack != 1 && CPUBlack != 2 && CPUBlack != 3){ Debug.Log("Error : InitialSetting.CPUBlackの値"); }
+        if(CPUWhite != 1 && CPUWhite != 2 && CPUWhite != 3){ Debug.Log("Error : InitialSetting.CPUWhiteの値"); }
       }
 
       public void ChoosePvP444()

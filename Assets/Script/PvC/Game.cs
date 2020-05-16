@@ -244,13 +244,21 @@ namespace PvC
         afterYPressed = false;
         XCoordi = YCoordi = ZCoordi = 0;
         enterPressed = false;
-        if(gameSetFlug){ GameSet(); }
         keyDetectable = true;
+        if(gameSetFlug){ GameSet(); }
       }
 
       private void CPUPlay()
       {
-        computer.CPU();
+        if(turn == 1) /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        {
+          if(Choose.InitialSetting.CPUBlack == 1){ computer.CPU1(); }
+          if(Choose.InitialSetting.CPUBlack == 2){ computer.CPU2(); }
+        }else if(turn == -1)
+        {
+          if(Choose.InitialSetting.CPUWhite == 1){ computer.CPU1(); }
+          if(Choose.InitialSetting.CPUWhite == 2){ computer.CPU2(); }
+        }else{ Debug.Log("Error : Game.CPUPlay"); } //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         turn *= -1;
         CanPut();
         totalTurn++;

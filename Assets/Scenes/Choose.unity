@@ -1202,6 +1202,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTurnDef: 1
+  CPUBlackDef: 1
+  CPUWhiteDef: 2
   suspendedConfirmCanvas: {fileID: 58329686}
 --- !u!4 &1075779755
 Transform:

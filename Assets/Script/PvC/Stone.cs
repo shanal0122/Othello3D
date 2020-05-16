@@ -165,7 +165,6 @@ namespace PvC
       public void PutAllStoneAsList() //待ったが押された時盤面をリスト通りに置く。セーブ情報を書き換える
       {
         string[] strArray = game.Recordstr.Split(',');
-        Debug.Log(game.TotalTurn); ////////////////////////////////////////////////////////////////////////
         for(int n=game.TotalTurn; n>=0; n--)
         {
           if(int.Parse(strArray[n*(xLength*yLength*zLength+1)]) == playerTurn)
@@ -175,7 +174,6 @@ namespace PvC
           }
           if(n == 0){ game.TotalTurn = 0; }
         }
-        Debug.Log(game.TotalTurn); ///////////////////////////////////////////////////////////////////////////
         strArray[0] = game.TotalTurn.ToString();
         game.Recordstr = strArray[0];
         for(int n=1; n<(game.TotalTurn+1)*(xLength*yLength*zLength+1)+1; n++)

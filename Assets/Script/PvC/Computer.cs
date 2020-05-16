@@ -16,7 +16,42 @@ namespace PvC
       public Game game;
 
 
-      public void CPU() //CPUが石を置く（返せる石の数が最も多い手の中からランダムに置く）
+      public void CPU1() //CPUが石を置く（置ける場所の中からランダムに置く）
+      {
+        square = stone.Square;
+        cpuStone = game.Turn;
+        List<int> sqList = new List<int>(); //xLength*zLength*y+xLength*z+xを代入
+        int sumOfFlipNum = 0; //各石に対して裏返せる石の数
+        for(int y=0; y<yLength; y++)
+        {
+          for(int z=0; z<zLength; z++)
+          {
+            for(int x=0; x<xLength; x++)
+            {
+              if(square[x,y,z] == 0)
+              {
+                for(int n=0; n<vector.GetLength(0); n++)
+                {
+                  sumOfFlipNum += stone.FlipNum(cpuStone, x, y, z, n);
+                }
+                if(sumOfFlipNum > 0){ sqList.Add(xLength*zLength*y+xLength*z+x); }
+                sumOfFlipNum = 0;
+              }
+            }
+          }
+        }
+        int rv = (int)(Random.value * sqList.Count);
+        if(rv == sqList.Count){ rv--; }
+        int _y = sqList[rv] / (xLength*zLength);
+        int _z = (sqList[rv] - xLength*zLength*_y) / xLength;
+        int _x = sqList[rv] - xLength*zLength*_y - xLength*_z;
+        //Debug.Log("sqList.Count : " + sqList.Count); //////////////////////////////////////////////////////////////////////////////////////////////
+        //Debug.Log("rv : " + rv);
+        //Debug.Log("x,y,z : " + _x + " " + _z + " " + _y); //////////////////////////////////////////////////////////////////////////////////////////////
+        bool a = stone.FlipStone(cpuStone,_x,_y,_z);
+      }
+
+      public void CPU2() //CPUが石を置く（返せる石の数が最も多い手の中からランダムに置く）
       {
         square = stone.Square;
         cpuStone = game.Turn;
