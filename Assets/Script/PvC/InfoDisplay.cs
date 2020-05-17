@@ -74,9 +74,9 @@ namespace PvC
         blackStoneNumText.text = bl.ToString();
         int wh = stone.CountStone(-1);
         whiteStoneNumText.text = wh.ToString();
-        if(bl > wh) {resultText.text = "ゲームセット\n\n黒の勝ち";}
+        if(bl > wh) {resultText.text = "ゲームセット\n\nあなたの勝ち";}
         if(bl == wh) {resultText.text = "ゲームセット\n\n引き分け";}
-        if(bl < wh) {resultText.text = "ゲームセット\n\n白の勝ち";}
+        if(bl < wh) {resultText.text = "ゲームセット\n\nCPUの勝ち";}
       }
 
       public void CantPutIndicate() //石を置けないはずの場所に置いた時に怒る

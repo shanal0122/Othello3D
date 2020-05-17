@@ -28,6 +28,7 @@ namespace PvP
       public CoordiDisplay coordiDisplay;
       public InfoDisplay infoDisplay;
       public GameObject centerCanvas;
+      public GameObject saveConfirmCanvas;
 
 
       void Awake()
@@ -264,9 +265,8 @@ namespace PvP
         keyDetectable = false;
         changeColor.UndoAllBoardColor();
         centerCanvas.GetComponent<Canvas>().enabled = true;
+        saveConfirmCanvas.GetComponent<Canvas>().enabled = true;
         infoDisplay.ResultIndicate();
-        PlayerPrefs.SetInt("Record_of_finished_gamemode", Choose.InitialSetting.gameMode);
-        PlayerPrefs.SetString("Record_of_finished_game", recordstr);
         PlayerPrefs.DeleteKey(recordOfSuspendedKeyName);
       }
 

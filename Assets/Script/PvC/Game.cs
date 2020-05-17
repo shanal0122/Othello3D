@@ -30,6 +30,7 @@ namespace PvC
       public InfoDisplay infoDisplay;
       public Computer computer;
       public GameObject centerCanvas;
+      public GameObject saveConfirmCanvas;
 
 
       void Awake()
@@ -310,9 +311,8 @@ namespace PvC
         keyDetectable = false;
         changeColor.UndoAllBoardColor();
         centerCanvas.GetComponent<Canvas>().enabled = true;
+        saveConfirmCanvas.GetComponent<Canvas>().enabled = true;
         infoDisplay.ResultIndicate();
-        PlayerPrefs.SetInt("Record_of_finished_gamemode", Choose.InitialSetting.gameMode);
-        PlayerPrefs.SetString("Record_of_finished_game", recordstr);
         PlayerPrefs.DeleteKey(recordOfSuspendedKeyName);
       }
 

@@ -22,6 +22,7 @@ namespace PvP
       public Text putableOnOffText;
       public GameObject stoneSizeSlider;
       public GameObject instructionCanvas;
+      public GameObject saveConfirmCanvas;
 
 
       void Awake()
@@ -156,6 +157,18 @@ namespace PvP
       public void OnLoadTitleClick()
       {
         SceneManager.LoadScene("Choose");
+      }
+
+      public void OnSaveYesClick()
+      {
+        PlayerPrefs.SetInt("Record_of_finished_gamemode", Choose.InitialSetting.gameMode);
+        PlayerPrefs.SetString("Record_of_finished_game", game.Recordstr);
+        saveConfirmCanvas.GetComponent<Canvas>().enabled = false;
+      }
+
+      public void OnSaveNoClick()
+      {
+        saveConfirmCanvas.GetComponent<Canvas>().enabled = false;
       }
 
       public void OnPlayAgainClick()
