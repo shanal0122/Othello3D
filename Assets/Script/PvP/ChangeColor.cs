@@ -11,16 +11,20 @@ namespace PvP
       private int zLength = Choose.InitialSetting.zLength;
       public Transform shineBoard;
       public Transform informShinyBoard;
+      public Transform lastPutSphere;
       public GameObject shineBoardPrefab;
       public GameObject informShinyBoardPrefab;
+      public GameObject lastPutSpherePrefab;
       private GameObject[,,] sb; //[x,y,z]にあるshineBoardを格納
       private GameObject[,,] isb; //[x,y,z]にあるinformShinyBoardを格納
+      private GameObject[,,] lpb; //[x,y,z]にあるlastPutBoardを格納
 
 
       void Start()
       {
         sb = new GameObject[xLength,yLength,zLength];
         isb = new GameObject[xLength,yLength,zLength];
+        lpb = new GameObject[xLength,yLength,zLength];
         for(int y=0; y<yLength; y++)
         {
           for(int z=0; z<zLength; z++)
@@ -33,6 +37,9 @@ namespace PvP
               isb[x,y,z] = Instantiate(informShinyBoardPrefab, informShinyBoard);
               isb[x,y,z].transform.position = new Vector3(x,y,z);
               isb[x,y,z].SetActive(false);
+              lpb[x,y,z] = Instantiate(lastPutSpherePrefab, lastPutSphere);
+              lpb[x,y,z].transform.position = new Vector3(x,y,z);
+              lpb[x,y,z].SetActive(false);
             }
           }
         }
@@ -56,6 +63,11 @@ namespace PvP
         isb[x,y,z].SetActive(true);
       }
 
+      public void LastPutSphereColor(int x, int y, int z) //(x,y,z)にあるを赤に光らせる
+      {
+        lpb[x,y,z].SetActive(true);
+      }
+
       public void UndoAllBoardColor() //全ての盤の色を元に戻す
       {
         for(int y=0; y<yLength; y++)
@@ -65,6 +77,20 @@ namespace PvP
             for(int x=0; x<xLength; x++)
             {
               UndoBoardColor(x,y,z);
+            }
+          }
+        }
+      }
+
+      public void UndoAllSphereColor() //全ての盤の色を元に戻す
+      {
+        for(int y=0; y<yLength; y++)
+        {
+          for(int z=0; z<zLength; z++)
+          {
+            for(int x=0; x<xLength; x++)
+            {
+              lpb[x,y,z].SetActive(false);
             }
           }
         }

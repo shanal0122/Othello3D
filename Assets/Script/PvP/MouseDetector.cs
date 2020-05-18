@@ -40,6 +40,7 @@ namespace PvP
         {
           game.TotalTurn--;
           stone.PutAllStoneAsList(); //game.Turnはこの先で変更している
+          changeColor.UndoAllSphereColor();
           infoDisplay.TurnIndicate();
           infoDisplay.StoneNumIndicate();
         }

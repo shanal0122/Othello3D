@@ -40,6 +40,7 @@ namespace PvC
         if(game.TotalTurn > 0 && game.KeyDetectable && playerTurn * playerTurn == 1)
         {
           stone.PutAllStoneAsList(); //game.totalTurn、game.Turnはこの先で変更している
+          changeColor.UndoAllSphereColor();
           infoDisplay.StoneNumIndicate();
         }
       }

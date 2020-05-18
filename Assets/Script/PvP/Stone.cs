@@ -139,6 +139,8 @@ namespace PvP
           if(sumOfFlipNum != 0)
           {
             PutStone(stone,x,y,z);
+            changeColor.UndoAllSphereColor();
+            changeColor.LastPutSphereColor(x,y,z);
             return true;
           }
         }
@@ -192,7 +194,6 @@ namespace PvP
         game.SetAfterYPressed = false;
         game.SetEnterPressed = false;
         game.XCoordi = game.YCoordi = game.ZCoordi = 0;
-        Debug.Log(game.Recordstr);
       }
 
 

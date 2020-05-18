@@ -1511,6 +1511,36 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &440821857
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 440821858}
+  m_Layer: 0
+  m_Name: LastPutSphere
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &440821858
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440821857}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 628560664}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &503778268
 GameObject:
   m_ObjectHideFlags: 0
@@ -2078,6 +2108,7 @@ Transform:
   - {fileID: 1671770819}
   - {fileID: 224909127}
   - {fileID: 428015411}
+  - {fileID: 440821858}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3648,9 +3679,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shineBoard: {fileID: 224909127}
   informShinyBoard: {fileID: 428015411}
+  lastPutSphere: {fileID: 440821858}
   shineBoardPrefab: {fileID: 5223450581448488306, guid: e4afd04d2807b4ef4b5ec4f09c217334,
     type: 3}
   informShinyBoardPrefab: {fileID: 7510467280233032906, guid: 2323057c020014002a7addf5aab7202e,
+    type: 3}
+  lastPutSpherePrefab: {fileID: 4550492003710922194, guid: be90581fac18b4232a94bb9984b3452b,
     type: 3}
 --- !u!1 &1322617654
 GameObject:

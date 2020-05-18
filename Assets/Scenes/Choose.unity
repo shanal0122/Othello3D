@@ -1201,7 +1201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ab14876722b44963bff774df5db8c48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTurnDef: 1
+  playerTurnDef: 0
   CPUBlackDef: 1
   CPUWhiteDef: 2
   suspendedConfirmCanvas: {fileID: 58329686}

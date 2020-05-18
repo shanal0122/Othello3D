@@ -142,6 +142,8 @@ namespace PvC
           if(sumOfFlipNum != 0)
           {
             PutStone(stone,x,y,z);
+            changeColor.UndoAllSphereColor();
+            changeColor.LastPutSphereColor(x,y,z);
             return true;
           }
         }
