@@ -43,6 +43,12 @@ namespace PvP
           changeColor.UndoAllSphereColor();
           infoDisplay.TurnIndicate();
           infoDisplay.StoneNumIndicate();
+          game.XCoordi = game.YCoordi = game.ZCoordi = 0;
+          game.SetBeforePressed = false;
+          game.SetAfterXPressed = false;
+          game.SetAfterZPressed = false;
+          game.SetAfterYPressed = false;
+          game.SetEnterPressed = false;
         }
       }
 

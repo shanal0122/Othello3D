@@ -60,7 +60,7 @@ namespace PvC
           }
           else
           {
-            Invoke("CPUPlay", 0.1f);
+            Invoke("CPUPlay", 1f);
             keyDetectable = false;
           }
         }

@@ -42,6 +42,12 @@ namespace PvC
           stone.PutAllStoneAsList(); //game.totalTurn、game.Turnはこの先で変更している
           changeColor.UndoAllSphereColor();
           infoDisplay.StoneNumIndicate();
+          game.XCoordi = game.YCoordi = game.ZCoordi = 0;
+          game.SetBeforePressed = false;
+          game.SetAfterXPressed = false;
+          game.SetAfterZPressed = false;
+          game.SetAfterYPressed = false;
+          game.SetEnterPressed = false;
         }
       }
 

@@ -11,8 +11,8 @@ namespace Choose
       public static int yLength = 4;
       public static int zLength = 4;
       public static int gameMode = 3; //ゲームモードを表す。PlayerPrefsにセーブする時に使う。PvP444:1,PvP464:2,PvC444:3,PvC464:4（中断後再開機能（、リプレイ機能））
-      [SerializeField] int playerTurnDef = 0; //プレイヤーの担当するターンをインスペクターから代入可能/////////////////////////////////////////////////////////////
-      public static int playerTurn = 0; //PvCで用いる。プレイヤーの担当するターンを表す。0のときはCvC
+      [SerializeField] int playerTurnDef = 1; //プレイヤーの担当するターンをインスペクターから代入可能/////////////////////////////////////////////////////////////
+      public static int playerTurn = 1; //PvCで用いる。プレイヤーの担当するターンを表す。0のときはCvC
       [SerializeField] int CPUBlackDef = 2; //黒CPUの難易度を表す。インスペクターから代入可能。PvC.Computer.CPUX()に対応////////////////////////////////////////////////////////////
       public static int CPUBlack = 2;
       [SerializeField] int CPUWhiteDef = 2; //白CPUの難易度を表す。インスペクターから代入可能。PvC.Computer.CPUX()に対応////////////////////////////////////////////////////////////
