@@ -149,7 +149,6 @@ namespace PvC
                     sqListX = new List<int>(); sqListY = new List<int>(); sqListZ = new List<int>();
                     sqListX.Add(x); sqListY.Add(y); sqListZ.Add(z);
                   }
-                  score = 0;
                 }
               }
             }
@@ -162,6 +161,111 @@ namespace PvC
         Debug.Log("x,z,y : " + sqListX[rv] + " " + sqListZ[rv] + " " + sqListY[rv]); //////////////////////////////////////////////////////////////////////////////////////////////
         bool a = stone.FlipStone(cpuStone,sqListX[rv], sqListY[rv], sqListZ[rv]);
       }
+
+      public void CPU3() //CPUが石を置く（上の評価関数を用いて石を置く。3手先の読み）
+      {
+        List<int> sqListX = new List<int>();
+        List<int> sqListY = new List<int>();
+        List<int> sqListZ = new List<int>();
+        List<int> sqListXEnemy = new List<int>();
+        List<int> sqListYEnemy = new List<int>();
+        List<int> sqListZEnemy = new List<int>();
+        float score = 0;
+        float? bestScore = null;
+        float? bestScoreTemp = null;
+        float scoreEnemy = 0;
+        float? bestScoreEnemy = null;
+        square = stone.Square;
+        cpuStone = game.Turn;
+        int[,,] willSq = new int[xLength,yLength,zLength];
+        int[,,] willSqEnemy = new int[xLength,yLength,zLength];
+        int[,,] willSqLast = new int[xLength,yLength,zLength];
+        for(int y=0; y<yLength; y++)
+        {
+          for(int z=0; z<zLength; z++)
+          {
+            for(int x=0; x<xLength; x++)
+            {
+              if(square[x,y,z] == 0)
+              {
+                willSq = TryFlip(square, cpuStone, x, y, z);
+                if(willSq != null)
+                {
+                  sqListXEnemy = new List<int>();
+                  sqListYEnemy = new List<int>();
+                  sqListZEnemy = new List<int>();
+                  for(int _y=0; _y<yLength; _y++)
+                  {
+                    for(int _z=0; _z<zLength; _z++)
+                    {
+                      for(int _x=0; _x<xLength; _x++)
+                      {
+                        if(willSq[_x,_y,_z] == 0)
+                        {
+                          willSqEnemy = TryFlip(willSq, -1*cpuStone, _x, _y, _z);
+                          if(willSqEnemy != null)
+                          {
+                            scoreEnemy = CulScoreBest(willSqEnemy);
+                            if(bestScoreEnemy == null){ bestScoreEnemy = scoreEnemy; sqListXEnemy.Add(_x); sqListYEnemy.Add(_y); sqListZEnemy.Add(_z); }
+                            if(bestScoreEnemy == scoreEnemy){ sqListXEnemy.Add(_x); sqListYEnemy.Add(_y); sqListZEnemy.Add(_z); }
+                            if(bestScoreEnemy > scoreEnemy)
+                            {
+                              bestScoreEnemy = scoreEnemy;
+                              sqListXEnemy = new List<int>(); sqListYEnemy = new List<int>(); sqListZEnemy = new List<int>();
+                              sqListXEnemy.Add(_x); sqListYEnemy.Add(_y); sqListZEnemy.Add(_z);
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  bestScoreEnemy = null;
+                  for(int n=0; n<sqListXEnemy.Count; n++)
+                  {
+                    willSqEnemy = TryFlip(willSq, -1*cpuStone, sqListXEnemy[n], sqListYEnemy[n], sqListZEnemy[n]);
+                    for(int y_=0; y_<yLength; y_++)
+                    {
+                      for(int z_=0; z_<zLength; z_++)
+                      {
+                        for(int x_=0; x_<xLength; x_++)
+                        {
+                          if(willSqEnemy[x_,y_,z_] == 0)
+                          {
+                            willSqLast = TryFlip(willSqEnemy, cpuStone, x_, y_, z_);
+                            if(willSqLast != null)
+                            {
+                              score = CulScoreBest(willSqLast);
+                              if(bestScoreTemp == null){ bestScoreTemp = score; }
+                              if(bestScoreTemp < score){ bestScoreTemp = score; }
+                            }
+                          }
+                        }
+                      }
+                    }
+                    if(bestScoreTemp < bestScore){ break; }
+                  }
+                  if(bestScore == null){ bestScore = bestScoreTemp; sqListX.Add(x); sqListY.Add(y); sqListZ.Add(z); }
+                  if(bestScore == bestScoreTemp){ sqListX.Add(x); sqListY.Add(y); sqListZ.Add(z); }
+                  if(bestScore < bestScoreTemp)
+                  {
+                    bestScore = bestScoreTemp;
+                    sqListX = new List<int>(); sqListY = new List<int>(); sqListZ = new List<int>();
+                    sqListX.Add(x); sqListY.Add(y); sqListZ.Add(z);
+                  }
+                  bestScoreTemp = null;
+                }
+              }
+            }
+          }
+        }
+        int rv = (int)(UnityEngine.Random.value * sqListX.Count);
+        if(rv == sqListX.Count){ rv--; }
+        Debug.Log("sqList.Count : " + sqListX.Count); //////////////////////////////////////////////////////////////////////////////////////////////
+        Debug.Log("rv : " + rv);
+        Debug.Log("x,z,y : " + sqListX[rv] + " " + sqListZ[rv] + " " + sqListY[rv]); //////////////////////////////////////////////////////////////////////////////////////////////
+        bool a = stone.FlipStone(cpuStone,sqListX[rv], sqListY[rv], sqListZ[rv]);
+      }
+
 
       public int TryFlipNum(int[,,] sq, int stone, int x, int y, int z, int vec) //stone{1,-1}を座標(x,y,z)に置いたらvec方向のコマを返せるはずの個数を返す
       {

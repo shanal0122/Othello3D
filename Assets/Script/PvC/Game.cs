@@ -60,7 +60,7 @@ namespace PvC
           }
           else
           {
-            Invoke("CPUPlay", 1f);
+            Invoke("CPUPlay", 0.8f);
             keyDetectable = false;
           }
         }
@@ -255,10 +255,12 @@ namespace PvC
         {
           if(Choose.InitialSetting.CPUBlack == 1){ computer.CPU1(); }
           if(Choose.InitialSetting.CPUBlack == 2){ computer.CPU2(); }
+          if(Choose.InitialSetting.CPUBlack == 3){ computer.CPU3(); }
         }else if(turn == -1)
         {
           if(Choose.InitialSetting.CPUWhite == 1){ computer.CPU1(); }
           if(Choose.InitialSetting.CPUWhite == 2){ computer.CPU2(); }
+          if(Choose.InitialSetting.CPUWhite == 3){ computer.CPU3(); }
         }else{ Debug.Log("Error : Game.CPUPlay"); } //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         turn *= -1;
         CanPut();
