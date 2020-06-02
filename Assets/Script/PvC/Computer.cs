@@ -15,36 +15,36 @@ namespace PvC
       private int cpuStone; //CPUの石。Game.csに呼ばれたらgame.turnをコピー
       public Stone stone;
       public Game game;
-      float[,,] basicMap1; //各座標の基本点。座標(0,0,0)に自分の石があればbasicMap1[0,0,0]点入る
-      float[,,] basicMap2;
-      float[,,] basicMap3;
-      float[,,,] sideMap; //各辺の石組み合わせに関する追加点。0:nostone,1:自分の石,2:相手の石
-      float[,,,] surfaceMap; //各面上の直線上の石の組み合わせに関する追加点。0:nostone,1:自分の石,2:相手の石
+      float[,,] basicMap1_444; //各座標の基本点。座標(0,0,0)に自分の石があればbasicMap1[0,0,0]点入る
+      float[,,] basicMap2_444;
+      float[,,] basicMap3_444;
+      float[,,,] sideMap444; //各辺の石組み合わせに関する追加点。0:nostone,1:自分の石,2:相手の石
+      float[,,,] surfaceMap444; //各面上の直線上の石の組み合わせに関する追加点。0:nostone,1:自分の石,2:相手の石
 
       void Awake()
       {
-        basicMap1 = new float[,,]
+        basicMap1_444 = new float[,,]
         {
           { {100f,-10f,-10f,100f}, {-10f, -15f, -15f, -10f}, {-10f, -15f, -15f, -10f}, {100f,-10f,-10f,100f} },
           { {-10f, -15f, -15f, -10f}, {-15f, -5f, -5f, -15f}, {-15f, -5f, -5f, -15f}, {-10f, -15f, -15f, -10f} },
           { {-10f, -15f, -15f, -10f}, {-15f, -5f, -5f, -15f}, {-15f, -5f, -5f, -15f}, {-10f, -15f, -15f, -10f} },
           { {100f,-10f,-10,100f}, {-10f, -15f, -15f, -10f}, {-10f, -15f, -15f, -10f}, {100f,-10f,-10f,100f} }
         };
-        basicMap2 = new float[,,]
+        basicMap2_444 = new float[,,]
         {
           { {82,-10f,-10f,82f}, {-10f, -15f, -15f, -10f}, {-10f, -15f, -15f, -10f}, {82f,-10f,-10f,82f} },
           { {-10f, -15f, -15f, -10f}, {-15f, -5f, -5f, -15f}, {-15f, -5f, -5f, -15f}, {-10f, -15f, -15f, -10f} },
           { {-10f, -15f, -15f, -10f}, {-15f, -5f, -5f, -15f}, {-15f, -5f, -5f, -15f}, {-10f, -15f, -15f, -10f} },
           { {82f,-10f,-10,82f}, {-10f, -15f, -15f, -10f}, {-10f, -15f, -15f, -10f}, {82f,-10f,-10f,82f} }
         };
-        basicMap3 = new float[,,]
+        basicMap3_444 = new float[,,]
         {
           { {72f,-10f,-10f,72f}, {-10f, -15f, -15f, -10f}, {-10f, -15f, -15f, -10f}, {72f,-10f,-10f,72f} },
           { {-10f, -13f, -13f, -10f}, {-13f, -5f, -5f, -13f}, {-13f, -5f, -5f, -13f}, {-10f, -13f, -13f, -10f} },
           { {-10f, -13f, -13f, -10f}, {-13f, -5f, -5f, -13f}, {-13f, -5f, -5f, -13f}, {-10f, -13f, -13f, -10f} },
           { {72f,-10f,-10,72f}, {-10f, -15f, -15f, -10f}, {-10f, -15f, -15f, -10f}, {72f,-10f,-10f,72f} }
         };
-        sideMap = new float[,,,]
+        sideMap444 = new float[,,,]
         {
           {
             { {0f, 0f, 0f}, {0f, 20f, -40f}, {0f, 40f, -20f} },
@@ -62,7 +62,7 @@ namespace PvC
             { {-20f, -20f, 30f}, {-85f, 0f, 40f}, {-30f, -20f, -120f} }
           }
         };
-        surfaceMap = new float[,,,]
+        surfaceMap444 = new float[,,,]
         {
           {
             { {0f, 0f, 0f}, {0f, 0f, -40f}, {0f, 40f, 0f} },
@@ -140,7 +140,7 @@ namespace PvC
                 willSq = TryFlip(square, cpuStone, x, y, z);
                 if(willSq != null)
                 {
-                  score = CulScoreBest(willSq);
+                  score = CulScoreBest444(willSq);
                   if(bestScore == null){ bestScore = score; sqListX.Add(x); sqListY.Add(y); sqListZ.Add(z); }
                   if(bestScore == score){ sqListX.Add(x); sqListY.Add(y); sqListZ.Add(z); }
                   if(bestScore < score)
@@ -156,9 +156,9 @@ namespace PvC
         }
         int rv = (int)(UnityEngine.Random.value * sqListX.Count);
         if(rv == sqListX.Count){ rv--; }
-        Debug.Log("sqList.Count : " + sqListX.Count); //////////////////////////////////////////////////////////////////////////////////////////////
-        Debug.Log("rv : " + rv);
-        Debug.Log("x,z,y : " + sqListX[rv] + " " + sqListZ[rv] + " " + sqListY[rv]); //////////////////////////////////////////////////////////////////////////////////////////////
+        //Debug.Log("sqList.Count : " + sqListX.Count); //////////////////////////////////////////////////////////////////////////////////////////////
+        //Debug.Log("rv : " + rv);
+        //Debug.Log("x,z,y : " + sqListX[rv] + " " + sqListZ[rv] + " " + sqListY[rv]); //////////////////////////////////////////////////////////////////////////////////////////////
         bool a = stone.FlipStone(cpuStone,sqListX[rv], sqListY[rv], sqListZ[rv]);
       }
 
@@ -205,7 +205,7 @@ namespace PvC
                           willSqEnemy = TryFlip(willSq, -1*cpuStone, _x, _y, _z);
                           if(willSqEnemy != null)
                           {
-                            scoreEnemy = CulScoreBest(willSqEnemy);
+                            scoreEnemy = CulScoreBest444(willSqEnemy);
                             if(bestScoreEnemy == null){ bestScoreEnemy = scoreEnemy; sqListXEnemy.Add(_x); sqListYEnemy.Add(_y); sqListZEnemy.Add(_z); }
                             if(bestScoreEnemy == scoreEnemy){ sqListXEnemy.Add(_x); sqListYEnemy.Add(_y); sqListZEnemy.Add(_z); }
                             if(bestScoreEnemy > scoreEnemy)
@@ -234,7 +234,7 @@ namespace PvC
                             willSqLast = TryFlip(willSqEnemy, cpuStone, x_, y_, z_);
                             if(willSqLast != null)
                             {
-                              score = CulScoreBest(willSqLast);
+                              score = CulScoreBest444(willSqLast);
                               if(bestScoreTemp == null){ bestScoreTemp = score; }
                               if(bestScoreTemp < score){ bestScoreTemp = score; }
                             }
@@ -260,9 +260,9 @@ namespace PvC
         }
         int rv = (int)(UnityEngine.Random.value * sqListX.Count);
         if(rv == sqListX.Count){ rv--; }
-        Debug.Log("sqList.Count : " + sqListX.Count); //////////////////////////////////////////////////////////////////////////////////////////////
-        Debug.Log("rv : " + rv);
-        Debug.Log("x,z,y : " + sqListX[rv] + " " + sqListZ[rv] + " " + sqListY[rv]); //////////////////////////////////////////////////////////////////////////////////////////////
+        //Debug.Log("sqList.Count : " + sqListX.Count); //////////////////////////////////////////////////////////////////////////////////////////////
+        //Debug.Log("rv : " + rv);
+        //Debug.Log("x,z,y : " + sqListX[rv] + " " + sqListZ[rv] + " " + sqListY[rv]); //////////////////////////////////////////////////////////////////////////////////////////////
         bool a = stone.FlipStone(cpuStone,sqListX[rv], sqListY[rv], sqListZ[rv]);
       }
 
@@ -324,11 +324,11 @@ namespace PvC
         }
       }
 
-      private float CulScoreBest(int[,,] sq)
+      private float CulScoreBest444(int[,,] sq)
       {
         int n;
         if(game.TotalTurn < 20){ n = 1; } else if(game.TotalTurn < 40){ n = 2; } else{ n = 3; }
-        return CulBasic(n,sq,basicMap1,basicMap2,basicMap3) + CulSide(sq,sideMap) + CulSurface(sq,surfaceMap);
+        return CulBasic(n,sq,basicMap1_444,basicMap2_444,basicMap3_444) + CulSide444(sq,sideMap444) + CulSurface444(sq,surfaceMap444);
       }
 
       private float CulBasic(int n, int[,,] sq, float[,,] map1, float[,,] map2, float[,,] map3)
@@ -352,7 +352,7 @@ namespace PvC
         return score;
       }
 
-      private float CulSide(int[,,] sq, float[,,,] map)
+      private float CulSide444(int[,,] sq, float[,,,] map)
       {
         float score = 0;
         score += map[ TransSqIndex(cpuStone*sq[0,0,0]), TransSqIndex(cpuStone*sq[1,0,0]), TransSqIndex(cpuStone*sq[2,0,0]), TransSqIndex(cpuStone*sq[3,0,0])];
@@ -373,7 +373,7 @@ namespace PvC
         return score;
       }
 
-      private float CulSurface(int[,,] sq, float[,,,] map)
+      private float CulSurface444(int[,,] sq, float[,,,] map)
       {
         float score = 0;
         score += map[ TransSqIndex(cpuStone*sq[0,0,1]), TransSqIndex(cpuStone*sq[1,0,1]), TransSqIndex(cpuStone*sq[2,0,1]), TransSqIndex(cpuStone*sq[3,0,1])];

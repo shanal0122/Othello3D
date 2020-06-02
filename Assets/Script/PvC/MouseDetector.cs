@@ -22,6 +22,8 @@ namespace PvC
       public GameObject putableSlider;
       public Text putableOnOffText;
       public GameObject stoneSizeSlider;
+      private AudioSource audioSource;
+      public GameObject bgmVolumeSlider;
       public GameObject instructionCanvas;
       public GameObject saveConfirmCanvas;
 
@@ -32,6 +34,8 @@ namespace PvC
           putableSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Value_of_PutableInform", 1);
           stoneSizeSlider.GetComponent<Slider>().value = 20 * PlayerPrefs.GetFloat("Value_of_StoneSize", 0.6f);
           stoneSizeSlider.GetComponent<Slider>().onValueChanged.AddListener(OnStoneSizeSlide);
+          audioSource = GameObject.FindGameObjectWithTag("BGM").GetComponent<AudioSource>();
+          bgmVolumeSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Value_of_BGMVolume", 0.5f) * 10f;
       }
 
 
@@ -148,6 +152,13 @@ namespace PvC
         PlayerPrefs.SetFloat("Value_of_StoneSize", stone.StoneSize);
         PlayerPrefs.Save();
         stone.ChangeStoneSize();
+      }
+
+      public void OnBGMVolumeSlide() //BGMの音量のスライダーの値を取得
+      {
+        audioSource.volume = bgmVolumeSlider.GetComponent<Slider>().value / 10;
+        PlayerPrefs.SetFloat("Value_of_BGMVolume", audioSource.volume);
+        PlayerPrefs.Save();
       }
 
       public void OnInstructionClick() //Menuボタンを押した時メニューウィンドウを表示させる

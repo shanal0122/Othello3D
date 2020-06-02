@@ -19,6 +19,8 @@ namespace Choose
       public static int CPUWhite = 2;
       public static bool continuation = false; //続きからプレイする時はtrue
       public GameObject suspendedConfirmCanvas;
+      public GameObject menuCanvas;
+      private bool detectable = true; //ポップアップを開いているときにボタンを押せないようにする
 
       /*void Awake() ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       {
@@ -27,6 +29,7 @@ namespace Choose
 
       void Start()
       {
+        detectable = true;
         playerTurn = playerTurnDef;
         CPUBlack = CPUBlackDef;
         CPUWhite = CPUWhiteDef;
@@ -36,72 +39,107 @@ namespace Choose
 
       public void ChoosePvP444()
       {
-        xLength = 4;
-        yLength = 4;
-        zLength = 4;
-        gameMode = 1;
-        if(PlayerPrefs.HasKey("Record_of_supended_game_1"))
+        if(detectable)
         {
-          suspendedConfirmCanvas.GetComponent<Canvas>().enabled = true;
-        }else{SceneManager.LoadScene("PvP");}
+          xLength = 4;
+          yLength = 4;
+          zLength = 4;
+          gameMode = 1;
+          if(PlayerPrefs.HasKey("Record_of_supended_game_1"))
+          {
+            suspendedConfirmCanvas.GetComponent<Canvas>().enabled = true;
+            detectable = false;
+          }else{SceneManager.LoadScene("PvP");}
+        }
       }
 
       public void ChoosePvP464()
       {
-        xLength = 4;
-        yLength = 6;
-        zLength = 4;
-        gameMode = 2;
-        if(PlayerPrefs.HasKey("Record_of_supended_game_2"))
+        if(detectable)
         {
-          suspendedConfirmCanvas.GetComponent<Canvas>().enabled = true;
-        }else{SceneManager.LoadScene("PvP");}
+          xLength = 4;
+          yLength = 6;
+          zLength = 4;
+          gameMode = 2;
+          if(PlayerPrefs.HasKey("Record_of_supended_game_2"))
+          {
+            suspendedConfirmCanvas.GetComponent<Canvas>().enabled = true;
+            detectable = false;
+          }else{SceneManager.LoadScene("PvP");}
+        }
       }
 
       public void ChoosePvC444()
       {
-        xLength = 4;
-        yLength = 4;
-        zLength = 4;
-        gameMode = 3;
-        if(PlayerPrefs.HasKey("Record_of_supended_game_3"))
+        if(detectable)
         {
-          suspendedConfirmCanvas.GetComponent<Canvas>().enabled = true;
-        }else{SceneManager.LoadScene("PvC");}
+          xLength = 4;
+          yLength = 4;
+          zLength = 4;
+          gameMode = 3;
+          if(PlayerPrefs.HasKey("Record_of_supended_game_3"))
+          {
+            suspendedConfirmCanvas.GetComponent<Canvas>().enabled = true;
+            detectable = false;
+          }else{SceneManager.LoadScene("PvC");}
+        }
       }
 
       public void ChoosePvC464()
       {
-        xLength = 4;
-        yLength = 6;
-        zLength = 4;
-        gameMode = 4;
-        if(PlayerPrefs.HasKey("Record_of_supended_game_4"))
+        if(detectable)
         {
-          suspendedConfirmCanvas.GetComponent<Canvas>().enabled = true;
-        }else{SceneManager.LoadScene("PvC");}
+          xLength = 4;
+          yLength = 6;
+          zLength = 4;
+          gameMode = 4;
+          if(PlayerPrefs.HasKey("Record_of_supended_game_4"))
+          {
+            suspendedConfirmCanvas.GetComponent<Canvas>().enabled = true;
+            detectable = false;
+          }else{SceneManager.LoadScene("PvC");}
+        }
       }
 
       public void ChooseReplay()
       {
-        if(PlayerPrefs.HasKey("Record_of_finished_gamemode"))
+        if(detectable)
         {
-          gameMode = PlayerPrefs.GetInt("Record_of_finished_gamemode");
-          if(gameMode == 1)
+          if(PlayerPrefs.HasKey("Record_of_finished_gamemode"))
           {
-            xLength = 4;
-            yLength = 4;
-            zLength = 4;
+            gameMode = PlayerPrefs.GetInt("Record_of_finished_gamemode");
+            if(gameMode == 1 || gameMode == 3)
+            {
+              xLength = 4;
+              yLength = 4;
+              zLength = 4;
+            }
+            if(gameMode == 2 || gameMode == 4)
+            {
+              xLength = 4;
+              yLength = 6;
+              zLength = 4;
+            }
+            SceneManager.LoadScene("Replay");
           }
-          if(gameMode == 2)
-          {
-            xLength = 4;
-            yLength = 6;
-            zLength = 4;
-          }
-          SceneManager.LoadScene("Replay");
         }
       }
+
+      public void OnMenuClick()
+      {
+        if(detectable)
+        {
+          menuCanvas.GetComponent<Canvas>().enabled = true;
+          detectable = false;
+        }
+      }
+
+      public void OnMenuCloseClick()
+      {
+        menuCanvas.GetComponent<Canvas>().enabled = false;
+        detectable = true;
+      }
+
 
       public void OnSuspendedYesClick()
       {
@@ -126,7 +164,7 @@ namespace Choose
       public void OnSuspendedCloseClick()
       {
         suspendedConfirmCanvas.GetComponent<Canvas>().enabled = false;
+        detectable = true;
       }
   }
-
 }

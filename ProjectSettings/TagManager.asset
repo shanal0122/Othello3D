@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - CoordinateDisplay
+  - BGM
   layers:
   - Default
   - TransparentFX
