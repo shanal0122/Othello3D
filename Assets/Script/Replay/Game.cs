@@ -29,6 +29,8 @@ namespace Replay
       public GameObject menuCanvas;
       public GameObject cameraSensiSlider;
       public GameObject stoneSizeSlider;
+      private AudioSource audioSource;
+      public GameObject bgmVolumeSlider;
       public CameraMover cameraMover;
       public GameObject replaySlider;
       public GameObject instructionCanvas;
@@ -43,6 +45,8 @@ namespace Replay
           stoneSizeSlider.GetComponent<Slider>().value = 20 * PlayerPrefs.GetFloat("Value_of_StoneSize", 0.6f);
           stoneSize = PlayerPrefs.GetFloat("Value_of_StoneSize", 0.6f);
           stoneSizeSlider.GetComponent<Slider>().onValueChanged.AddListener(OnStoneSizeSlide);
+          audioSource = GameObject.FindGameObjectWithTag("BGM").GetComponent<AudioSource>();
+          bgmVolumeSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Value_of_BGMVolume", 0.5f) * 10f;
       }
 
       void Start()
@@ -272,6 +276,14 @@ namespace Replay
         PlayerPrefs.Save();
         ChangeStoneSize();
       }
+
+      public void OnBGMVolumeSlide() //BGMの音量のスライダーの値を取得
+      {
+        audioSource.volume = bgmVolumeSlider.GetComponent<Slider>().value / 10;
+        PlayerPrefs.SetFloat("Value_of_BGMVolume", audioSource.volume);
+        PlayerPrefs.Save();
+      }
+
 
       public void OnInstructionClick() //Menuボタンを押した時メニューウィンドウを表示させる
       {

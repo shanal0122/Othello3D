@@ -6714,7 +6714,7 @@ GameObject:
   - component: {fileID: 1999236677}
   - component: {fileID: 1999236678}
   m_Layer: 8
-  m_Name: BGMVolumeSlider (1)
+  m_Name: BGMVolumeSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
