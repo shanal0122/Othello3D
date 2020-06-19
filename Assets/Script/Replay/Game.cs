@@ -94,8 +94,8 @@ namespace Replay
 
       void Update()
       {
-        if(Input.GetKey(KeyCode.Backspace)){ OnBackClick(); }
-        if(Input.GetKey(KeyCode.Return)){ OnAheadClick(); }
+        if(Input.GetKeyDown(KeyCode.Backspace)){ OnBackClick(); }
+        if(Input.GetKeyDown(KeyCode.Return)){ OnAheadClick(); }
         if(changeIndication)
         {
           NowTurnIndicate();
@@ -146,12 +146,15 @@ namespace Replay
         if(gameMode == 1 || gameMode == 2)
         {
           int t = turn[nowTurn];
-          if(t == 1)
+          if(nowTurn == constantTotalTurn)
+          {
+            blackTurnText.text = "";
+            whiteTurnText.text = "";
+          }else if(t == 1)
           {
             blackTurnText.text = "あなたの番です";
             whiteTurnText.text = "相手の番です";
-          }
-          if(t == -1)
+          }else if(t == -1)
           {
             blackTurnText.text = "相手の番です";
             whiteTurnText.text = "あなたの番です";
@@ -164,12 +167,15 @@ namespace Replay
         if(gameMode == 3 || gameMode == 4)
         {
           int t = turn[nowTurn];
-          if(t == 1)
+          if(nowTurn == constantTotalTurn)
+          {
+            blackTurnText.text = "";
+            whiteTurnText.text = "";
+          }else if(t == 1)
           {
             blackTurnText.text = "あなたの番です";
             whiteTurnText.text = "CPU";
-          }
-          if(t == -1)
+          }else if(t == -1)
           {
             blackTurnText.text = "あなた";
             whiteTurnText.text = "CPUの番です";
