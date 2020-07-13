@@ -11,30 +11,43 @@ namespace Choose
       public static int yLength = 4;
       public static int zLength = 4;
       public static int gameMode = 3; //ゲームモードを表す。PlayerPrefsにセーブする時に使う。PvP444:1,PvP464:2,PvC444:3,PvC464:4（中断後再開機能（、リプレイ機能））
-      [SerializeField] int playerTurnDef = 1; //プレイヤーの担当するターンをインスペクターから代入可能/////////////////////////////////////////////////////////////
+      [SerializeField] int playerTurnDef = 1; //CPUvs.CPUをしたいときはインスペクターに0を代入して再生/////////////////////////////////////////////////////////////
       public static int playerTurn = 1; //PvCで用いる。プレイヤーの担当するターンを表す。0のときはCvC
-      [SerializeField] int CPUBlackDef = 2; //黒CPUの難易度を表す。インスペクターから代入可能。PvC.Computer.CPUX()に対応////////////////////////////////////////////////////////////
-      public static int CPUBlack = 2;
-      [SerializeField] int CPUWhiteDef = 2; //白CPUの難易度を表す。インスペクターから代入可能。PvC.Computer.CPUX()に対応////////////////////////////////////////////////////////////
-      public static int CPUWhite = 2;
+      public static int cpuLevel = 1;  //CPUの難易度を表す。よわいは1、ふつうは2、つよいは3。
       public static bool continuation = false; //続きからプレイする時はtrue
       public GameObject suspendedConfirmCanvas;
       public GameObject menuCanvas;
       private bool detectable = true; //ポップアップを開いているときにボタンを押せないようにする
 
-      /*void Awake() ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      void Awake()
       {
-        PlayerPrefs.DeleteAll();
-      }*/
+        //PlayerPrefs.DeleteAll();
+        if(PlayerPrefs.GetInt("Value_of_PlayerTurn", 0) == 0)
+        {
+          playerTurn = 1;
+        }
+        if(PlayerPrefs.GetInt("Value_of_PlayerTurn", 0) == 1)
+        {
+          playerTurn = -1;
+        }
+        if(PlayerPrefs.GetInt("Value_of_CPULevel", 0) == 0)
+        {
+          cpuLevel = 1;
+        }
+        if(PlayerPrefs.GetInt("Value_of_CPULevel", 0) == 1)
+        {
+          cpuLevel = 2;
+        }
+        if(PlayerPrefs.GetInt("Value_of_CPULevel", 0) == 2)
+        {
+          cpuLevel = 3;
+        }
+      }
 
       void Start()
       {
         detectable = true;
-        playerTurn = playerTurnDef;
-        CPUBlack = CPUBlackDef;
-        CPUWhite = CPUWhiteDef;
-        if(CPUBlack != 1 && CPUBlack != 2 && CPUBlack != 3){ Debug.Log("Error : InitialSetting.CPUBlackの値"); }
-        if(CPUWhite != 1 && CPUWhite != 2 && CPUWhite != 3){ Debug.Log("Error : InitialSetting.CPUWhiteの値"); }
+        if(playerTurnDef == 0){ playerTurn = 0;} ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       }
 
       public void ChoosePvP444()

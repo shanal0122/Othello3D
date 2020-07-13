@@ -11,12 +11,16 @@ namespace Choose
       public GameObject bgmVolumeSlider;
       public GameObject bgmDropdown;
       public BGMManager bgmManager;
+      public GameObject playerTurnDropdown;
+      public GameObject levelDropdown;
 
       void Awake()
       {
         audioSource = GameObject.FindGameObjectWithTag("BGM").GetComponent<AudioSource>();
         bgmVolumeSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Value_of_BGMVolume", 0.5f) * 10f;
         bgmDropdown.GetComponent<Dropdown>().value = PlayerPrefs.GetInt("Value_of_BGM", 0);
+        playerTurnDropdown.GetComponent<Dropdown>().value = PlayerPrefs.GetInt("Value_of_PlayerTurn", 0);
+        levelDropdown.GetComponent<Dropdown>().value = PlayerPrefs.GetInt("Value_of_CPULevel", 0);
         bgmDropdown.GetComponent<Dropdown>().onValueChanged.AddListener(OnBGMGhange);
       }
 
@@ -39,6 +43,40 @@ namespace Choose
       private void AudioPlay()
       {
         audioSource.Play();
+      }
+
+      public void OnPlayerTurnSelect() //CPU戦における手番を選択
+      {
+        int turnValue = playerTurnDropdown.GetComponent<Dropdown>().value;
+        if(turnValue == 0)
+        {
+          InitialSetting.playerTurn = 1;
+        }
+        if(turnValue == 1)
+        {
+          InitialSetting.playerTurn = -1;
+        }
+        PlayerPrefs.SetInt("Value_of_PlayerTurn", turnValue);
+        PlayerPrefs.Save();
+      }
+
+      public void OnLevelSelect() //CPU戦における手番を選択
+      {
+        int levelValue = levelDropdown.GetComponent<Dropdown>().value;
+        if(levelValue == 0)
+        {
+          InitialSetting.cpuLevel = 1;
+        }
+        if(levelValue == 1)
+        {
+          InitialSetting.cpuLevel = 2;
+        }
+        if(levelValue == 2)
+        {
+          InitialSetting.cpuLevel = 3;
+        }
+        PlayerPrefs.SetInt("Value_of_CPULevel", levelValue);
+        PlayerPrefs.Save();
       }
   }
 }
