@@ -2260,7 +2260,6 @@ GameObject:
   - component: {fileID: 674726460}
   - component: {fileID: 674726459}
   - component: {fileID: 674726458}
-  - component: {fileID: 674726457}
   m_Layer: 5
   m_Name: ReviewButton
   m_TagString: Untagged
@@ -2288,18 +2287,6 @@ RectTransform:
   m_AnchoredPosition: {x: -307, y: -206}
   m_SizeDelta: {x: 410, y: 310}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &674726457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 674726455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa71c41002bd04866afa743170ed4a24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &674726458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2343,7 +2330,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 674726457}
+      - m_Target: {fileID: 1115301884}
         m_MethodName: OpenReview
         m_Mode: 1
         m_Arguments:
@@ -3444,6 +3431,7 @@ GameObject:
   - component: {fileID: 1115301882}
   - component: {fileID: 1115301881}
   - component: {fileID: 1115301880}
+  - component: {fileID: 1115301884}
   m_Layer: 5
   m_Name: BetaTestCanvas
   m_TagString: Untagged
@@ -3532,6 +3520,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1115301884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115301879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa71c41002bd04866afa743170ed4a24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1160238596
 GameObject:
   m_ObjectHideFlags: 0
@@ -7369,7 +7369,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 110
+    m_FontSize: 120
     m_FontStyle: 3
     m_BestFit: 0
     m_MinSize: 0
@@ -7380,7 +7380,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1.3
-  m_Text: "\u3053\u306E\u30B2\u30FC\u30E0\u3092\u8A55\u4FA1\u3059\u308B\n(\u4ECA\u5F8C\u306E\u958B\u767A\u306E\u70BA\u3001\u3054\u5354\u529B\u3092\u304A\u9858\u3044\u3057\u307E\u3059)"
+  m_Text: "\u3053\u306E\u30B2\u30FC\u30E0\u3092\u518D\u8A55\u4FA1\u3059\u308B\n(\u518D\u5EA6\u30EC\u30D3\u30E5\u30FC\u3092\u884C\u3048\u307E\u3059)"
 --- !u!222 &2097328101
 CanvasRenderer:
   m_ObjectHideFlags: 0

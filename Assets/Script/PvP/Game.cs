@@ -268,6 +268,17 @@ namespace PvP
         saveConfirmCanvas.GetComponent<Canvas>().enabled = true;
         infoDisplay.ResultIndicate();
         PlayerPrefs.DeleteKey(recordOfSuspendedKeyName);
+
+        //βテスター版のみにつける
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        if(Review.reviewflug == 0)
+        {
+          Application.OpenURL("https://docs.google.com/forms/d/e/1FAIpQLSe8WEYdxBFFnxRkGotibx-VfGlPFrJ6Ik5VTWN3MRh90nscRQ/viewform?usp=sf_link");
+          PlayerPrefs.SetInt("Reviewed_Flug", 1);
+          Review.reviewflug = 1;
+        }
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
       }
 
       public string Recordstr{ get {return recordstr;} set {this.recordstr = value;} }
