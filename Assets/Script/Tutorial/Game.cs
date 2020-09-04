@@ -386,10 +386,24 @@ namespace Tutorial
           else if(coordi[0] == 2 && coordi[1] == 3 && coordi[2] == 2){ isb[2,2,3].SetActive(false); bs[2,2,3].SetActive(true); ws[2,2,2].SetActive(false); bs[2,2,2].SetActive(true); canvas6to9.GetComponent<Canvas>().enabled = false; canvas10.GetComponent<Canvas>().enabled = true; centerCanvas.GetComponent<Canvas>().enabled = true; }
           else if(coordi[0] == 3 && coordi[1] == 1 && coordi[2] == 1){ isb[3,1,1].SetActive(false); bs[3,1,1].SetActive(true); ws[2,1,1].SetActive(false); bs[2,1,1].SetActive(true); canvas6to9.GetComponent<Canvas>().enabled = false; canvas10.GetComponent<Canvas>().enabled = true; centerCanvas.GetComponent<Canvas>().enabled = true; }
           else if(coordi[0] == 3 && coordi[1] == 2 && coordi[2] == 2){ isb[3,2,2].SetActive(false); bs[3,2,2].SetActive(true); ws[2,2,2].SetActive(false); bs[2,2,2].SetActive(true); canvas6to9.GetComponent<Canvas>().enabled = false; canvas10.GetComponent<Canvas>().enabled = true; centerCanvas.GetComponent<Canvas>().enabled = true; }
-          else { sb[coordi[0],coordi[2],coordi[1]].SetActive(false); CantPutIndicate(); degree = 6;}
+          else
+          {
+            sb[coordi[0],coordi[2],coordi[1]].SetActive(false); CantPutIndicate(); degree = 6;
+            isb[0,1,2].SetActive(true);
+            isb[0,2,1].SetActive(true);
+            isb[1,0,2].SetActive(true);
+            isb[1,1,3].SetActive(true);
+            isb[1,2,0].SetActive(true);
+            isb[1,3,1].SetActive(true);
+            isb[2,0,1].SetActive(true);
+            isb[2,1,0].SetActive(true);
+            isb[2,2,3].SetActive(true);
+            isb[2,3,2].SetActive(true);
+            isb[3,1,1].SetActive(true);
+            isb[3,2,2].SetActive(true);
+          }
         }
         doTutorialFlug = false;
-        Debug.Log("degree is " + degree);
       }
 
       private void OnKeyDetect()
