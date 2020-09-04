@@ -74,6 +74,7 @@ namespace PvP
         stone.PutStone(-1,a,b,c);
         CanPut();
 
+
 　　　　　　recordstr = "0"; //"totalTurn"
         for(int _y=0; _y<yLength; _y++) //待った機能、セーブのための情報の格納
         {
@@ -278,7 +279,7 @@ namespace PvP
           Review.reviewflug = 1;
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        
+
       }
 
       public string Recordstr{ get {return recordstr;} set {this.recordstr = value;} }

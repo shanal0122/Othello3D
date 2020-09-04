@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace Choose
 {
@@ -77,6 +78,11 @@ namespace Choose
         }
         PlayerPrefs.SetInt("Value_of_CPULevel", levelValue);
         PlayerPrefs.Save();
+      }
+
+      public void OnTutorialLoad()
+      {
+        SceneManager.LoadScene("Tutorial");
       }
   }
 }

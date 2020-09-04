@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEditor; //PlayerPrefs.DeleteAll()のためのもの
 
 namespace Choose
 {
   public class InitialSetting : MonoBehaviour
   {
+      private int playerSkill = 0; //初めてのプレイなら0。2回目以降なら1。一番強いCPUに勝てたら称号を与える的なシステムを今後組むかも////////////////////////////////////////
       public static int xLength = 4; //オセロ版の一辺の長さ、yを最大に
       public static int yLength = 4;
       public static int zLength = 4;
@@ -21,7 +23,13 @@ namespace Choose
 
       void Awake()
       {
-        //PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll(); EditorApplication.isPlaying = false;
+        playerSkill = PlayerPrefs.GetInt("Value_of_PlayerSkill", 0);
+        if(playerSkill == 0){
+          SceneManager.LoadScene("Tutorial");
+          PlayerPrefs.SetInt("Value_of_PlayerSkill", 1);
+        }
+
         if(PlayerPrefs.GetInt("Value_of_PlayerTurn", 0) == 0)
         {
           playerTurn = 1;
