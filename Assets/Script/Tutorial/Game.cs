@@ -37,6 +37,7 @@ namespace Tutorial
       public GameObject canvas5;
       public GameObject canvas6to9;
       public GameObject canvas10;
+      public GameObject canvas11;
       private GameObject[,,] bs; //[x,y,z]にあるblackStoneを格納
       private GameObject[,,] ws; //[x,y,z]にあるwhiteStoneを格納
       private GameObject[,,] sb; //[x,y,z]にあるshineBoardを格納
@@ -345,7 +346,6 @@ namespace Tutorial
         {
           canvas6to9.GetComponent<Canvas>().enabled = true;
           canvas10.GetComponent<Canvas>().enabled = false;
-          centerCanvas.GetComponent<Canvas>().enabled = false;
           AfterYPressedDisplay();
           for(int y=0; y<yLength; y++)
           {
@@ -374,18 +374,18 @@ namespace Tutorial
         if(degree == 10)
         {
           BeforePressedIndicate();
-          if(coordi[0] == 0 && coordi[1] == 1 && coordi[2] == 2){ isb[0,2,1].SetActive(false); bs[0,2,1].SetActive(true); ws[1,2,1].SetActive(false); bs[1,2,1].SetActive(true); canvas6to9.GetComponent<Canvas>().enabled = false; canvas10.GetComponent<Canvas>().enabled = true; centerCanvas.GetComponent<Canvas>().enabled = true; }
-          else if(coordi[0] == 0 && coordi[1] == 2 && coordi[2] == 1){ isb[0,1,2].SetActive(false); bs[0,1,2].SetActive(true); ws[1,1,2].SetActive(false); bs[1,1,2].SetActive(true); canvas6to9.GetComponent<Canvas>().enabled = false; canvas10.GetComponent<Canvas>().enabled = true; centerCanvas.GetComponent<Canvas>().enabled = true; }
-          else if(coordi[0] == 1 && coordi[1] == 0 && coordi[2] == 2){ isb[1,2,0].SetActive(false); bs[1,2,0].SetActive(true); ws[1,2,1].SetActive(false); bs[1,2,1].SetActive(true); canvas6to9.GetComponent<Canvas>().enabled = false; canvas10.GetComponent<Canvas>().enabled = true; centerCanvas.GetComponent<Canvas>().enabled = true; }
-          else if(coordi[0] == 1 && coordi[1] == 1 && coordi[2] == 3){ isb[1,3,1].SetActive(false); bs[1,3,1].SetActive(true); ws[1,2,1].SetActive(false); bs[1,2,1].SetActive(true); canvas6to9.GetComponent<Canvas>().enabled = false; canvas10.GetComponent<Canvas>().enabled = true; centerCanvas.GetComponent<Canvas>().enabled = true; }
-          else if(coordi[0] == 1 && coordi[1] == 2 && coordi[2] == 0){ isb[1,0,2].SetActive(false); bs[1,0,2].SetActive(true); ws[1,1,2].SetActive(false); bs[1,1,2].SetActive(true); canvas6to9.GetComponent<Canvas>().enabled = false; canvas10.GetComponent<Canvas>().enabled = true; centerCanvas.GetComponent<Canvas>().enabled = true; }
-          else if(coordi[0] == 1 && coordi[1] == 3 && coordi[2] == 1){ isb[1,1,3].SetActive(false); bs[1,1,3].SetActive(true); ws[1,1,2].SetActive(false); bs[1,1,2].SetActive(true); canvas6to9.GetComponent<Canvas>().enabled = false; canvas10.GetComponent<Canvas>().enabled = true; centerCanvas.GetComponent<Canvas>().enabled = true; }
-          else if(coordi[0] == 2 && coordi[1] == 0 && coordi[2] == 1){ isb[2,1,0].SetActive(false); bs[2,1,0].SetActive(true); ws[2,1,1].SetActive(false); bs[2,1,1].SetActive(true); canvas6to9.GetComponent<Canvas>().enabled = false; canvas10.GetComponent<Canvas>().enabled = true; centerCanvas.GetComponent<Canvas>().enabled = true; }
-          else if(coordi[0] == 2 && coordi[1] == 1 && coordi[2] == 0){ isb[2,0,1].SetActive(false); bs[2,0,1].SetActive(true); ws[2,1,1].SetActive(false); bs[2,1,1].SetActive(true); canvas6to9.GetComponent<Canvas>().enabled = false; canvas10.GetComponent<Canvas>().enabled = true; centerCanvas.GetComponent<Canvas>().enabled = true; }
-          else if(coordi[0] == 2 && coordi[1] == 2 && coordi[2] == 3){ isb[2,3,2].SetActive(false); bs[2,3,2].SetActive(true); ws[2,2,2].SetActive(false); bs[2,2,2].SetActive(true); canvas6to9.GetComponent<Canvas>().enabled = false; canvas10.GetComponent<Canvas>().enabled = true; centerCanvas.GetComponent<Canvas>().enabled = true; }
-          else if(coordi[0] == 2 && coordi[1] == 3 && coordi[2] == 2){ isb[2,2,3].SetActive(false); bs[2,2,3].SetActive(true); ws[2,2,2].SetActive(false); bs[2,2,2].SetActive(true); canvas6to9.GetComponent<Canvas>().enabled = false; canvas10.GetComponent<Canvas>().enabled = true; centerCanvas.GetComponent<Canvas>().enabled = true; }
-          else if(coordi[0] == 3 && coordi[1] == 1 && coordi[2] == 1){ isb[3,1,1].SetActive(false); bs[3,1,1].SetActive(true); ws[2,1,1].SetActive(false); bs[2,1,1].SetActive(true); canvas6to9.GetComponent<Canvas>().enabled = false; canvas10.GetComponent<Canvas>().enabled = true; centerCanvas.GetComponent<Canvas>().enabled = true; }
-          else if(coordi[0] == 3 && coordi[1] == 2 && coordi[2] == 2){ isb[3,2,2].SetActive(false); bs[3,2,2].SetActive(true); ws[2,2,2].SetActive(false); bs[2,2,2].SetActive(true); canvas6to9.GetComponent<Canvas>().enabled = false; canvas10.GetComponent<Canvas>().enabled = true; centerCanvas.GetComponent<Canvas>().enabled = true; }
+          if(coordi[0] == 0 && coordi[1] == 1 && coordi[2] == 2){ isb[0,2,1].SetActive(false); bs[0,2,1].SetActive(true); ws[1,2,1].SetActive(false); bs[1,2,1].SetActive(true); canvas6to9.GetComponent<Canvas>().enabled = false; canvas10.GetComponent<Canvas>().enabled = true; centerCanvas.GetComponent<Canvas>().enabled = false; canvas11.GetComponent<Canvas>().enabled = false;}
+          else if(coordi[0] == 0 && coordi[1] == 2 && coordi[2] == 1){ isb[0,1,2].SetActive(false); bs[0,1,2].SetActive(true); ws[1,1,2].SetActive(false); bs[1,1,2].SetActive(true); canvas6to9.GetComponent<Canvas>().enabled = false; canvas10.GetComponent<Canvas>().enabled = true; centerCanvas.GetComponent<Canvas>().enabled = false; canvas11.GetComponent<Canvas>().enabled = false;}
+          else if(coordi[0] == 1 && coordi[1] == 0 && coordi[2] == 2){ isb[1,2,0].SetActive(false); bs[1,2,0].SetActive(true); ws[1,2,1].SetActive(false); bs[1,2,1].SetActive(true); canvas6to9.GetComponent<Canvas>().enabled = false; canvas10.GetComponent<Canvas>().enabled = true; centerCanvas.GetComponent<Canvas>().enabled = false; canvas11.GetComponent<Canvas>().enabled = false;}
+          else if(coordi[0] == 1 && coordi[1] == 1 && coordi[2] == 3){ isb[1,3,1].SetActive(false); bs[1,3,1].SetActive(true); ws[1,2,1].SetActive(false); bs[1,2,1].SetActive(true); canvas6to9.GetComponent<Canvas>().enabled = false; canvas10.GetComponent<Canvas>().enabled = true; centerCanvas.GetComponent<Canvas>().enabled = false; canvas11.GetComponent<Canvas>().enabled = false;}
+          else if(coordi[0] == 1 && coordi[1] == 2 && coordi[2] == 0){ isb[1,0,2].SetActive(false); bs[1,0,2].SetActive(true); ws[1,1,2].SetActive(false); bs[1,1,2].SetActive(true); canvas6to9.GetComponent<Canvas>().enabled = false; canvas10.GetComponent<Canvas>().enabled = true; centerCanvas.GetComponent<Canvas>().enabled = false; canvas11.GetComponent<Canvas>().enabled = false;}
+          else if(coordi[0] == 1 && coordi[1] == 3 && coordi[2] == 1){ isb[1,1,3].SetActive(false); bs[1,1,3].SetActive(true); ws[1,1,2].SetActive(false); bs[1,1,2].SetActive(true); canvas6to9.GetComponent<Canvas>().enabled = false; canvas10.GetComponent<Canvas>().enabled = true; centerCanvas.GetComponent<Canvas>().enabled = false; canvas11.GetComponent<Canvas>().enabled = false;}
+          else if(coordi[0] == 2 && coordi[1] == 0 && coordi[2] == 1){ isb[2,1,0].SetActive(false); bs[2,1,0].SetActive(true); ws[2,1,1].SetActive(false); bs[2,1,1].SetActive(true); canvas6to9.GetComponent<Canvas>().enabled = false; canvas10.GetComponent<Canvas>().enabled = true; centerCanvas.GetComponent<Canvas>().enabled = false; canvas11.GetComponent<Canvas>().enabled = false;}
+          else if(coordi[0] == 2 && coordi[1] == 1 && coordi[2] == 0){ isb[2,0,1].SetActive(false); bs[2,0,1].SetActive(true); ws[2,1,1].SetActive(false); bs[2,1,1].SetActive(true); canvas6to9.GetComponent<Canvas>().enabled = false; canvas10.GetComponent<Canvas>().enabled = true; centerCanvas.GetComponent<Canvas>().enabled = false; canvas11.GetComponent<Canvas>().enabled = false;}
+          else if(coordi[0] == 2 && coordi[1] == 2 && coordi[2] == 3){ isb[2,3,2].SetActive(false); bs[2,3,2].SetActive(true); ws[2,2,2].SetActive(false); bs[2,2,2].SetActive(true); canvas6to9.GetComponent<Canvas>().enabled = false; canvas10.GetComponent<Canvas>().enabled = true; centerCanvas.GetComponent<Canvas>().enabled = false; canvas11.GetComponent<Canvas>().enabled = false;}
+          else if(coordi[0] == 2 && coordi[1] == 3 && coordi[2] == 2){ isb[2,2,3].SetActive(false); bs[2,2,3].SetActive(true); ws[2,2,2].SetActive(false); bs[2,2,2].SetActive(true); canvas6to9.GetComponent<Canvas>().enabled = false; canvas10.GetComponent<Canvas>().enabled = true; centerCanvas.GetComponent<Canvas>().enabled = false; canvas11.GetComponent<Canvas>().enabled = false;}
+          else if(coordi[0] == 3 && coordi[1] == 1 && coordi[2] == 1){ isb[3,1,1].SetActive(false); bs[3,1,1].SetActive(true); ws[2,1,1].SetActive(false); bs[2,1,1].SetActive(true); canvas6to9.GetComponent<Canvas>().enabled = false; canvas10.GetComponent<Canvas>().enabled = true; centerCanvas.GetComponent<Canvas>().enabled = false; canvas11.GetComponent<Canvas>().enabled = false;}
+          else if(coordi[0] == 3 && coordi[1] == 2 && coordi[2] == 2){ isb[3,2,2].SetActive(false); bs[3,2,2].SetActive(true); ws[2,2,2].SetActive(false); bs[2,2,2].SetActive(true); canvas6to9.GetComponent<Canvas>().enabled = false; canvas10.GetComponent<Canvas>().enabled = true; centerCanvas.GetComponent<Canvas>().enabled = false; canvas11.GetComponent<Canvas>().enabled = false;}
           else
           {
             sb[coordi[0],coordi[2],coordi[1]].SetActive(false); CantPutIndicate(); degree = 6;
@@ -403,12 +403,18 @@ namespace Tutorial
             isb[3,2,2].SetActive(true);
           }
         }
+        if(degree == 11)
+        {
+          canvas10.GetComponent<Canvas>().enabled = false;
+          centerCanvas.GetComponent<Canvas>().enabled = true;
+          canvas11.GetComponent<Canvas>().enabled = true;
+        }
         doTutorialFlug = false;
       }
 
       private void OnKeyDetect()
       {
-        if(degree == 0 || degree == 4 || degree == 5 || degree == 9)
+        if(degree == 0 || degree == 4 || degree == 5 || degree == 9 || degree == 10)
         {
           if(Input.GetKeyDown(KeyCode.Return))
           {
