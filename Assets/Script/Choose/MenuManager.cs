@@ -9,6 +9,8 @@ namespace Choose
   public class MenuManager : MonoBehaviour
   {
       private AudioSource audioSource;
+      public GameObject menuCanvas;
+      public GameObject creditCanvas;
       public GameObject bgmVolumeSlider;
       public GameObject bgmDropdown;
       public BGMManager bgmManager;
@@ -80,9 +82,26 @@ namespace Choose
         PlayerPrefs.Save();
       }
 
-      public void OnTutorialLoad()
+      public void OnTutorialLoad() //チュートリアルを選択
       {
         SceneManager.LoadScene("Tutorial");
+      }
+
+      public void OnCreditClick() //クレジットタイトルを表示
+      {
+        menuCanvas.GetComponent<Canvas>().enabled = false;
+        creditCanvas.GetComponent<Canvas>().enabled = true;
+      }
+
+      public void OnReturnMenuClick() //クレジットタイトルからメニューに戻る
+      {
+        menuCanvas.GetComponent<Canvas>().enabled = true;
+        creditCanvas.GetComponent<Canvas>().enabled = false;
+      }
+
+      public void OnLoadTitleClick() //タイトル画面に戻る
+      {
+        SceneManager.LoadScene("Title");
       }
   }
 }

@@ -18,16 +18,18 @@ namespace Choose
       public static int cpuLevel = 1;  //CPUの難易度を表す。よわいは1、ふつうは2、つよいは3。
       public static bool continuation = false; //続きからプレイする時はtrue
       public GameObject suspendedConfirmCanvas;
+      public GameObject tutorialConfirmCanvas;
       public GameObject menuCanvas;
+      public GameObject creditCanvas;
       private bool detectable = true; //ポップアップを開いているときにボタンを押せないようにする
 
       void Awake()
       {
         //PlayerPrefs.DeleteAll(); EditorApplication.isPlaying = false;
-        playerSkill = PlayerPrefs.GetInt("Value_of_PlayerSkill", 0);
+        playerSkill = PlayerPrefs.GetInt("Value_of_PlayerSkill", 0); //tutorialConfirmCanvasでいいえを押すか、TutorialでCanvas11までやるか、タイトルに戻るを押すとフラグが消える
         if(playerSkill == 0){
-          SceneManager.LoadScene("Tutorial");
-          PlayerPrefs.SetInt("Value_of_PlayerSkill", 1);
+          tutorialConfirmCanvas.GetComponent<Canvas>().enabled = true;
+          detectable = false;
         }
 
         if(PlayerPrefs.GetInt("Value_of_PlayerTurn", 0) == 0)
@@ -158,6 +160,7 @@ namespace Choose
       public void OnMenuCloseClick()
       {
         menuCanvas.GetComponent<Canvas>().enabled = false;
+        creditCanvas.GetComponent<Canvas>().enabled = false;
         detectable = true;
       }
 
@@ -186,6 +189,19 @@ namespace Choose
       {
         suspendedConfirmCanvas.GetComponent<Canvas>().enabled = false;
         detectable = true;
+      }
+
+
+      public void OnTutorialYesClick()
+      {
+        SceneManager.LoadScene("Tutorial");
+      }
+
+      public void OnTutorialNoClick()
+      {
+        tutorialConfirmCanvas.GetComponent<Canvas>().enabled = false;
+        detectable = true;
+        PlayerPrefs.SetInt("Value_of_PlayerSkill", 1);
       }
   }
 }

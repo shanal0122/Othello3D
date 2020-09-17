@@ -24,7 +24,8 @@ namespace PvC
       public GameObject stoneSizeSlider;
       private AudioSource audioSource;
       public GameObject bgmVolumeSlider;
-      public GameObject instructionCanvas;
+      public GameObject instructionCanvas1;
+      public GameObject instructionCanvas2;
       public GameObject saveConfirmCanvas;
 
 
@@ -161,14 +162,27 @@ namespace PvC
         PlayerPrefs.Save();
       }
 
-      public void OnInstructionClick() //Menuボタンを押した時メニューウィンドウを表示させる
+      public void OnInstructionClick() //操作方法ボタンを押した時操作方法ウィンドウを表示させる
       {
-        instructionCanvas.GetComponent<Canvas>().enabled = true;
+        instructionCanvas1.GetComponent<Canvas>().enabled = true;
       }
 
-      public void OnInstructionCloseClick() //メニューウィンドウのバツボタンを押した時メニューウィンドウを消す
+      public void OnInstructionCloseClick() //操作方法ウィンドウのバツボタンを押した時操作方法ウィンドウを消す
       {
-        instructionCanvas.GetComponent<Canvas>().enabled = false;
+        instructionCanvas1.GetComponent<Canvas>().enabled = false;
+        instructionCanvas2.GetComponent<Canvas>().enabled = false;
+      }
+
+      public void OnInstructionNextClick() //操作方法ボタンの次ページへを押した時次のページを表示させる
+      {
+        instructionCanvas1.GetComponent<Canvas>().enabled = false;
+        instructionCanvas2.GetComponent<Canvas>().enabled = true;
+      }
+
+      public void OnInstructionPrevClick() //操作方法ボタンの前ページへを押した時前のページを表示させる
+      {
+        instructionCanvas2.GetComponent<Canvas>().enabled = false;
+        instructionCanvas1.GetComponent<Canvas>().enabled = true;
       }
 
       public void OnLoadTitleClick()

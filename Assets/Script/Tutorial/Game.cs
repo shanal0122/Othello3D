@@ -408,6 +408,7 @@ namespace Tutorial
           canvas10.GetComponent<Canvas>().enabled = false;
           centerCanvas.GetComponent<Canvas>().enabled = true;
           canvas11.GetComponent<Canvas>().enabled = true;
+          PlayerPrefs.SetInt("Value_of_PlayerSkill", 1);
         }
         doTutorialFlug = false;
       }
@@ -551,6 +552,7 @@ namespace Tutorial
       public void OnLoadTitleClick()
       {
         SceneManager.LoadScene("Choose");
+        PlayerPrefs.SetInt("Value_of_PlayerSkill", 1);
       }
 
   }
