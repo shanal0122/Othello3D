@@ -233,6 +233,7 @@ namespace PvP
           recordstr = recordstr + "," + turn;
           PlayerPrefs.SetString(recordOfSuspendedKeyName, recordstr);
           PlayerPrefs.Save();
+          changeColor.UndoAllBoardColor();
           infoDisplay.TurnIndicate();
           infoDisplay.StoneNumIndicate();
         }else{infoDisplay.CantPutIndicate();}
@@ -274,7 +275,6 @@ namespace PvP
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         if(Review.reviewflug == 0)
         {
-          Application.OpenURL("https://docs.google.com/forms/d/e/1FAIpQLSe8WEYdxBFFnxRkGotibx-VfGlPFrJ6Ik5VTWN3MRh90nscRQ/viewform?usp=sf_link");
           PlayerPrefs.SetInt("Reviewed_Flug", 1);
           Review.reviewflug = 1;
         }

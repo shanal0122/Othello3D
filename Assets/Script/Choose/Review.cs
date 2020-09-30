@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Runtime.InteropServices;
 
 public class Review : MonoBehaviour
 {
@@ -30,3 +31,13 @@ public class Review : MonoBehaviour
       Application.OpenURL("https://docs.google.com/forms/d/e/1FAIpQLSe8WEYdxBFFnxRkGotibx-VfGlPFrJ6Ik5VTWN3MRh90nscRQ/viewform?usp=sf_link");
     }
 }
+
+/*
+レビュー用の機能
+Script.Review.cs
+Choose.BetaTestCanvas
+Choose.BetaTestCanvas2
+Choose.betaTestCanvas3
+Script.PvP.Game.cs.GameSetの一部
+Script.PvC.Game.cs.GameSetの一部
+*/

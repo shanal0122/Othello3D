@@ -74,7 +74,7 @@ namespace PvC
           x += vector[vec,0];
           y += vector[vec,1];
           z += vector[vec,2];
-          try
+          if(y>=0 && y<yLength && z>=0 && z<zLength && x>=0 && x<xLength)
           {
             if(square[x,y,z] == yourStone)
             {
@@ -86,10 +86,7 @@ namespace PvC
             {
               flipNum = 0;break;
             }
-          }catch(IndexOutOfRangeException)
-          {
-            flipNum = 0;break;
-          }
+          }else{ flipNum = 0;break; }
         }
         return flipNum;
       }

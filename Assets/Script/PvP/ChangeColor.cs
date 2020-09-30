@@ -82,7 +82,7 @@ namespace PvP
         }
       }
 
-      public void UndoAllSphereColor() //全ての盤の色を元に戻す
+      public void UndoAllSphereColor() //全てのたまの色を元に戻す
       {
         for(int y=0; y<yLength; y++)
         {

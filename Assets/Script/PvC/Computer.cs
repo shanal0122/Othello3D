@@ -124,8 +124,9 @@ namespace PvC
         List<int> sqListX = new List<int>();
         List<int> sqListY = new List<int>();
         List<int> sqListZ = new List<int>();
+        bool canPut = false;
         float score = 0;
-        float? bestScore = null;
+        float bestScore = 0;
         square = stone.Square;
         cpuStone = game.Turn;
         int[,,] willSq = new int[xLength,yLength,zLength];
@@ -138,16 +139,19 @@ namespace PvC
               if(square[x,y,z] == 0)
               {
                 willSq = TryFlip(square, cpuStone, x, y, z);
-                if(willSq != null)
+                if(willSq[0,0,0] != 777)
                 {
                   score = CulScoreBest444(willSq);
-                  if(bestScore == null){ bestScore = score; sqListX.Add(x); sqListY.Add(y); sqListZ.Add(z); }
-                  if(bestScore == score){ sqListX.Add(x); sqListY.Add(y); sqListZ.Add(z); }
-                  if(bestScore < score)
+                  if(canPut == false){ bestScore = score; sqListX.Add(x); sqListY.Add(y); sqListZ.Add(z); canPut = true;}
+                  else
                   {
-                    bestScore = score;
-                    sqListX = new List<int>(); sqListY = new List<int>(); sqListZ = new List<int>();
-                    sqListX.Add(x); sqListY.Add(y); sqListZ.Add(z);
+                    if(bestScore == score){ sqListX.Add(x); sqListY.Add(y); sqListZ.Add(z); }
+                    if(bestScore < score)
+                    {
+                      bestScore = score;
+                      sqListX = new List<int>(); sqListY = new List<int>(); sqListZ = new List<int>();
+                      sqListX.Add(x); sqListY.Add(y); sqListZ.Add(z);
+                    }
                   }
                 }
               }
@@ -170,11 +174,14 @@ namespace PvC
         List<int> sqListXEnemy = new List<int>();
         List<int> sqListYEnemy = new List<int>();
         List<int> sqListZEnemy = new List<int>();
+        bool canPut = false;
+        bool canPutEnemy = false;
+        bool canPutTemp = false;
         float score = 0;
-        float? bestScore = null;
-        float? bestScoreTemp = null;
+        float bestScore = 0;
+        float bestScoreTemp = 0;
         float scoreEnemy = 0;
-        float? bestScoreEnemy = null;
+        float bestScoreEnemy = 0;
         square = stone.Square;
         cpuStone = game.Turn;
         int[,,] willSq = new int[xLength,yLength,zLength];
@@ -189,7 +196,7 @@ namespace PvC
               if(square[x,y,z] == 0)
               {
                 willSq = TryFlip(square, cpuStone, x, y, z);
-                if(willSq != null)
+                if(willSq[0,0,0] != 777)
                 {
                   sqListXEnemy = new List<int>();
                   sqListYEnemy = new List<int>();
@@ -203,67 +210,125 @@ namespace PvC
                         if(willSq[_x,_y,_z] == 0)
                         {
                           willSqEnemy = TryFlip(willSq, -1*cpuStone, _x, _y, _z);
-                          if(willSqEnemy != null)
+                          if(willSqEnemy[0,0,0] != 777)
                           {
                             scoreEnemy = CulScoreBest444(willSqEnemy);
-                            if(bestScoreEnemy == null){ bestScoreEnemy = scoreEnemy; sqListXEnemy.Add(_x); sqListYEnemy.Add(_y); sqListZEnemy.Add(_z); }
-                            if(bestScoreEnemy == scoreEnemy){ sqListXEnemy.Add(_x); sqListYEnemy.Add(_y); sqListZEnemy.Add(_z); }
-                            if(bestScoreEnemy > scoreEnemy)
+                            if(canPutEnemy == false){ bestScoreEnemy = scoreEnemy; sqListXEnemy.Add(_x); sqListYEnemy.Add(_y); sqListZEnemy.Add(_z); canPutEnemy = true;}
+                            else
                             {
-                              bestScoreEnemy = scoreEnemy;
-                              sqListXEnemy = new List<int>(); sqListYEnemy = new List<int>(); sqListZEnemy = new List<int>();
-                              sqListXEnemy.Add(_x); sqListYEnemy.Add(_y); sqListZEnemy.Add(_z);
+                              if(bestScoreEnemy == scoreEnemy){ sqListXEnemy.Add(_x); sqListYEnemy.Add(_y); sqListZEnemy.Add(_z); }
+                              if(bestScoreEnemy > scoreEnemy)
+                              {
+                                bestScoreEnemy = scoreEnemy;
+                                sqListXEnemy = new List<int>(); sqListYEnemy = new List<int>(); sqListZEnemy = new List<int>();
+                                sqListXEnemy.Add(_x); sqListYEnemy.Add(_y); sqListZEnemy.Add(_z);
+                              }
                             }
                           }
                         }
                       }
                     }
                   }
-                  bestScoreEnemy = null;
-                  for(int n=0; n<sqListXEnemy.Count; n++)
+                  if(canPutEnemy == true)
                   {
-                    willSqEnemy = TryFlip(willSq, -1*cpuStone, sqListXEnemy[n], sqListYEnemy[n], sqListZEnemy[n]);
+                    for(int n=0; n<sqListXEnemy.Count; n++)
+                    {
+                      willSqEnemy = TryFlip(willSq, -1*cpuStone, sqListXEnemy[n], sqListYEnemy[n], sqListZEnemy[n]);
+                      for(int y_=0; y_<yLength; y_++)
+                      {
+                        for(int z_=0; z_<zLength; z_++)
+                        {
+                          for(int x_=0; x_<xLength; x_++)
+                          {
+                            if(willSqEnemy[x_,y_,z_] == 0)
+                            {
+                              willSqLast = TryFlip(willSqEnemy, cpuStone, x_, y_, z_);
+                              if(willSqLast[0,0,0] != 777)
+                              {
+                                score = CulScoreBest444(willSqLast);
+                                if(canPutTemp == false){ bestScoreTemp = score; canPutTemp = true; }
+                                else
+                                {
+                                  if(bestScoreTemp < score){ bestScoreTemp = score; }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                    if(canPutTemp == true)
+                    {
+                      if(canPut == false){ bestScore = bestScoreTemp; sqListX.Add(x); sqListY.Add(y); sqListZ.Add(z); canPut = true; }
+                      else
+                      {
+                        if(bestScore == bestScoreTemp){ sqListX.Add(x); sqListY.Add(y); sqListZ.Add(z); }
+                        if(bestScore < bestScoreTemp)
+                        {
+                          bestScore = bestScoreTemp;
+                          sqListX = new List<int>(); sqListY = new List<int>(); sqListZ = new List<int>();
+                          sqListX.Add(x); sqListY.Add(y); sqListZ.Add(z);
+                        }
+                      }
+                    }
+                  }else
+                  {
                     for(int y_=0; y_<yLength; y_++)
                     {
                       for(int z_=0; z_<zLength; z_++)
                       {
                         for(int x_=0; x_<xLength; x_++)
                         {
-                          if(willSqEnemy[x_,y_,z_] == 0)
+                          if(willSq[x_,y_,z_] == 0)
                           {
-                            willSqLast = TryFlip(willSqEnemy, cpuStone, x_, y_, z_);
-                            if(willSqLast != null)
+                            willSqLast = TryFlip(willSq, cpuStone, x_, y_, z_);
+                            if(willSqLast[0,0,0] != 777)
                             {
                               score = CulScoreBest444(willSqLast);
-                              if(bestScoreTemp == null){ bestScoreTemp = score; }
-                              if(bestScoreTemp < score){ bestScoreTemp = score; }
+                              if(canPutTemp == false){ bestScoreTemp = score; canPutTemp = true; }
+                              else
+                              {
+                                if(bestScoreTemp < score){ bestScoreTemp = score; }
+                              }
                             }
                           }
                         }
                       }
                     }
-                    if(bestScoreTemp < bestScore){ break; }
+                    if(canPutTemp == true)
+                    {
+                      if(canPut == false){ bestScore = bestScoreTemp; sqListX.Add(x); sqListY.Add(y); sqListZ.Add(z); canPut = true; }
+                      else
+                      {
+                        if(bestScore == bestScoreTemp){ sqListX.Add(x); sqListY.Add(y); sqListZ.Add(z); }
+                        if(bestScore < bestScoreTemp)
+                        {
+                          bestScore = bestScoreTemp;
+                          sqListX = new List<int>(); sqListY = new List<int>(); sqListZ = new List<int>();
+                          sqListX.Add(x); sqListY.Add(y); sqListZ.Add(z);
+                        }
+                      }
+                    }
                   }
-                  if(bestScore == null){ bestScore = bestScoreTemp; sqListX.Add(x); sqListY.Add(y); sqListZ.Add(z); }
-                  if(bestScore == bestScoreTemp){ sqListX.Add(x); sqListY.Add(y); sqListZ.Add(z); }
-                  if(bestScore < bestScoreTemp)
-                  {
-                    bestScore = bestScoreTemp;
-                    sqListX = new List<int>(); sqListY = new List<int>(); sqListZ = new List<int>();
-                    sqListX.Add(x); sqListY.Add(y); sqListZ.Add(z);
-                  }
-                  bestScoreTemp = null;
+                  canPutEnemy = false;
+                  canPutTemp = false;
                 }
               }
             }
           }
         }
-        int rv = (int)(UnityEngine.Random.value * sqListX.Count);
-        if(rv == sqListX.Count){ rv--; }
-        //Debug.Log("sqList.Count : " + sqListX.Count); //////////////////////////////////////////////////////////////////////////////////////////////
-        //Debug.Log("rv : " + rv);
-        //Debug.Log("x,z,y : " + sqListX[rv] + " " + sqListZ[rv] + " " + sqListY[rv]); //////////////////////////////////////////////////////////////////////////////////////////////
-        bool a = stone.FlipStone(cpuStone,sqListX[rv], sqListY[rv], sqListZ[rv]);
+        if(canPut == true)
+        {
+          int rv = (int)(UnityEngine.Random.value * sqListX.Count);
+          if(rv == sqListX.Count){ rv--; }
+          //Debug.Log("sqList.Count : " + sqListX.Count); //////////////////////////////////////////////////////////////////////////////////////////////
+          //Debug.Log("rv : " + rv);
+          //Debug.Log("x,z,y : " + sqListX[rv] + " " + sqListZ[rv] + " " + sqListY[rv]); //////////////////////////////////////////////////////////////////////////////////////////////
+          bool a = stone.FlipStone(cpuStone,sqListX[rv], sqListY[rv], sqListZ[rv]);
+        }else
+        {
+          CPU2();
+        }
       }
 
 
@@ -277,7 +342,7 @@ namespace PvC
           x += vector[vec,0];
           y += vector[vec,1];
           z += vector[vec,2];
-          try
+          if(y>=0 && y<yLength && z>=0 && z<zLength && x>=0 && x<xLength)
           {
             if(sq[x,y,z] == yourStone)
             {
@@ -289,15 +354,12 @@ namespace PvC
             {
               flipNum = 0;break;
             }
-          }catch(IndexOutOfRangeException)
-          {
-            flipNum = 0;break;
-          }
+          }else{ flipNum = 0;break; }
         }
         return flipNum;
       }
 
-      public int[,,] TryFlip(int[,,] sq, int stone, int x, int y, int z) //座標(x,y,z)にstoneをおき裏返しturnを変更したらどうなるか見る。おいた後の配列を返す
+      public int[,,] TryFlip(int[,,] sq, int stone, int x, int y, int z) //座標(x,y,z)にstoneをおき裏返しturnを変更したらどうなるか見る。おいた後の配列を返す。返せない時は[0,0,0]に777を入れて返す
       {
         int[,,] newsq = new int[xLength,yLength,zLength];
         Array.Copy(sq, newsq, sq.Length);
@@ -320,7 +382,9 @@ namespace PvC
         }
         else
         {
-          return null;
+          newsq = new int[xLength,yLength,zLength];
+          newsq[0,0,0] = 777;
+          return newsq;
         }
       }
 

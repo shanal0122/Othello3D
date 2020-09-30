@@ -8,6 +8,7 @@ namespace PvC
   public class InfoDisplay : MonoBehaviour
   {
       private int playerTurn = Choose.InitialSetting.playerTurn; //プレイヤーの手番
+      private int turn; //PassIndicate用
       public Stone stone;
       public Game game;
       public Text blackTurnText;
@@ -85,7 +86,19 @@ namespace PvC
         Invoke("ClaimTextClear",1);
       }
 
-      public void PassedIndicate(int turn) //turnの人をパスしたことを知らせる
+      public void PassedIndicate(int t) //turnの人をパスしたことを知らせる
+      {
+        ClaimTextClear();
+        turn = t;
+        Invoke("PassIn",0.1f);
+      }
+
+      public void ClaimTextClear()
+      {
+        claimText.text = null;
+      }
+
+      public void PassIn()
       {
         if(turn == 1)
         {
@@ -97,11 +110,6 @@ namespace PvC
           claimText.text = "白をパス\nしました";
           Invoke("ClaimTextClear",3);
         }
-      }
-
-      public void ClaimTextClear()
-      {
-        claimText.text = null;
       }
   }
 }
