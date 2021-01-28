@@ -3348,7 +3348,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "4\xD76\xD74\u30AA\u30BB\u30ED\n\u5BFECPU\u6226\n(\u958B\u767A\u4E2D)"
+  m_Text: "4\xD76\xD74\u30AA\u30BB\u30ED\n\u5BFECPU\u6226"
 --- !u!222 &547929882
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3779,7 +3779,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1010270825}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.14583331
+  m_Size: 0.14583333
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4193,7 +4193,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 694066075}
   m_OnClick:
     m_PersistentCalls:
