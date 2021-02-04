@@ -109,7 +109,7 @@ namespace PvC
         }
       }
 
-      private void RemoveStone(int x, int y, int z) //座標(x,y,z)の石を取り除く
+      public void RemoveStone(int x, int y, int z) //座標(x,y,z)の石を取り除く
       {
         if(square[x,y,z] == 1){ bs[x,y,z].SetActive(false); }
         if(square[x,y,z] == -1){ ws[x,y,z].SetActive(false); }

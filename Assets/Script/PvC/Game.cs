@@ -82,6 +82,7 @@ namespace PvC
         stone.PutStone(1,a,b,c-1);
         stone.PutStone(-1,a-1,b,c-1);
         stone.PutStone(-1,a,b,c);
+        //LastDebug();////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         CanPut();
 
 　　　　　　recordstr = "0"; //"totalTurn"
@@ -252,17 +253,16 @@ namespace PvC
 
       private void CPUPlay()
       {
-        if(turn == 1) /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        if(totalTurn >= xLength * yLength * zLength - 15 && totalTurn <= xLength * yLength * zLength - 10)
+        {
+          computer.CPULast();
+        }
+        else
         {
           if(Choose.InitialSetting.cpuLevel == 1){ computer.CPU1(); }
           if(Choose.InitialSetting.cpuLevel == 2){ computer.CPU2(); }
           if(Choose.InitialSetting.cpuLevel == 3){ computer.CPU3(); }
-        }else if(turn == -1)
-        {
-          if(Choose.InitialSetting.cpuLevel == 1){ computer.CPU1(); }
-          if(Choose.InitialSetting.cpuLevel == 2){ computer.CPU2(); }
-          if(Choose.InitialSetting.cpuLevel == 3){ computer.CPU3(); }
-        }else{ Debug.Log("Error : Game.CPUPlay"); } //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        }
         turn *= -1;
         CanPut();
         totalTurn++;
@@ -326,6 +326,27 @@ namespace PvC
           Review.reviewflug = 1;
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      }
+
+      private void LastDebug()
+      {/*
+        for(int _z=0; _z<zLength/2; _z++){ for(int _y=0; _y<yLength; _y++){ stone.RemoveStone(0,_y,_z); stone.PutStone(1,0,_y,_z); } }
+        for(int _z=0; _z<zLength/2; _z++){ for(int _y=0; _y<yLength; _y++){ stone.RemoveStone(1,_y,_z); stone.PutStone(-1,1,_y,_z); } }
+        for(int _z=0; _z<zLength/2; _z++){ for(int _y=0; _y<yLength; _y++){ stone.RemoveStone(2,_y,_z); stone.PutStone(1,2,_y,_z); } }
+        for(int _z=0; _z<zLength/2; _z++){ for(int _y=0; _y<yLength; _y++){ stone.RemoveStone(3,_y,_z); stone.PutStone(-1,3,_y,_z); } }
+        for(int _z=zLength/2; _z<zLength; _z++){ for(int _y=0; _y<yLength; _y++){ stone.RemoveStone(0,_y,_z); stone.PutStone(-1,0,_y,_z); } }
+        for(int _z=zLength/2; _z<zLength; _z++){ for(int _y=0; _y<yLength; _y++){ stone.RemoveStone(1,_y,_z); stone.PutStone(1,1,_y,_z); } }
+        for(int _z=zLength/2; _z<zLength; _z++){ for(int _y=0; _y<yLength; _y++){ stone.RemoveStone(2,_y,_z); stone.PutStone(-1,2,_y,_z); } }
+        for(int _z=zLength/2; _z<zLength; _z++){ for(int _y=0; _y<yLength; _y++){ stone.RemoveStone(3,_y,_z); stone.PutStone(1,3,_y,_z); } }
+        stone.RemoveStone(0,0,0); stone.RemoveStone(3,0,0); stone.RemoveStone(0,3,0); stone.RemoveStone(0,0,3); stone.RemoveStone(3,3,0); stone.RemoveStone(3,0,3); stone.RemoveStone(0,3,3); stone.RemoveStone(3,3,3);
+*/
+        for(int _z=0; _z<zLength; _z++){ for(int _y=0; _y<yLength; _y++){ stone.RemoveStone(0,_y,_z); stone.PutStone(-1,0,_y,_z); } }
+        for(int _z=0; _z<zLength/2; _z++){ for(int _y=0; _y<yLength; _y++){ stone.RemoveStone(1,_y,_z); stone.PutStone(-1,1,_y,_z); } }
+        for(int _z=zLength/2; _z<zLength; _z++){ for(int _y=0; _y<yLength; _y++){ stone.RemoveStone(1,_y,_z); stone.PutStone(1,1,_y,_z); } }
+        for(int _z=0; _z<zLength; _z++){ for(int _y=0; _y<yLength; _y++){ stone.RemoveStone(2,_y,_z); stone.PutStone(1,2,_y,_z); } }
+        for(int _z=0; _z<zLength; _z++){ for(int _y=0; _y<yLength; _y++){ stone.RemoveStone(3,_y,_z); stone.PutStone(1,3,_y,_z); } }
+        stone.RemoveStone(3,3,3); stone.RemoveStone(3,3,2); stone.RemoveStone(3,2,3); stone.RemoveStone(3,2,2); stone.RemoveStone(3,1,3); stone.RemoveStone(3,3,1); stone.RemoveStone(3,1,2); stone.RemoveStone(2,3,3);
+        totalTurn = xLength * yLength * zLength - 16;
       }
 
       public string Recordstr{ get {return recordstr;} set {this.recordstr = value;} }

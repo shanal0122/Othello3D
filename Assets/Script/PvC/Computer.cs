@@ -90,72 +90,72 @@ namespace PvC
 
         basicMap1_464 = new float[,,]
         {
-          { {100f,6f,6f,100f}, {6f, -12f, -12f, 6f}, {6f, -12f, -12f, 6f}, {6f, -12f, -12f, 6f}, {6f, -12f, -12f, 6f}, {100f,6f,6f,100f} },
-          { {6f, -12f, -12f, 6f}, {-12f, 30f, 30f, -12f}, {-12f, 30f, 30f, -12f}, {-12f, 30f, 30f, -12f}, {-12f, 30f, 30f, -12f}, {6f, -12f, -12f, 6f} },
-          { {6f, -12f, -12f, 6f}, {-12f, 30f, 30f, -12f}, {-12f, 30f, 30f, -12f}, {-12f, 30f, 30f, -12f}, {-12f, 30f, 30f, -12f}, {6f, -12f, -12f, 6f} },
-          { {100f,6f,6f,100f}, {6f, -12f, -12f, 6f}, {6f, -12f, -12f, 6f}, {6f, -12f, -12f, 6f}, {6f, -12f, -12f, 6f}, {100f,6f,6f,100f} }
+          { {100.0f, -6.0f, -6.0f, 100.0f}, {-2.0f, 23.0f, 23.0f, -2.0f}, {-25.0f, -26.0f, -26.0f, -25.0f}, {-25.0f, -26.0f, -26.0f, -25.0f}, {-2.0f, 23.0f, 23.0f, -2.0f}, {100.0f, -6.0f, -6.0f, 100.0f} },
+          { {-6.0f, -6.0f, -6.0f, -6.0f}, {23.0f, 8.0f, 8.0f, 23.0f}, {-26.0f, -11.0f, -11.0f, -26.0f}, {-26.0f, -11.0f, -11.0f, -26.0f}, {23.0f, 8.0f, 8.0f, 23.0f}, {-6.0f, -6.0f, -6.0f, -6.0f} },
+          { {-6.0f, -6.0f, -6.0f, -6.0f}, {23.0f, 8.0f, 8.0f, 23.0f}, {-26.0f, -11.0f, -11.0f, -26.0f}, {-26.0f, -11.0f, -11.0f, -26.0f}, {23.0f, 8.0f, 8.0f, 23.0f}, {-6.0f, -6.0f, -6.0f, -6.0f} },
+          { {100.0f, -6.0f, -6.0f, 100.0f}, {-2.0f, 23.0f, 23.0f, -2.0f}, {-25.0f, -26.0f, -26.0f, -25.0f}, {-25.0f, -26.0f, -26.0f, -25.0f}, {-2.0f, 23.0f, 23.0f, -2.0f}, {100.0f, -6.0f, -6.0f, 100.0f} },
         };
         basicMap2_464 = new float[,,]
         {
-          { {99f,-44f,-44f,99f}, {-44f, -36f, -36f, -44f}, {-44f, -36f, -36f, -44f}, {-44f, -36f, -36f, -44f}, {-44f, -36f, -36f, -44f}, {99f,-44f,-44f,99f} },
-          { {-44f, -36f, -36f, -44f}, {-36f, 2f, 2f, -36f}, {-36f, 2f, 2f, -36f}, {-36f, 2f, 2f, -36f}, {-36f, 2f, 2f, -36f}, {-44f, -36f, -36f, -44f} },
-          { {-44f, -36f, -36f, -44f}, {-36f, 2f, 2f, -36f}, {-36f, 2f, 2f, -36f}, {-36f, 2f, 2f, -36f}, {-36f, 2f, 2f, -36f}, {-44f, -36f, -36f, -44f} },
-          { {99f,-44f,-44f,99f}, {-44f, -36f, -36f, -44f}, {-44f, -36f, -36f, -44f}, {-44f, -36f, -36f, -44f}, {-44f, -36f, -36f, -44f}, {99f,-44f,-44f,99f} }
+          { {86.0f, -14.0f, -14.0f, 86.0f}, {-7.0f, -5.0f, -5.0f, -7.0f}, {16.0f, -2.0f, -2.0f, 16.0f}, {16.0f, -2.0f, -2.0f, 16.0f}, {-7.0f, -5.0f, -5.0f, -7.0f}, {86.0f, -14.0f, -14.0f, 86.0f} },
+          { {-14.0f, -32.0f, -32.0f, -14.0f}, {-5.0f, 2.0f, 2.0f, -5.0f}, {-2.0f, 15.0f, 15.0f, -2.0f}, {-2.0f, 15.0f, 15.0f, -2.0f}, {-5.0f, 2.0f, 2.0f, -5.0f}, {-14.0f, -32.0f, -32.0f, -14.0f} },
+          { {-14.0f, -32.0f, -32.0f, -14.0f}, {-5.0f, 2.0f, 2.0f, -5.0f}, {-2.0f, 15.0f, 15.0f, -2.0f}, {-2.0f, 15.0f, 15.0f, -2.0f}, {-5.0f, 2.0f, 2.0f, -5.0f}, {-14.0f, -32.0f, -32.0f, -14.0f} },
+          { {86.0f, -14.0f, -14.0f, 86.0f}, {-7.0f, -5.0f, -5.0f, -7.0f}, {16.0f, -2.0f, -2.0f, 16.0f}, {16.0f, -2.0f, -2.0f, 16.0f}, {-7.0f, -5.0f, -5.0f, -7.0f}, {86.0f, -14.0f, -14.0f, 86.0f} },
         };
         basicMap3_464 = new float[,,]
         {
-          { {95f,3f,3f,95f}, {3f, -49f, -49f, 3f}, {3f, -49f, -49f, 3f}, {3f, -49f, -49f, 3f}, {3f, -49f, -49f, 3f}, {95f,3f,3f,95f} },
-          { {3f, -49f, -49f, 3f}, {-49f, -30f, -30f, -49f}, {-49f, -30f, -30f, -49f}, {-49f, -30f, -30f, -49f}, {-49f, -30f, -30f, -49f}, {3f, -49f, -49f, 3f} },
-          { {3f, -49f, -49f, 3f}, {-49f, -30f, -30f, -49f}, {-49f, -30f, -30f, -49f}, {-49f, -30f, -30f, -49f}, {-49f, -30f, -30f, -49f}, {3f, -49f, -49f, 3f} },
-          { {95f,3f,3f,95f}, {3f, -49f, -49f, 3f}, {3f, -49f, -49f, 3f}, {3f, -49f, -49f, 3f}, {3f, -49f, -49f, 3f}, {95f,3f,3f,95f} }
+          { {76.0f, 1.0f, 1.0f, 76.0f}, {9.0f, 1.0f, 1.0f, 9.0f}, {23.0f, -8.0f, -8.0f, 23.0f}, {23.0f, -8.0f, -8.0f, 23.0f}, {9.0f, 1.0f, 1.0f, 9.0f}, {76.0f, 1.0f, 1.0f, 76.0f} },
+          { {1.0f, 1.0f, 1.0f, 1.0f}, {1.0f, -33.0f, -33.0f, 1.0f}, {-8.0f, 13.0f, 13.0f, -8.0f}, {-8.0f, 13.0f, 13.0f, -8.0f}, {1.0f, -33.0f, -33.0f, 1.0f}, {1.0f, 1.0f, 1.0f, 1.0f} },
+          { {1.0f, 1.0f, 1.0f, 1.0f}, {1.0f, -33.0f, -33.0f, 1.0f}, {-8.0f, 13.0f, 13.0f, -8.0f}, {-8.0f, 13.0f, 13.0f, -8.0f}, {1.0f, -33.0f, -33.0f, 1.0f}, {1.0f, 1.0f, 1.0f, 1.0f} },
+          { {76.0f, 1.0f, 1.0f, 76.0f}, {9.0f, 1.0f, 1.0f, 9.0f}, {23.0f, -8.0f, -8.0f, 23.0f}, {23.0f, -8.0f, -8.0f, 23.0f}, {9.0f, 1.0f, 1.0f, 9.0f}, {76.0f, 1.0f, 1.0f, 76.0f} },
         };
         sideMap464 = new float[,,,]
         {
           {
-            { {0f, 0f, 0f}, {0f, 0f, -20f}, {0f, 20f, 0f} },
-            { {0f, 5f, -18f}, {0f, 18f, -20f}, {-85f, -30f, -57f} },
-            { {0f, 18f, -5f}, {-85f, 57f, 30f}, {0f, 20f, -18f} }
+            { {0.0f, 0.0f, 0.0f}, {0.0f, -24.0f, -13.0f}, {0.0f, 13.0f, 24.0f} },
+            { {0.0f, -16.0f, -9.0f}, {0.0f, 36.0f, -26.0f}, {-74.0f, -43.0f, -81.0f} },
+            { {0.0f, 9.0f, 16.0f}, {-74.0f, 81.0f, 43.0f}, {0.0f, 26.0f, -36.0f} }
           },
           {
-            { {0f, 0f, 0f}, {5f, 8f, -20f}, {18f, 38f, -20f} },
-            { {0f, 8f, 20f}, {18f, 65f, -5f}, {57f, -34f, 0f} },
-            { {20f, 38f, 20f}, {-30f, -34f, 0f}, {20f, -60f, 5f} }
+            { {0.0f, 0.0f, 0.0f}, {-16.0f, -2.0f, -56.0f}, {9.0f, 33.0f, -18.0f} },
+            { {-24.0f, -2.0f, 18.0f}, {36.0f, 41.0f, 13.0f}, {81.0f, 4.0f, 0.0f} },
+            { {13.0f, 33.0f, 56.0f}, {-43.0f, 4.0f, 0.0f}, {26.0f, -61.0f, -13.0f} }
           },
           {
-            { {0f, 0f, 0f}, {-18f, 20f, -38f}, {-5f, 20f, -8f} },
-            { {-20f, -20f, -38f}, {-20f, -5f, 60f}, {30f, 0f, 34f} },
-            { {0f, -20f, -8f}, {-57f, 0f, 34f}, {-18f, 5f, -65f} }
+            { {0.0f, 0.0f, 0.0f}, {-9.0f, 18.0f, -33.0f}, {16.0f, 56.0f, 2.0f} },
+            { {-13.0f, -56.0f, -33.0f}, {-26.0f, 13.0f, 61.0f}, {43.0f, 0.0f, -4.0f} },
+            { {24.0f, -18.0f, 2.0f}, {-81.0f, 0.0f, -4.0f}, {-36.0f, -13.0f, -41.0f} }
           }
         };
         sideLongMap464 = new float[,,]
         {
-          { {0f, 0f, 0f}, {0f, 0f, 0f}, {0f, 0f, 0f} },
-          { {0f, 0f, 0f}, {0f, 0f, 0f}, {0f, 0f, 0f} },
-          { {0f, 0f, 0f}, {0f, 0f, 0f}, {0f, 0f, 0f} },
+          { {0.0f, 0.0f, 0.0f}, {0.0f, 11.0f, -63.0f}, {0.0f, 63.0f, -11.0f} },
+          { {0.0f, 24.0f, 13.0f}, {-14.0f, 49.0f, 65.0f}, {57.0f, 42.0f, 65.0f} },
+          { {0.0f, -13.0f, -24.0f}, {-57.0f, -65.0f, -42.0f}, {14.0f, -65.0f, -49.0f} }
         };
         surfaceMap464 = new float[,,,]
         {
           {
-               { {0f, 0f, 0f}, {0f, -18f, -40f}, {0f, 40f, 18f} },
-               { {0f, 3f, -6f}, {0f, 15f, -50f}, {-40f, -45f, -64f} },
-               { {0f, 6f, -3f}, {-40f, 64f, 45f}, {0f, 50f, -15f} }
+            { {0.0f, 0.0f, 0.0f}, {0.0f, 6.0f, -17.0f}, {0.0f, 17.0f, -6.0f} },
+            { {0.0f, 20.0f, 7.0f}, {0.0f, 1.0f, -38.0f}, {-42.0f, -55.0f, -19.0f} },
+            { {0.0f, -7.0f, -20.0f}, {-42.0f, 19.0f, 55.0f}, {0.0f, 38.0f, -1.0f} }
           },
           {
-               { {0f, 0f, 0f}, {3f, -3f, -67f}, {6f, 25f, -20f} },
-               { {-18f, -3f, 20f}, {15f, 66f, 70f}, {64f, 40f, 0f} },
-               { {40f, 25f, 67f}, {-45f, 40f, 0f}, {50f, -40f, -70f} }
+            { {0.0f, 0.0f, 0.0f}, {20.0f, -9.0f, -26.0f}, {-7.0f, 57.0f, -1.0f} },
+            { {6.0f, -9.0f, 1.0f}, {1.0f, 8.0f, 25.0f}, {19.0f, 14.0f, 0.0f} },
+            { {17.0f, 57.0f, 26.0f}, {-55.0f, 14.0f, 0.0f}, {38.0f, -63.0f, -25.0f} }
           },
           {
-               { {0f, 0f, 0f}, {-6f, 20f, -25f}, {-3f, 67f, 3f} },
-               { {-40f, -67f, -25f}, {-50f, 70f, 40f}, {45f, 0f, -40f} },
-               { {18f, -20f, 3f}, {-64f, 0f, -40f}, {-15f, -70f, -66f} }
+            { {0.0f, 0.0f, 0.0f}, {7.0f, 1.0f, -57.0f}, {-20.0f, 26.0f, 9.0f} },
+            { {-17.0f, -26.0f, -57.0f}, {-38.0f, 25.0f, 63.0f}, {55.0f, 0.0f, -14.0f} },
+            { {-6.0f, -1.0f, 9.0f}, {-19.0f, 0.0f, -14.0f}, {-1.0f, -25.0f, -8.0f} }
           }
         };
         surfaceLongMap464 = new float[,,]
         {
-          { {0f, 0f, 0f}, {0f, 0f, 0f}, {0f, 0f, 0f} },
-          { {0f, 0f, 0f}, {0f, 0f, 0f}, {0f, 0f, 0f} },
-          { {0f, 0f, 0f}, {0f, 0f, 0f}, {0f, 0f, 0f} },
+          { {0.0f, 0.0f, 0.0f}, {0.0f, 14.0f, -51.0f}, {0.0f, 51.0f, -14.0f} },
+          { {0.0f, -1.0f, 8.0f}, {-8.0f, 40.0f, 38.0f}, {66.0f, 55.0f, 48.0f} },
+          { {0.0f, -8.0f, 1.0f}, {-66.0f, -48.0f, -55.0f}, {8.0f, -38.0f, -40.0f} }
         };
       }
 
@@ -465,6 +465,17 @@ namespace PvC
         }
       }
 
+      private int CountStone(int[,,] sq, int stone) //盤上にあるstoneの数を数える
+      {
+        int stoneNum = 0;
+        foreach(int s in sq) {if(s == stone) {stoneNum++;}}
+        if(stone != 1 && stone != -1)
+        {
+          Debug.Log("Error : Stone/CountStone");//////////////////////////////////////////////////////////////////////////////////////
+        }
+        return stoneNum;
+      }
+
       private float CulScoreBest(int[,,] sq)
       {
         int n;
@@ -687,6 +698,163 @@ namespace PvC
       {
         return (3 * n * n - n) / 2;
       }
+
+
+
+      public void CPULast()
+      {
+        int restTurn = xLength * yLength * zLength - 8 - game.TotalTurn;
+        int[] returnInfo = new int[3]; //(x座標,y座標,z座標)
+        square = stone.Square;
+        cpuStone = game.Turn;
+        //int turn = game.Turn;
+        //int[,] coordies = new int[restTurn,3]; //coordies[ここからのターン数,座標]=置く位置
+        //int[,,,] squares =new int[restTurn,xLength,yLenth,zLength]; //squares[ここからのターン数,x座標,y座標,z座標]=石の色（0,1,-1）
+        //int bestCount = 0; //最終的な石の数の最大数
+        List<int> leftsqListX = new List<int>(); //まだ石を置いていない座標のリスト
+        List<int> leftsqListY = new List<int>();
+        List<int> leftsqListZ = new List<int>();
+        for(int _y=0; _y<yLength; _y++)
+        {
+          for(int _z=0; _z<zLength; _z++)
+          {
+            for(int _x=0; _x<xLength; _x++)
+            {
+              if(square[_x,_y,_z] == 0)
+              {
+                leftsqListX.Add(_x); leftsqListY.Add(_y); leftsqListZ.Add(_z);
+              }
+            }
+          }
+        }
+        returnInfo = LastCul(leftsqListX,leftsqListY,leftsqListZ,square,restTurn);
+        bool a = stone.FlipStone(cpuStone,returnInfo[0],returnInfo[1],returnInfo[2]);
+        ///Debug.Log(restTurn +" "+ leftsqListX.Count);
+      }
+
+      private int[] LastCul(List<int> leftsqListX, List<int> leftsqListY, List<int> leftsqListZ, int[,,] sq, int times) //おける石が2個以上かつ残り少なくなったときにCPUの石をおくべきマスを返す。引数は[まだ置いてない座標のリスト*3,その時の盤面,残りの置いていないマスの数]
+      {
+        int[] returnInfo = new int[3]; //(x座標,y座標,z座標)
+        List<int> sqListX = new List<int>(); List<int> sqListY = new List<int>(); List<int> sqListZ = new List<int>(); //おく場所の候補
+        List<int> leftsqListXcopy = new List<int>(); List<int> leftsqListYcopy = new List<int>(); List<int> leftsqListZcopy = new List<int>(); //コピー
+        bool canPut = false;
+        int[,,] willSq = new int[xLength,yLength,zLength];
+        int bestCount = 0; int count = 0;
+        //Debug.Log(leftsqListX.Count); /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        for(int n=0; n<leftsqListX.Count; n++) //この後も双方が最善手を打ち続けたときに手番の石の数が最大になるような手番の石の置き方を返す
+        {
+          leftsqListXcopy = new List<int>(leftsqListX); leftsqListYcopy = new List<int>(leftsqListY); leftsqListZcopy = new List<int>(leftsqListZ); //コピー
+          willSq = TryFlip(sq, cpuStone, leftsqListX[n], leftsqListY[n], leftsqListZ[n]);
+          if(willSq[0,0,0] != 777)
+          {
+            leftsqListXcopy.RemoveAt(n); leftsqListYcopy.RemoveAt(n); leftsqListZcopy.RemoveAt(n);
+            //Debug.Log(leftsqListX[n] + ", " + leftsqListY[n] + ", " + leftsqListZ[n]); /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            if(times == 2){ count = Last1Cul(leftsqListXcopy, leftsqListYcopy, leftsqListZcopy, willSq, -1*cpuStone); }
+            else{ count = LastNCul(leftsqListXcopy, leftsqListYcopy, leftsqListZcopy, willSq, -1*cpuStone, times-1); }
+            if(canPut == false){ bestCount = count; sqListX.Add(leftsqListX[n]); sqListY.Add(leftsqListY[n]); sqListZ.Add(leftsqListZ[n]); canPut = true;}
+            else
+            {
+              if(bestCount == count){ sqListX.Add(leftsqListX[n]); sqListY.Add(leftsqListY[n]); sqListZ.Add(leftsqListZ[n]); }
+              if(bestCount < count)
+              {
+                bestCount = count;
+                sqListX = new List<int>(); sqListY = new List<int>(); sqListZ = new List<int>();
+                sqListX.Add(leftsqListX[n]); sqListY.Add(leftsqListY[n]); sqListZ.Add(leftsqListZ[n]);
+              }
+            }
+          }
+          //else{ Debug.Log(leftsqListX[n] + ", " + leftsqListY[n] + ", " + leftsqListZ[n]); Debug.Log(leftsqListX.Count + ", stone : " + cpuStone + "cannotPut"); }/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        }
+        int rv = (int)(UnityEngine.Random.value * sqListX.Count);
+        if(rv == sqListX.Count){ rv--; }
+        returnInfo[0] = sqListX[rv]; returnInfo[1] = sqListY[rv]; returnInfo[2] = sqListZ[rv];
+        //Debug.Log(leftsqListX.Count + ", stone : " + cpuStone + ", bestCount : " + bestCount + ", x,y,z : " + returnInfo[0] + " " + returnInfo[1] + " " + returnInfo[2]); //////////////////////////////////////////////////////////////////////////////////////////////
+        return returnInfo;
+      }
+
+      private int LastNCul(List<int> leftsqListX, List<int> leftsqListY, List<int> leftsqListZ, int[,,] sq, int st, int times) //おける石が残り2個以上になったときに石の数を返す。引数は[まだ置いてない座標のリスト*3,その時の盤面,手番,残りの置いていないマスの数]
+      {
+        List<int> leftsqListXcopy = new List<int>(); List<int> leftsqListYcopy = new List<int>(); List<int> leftsqListZcopy = new List<int>(); //コピー
+        bool canPut = false;
+        int[,,] willSq = new int[xLength,yLength,zLength];
+        int bestCount = 0; int count = 0;
+        for(int n=0; n<leftsqListX.Count; n++) //この後も双方が最善手を打ち続けたときに手番の石の数が最大になるような手番の石の置き方を返す
+        {
+          leftsqListXcopy = new List<int>(leftsqListX); leftsqListYcopy = new List<int>(leftsqListY); leftsqListZcopy = new List<int>(leftsqListZ); //コピー
+          willSq = TryFlip(sq, st, leftsqListX[n], leftsqListY[n], leftsqListZ[n]);
+          if(willSq[0,0,0] != 777)
+          {
+            leftsqListXcopy.RemoveAt(n); leftsqListYcopy.RemoveAt(n); leftsqListZcopy.RemoveAt(n);
+            //Debug.Log(leftsqListXcopy.Count); /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            if(times == 2){ count = Last1Cul(leftsqListXcopy, leftsqListYcopy, leftsqListZcopy, willSq, -1*st); }
+            else{ count = LastNCul(leftsqListXcopy, leftsqListYcopy, leftsqListZcopy, willSq, -1*st, times-1); }
+            if(canPut == false){ bestCount = count; canPut = true;}
+            else
+            {
+              if(st == cpuStone){ if(bestCount < count){ bestCount = count; } }
+              if(st == -1*cpuStone){ if(bestCount > count){ bestCount = count; } }
+            }
+            //Debug.Log(leftsqListX.Count + ", stone : " + st + ", bestCount : " + bestCount); ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+          }
+          //else{ Debug.Log(leftsqListX.Count + ", stone : " + st + "cannotPut"); }/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        }
+        if(!canPut)
+        {
+          for(int n=0; n<leftsqListX.Count; n++)
+          {
+            leftsqListXcopy = new List<int>(leftsqListX); leftsqListYcopy = new List<int>(leftsqListY); leftsqListZcopy = new List<int>(leftsqListZ); //コピー
+            willSq = TryFlip(sq, -1*st, leftsqListX[n], leftsqListY[n], leftsqListZ[n]);
+            if(willSq[0,0,0] != 777)
+            {
+              leftsqListXcopy.RemoveAt(n); leftsqListYcopy.RemoveAt(n); leftsqListZcopy.RemoveAt(n);
+              if(times == 2){ count = Last1Cul(leftsqListXcopy, leftsqListYcopy, leftsqListZcopy, willSq, st); }
+              else{ count = LastNCul(leftsqListXcopy, leftsqListYcopy, leftsqListZcopy, willSq, st, times-1); }
+              if(canPut == false){ bestCount = count; canPut = true;}
+              else
+              {
+                if(-1*st == cpuStone){ if(bestCount < count){ bestCount = count; } }
+                if(-1*st == -1*cpuStone){ if(bestCount > count){ bestCount = count; } }
+              }
+              //Debug.Log(leftsqListX.Count + ", stone : " + -1*st + ", bestCount : " + bestCount); ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            }
+            //else{ Debug.Log(leftsqListX.Count + ", stone : " + -1*st + "cannotPut"); }/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+          }
+          if(!canPut)
+          {
+            count = CountStone(willSq, cpuStone);
+            int playerCount = CountStone(willSq, -1*cpuStone);
+            if(count > playerCount){ bestCount = xLength * yLength * zLength; }
+            else{ bestCount = count;}
+            //Debug.Log(leftsqListX.Count + ", stone : cannotPut" + ", bestCount : " + bestCount); ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+          }
+        }
+        return bestCount;
+      }
+
+      private int Last1Cul(List<int> leftsqListX, List<int> leftsqListY, List<int> leftsqListZ, int[,,] sq, int st) //おける石が残り1個になったときのCPUの石の数を返す。引数はまだ置いてない座標のリストとその時の盤面と手番とCPUの石の色
+      {
+        bool canPut = false;
+        int[,,] willSq = new int[xLength,yLength,zLength];
+        int bestCount = 0;
+        if(leftsqListX.Count != 1){ Debug.Log("Error : Computer/Last1Cul leftsqListX.Count is " + leftsqListX.Count); }/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        willSq = TryFlip(sq, st, leftsqListX[0], leftsqListY[0], leftsqListZ[0]);
+        if(willSq[0,0,0] != 777){ bestCount = CountStone(willSq, cpuStone); canPut = true; }
+        if(!canPut)
+        {
+          willSq = TryFlip(sq, -1*st, leftsqListX[0], leftsqListY[0], leftsqListZ[0]);
+          if(willSq[0,0,0] != 777){ bestCount = CountStone(willSq, cpuStone); canPut = true; }
+          if(!canPut)
+          {
+            int count = CountStone(willSq, cpuStone);
+            int playerCount = CountStone(willSq, -1*cpuStone);
+            if(count > playerCount){ bestCount = xLength * yLength * zLength; }
+            else{ bestCount = count;}
+          }
+        }
+        return bestCount;
+      }
+
+
 
       public int[,] Vector { get {return vector;} set {vector = value;} }
   }
