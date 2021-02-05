@@ -224,12 +224,45 @@ namespace PvP
             {
               for(int n=0; n<vector.GetLength(0); n++)
               {
-                if(square[x,y,z] == 0 && FlipNum(stone,x,y,z,n) != 0) {return true;}
+                if(square[x,y,z] == 0 && FlipNum(stone,x,y,z,n) != 0){ return true; }
               }
             }
           }
         }
         return false;
+      }
+
+      public int[] CanPutOnly1(int stone) //stoneを置ける場所がちょうど一つであれば[1,x+1,y+1,z+1]を返しそれ以外なら[0,0,0,0]を返す。KeyDetector.csのNumKeyDetect()で使う
+      {
+        int count = 0; //裏返せる箇所の数
+        bool flug = false; //その位置に石を置いたときに裏返せるならtrue
+        int[] returnInfo = new int[4];
+        if(stone != 1 && stone != -1)
+        {
+          Debug.Log("Error : Stone/CanPut"); ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        }
+        for(int y=0; y<yLength; y++)
+        {
+          for(int z=0; z<zLength; z++)
+          {
+            for(int x=0; x<xLength; x++)
+            {
+              if(square[x,y,z] == 0)
+              {
+                flug = false;
+                for(int n=0; n<vector.GetLength(0); n++)
+                {
+                  if(FlipNum(stone,x,y,z,n) != 0){ flug = true; }
+                }
+                if(flug){ count++; returnInfo[1] = x+1; returnInfo[2] = y+1; returnInfo[3] = z+1; }
+              }
+            }
+          }
+        }
+        //Debug.Log("Count : " + count + ", X : " + returnInfo[1] + ", Y : " + returnInfo[2] + ", Z : " + returnInfo[3]); ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        if(count == 1){ returnInfo[0] = 1; }
+        else{ returnInfo[0] = 0; }
+        return returnInfo;
       }
 
       public void Inform(int stone, int x, int y, int z) //(x,y,z)に石が置けるなら光らせる（Menu画面で変更可能）

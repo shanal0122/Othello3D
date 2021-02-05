@@ -2605,6 +2605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   game: {fileID: 401600369}
+  stone: {fileID: 1002900343}
 --- !u!4 &691679224
 Transform:
   m_ObjectHideFlags: 0

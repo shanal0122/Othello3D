@@ -13,6 +13,7 @@ namespace PvC
       private string[] yKeys;
       private string[] zKeys;
       public Game game;
+      public Stone stone;
 
 
       void Start()//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -36,6 +37,11 @@ namespace PvC
                   {
                       game.XCoordi = int.Parse(key);
                   }
+              }
+              if(Input.GetKeyDown("return"))
+              {
+                int[] returnInfo = new int[4]; returnInfo = stone.CanPutOnly1(game.Turn);
+                if(returnInfo[0] == 1){ game.XCoordi = returnInfo[1]; game.YCoordi = returnInfo[2]; game.ZCoordi = returnInfo[3]; game.SetEnterPressed = true; }
               }
           }else if(game.ZCoordi == 0)
           {

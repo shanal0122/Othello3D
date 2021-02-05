@@ -244,6 +244,9 @@ namespace PvC
           changeColor.UndoAllBoardColor();
           infoDisplay.StoneNumIndicate();
         }else{infoDisplay.CantPutIndicate();}
+        beforePressed = false;
+        afterXPressed = false;
+        afterZPressed = false;
         afterYPressed = false;
         XCoordi = YCoordi = ZCoordi = 0;
         enterPressed = false;
