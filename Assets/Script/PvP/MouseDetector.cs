@@ -11,6 +11,7 @@ namespace PvP
       private int xLength = Choose.InitialSetting.xLength; //オセロ盤の一辺の長さ
       private int yLength = Choose.InitialSetting.yLength;
       private int zLength = Choose.InitialSetting.zLength;
+      private string recordOfSuspendedKeyName; //PlayerPrefsにセーブするためのマスの情報のキーの名前（中断後再開機能）
       public Stone stone;
       public Game game;
       public InfoDisplay infoDisplay;
@@ -36,6 +37,7 @@ namespace PvP
           stoneSizeSlider.GetComponent<Slider>().onValueChanged.AddListener(OnStoneSizeSlide);
           audioSource = GameObject.FindGameObjectWithTag("BGM").GetComponent<AudioSource>();
           bgmVolumeSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Value_of_BGMVolume", 0.5f) * 10f;
+          recordOfSuspendedKeyName = "Record_of_supended_game_" + Choose.InitialSetting.gameMode;
       }
 
 
@@ -189,6 +191,7 @@ namespace PvP
       public void OnLoadTitleClick()
       {
         SceneManager.LoadScene("Choose");
+        if(game.GameSetFlug == true){ PlayerPrefs.DeleteKey(recordOfSuspendedKeyName); }
       }
 
       public void OnSaveYesClick()

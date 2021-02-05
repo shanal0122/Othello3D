@@ -2913,6 +2913,8 @@ MonoBehaviour:
     type: 3}
   game: {fileID: 1995446426}
   changeColor: {fileID: 1276949605}
+  centerCanvas: {fileID: 958602082}
+  saveConfirmCanvas: {fileID: 2061398758}
 --- !u!4 &725947590
 Transform:
   m_ObjectHideFlags: 0

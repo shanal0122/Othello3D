@@ -22,6 +22,8 @@ namespace PvC
       public ChangeColor changeColor; //CanPutAndInformで置ける場所を光らせる
       private GameObject[,,] bs; //[x,y,z]にあるblackStoneを格納
       private GameObject[,,] ws; //[x,y,z]にあるwhiteStoneを格納
+      public GameObject centerCanvas;
+      public GameObject saveConfirmCanvas;
 
 
       void Awake()
@@ -163,6 +165,9 @@ namespace PvC
 
       public void PutAllStoneAsList() //待ったが押された時盤面をリスト通りに置く。セーブ情報を書き換える
       {
+        centerCanvas.GetComponent<Canvas>().enabled = false;
+        saveConfirmCanvas.GetComponent<Canvas>().enabled = false;
+        game.GameSetFlug = false;
         string[] strArray = game.Recordstr.Split(',');
         for(int n=game.TotalTurn; n>=0; n--)
         {

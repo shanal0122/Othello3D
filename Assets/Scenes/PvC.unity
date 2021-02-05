@@ -3788,6 +3788,8 @@ MonoBehaviour:
   game: {fileID: 401600369}
   computer: {fileID: 401600371}
   changeColor: {fileID: 281823657}
+  centerCanvas: {fileID: 587693267}
+  saveConfirmCanvas: {fileID: 1669436508}
 --- !u!4 &1002900344
 Transform:
   m_ObjectHideFlags: 0
