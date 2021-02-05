@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -63,18 +63,22 @@ namespace Choose
         PlayerPrefs.Save();
       }
 
-      public void OnLevelSelect() //CPU戦における手番を選択
+      public void OnLevelSelect() //CPU戦におけるCPUのレベルを選択
       {
         int levelValue = levelDropdown.GetComponent<Dropdown>().value;
         if(levelValue == 0)
         {
-          InitialSetting.cpuLevel = 1;
+          InitialSetting.cpuLevel = 0;
         }
         if(levelValue == 1)
         {
-          InitialSetting.cpuLevel = 2;
+          InitialSetting.cpuLevel = 1;
         }
         if(levelValue == 2)
+        {
+          InitialSetting.cpuLevel = 2;
+        }
+        if(levelValue == 3)
         {
           InitialSetting.cpuLevel = 3;
         }

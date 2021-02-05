@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,7 +15,7 @@ namespace Choose
       public static int gameMode = 3; //ゲームモードを表す。PlayerPrefsにセーブする時に使う。PvP444:1,PvP464:2,PvC444:3,PvC464:4（中断後再開機能（、リプレイ機能））
       [SerializeField] int playerTurnDef = 1; //CPUvs.CPUをしたいときはインスペクターに0を代入して再生/////////////////////////////////////////////////////////////
       public static int playerTurn = 1; //PvCで用いる。プレイヤーの担当するターンを表す。0のときはCvC
-      public static int cpuLevel = 1;  //CPUの難易度を表す。よわいは1、ふつうは2、つよいは3。
+      public static int cpuLevel = 1;  //CPUの難易度を表す。よわいは0、ふつうは1、つよいは2、とても強いは3。
       public static bool continuation = false; //続きからプレイする時はtrue
       public GameObject suspendedConfirmCanvas;
       public GameObject tutorialConfirmCanvas;
@@ -42,13 +42,17 @@ namespace Choose
         }
         if(PlayerPrefs.GetInt("Value_of_CPULevel", 0) == 0)
         {
-          cpuLevel = 1;
+          cpuLevel = 0;
         }
         if(PlayerPrefs.GetInt("Value_of_CPULevel", 0) == 1)
         {
-          cpuLevel = 2;
+          cpuLevel = 1;
         }
         if(PlayerPrefs.GetInt("Value_of_CPULevel", 0) == 2)
+        {
+          cpuLevel = 2;
+        }
+        if(PlayerPrefs.GetInt("Value_of_CPULevel", 0) == 3)
         {
           cpuLevel = 3;
         }

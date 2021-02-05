@@ -1310,6 +1310,8 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: "\u3064\u3088\u3044"
       m_Image: {fileID: 0}
+    - m_Text: "\u3068\u3066\u3082\u3064\u3088\u3044"
+      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:

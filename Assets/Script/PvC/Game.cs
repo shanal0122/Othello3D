@@ -253,15 +253,24 @@ namespace PvC
 
       private void CPUPlay()
       {
-        if(totalTurn >= xLength * yLength * zLength - 15 && totalTurn <= xLength * yLength * zLength - 10)
+        if(Choose.InitialSetting.cpuLevel == 0)
         {
-          computer.CPULast();
+          if(totalTurn >= xLength * yLength * zLength - 15 && totalTurn <= xLength * yLength * zLength - 10){ computer.CPULast(0); }
+          else{ computer.CPU0(); }
         }
-        else
+        if(Choose.InitialSetting.cpuLevel == 1)
         {
-          if(Choose.InitialSetting.cpuLevel == 1){ computer.CPU1(); }
-          if(Choose.InitialSetting.cpuLevel == 2){ computer.CPU2(); }
-          if(Choose.InitialSetting.cpuLevel == 3){ computer.CPU3(); }
+          computer.CPU1();
+        }
+        if(Choose.InitialSetting.cpuLevel == 2)
+        {
+          if(totalTurn >= xLength * yLength * zLength - 15 && totalTurn <= xLength * yLength * zLength - 10){ computer.CPULast(1); }
+          else{ computer.CPU2(); }
+        }
+        if(Choose.InitialSetting.cpuLevel == 3)
+        {
+          if(totalTurn >= xLength * yLength * zLength - 15 && totalTurn <= xLength * yLength * zLength - 10){ computer.CPULast(1); }
+          else{ computer.CPU3(); }
         }
         turn *= -1;
         CanPut();

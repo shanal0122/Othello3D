@@ -160,6 +160,52 @@ namespace PvC
       }
 
 
+      public void CPU0() //弱いCPUが石を置く（上の評価関数を用いて石を置く。1手先の読み）
+      {
+        List<int> sqListX = new List<int>();
+        List<int> sqListY = new List<int>();
+        List<int> sqListZ = new List<int>();
+        bool canPut = false;
+        float score = 0;
+        float bestScore = 0;
+        square = stone.Square;
+        cpuStone = game.Turn;
+        int[,,] willSq = new int[xLength,yLength,zLength];
+        for(int y=0; y<yLength; y++)
+        {
+          for(int z=0; z<zLength; z++)
+          {
+            for(int x=0; x<xLength; x++)
+            {
+              if(square[x,y,z] == 0)
+              {
+                willSq = TryFlip(square, cpuStone, x, y, z);
+                if(willSq[0,0,0] != 777)
+                {
+                  score = CulScoreBest(willSq);
+                  if(canPut == false){ bestScore = score; sqListX.Add(x); sqListY.Add(y); sqListZ.Add(z); canPut = true;}
+                  else
+                  {
+                    if(bestScore == score){ sqListX.Add(x); sqListY.Add(y); sqListZ.Add(z); }
+                    if(bestScore > score)
+                    {
+                      bestScore = score;
+                      sqListX = new List<int>(); sqListY = new List<int>(); sqListZ = new List<int>();
+                      sqListX.Add(x); sqListY.Add(y); sqListZ.Add(z);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        int rv = (int)(UnityEngine.Random.value * sqListX.Count);
+        if(rv == sqListX.Count){ rv--; }
+        //Debug.Log("sqList.Count : " + sqListX.Count); //////////////////////////////////////////////////////////////////////////////////////////////
+        //Debug.Log("rv : " + rv);
+        //Debug.Log("x,z,y : " + sqListX[rv] + " " + sqListZ[rv] + " " + sqListY[rv]); //////////////////////////////////////////////////////////////////////////////////////////////
+        bool a = stone.FlipStone(cpuStone,sqListX[rv], sqListY[rv], sqListZ[rv]);
+      }
 
       public void CPU1() //CPUが石を置く（置ける場所の中からランダムに置く）
       {
@@ -701,7 +747,7 @@ namespace PvC
 
 
 
-      public void CPULast()
+      public void CPULast(int strength) //引数は強さ（弱いCPUなら0,強いCPUなら1）
       {
         int restTurn = xLength * yLength * zLength - 8 - game.TotalTurn;
         int[] returnInfo = new int[3]; //(x座標,y座標,z座標)
@@ -727,12 +773,12 @@ namespace PvC
             }
           }
         }
-        returnInfo = LastCul(leftsqListX,leftsqListY,leftsqListZ,square,restTurn);
+        returnInfo = LastCul(leftsqListX,leftsqListY,leftsqListZ,square,restTurn, strength);
         bool a = stone.FlipStone(cpuStone,returnInfo[0],returnInfo[1],returnInfo[2]);
         ///Debug.Log(restTurn +" "+ leftsqListX.Count);
       }
 
-      private int[] LastCul(List<int> leftsqListX, List<int> leftsqListY, List<int> leftsqListZ, int[,,] sq, int times) //おける石が2個以上かつ残り少なくなったときにCPUの石をおくべきマスを返す。引数は[まだ置いてない座標のリスト*3,その時の盤面,残りの置いていないマスの数]
+      private int[] LastCul(List<int> leftsqListX, List<int> leftsqListY, List<int> leftsqListZ, int[,,] sq, int times, int strength) //おける石が2個以上かつ残り少なくなったときにCPUの石をおくべきマスを返す。引数は[まだ置いてない座標のリスト*3,その時の盤面,残りの置いていないマスの数,強さ（弱いCPUなら0,強いCPUなら1）]
       {
         int[] returnInfo = new int[3]; //(x座標,y座標,z座標)
         List<int> sqListX = new List<int>(); List<int> sqListY = new List<int>(); List<int> sqListZ = new List<int>(); //おく場所の候補
@@ -749,18 +795,31 @@ namespace PvC
           {
             leftsqListXcopy.RemoveAt(n); leftsqListYcopy.RemoveAt(n); leftsqListZcopy.RemoveAt(n);
             //Debug.Log(leftsqListX[n] + ", " + leftsqListY[n] + ", " + leftsqListZ[n]); /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            if(times == 2){ count = Last1Cul(leftsqListXcopy, leftsqListYcopy, leftsqListZcopy, willSq, -1*cpuStone); }
-            else{ count = LastNCul(leftsqListXcopy, leftsqListYcopy, leftsqListZcopy, willSq, -1*cpuStone, times-1); }
+            if(times == 2){ count = Last1Cul(leftsqListXcopy, leftsqListYcopy, leftsqListZcopy, willSq, -1*cpuStone, strength); }
+            else{ count = LastNCul(leftsqListXcopy, leftsqListYcopy, leftsqListZcopy, willSq, -1*cpuStone, times-1, strength); }
             if(canPut == false){ bestCount = count; sqListX.Add(leftsqListX[n]); sqListY.Add(leftsqListY[n]); sqListZ.Add(leftsqListZ[n]); canPut = true;}
             else
             {
               if(bestCount == count){ sqListX.Add(leftsqListX[n]); sqListY.Add(leftsqListY[n]); sqListZ.Add(leftsqListZ[n]); }
-              if(bestCount < count)
+              if(strength == 0)
               {
-                bestCount = count;
-                sqListX = new List<int>(); sqListY = new List<int>(); sqListZ = new List<int>();
-                sqListX.Add(leftsqListX[n]); sqListY.Add(leftsqListY[n]); sqListZ.Add(leftsqListZ[n]);
+                if(bestCount > count)
+                {
+                  bestCount = count;
+                  sqListX = new List<int>(); sqListY = new List<int>(); sqListZ = new List<int>();
+                  sqListX.Add(leftsqListX[n]); sqListY.Add(leftsqListY[n]); sqListZ.Add(leftsqListZ[n]);
+                }
               }
+              else if(strength == 1)
+              {
+                if(bestCount < count)
+                {
+                  bestCount = count;
+                  sqListX = new List<int>(); sqListY = new List<int>(); sqListZ = new List<int>();
+                  sqListX.Add(leftsqListX[n]); sqListY.Add(leftsqListY[n]); sqListZ.Add(leftsqListZ[n]);
+                }
+              }
+              else{ Debug.Log("Error : Computer/LastCul"); } /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             }
           }
           //else{ Debug.Log(leftsqListX[n] + ", " + leftsqListY[n] + ", " + leftsqListZ[n]); Debug.Log(leftsqListX.Count + ", stone : " + cpuStone + "cannotPut"); }/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -772,7 +831,7 @@ namespace PvC
         return returnInfo;
       }
 
-      private int LastNCul(List<int> leftsqListX, List<int> leftsqListY, List<int> leftsqListZ, int[,,] sq, int st, int times) //おける石が残り2個以上になったときに石の数を返す。引数は[まだ置いてない座標のリスト*3,その時の盤面,手番,残りの置いていないマスの数]
+      private int LastNCul(List<int> leftsqListX, List<int> leftsqListY, List<int> leftsqListZ, int[,,] sq, int st, int times, int strength) //おける石が残り2個以上になったときに石の数を返す。引数は[まだ置いてない座標のリスト*3,その時の盤面,手番,残りの置いていないマスの数,強さ（弱いCPUなら0,強いCPUなら1）]
       {
         List<int> leftsqListXcopy = new List<int>(); List<int> leftsqListYcopy = new List<int>(); List<int> leftsqListZcopy = new List<int>(); //コピー
         bool canPut = false;
@@ -786,13 +845,22 @@ namespace PvC
           {
             leftsqListXcopy.RemoveAt(n); leftsqListYcopy.RemoveAt(n); leftsqListZcopy.RemoveAt(n);
             //Debug.Log(leftsqListXcopy.Count); /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            if(times == 2){ count = Last1Cul(leftsqListXcopy, leftsqListYcopy, leftsqListZcopy, willSq, -1*st); }
-            else{ count = LastNCul(leftsqListXcopy, leftsqListYcopy, leftsqListZcopy, willSq, -1*st, times-1); }
+            if(times == 2){ count = Last1Cul(leftsqListXcopy, leftsqListYcopy, leftsqListZcopy, willSq, -1*st, strength); }
+            else{ count = LastNCul(leftsqListXcopy, leftsqListYcopy, leftsqListZcopy, willSq, -1*st, times-1, strength); }
             if(canPut == false){ bestCount = count; canPut = true;}
             else
             {
-              if(st == cpuStone){ if(bestCount < count){ bestCount = count; } }
-              if(st == -1*cpuStone){ if(bestCount > count){ bestCount = count; } }
+              if(strength == 0)
+              {
+                if(st == cpuStone){ if(bestCount > count){ bestCount = count; } }
+                if(st == -1*cpuStone){ if(bestCount > count){ bestCount = count; } }
+              }
+              else if(strength == 1)
+              {
+                if(st == cpuStone){ if(bestCount < count){ bestCount = count; } }
+                if(st == -1*cpuStone){ if(bestCount > count){ bestCount = count; } }
+              }
+              else{ Debug.Log("Error : Computer/LastNCul/1"); } /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             }
             //Debug.Log(leftsqListX.Count + ", stone : " + st + ", bestCount : " + bestCount); ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
           }
@@ -807,13 +875,22 @@ namespace PvC
             if(willSq[0,0,0] != 777)
             {
               leftsqListXcopy.RemoveAt(n); leftsqListYcopy.RemoveAt(n); leftsqListZcopy.RemoveAt(n);
-              if(times == 2){ count = Last1Cul(leftsqListXcopy, leftsqListYcopy, leftsqListZcopy, willSq, st); }
-              else{ count = LastNCul(leftsqListXcopy, leftsqListYcopy, leftsqListZcopy, willSq, st, times-1); }
+              if(times == 2){ count = Last1Cul(leftsqListXcopy, leftsqListYcopy, leftsqListZcopy, willSq, st, strength); }
+              else{ count = LastNCul(leftsqListXcopy, leftsqListYcopy, leftsqListZcopy, willSq, st, times-1, strength); }
               if(canPut == false){ bestCount = count; canPut = true;}
               else
               {
-                if(-1*st == cpuStone){ if(bestCount < count){ bestCount = count; } }
-                if(-1*st == -1*cpuStone){ if(bestCount > count){ bestCount = count; } }
+                if(strength == 0)
+                {
+                  if(-1*st == cpuStone){ if(bestCount > count){ bestCount = count; } }
+                  if(-1*st == -1*cpuStone){ if(bestCount > count){ bestCount = count; } }
+                }
+                else if(strength == 1)
+                {
+                  if(-1*st == cpuStone){ if(bestCount < count){ bestCount = count; } }
+                  if(-1*st == -1*cpuStone){ if(bestCount > count){ bestCount = count; } }
+                }
+                else{ Debug.Log("Error : Computer/LastNCul/-1"); } /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
               }
               //Debug.Log(leftsqListX.Count + ", stone : " + -1*st + ", bestCount : " + bestCount); ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             }
@@ -823,15 +900,24 @@ namespace PvC
           {
             count = CountStone(willSq, cpuStone);
             int playerCount = CountStone(willSq, -1*cpuStone);
-            if(count > playerCount){ bestCount = xLength * yLength * zLength; }
-            else{ bestCount = count;}
+            if(strength == 0)
+            {
+              if(count < playerCount){ bestCount = 0; }
+              else{ bestCount = count;}
+            }
+            else if(strength == 1)
+            {
+              if(count > playerCount){ bestCount = xLength * yLength * zLength; }
+              else{ bestCount = count;}
+            }
+            else{ Debug.Log("Error : Computer/LastNCul/CannotPut"); } /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             //Debug.Log(leftsqListX.Count + ", stone : cannotPut" + ", bestCount : " + bestCount); ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
           }
         }
         return bestCount;
       }
 
-      private int Last1Cul(List<int> leftsqListX, List<int> leftsqListY, List<int> leftsqListZ, int[,,] sq, int st) //おける石が残り1個になったときのCPUの石の数を返す。引数はまだ置いてない座標のリストとその時の盤面と手番とCPUの石の色
+      private int Last1Cul(List<int> leftsqListX, List<int> leftsqListY, List<int> leftsqListZ, int[,,] sq, int st, int strength) //おける石が残り1個になったときのCPUの石の数を返す。引数はまだ置いてない座標のリストとその時の盤面と手番とCPUの石の色と強さ（弱いCPUなら0,強いCPUなら1）
       {
         bool canPut = false;
         int[,,] willSq = new int[xLength,yLength,zLength];
@@ -847,8 +933,16 @@ namespace PvC
           {
             int count = CountStone(willSq, cpuStone);
             int playerCount = CountStone(willSq, -1*cpuStone);
-            if(count > playerCount){ bestCount = xLength * yLength * zLength; }
-            else{ bestCount = count;}
+            if(strength == 0)
+            {
+              if(count < playerCount){ bestCount = 0; }
+              else{ bestCount = count;}
+            }
+            if(strength == 1)
+            {
+              if(count > playerCount){ bestCount = xLength * yLength * zLength; }
+              else{ bestCount = count;}
+            }
           }
         }
         return bestCount;
