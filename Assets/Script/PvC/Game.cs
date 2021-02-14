@@ -50,7 +50,7 @@ namespace PvC
 
       void Update()
       {
-        if(keyDetectable)
+        if(keyDetectable && !gameSetFlug)
         {
           if(turn == playerTurn)
           {
