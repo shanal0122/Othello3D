@@ -17,6 +17,8 @@ namespace Choose
       public static int playerTurn = 1; //PvCで用いる。プレイヤーの担当するターンを表す。0のときはCvC
       public static int cpuLevel = 1;  //CPUの難易度を表す。よわいは0、ふつうは1、つよいは2、とても強いは3。
       public static bool continuation = false; //続きからプレイする時はtrue
+      public GameObject pvcCanvas;
+      public GameObject pvpCanvas;
       public GameObject suspendedConfirmCanvas;
       public GameObject tutorialConfirmCanvas;
       public GameObject menuCanvas;
@@ -62,6 +64,38 @@ namespace Choose
       {
         detectable = true;
         if(playerTurnDef == 0){ playerTurn = 0;} ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      }
+
+      public void OnPVCClick()
+      {
+        if(detectable)
+        {
+          pvcCanvas.GetComponent<Canvas>().enabled = true;
+        }
+      }
+
+      public void OnPVPClick()
+      {
+        if(detectable)
+        {
+          pvpCanvas.GetComponent<Canvas>().enabled = true;
+        }
+      }
+
+      public void OnPVCClose()
+      {
+        if(detectable)
+        {
+          pvcCanvas.GetComponent<Canvas>().enabled = false;
+        }
+      }
+
+      public void OnPVPClose()
+      {
+        if(detectable)
+        {
+          pvpCanvas.GetComponent<Canvas>().enabled = false;
+        }
       }
 
       public void ChoosePvP444()
