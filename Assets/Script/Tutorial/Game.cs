@@ -12,7 +12,7 @@ namespace Tutorial
       private int yLength = 4;
       private int zLength = 4;
       private Vector3 standard;
-      private int degree = 0; //この値によって表示されるCanvasや受け付けるキーを制御する
+      private int degree = -1; //この値によって表示されるCanvasや受け付けるキーを制御する
       private int[] coordi; //大きさ3。degreeが6,7,8のときに入力された値を格納
       private bool doTutorialFlug = true; //trueの時だけDoTutorial()を実行する。従って一度のみ実行される
       public GameObject blackStone;
@@ -29,6 +29,7 @@ namespace Tutorial
       public GameObject coordinateCanvas;
       public GameObject centerCanvas;
       public Text claimText;
+      public GameObject canvas_1;
       public GameObject canvas0;
       public GameObject canvas1;
       public GameObject canvas2;
@@ -93,8 +94,18 @@ namespace Tutorial
 
       private void DoTutorial()
       {
+        if(degree == -1)
+        {
+          canvas_1.GetComponent<Canvas>().enabled = true;
+          canvas0.GetComponent<Canvas>().enabled = false;
+          BeforePressedIndicate();
+          ws[1,1,0].SetActive(true);
+          bs[2,1,0].SetActive(true);
+          isb[0,1,0].SetActive(true);
+        }
         if(degree == 0)
         {
+          canvas_1.GetComponent<Canvas>().enabled = false;
           canvas0.GetComponent<Canvas>().enabled = true;
           canvas1.GetComponent<Canvas>().enabled = false;
           BeforePressedIndicate();
@@ -415,7 +426,7 @@ namespace Tutorial
 
       private void OnKeyDetect()
       {
-        if(degree == 0 || degree == 4 || degree == 5 || degree == 9 || degree == 10)
+        if(degree == -1 || degree == 0 || degree == 4 || degree == 5 || degree == 9 || degree == 10)
         {
           if(Input.GetKeyDown(KeyCode.Return))
           {
@@ -470,7 +481,7 @@ namespace Tutorial
 
       private void OnBackClick()
       {
-        if(degree > 0)
+        if(degree >= 0)
         {
           degree--;
           doTutorialFlug = true;

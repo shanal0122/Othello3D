@@ -19,7 +19,7 @@ namespace PvP
       public GameObject menuCanvas;
       public GameObject cameraSensiSlider;
       public CameraMover cameraMover;
-      public GameObject putableSlider;
+      public GameObject putableButton;
       public Text putableOnOffText;
       public GameObject stoneSizeSlider;
       private AudioSource audioSource;
@@ -32,7 +32,8 @@ namespace PvP
       void Awake()
       {
           cameraSensiSlider.GetComponent<Slider>().value = 2 * PlayerPrefs.GetFloat("Value_of_MovingSpeed", 20f) / 5;
-          putableSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Value_of_PutableInform", 1);
+          if(PlayerPrefs.GetFloat("Value_of_PutableInform", 1) == 1){ putableOnOffText.text = "オン"; }
+          else{ putableOnOffText.text = "オフ"; }
           stoneSizeSlider.GetComponent<Slider>().value = 20 * PlayerPrefs.GetFloat("Value_of_StoneSize", 0.6f);
           stoneSizeSlider.GetComponent<Slider>().onValueChanged.AddListener(OnStoneSizeSlide);
           audioSource = GameObject.FindGameObjectWithTag("BGM").GetComponent<AudioSource>();
@@ -76,9 +77,11 @@ namespace PvP
         PlayerPrefs.Save();
       }
 
-      public void OnPutableSlide() //お助け機能のスライダーの値を取得
+      public void OnPutableClick() //お助け機能の値を取得
       {
-        float s = putableSlider.GetComponent<Slider>().value;
+        float s;
+        if(game.PutableInform){ s = 0; } //putableInformがtrueの時に押すとfalseになるのでsは-1
+        else{ s = 1; }
         PlayerPrefs.SetFloat("Value_of_PutableInform", s);
         PlayerPrefs.Save();
         if(s == 0)
@@ -168,6 +171,7 @@ namespace PvP
       public void OnInstructionClick() //操作方法ボタンを押した時操作方法ウィンドウを表示させる
       {
         instructionCanvas1.GetComponent<Canvas>().enabled = true;
+        menuCanvas.GetComponent<Canvas>().enabled = false;
       }
 
       public void OnInstructionCloseClick() //操作方法ウィンドウのバツボタンを押した時操作方法ウィンドウを消す

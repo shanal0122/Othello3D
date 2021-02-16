@@ -291,12 +291,13 @@ namespace Replay
       }
 
 
-      public void OnInstructionClick() //Menuボタンを押した時メニューウィンドウを表示させる
+      public void OnInstructionClick() //操作方法ボタンを押した時操作方法ウィンドウを表示させる
       {
         instructionCanvas.GetComponent<Canvas>().enabled = true;
+        menuCanvas.GetComponent<Canvas>().enabled = false;
       }
 
-      public void OnInstructionCloseClick() //メニューウィンドウのバツボタンを押した時メニューウィンドウを消す
+      public void OnInstructionCloseClick() //操作方法ウィンドウのバツボタンを押した時操作方法ウィンドウを消す
       {
         instructionCanvas.GetComponent<Canvas>().enabled = false;
       }
