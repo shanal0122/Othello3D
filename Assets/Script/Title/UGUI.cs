@@ -37,7 +37,7 @@ namespace Title
       {
         swidth = Screen.width; sheight = Screen.height;
         pwidth = pheight * swidth / sheight;
-        Debug.Log(swidth + " " + sheight + " " + pwidth + " " + pheight);////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //Debug.Log(swidth + " " + sheight + " " + pwidth + " " + pheight);////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         if(swidth > sheight)
         {
@@ -50,7 +50,7 @@ namespace Title
 
         if(swidth <= sheight)
         {
-          float magni = Mathf.Min(0.8f*pwidth/mainTextText.preferredWidth/0.6f,1f);Debug.Log(mainTextText.preferredWidth);
+          float magni = Mathf.Min(0.8f*pwidth/mainTextText.preferredWidth/0.6f,1f);
           mainText.localScale = new Vector3(0.6f*magni,1f*magni,1f); mainText.localPosition = new Vector3(0f,235f,0f);
           loadChooseButton.sizeDelta = new Vector2(pwidth+10f,pheight+10f);
 

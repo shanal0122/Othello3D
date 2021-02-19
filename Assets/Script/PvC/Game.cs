@@ -16,7 +16,7 @@ namespace PvC
       private Vector3 standard; //CoordinateDisplayクラスのテキストの向きを定めるために用いる
       private int turn = 1; //黒が1、白が-1。先行は黒
       private int playerTurn = Choose.InitialSetting.playerTurn; //プレイヤーの手番
-      private bool keyDetectable = true; //falseのときカメラ移動とキー入力を受け付けない（ゲームセット時）
+      private bool keyDetectable = true; //falseのときカメラ移動とキー入力を受け付けない
       private bool gameSetFlug = false; //CanPut()でどちらも置けないことがわかるとtrueになり、処理が終わるとゲームセット画面に移る
       public int XCoordi {get; set;}
       public int YCoordi {get; set;}
