@@ -246,7 +246,7 @@ namespace Choose
           tutorialButtonText.localPosition = new Vector3(-247f,0f,0f);
           creditButton.sizeDelta = new Vector2(125f,50f); creditButton.localScale = new Vector3(0.8f,0.8f,1f); creditButton.localPosition = new Vector3(120f,-165f,0f);
           creditButtonText.localPosition = new Vector3(-238f,0f,0f);
-          loadTitleButton.sizeDelta = new Vector2(125f,50f); loadTitleButton.localScale = new Vector3(0.8f,0.8f,1f); loadTitleButton.localPosition = new Vector3(120f,-220f,0f);
+          loadTitleButton.sizeDelta = new Vector2(125f,50f); loadTitleButton.localScale = new Vector3(0.8f,0.8f,1f); loadTitleButton.localPosition = new Vector3(120f,-230f,0f);
           loadTitleButtonText.localPosition = new Vector3(-277f,0f,0f);
 
           creditPanel.sizeDelta = new Vector2(420f,570f);

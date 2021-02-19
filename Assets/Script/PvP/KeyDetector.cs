@@ -92,6 +92,139 @@ namespace PvP
               }
           }
       }
-  }
 
+
+      public void KeyBackSpaceDetect() //スマホ版でbackspaceのボタンが押された時の挙動
+      {
+          if(game.YCoordi != 0)
+          {
+              game.YCoordi = 0;
+          }
+          else if(game.ZCoordi != 0)
+          {
+              game.ZCoordi = 0;
+          }
+          else if(game.XCoordi != 0)
+          {
+              game.XCoordi = 0;
+          }
+      }
+
+      public void Key1Detect() //スマホ版で1のボタンが押された時の挙動
+      {
+          if(game.XCoordi == 0)
+          {
+              game.XCoordi = 1;
+          }
+          else if(game.ZCoordi == 0)
+          {
+              game.ZCoordi = 1;
+          }
+          else if(game.YCoordi == 0)
+          {
+              game.YCoordi = 1;
+          }
+      }
+
+      public void Key2Detect() //スマホ版で2のボタンが押された時の挙動
+      {
+          if(game.XCoordi == 0)
+          {
+              game.XCoordi = 2;
+          }
+          else if(game.ZCoordi == 0)
+          {
+              game.ZCoordi = 2;
+          }
+          else if(game.YCoordi == 0)
+          {
+              game.YCoordi = 2;
+          }
+      }
+
+      public void Key3Detect() //スマホ版で3のボタンが押された時の挙動
+      {
+          if(game.XCoordi == 0)
+          {
+              game.XCoordi = 3;
+          }
+          else if(game.ZCoordi == 0)
+          {
+              game.ZCoordi = 3;
+          }
+          else if(game.YCoordi == 0)
+          {
+              game.YCoordi = 3;
+          }
+      }
+
+      public void Key4Detect() //スマホ版で4のボタンが押された時の挙動
+      {
+          if(game.XCoordi == 0)
+          {
+              game.XCoordi = 4;
+          }
+          else if(game.ZCoordi == 0)
+          {
+              game.ZCoordi = 4;
+          }
+          else if(game.YCoordi == 0)
+          {
+              game.YCoordi = 4;
+          }
+      }
+
+      public void Key5Detect() //スマホ版で5のボタンが押された時の挙動
+      {
+          if(game.XCoordi == 0)
+          {
+
+          }
+          else if(game.ZCoordi == 0)
+          {
+
+          }
+          else if(game.YCoordi == 0)
+          {
+              game.YCoordi = 5;
+          }
+      }
+
+      public void Key6Detect() //スマホ版で6のボタンが押された時の挙動
+      {
+          if(game.XCoordi == 0)
+          {
+
+          }
+          else if(game.ZCoordi == 0)
+          {
+              
+          }
+          else if(game.YCoordi == 0)
+          {
+              game.YCoordi = 6;
+          }
+      }
+
+      public void KeyReturnDetect() //スマホ版でreturnのボタンが押された時の挙動
+      {
+          if(game.XCoordi == 0)
+          {
+              int[] returnInfo = new int[4]; returnInfo = stone.CanPutOnly1(game.Turn);
+              if(returnInfo[0] == 1){ game.XCoordi = returnInfo[1]; game.YCoordi = returnInfo[2]; game.ZCoordi = returnInfo[3]; game.SetEnterPressed = true; }
+          }
+          else if(game.ZCoordi == 0)
+          {
+
+          }
+          else if(game.YCoordi == 0)
+          {
+
+          }
+          else
+          {
+              game.SetEnterPressed = true;
+          }
+      }
+  }
 }

@@ -11,6 +11,8 @@ namespace Tutorial
       private int xLength = 4; //オセロ盤の一辺の長さ
       private int yLength = 4;
       private int zLength = 4;
+      private float swidth; //画面サイズ（幅）
+      private float sheight; //画面サイズ（高さ）
       private Vector3 standard;
       private int degree = -1; //この値によって表示されるCanvasや受け付けるキーを制御する
       private int[] coordi; //大きさ3。degreeが6,7,8のときに入力された値を格納
@@ -28,17 +30,44 @@ namespace Tutorial
       public CameraMover cameraMover;
       public GameObject coordinateCanvas;
       public GameObject centerCanvas;
-      public Text claimText;
-      public GameObject canvas_1;
-      public GameObject canvas0;
-      public GameObject canvas1;
-      public GameObject canvas2;
-      public GameObject canvas3;
-      public GameObject canvas4;
-      public GameObject canvas5;
-      public GameObject canvas6to9;
-      public GameObject canvas10;
-      public GameObject canvas11;
+      public Text claimText1;
+      public Text claimText2;
+
+      private Text claimText;
+
+      public GameObject canvas_1_L;
+      public GameObject canvas0_L;
+      public GameObject canvas1_L;
+      public GameObject canvas2_L;
+      public GameObject canvas3_L;
+      public GameObject canvas4_L;
+      public GameObject canvas5_L;
+      public GameObject canvas6to9_L;
+      public GameObject canvas10_L;
+      public GameObject canvas11_L;
+
+      public GameObject canvas_1_P;
+      public GameObject canvas0_P;
+      public GameObject canvas1_P;
+      public GameObject canvas2_P;
+      public GameObject canvas3_P;
+      public GameObject canvas4_P;
+      public GameObject canvas5_P;
+      public GameObject canvas6to9_P;
+      public GameObject canvas10_P;
+      public GameObject canvas11_P;
+
+      private GameObject canvas_1;
+      private GameObject canvas0;
+      private GameObject canvas1;
+      private GameObject canvas2;
+      private GameObject canvas3;
+      private GameObject canvas4;
+      private GameObject canvas5;
+      private GameObject canvas6to9;
+      private GameObject canvas10;
+      private GameObject canvas11;
+
       private GameObject[,,] bs; //[x,y,z]にあるblackStoneを格納
       private GameObject[,,] ws; //[x,y,z]にあるwhiteStoneを格納
       private GameObject[,,] sb; //[x,y,z]にあるshineBoardを格納
@@ -48,6 +77,35 @@ namespace Tutorial
 
       void Start()
       {
+          swidth = Screen.width; sheight = Screen.height;
+          if(swidth > sheight)
+          {
+            canvas_1 = canvas_1_L;
+            canvas0 = canvas0_L;
+            canvas1 = canvas1_L;
+            canvas2 = canvas2_L;
+            canvas3 = canvas3_L;
+            canvas4 = canvas4_L;
+            canvas5 = canvas5_L;
+            canvas6to9 = canvas6to9_L;
+            canvas10 = canvas10_L;
+            canvas11 = canvas11_L;
+            claimText = claimText1;
+          }
+          if(swidth <= sheight)
+          {
+            canvas_1 = canvas_1_P;
+            canvas0 = canvas0_P;
+            canvas1 = canvas1_P;
+            canvas2 = canvas2_P;
+            canvas3 = canvas3_P;
+            canvas4 = canvas4_P;
+            canvas5 = canvas5_P;
+            canvas6to9 = canvas6to9_P;
+            canvas10 = canvas10_P;
+            canvas11 = canvas11_P;
+            claimText = claimText2;
+          }
           standard = new Vector3 (xLength-1f, yLength-1f, zLength-1f);
           coordi = new int[3];
           bs = new GameObject[xLength,yLength,zLength];
@@ -485,6 +543,75 @@ namespace Tutorial
         {
           degree--;
           doTutorialFlug = true;
+        }
+      }
+
+      public void KeyBackSpaceDetect() //スマホ版でbackspaceのボタンが押された時の挙動
+      {
+        if(degree >= 0)
+        {
+          degree--;
+          doTutorialFlug = true;
+        }
+      }
+
+      public void Key1Detect() //スマホ版で1のボタンが押された時の挙動
+      {
+        if(degree == 1 || degree == 2)
+        {
+            degree++;
+            doTutorialFlug = true;
+
+        }
+        if(degree == 6 || degree == 7 || degree == 8)
+        {
+            coordi[degree-6] = 0;
+            degree++;
+            doTutorialFlug = true;
+        }
+      }
+
+      public void Key2Detect() //スマホ版で2のボタンが押された時の挙動
+      {
+        if(degree == 3)
+        {
+            degree++;
+            doTutorialFlug = true;
+        }
+        if(degree == 6 || degree == 7 || degree == 8)
+        {
+            coordi[degree-6] = 1;
+            degree++;
+            doTutorialFlug = true;
+        }
+      }
+
+      public void Key3Detect() //スマホ版で3のボタンが押された時の挙動
+      {
+        if(degree == 6 || degree == 7 || degree == 8)
+        {
+            coordi[degree-6] = 2;
+            degree++;
+            doTutorialFlug = true;
+        }
+      }
+
+      public void Key4Detect() //スマホ版で4のボタンが押された時の挙動
+      {
+        if(degree == 6 || degree == 7 || degree == 8)
+        {
+            coordi[degree-6] = 3;
+            degree++;
+            doTutorialFlug = true;
+        }
+      }
+
+      public void KeyReturnDetect() //スマホ版でreturnのボタンが押された時の挙動
+      {
+        if(degree == -1 || degree == 0 || degree == 4 || degree == 5 || degree == 9 || degree == 10)
+        {
+            degree++;
+            doTutorialFlug = true;
         }
       }
 
