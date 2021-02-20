@@ -113,7 +113,7 @@ namespace Replay
       private void CameraPosotionControlMobile() //携帯端末のタッチパネルで矢印キーでメインカメラを動かす
       {
         Vector3 pos = mainCameraTransform.position;
-        float _work = GetSwipeRange() * Time.deltaTime * 0.001f;
+        float _work = GetSwipeRange() * Time.deltaTime * 0.002f;
 
         switch (GetNowSwipe())
         {
