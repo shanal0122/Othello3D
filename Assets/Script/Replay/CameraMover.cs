@@ -12,6 +12,9 @@ namespace Replay
       private int xLength = Choose.InitialSetting.xLength;
       private int yLength = Choose.InitialSetting.yLength;
       private int zLength = Choose.InitialSetting.zLength;
+      private bool flickFlug = false; //フリック判定中true
+      private float flickSpeed = 0f; //フリック判定がtrueの時、カメラが動くスピード
+      private float flickSpeedFirst = 0f; //フリックし始めた瞬間の、カメラが動くスピード
       private float movingSpeed; //カメラの動くスピードを設定
       private float squaredDistance; //カメラを球面状で動かす時の半径の二乗
       private float upLimit; //カメラの上方向に動く限界のy座標
@@ -21,10 +24,12 @@ namespace Replay
       private Transform mainCameraTransform;
       public Game game;
 
-      private Vector2 FlickMinRange = new Vector2(30.0f,30.0f); // フリック最小移動距離
-      private Vector2 SwipeMinRange = new Vector2(50.0f,50.0f); // スワイプ最小移動距離
-      private int NoneCountMax = 2; // TAPをNONEに戻すまでのカウント
+      [SerializeField] private Vector2 FlickMinRange = new Vector2(20.0f,20.0f); // フリック最小移動距離
+      [SerializeField] private Vector2 SwipeMinRange = new Vector2(50.0f,50.0f); // スワイプ最小移動距離
+      [SerializeField] private int NoneCountMax = 2; // TAPをNONEに戻すまでのカウント
       private int NoneCountNow = 0;
+      [SerializeField] private float swipeSpeed = 0.002f; //スワイプのスピード
+      [SerializeField] private float flickTime = 0.5f; //フリックでの自動回転が止まるまでの時間
       private Vector2 SwipeRange; // スワイプ入力距離
       private Vector2 InputSTART; // 入力方向記録用
       private Vector2 InputMOVE;
@@ -114,42 +119,119 @@ namespace Replay
       private void CameraPosotionControlMobile() //携帯端末のタッチパネルで矢印キーでメインカメラを動かす
       {
         Vector3 pos = mainCameraTransform.position;
-        float _work = GetSwipeRange() * Time.deltaTime * 0.002f;
+        float _work;
 
         switch (GetNowSwipe())
         {
+          case SwipeDirection.TAP:
+          flickFlug = false; NowFlick = FlickDirection.NONE;
+          break;
+
           case SwipeDirection.UP:
+          _work = GetSwipeRange() * Time.deltaTime * swipeSpeed;
           mainCameraTransform.position = CulPosDown(pos,_work);
           break;
 
           case SwipeDirection.RIGHT:
+          _work = GetSwipeRange() * Time.deltaTime * swipeSpeed;
           mainCameraTransform.position = CulPosLeft(pos,_work);
           break;
 
           case SwipeDirection.DOWN:
+          _work = GetSwipeRange() * Time.deltaTime * swipeSpeed;
           mainCameraTransform.position = CulPosUp(pos,_work);
           break;
 
           case SwipeDirection.LEFT:
+          _work = GetSwipeRange() * Time.deltaTime * swipeSpeed;
           mainCameraTransform.position = CulPosRight(pos,_work);
           break;
 
           case SwipeDirection.UP_LEFT:
+          _work = GetSwipeRange() * Time.deltaTime * swipeSpeed;
           mainCameraTransform.position = CulPosRight(CulPosDown(pos,_work/Mathf.Sqrt(2)),_work/Mathf.Sqrt(2));
           break;
 
           case SwipeDirection.UP_RIGHT:
+          _work = GetSwipeRange() * Time.deltaTime * swipeSpeed;
           mainCameraTransform.position = CulPosLeft(CulPosDown(pos,_work/Mathf.Sqrt(2)),_work/Mathf.Sqrt(2));
           break;
 
           case SwipeDirection.DOWN_LEFT:
+          _work = GetSwipeRange() * Time.deltaTime * swipeSpeed;
           mainCameraTransform.position = CulPosRight(CulPosUp(pos,_work/Mathf.Sqrt(2)),_work/Mathf.Sqrt(2));
           break;
 
           case SwipeDirection.DOWN_RIGHT:
+          _work = GetSwipeRange() * Time.deltaTime * swipeSpeed;
           mainCameraTransform.position = CulPosLeft(CulPosUp(pos,_work/Mathf.Sqrt(2)),_work/Mathf.Sqrt(2));
           break;
         }
+
+        if(NowFlick != FlickDirection.NONE){ flickFlug = true; }
+
+        if(flickFlug)
+        {
+          switch (GetNowFlick())
+          {
+            case FlickDirection.UP:
+            _work = flickSpeed * Time.deltaTime * 0.002f;
+            mainCameraTransform.position = CulPosDown(pos,_work);
+            flickSpeed = Mathf.Max(flickSpeed-flickSpeedFirst*Time.deltaTime/flickTime,0f);
+            if(flickSpeed == 0f){ flickFlug = false; NowFlick = FlickDirection.NONE; } //Debug.Log(NowFlick + " " + flickSpeed);////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            break;
+
+            case FlickDirection.RIGHT:
+            _work = flickSpeed * Time.deltaTime * 0.002f;
+            mainCameraTransform.position = CulPosLeft(pos,_work);
+            flickSpeed = Mathf.Max(flickSpeed-flickSpeedFirst*Time.deltaTime/flickTime,0f);
+            if(flickSpeed == 0f){ flickFlug = false; NowFlick = FlickDirection.NONE; } //Debug.Log(NowFlick + " " + flickSpeed);////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            break;
+
+            case FlickDirection.DOWN:
+            _work = flickSpeed * Time.deltaTime * 0.002f;
+            mainCameraTransform.position = CulPosUp(pos,_work);
+            flickSpeed = Mathf.Max(flickSpeed-flickSpeedFirst*Time.deltaTime/flickTime,0f);
+            if(flickSpeed == 0f){ flickFlug = false; NowFlick = FlickDirection.NONE; } //Debug.Log(NowFlick + " " + flickSpeed);////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            break;
+
+            case FlickDirection.LEFT:
+            _work = flickSpeed * Time.deltaTime * 0.002f;
+            mainCameraTransform.position = CulPosRight(pos,_work);
+            flickSpeed = Mathf.Max(flickSpeed-flickSpeedFirst*Time.deltaTime/flickTime,0f);
+            if(flickSpeed == 0f){ flickFlug = false; NowFlick = FlickDirection.NONE; } //Debug.Log(NowFlick + " " + flickSpeed);////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            break;
+
+            case FlickDirection.UP_LEFT:
+            _work = flickSpeed * Time.deltaTime * 0.002f;
+            mainCameraTransform.position = CulPosRight(CulPosDown(pos,_work/Mathf.Sqrt(2)),_work/Mathf.Sqrt(2));
+            flickSpeed = Mathf.Max(flickSpeed-flickSpeedFirst*Time.deltaTime/flickTime,0f);
+            if(flickSpeed == 0f){ flickFlug = false; NowFlick = FlickDirection.NONE; } //Debug.Log(NowFlick + " " + flickSpeed);////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            break;
+
+            case FlickDirection.UP_RIGHT:
+            _work = flickSpeed * Time.deltaTime * 0.002f;
+            mainCameraTransform.position = CulPosLeft(CulPosDown(pos,_work/Mathf.Sqrt(2)),_work/Mathf.Sqrt(2));
+            flickSpeed = Mathf.Max(flickSpeed-flickSpeedFirst*Time.deltaTime/flickTime,0f);
+            if(flickSpeed == 0f){ flickFlug = false; NowFlick = FlickDirection.NONE; } //Debug.Log(NowFlick + " " + flickSpeed);////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            break;
+
+            case FlickDirection.DOWN_LEFT:
+            _work = flickSpeed * Time.deltaTime * 0.002f;
+            mainCameraTransform.position = CulPosRight(CulPosUp(pos,_work/Mathf.Sqrt(2)),_work/Mathf.Sqrt(2));
+            flickSpeed = Mathf.Max(flickSpeed-flickSpeedFirst*Time.deltaTime/flickTime,0f);
+            if(flickSpeed == 0f){ flickFlug = false; NowFlick = FlickDirection.NONE; } //Debug.Log(NowFlick + " " + flickSpeed);////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            break;
+
+            case FlickDirection.DOWN_RIGHT:
+            _work = flickSpeed * Time.deltaTime * 0.002f;
+            mainCameraTransform.position = CulPosLeft(CulPosUp(pos,_work/Mathf.Sqrt(2)),_work/Mathf.Sqrt(2));
+            flickSpeed = Mathf.Max(flickSpeed-flickSpeedFirst*Time.deltaTime/flickTime,0f);
+            if(flickSpeed == 0f){ flickFlug = false; NowFlick = FlickDirection.NONE; } //Debug.Log(NowFlick + " " + flickSpeed);////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            break;
+          }
+        }
+
         mainCameraTransform.LookAt(center,Vector3.up);
       }
 
@@ -159,13 +241,13 @@ namespace Replay
           {
               if (Input.GetMouseButtonDown(0))
               {
-                InputSTART = Input.mousePosition; Debug.Log("InputStart : " + Input.mousePosition);
+                InputSTART = Input.mousePosition; //Debug.Log("InputStart : " + Input.mousePosition); ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
               }
               else if (Input.GetMouseButton(0))
               {
                 if(InputSTART.y >= 0.12f*magni*sheight && InputSTART.y <= (1f-0.27f*magni)*sheight)
                 {
-                  InputMOVE = Input.mousePosition; Debug.Log("InputMOVE : " + Input.mousePosition);
+                  InputMOVE = Input.mousePosition; //Debug.Log("InputMOVE : " + Input.mousePosition); ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                   SwipeCLC();
                 }
               }
@@ -173,7 +255,7 @@ namespace Replay
               {
                 if(InputSTART.y >= 0.12f*magni*sheight && InputSTART.y <= (1f-0.27f*magni)*sheight)
                 {
-                  InputEND = Input.mousePosition; Debug.Log("InputEND : " + Input.mousePosition);
+                  InputEND = Input.mousePosition; //Debug.Log("InputEND : " + Input.mousePosition); ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                   FlickCLC();
                 }
               }
@@ -217,7 +299,7 @@ namespace Replay
 
       private void FlickCLC() // 入力内容からフリック方向を計算
       {
-          Vector2 _work = new Vector2((new Vector3(InputEND.x, 0, 0) - new Vector3(InputSTART.x, 0, 0)).magnitude, (new Vector3(0, InputEND.y, 0) - new Vector3(0, InputSTART.y, 0)).magnitude);
+          Vector2 _work = new Vector2((new Vector3(InputEND.x, 0, 0) - new Vector3(InputMOVE.x, 0, 0)).magnitude, (new Vector3(0, InputEND.y, 0) - new Vector3(0, InputMOVE.y, 0)).magnitude);
 
           if (_work.x <= FlickMinRange.x && _work.y <= FlickMinRange.y)
           {
@@ -225,7 +307,7 @@ namespace Replay
           }
           else
           {
-              float _angle = Mathf.Atan2(InputEND.y - InputSTART.y, InputEND.x - InputSTART.x) * Mathf.Rad2Deg;
+              float _angle = Mathf.Atan2(InputEND.y - InputMOVE.y, InputEND.x - InputMOVE.x) * Mathf.Rad2Deg;
 
               if (-22.5f <= _angle && _angle < 22.5f) NowFlick = FlickDirection.RIGHT;
               else if (22.5f <= _angle && _angle < 67.5f) NowFlick = FlickDirection.UP_RIGHT;
@@ -236,6 +318,9 @@ namespace Replay
               else if (-112.5f <= _angle && _angle < -67.5f) NowFlick = FlickDirection.DOWN;
               else if (-67.5f <= _angle && _angle < -22.5f) NowFlick = FlickDirection.DOWN_RIGHT;
           }
+
+          if (SwipeRange.x > SwipeRange.y){ flickSpeedFirst = SwipeRange.x; flickSpeed = SwipeRange.x; }
+          else{ flickSpeedFirst = SwipeRange.y; flickSpeed = SwipeRange.y; }
       }
 
       private void SwipeCLC() // 入力内容からスワイプ方向を計算
@@ -267,7 +352,6 @@ namespace Replay
           if (NoneCountNow >= NoneCountMax)
           {
               NoneCountNow = 0;
-              NowFlick = FlickDirection.NONE;
               NowSwipe = SwipeDirection.NONE;
               SwipeRange = new Vector2(0, 0);
           }
@@ -285,26 +369,8 @@ namespace Replay
 
       public float GetSwipeRange() // スワイプ量の取得
       {
-          if (SwipeRange.x > SwipeRange.y)
-          {
-              return SwipeRange.x;
-          }
-          else
-          {
-              return SwipeRange.y;
-          }
-      }
-
-      public Vector2 GetSwipeRangeVec() // スワイプ量の取得
-      {
-          if (NowSwipe != SwipeDirection.NONE)
-          {
-              return new Vector2(InputMOVE.x - InputSTART.x, InputMOVE.y - InputSTART.y);
-          }
-          else
-          {
-              return new Vector2(0, 0);
-          }
+          if (SwipeRange.x > SwipeRange.y){ return SwipeRange.x; }
+          else{ return SwipeRange.y; }
       }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

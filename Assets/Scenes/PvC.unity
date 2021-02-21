@@ -2996,6 +2996,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   game: {fileID: 401600369}
+  FlickMinRange: {x: 20, y: 20}
+  SwipeMinRange: {x: 50, y: 50}
+  NoneCountMax: 2
+  swipeSpeed: 0.002
+  flickTime: 0.5
 --- !u!81 &675238522
 AudioListener:
   m_ObjectHideFlags: 0
