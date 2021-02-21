@@ -17,6 +17,7 @@ namespace Tutorial
       private int degree = -1; //この値によって表示されるCanvasや受け付けるキーを制御する
       private int[] coordi; //大きさ3。degreeが6,7,8のときに入力された値を格納
       private bool doTutorialFlug = true; //trueの時だけDoTutorial()を実行する。従って一度のみ実行される
+      private bool keyDetectable = true; //falseのときカメラ移動とキー入力を受け付けない（常時true））
       public GameObject blackStone;
       public GameObject whiteStone;
       public GameObject shineBoardPrefab;
@@ -692,6 +693,9 @@ namespace Tutorial
         SceneManager.LoadScene("Choose");
         PlayerPrefs.SetInt("Value_of_PlayerSkill", 1);
       }
+
+
+      public bool KeyDetectable{ get {return keyDetectable;} set {keyDetectable = value;}}
 
   }
 }

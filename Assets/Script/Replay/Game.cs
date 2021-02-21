@@ -11,6 +11,8 @@ namespace Replay
       private int xLength = Choose.InitialSetting.xLength; //オセロ盤の一辺の長さ
       private int yLength = Choose.InitialSetting.yLength;
       private int zLength = Choose.InitialSetting.zLength;
+      private float swidth; //画面サイズ（幅）
+      private float sheight; //画面サイズ（高さ）
       private int nowTurn = 0; //今表示しているターン。初期配置は0ターン目
       private int constantTotalTurn; //合計ターン数。定数
       private string recordstr; //PlayerPrefsの"Record_of_finised_game"を格納
@@ -18,6 +20,7 @@ namespace Replay
       private int[] turn; //nターン目が終わった後に打つ人のターンを表示する。（はじめは黒なので1）
       private int[,] squareList; //マスの情報を格納する。[ターン目,xLength * zLength * _y + xLength * _z + _x]
       private bool changeIndication = true; //trueになるとターンや手番の表示を変える
+      private bool keyDetectable = true; //falseのときカメラ移動とキー入力を受け付けない（スマホ版のみ：Menu画面、Instruction画面を開いている時））
       private float stoneSize;
       public GameObject blackStone;
       public GameObject whiteStone;
@@ -41,6 +44,7 @@ namespace Replay
 
       void Awake()
       {
+          swidth = Screen.width; sheight = Screen.height;
           cameraSensiSlider.GetComponent<Slider>().value = 2 * PlayerPrefs.GetFloat("Value_of_MovingSpeed", 20f) / 5;
           stoneSizeSlider.GetComponent<Slider>().value = 20 * PlayerPrefs.GetFloat("Value_of_StoneSize", 0.6f);
           stoneSize = PlayerPrefs.GetFloat("Value_of_StoneSize", 0.6f);
@@ -261,11 +265,13 @@ namespace Replay
       public void OnMenuClick() //Menuボタンを押した時メニューウィンドウを表示させる。
       {
         menuCanvas.GetComponent<Canvas>().enabled = true;
+        if(swidth <= sheight){ keyDetectable = false; }
       }
 
       public void OnMenuCloseClick() //メニューウィンドウのバツボタンを押した時メニューウィンドウを消す
       {
         menuCanvas.GetComponent<Canvas>().enabled = false;
+        if(swidth <= sheight){ keyDetectable = true; }
       }
 
       public void OnCameraSensiSlide() //カメラ感度のスライダーの値を取得
@@ -295,11 +301,13 @@ namespace Replay
       {
         instructionCanvas.GetComponent<Canvas>().enabled = true;
         menuCanvas.GetComponent<Canvas>().enabled = false;
+        if(swidth <= sheight){ keyDetectable = false; }
       }
 
       public void OnInstructionCloseClick() //操作方法ウィンドウのバツボタンを押した時操作方法ウィンドウを消す
       {
         instructionCanvas.GetComponent<Canvas>().enabled = false;
+        if(swidth <= sheight){ keyDetectable = true; }
       }
 
       public void OnLoadTitleClick()
@@ -313,5 +321,8 @@ namespace Replay
         Replay(tr);
         changeIndication = true;
       }
+
+
+      public bool KeyDetectable{ get {return keyDetectable;} set {keyDetectable = value;}}
   }
 }

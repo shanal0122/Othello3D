@@ -11,6 +11,8 @@ namespace PvP
       private int xLength = Choose.InitialSetting.xLength; //オセロ盤の一辺の長さ
       private int yLength = Choose.InitialSetting.yLength;
       private int zLength = Choose.InitialSetting.zLength;
+      private float swidth; //画面サイズ（幅）
+      private float sheight; //画面サイズ（高さ）
       private string recordOfSuspendedKeyName; //PlayerPrefsにセーブするためのマスの情報のキーの名前（中断後再開機能）
       public Stone stone;
       public Game game;
@@ -31,6 +33,7 @@ namespace PvP
 
       void Awake()
       {
+          swidth = Screen.width; sheight = Screen.height;
           cameraSensiSlider.GetComponent<Slider>().value = 2 * PlayerPrefs.GetFloat("Value_of_MovingSpeed", 20f) / 5;
           if(PlayerPrefs.GetFloat("Value_of_PutableInform", 1) == 1){ putableOnOffText.text = "オン"; }
           else{ putableOnOffText.text = "オフ"; }
@@ -63,11 +66,13 @@ namespace PvP
       public void OnMenuClick() //Menuボタンを押した時メニューウィンドウを表示させる。
       {
         menuCanvas.GetComponent<Canvas>().enabled = true;
+        if(swidth <= sheight){ game.KeyDetectable = false; }
       }
 
       public void OnMenuCloseClick() //メニューウィンドウのバツボタンを押した時メニューウィンドウを消す
       {
         menuCanvas.GetComponent<Canvas>().enabled = false;
+        if(swidth <= sheight){ game.KeyDetectable = true; }
       }
 
       public void OnCameraSensiSlide() //カメラ感度のスライダーの値を取得
@@ -172,12 +177,14 @@ namespace PvP
       {
         instructionCanvas1.GetComponent<Canvas>().enabled = true;
         menuCanvas.GetComponent<Canvas>().enabled = false;
+        if(swidth <= sheight){ game.KeyDetectable = false; }
       }
 
       public void OnInstructionCloseClick() //操作方法ウィンドウのバツボタンを押した時操作方法ウィンドウを消す
       {
         instructionCanvas1.GetComponent<Canvas>().enabled = false;
         instructionCanvas2.GetComponent<Canvas>().enabled = false;
+        if(swidth <= sheight){ game.KeyDetectable = true; }
       }
 
       public void OnInstructionNextClick() //操作方法ボタンの次ページへを押した時次のページを表示させる

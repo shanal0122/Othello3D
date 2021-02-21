@@ -15,7 +15,7 @@ namespace PvP
       private int totalTurn = 0; //現在の累計ターン数を表す（待った（、リプレイ機能））
       private Vector3 standard; //CoordinateDisplayクラスのテキストの向きを定めるために用いる
       private int turn = 1; //黒が1、白が-1。はじめは黒
-      private bool keyDetectable = true; //falseのときカメラ移動とキー入力を受け付けない（ゲームセット時）
+      private bool keyDetectable = true; //falseのときカメラ移動とキー入力を受け付けない（AfterEnterPressed()の処理中（スマホ版のみ：Menu画面、Instruction画面を開いている時））
       private bool gameSetFlug = false; //CanPut()でどちらも置けないことがわかるとtrueになり、処理が終わるとゲームセット画面に移る
       public int XCoordi {get; set;}
       public int YCoordi {get; set;}

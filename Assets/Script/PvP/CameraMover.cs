@@ -19,6 +19,7 @@ namespace PvP
       private Vector3 defaultPosition; //カメラの初期位置
       private Vector3 center;  //オセロ盤の中心位置
       private Transform mainCameraTransform;
+      public Game game;
 
       private Vector2 FlickMinRange = new Vector2(30.0f,30.0f); // フリック最小移動距離
       private Vector2 SwipeMinRange = new Vector2(50.0f,50.0f); // スワイプ最小移動距離
@@ -154,28 +155,25 @@ namespace PvP
 
       private void GetInputVector() // 入力の取得
       {
-          if (Application.isEditor) // Unity上での操作取得
+          if (Application.isEditor && game.KeyDetectable) // Unity上での操作取得
           {
               if (Input.GetMouseButtonDown(0))
               {
-                if(Input.mousePosition.y >= 0.12f*magni*sheight && Input.mousePosition.y <= (1f-0.27f*magni)*sheight)
-                {
-                  InputSTART = Input.mousePosition;
-                }
+                InputSTART = Input.mousePosition; Debug.Log("InputStart : " + Input.mousePosition);
               }
               else if (Input.GetMouseButton(0))
               {
-                if(Input.mousePosition.y >= 0.12f*magni*sheight && Input.mousePosition.y <= (1f-0.27f*magni)*sheight)
+                if(InputSTART.y >= 0.12f*magni*sheight && InputSTART.y <= (1f-0.27f*magni)*sheight)
                 {
-                  InputMOVE = Input.mousePosition;
+                  InputMOVE = Input.mousePosition; Debug.Log("InputMOVE : " + Input.mousePosition);
                   SwipeCLC();
                 }
               }
               else if (Input.GetMouseButtonUp(0))
               {
-                if(Input.mousePosition.y >= 0.12f*magni*sheight && Input.mousePosition.y <= (1f-0.27f*magni)*sheight)
+                if(InputSTART.y >= 0.12f*magni*sheight && InputSTART.y <= (1f-0.27f*magni)*sheight)
                 {
-                  InputEND = Input.mousePosition;
+                  InputEND = Input.mousePosition; Debug.Log("InputEND : " + Input.mousePosition);
                   FlickCLC();
                 }
               }
@@ -186,27 +184,24 @@ namespace PvP
           }
           else // 端末上での操作取得
           {
-              if (Input.touchCount > 0)
+              if (Input.touchCount > 0 && game.KeyDetectable)
               {
                   Touch touch = Input.touches[0];
                   if (touch.phase == TouchPhase.Began)
                   {
-                    if(touch.position.y >= 0.12f*magni*sheight && touch.position.y <= (1f-0.27f*magni)*sheight)
-                    {
-                      InputSTART = touch.position;
-                    }
+                    InputSTART = touch.position;
                   }
                   else if (touch.phase == TouchPhase.Moved)
                   {
-                    if(touch.position.y >= 0.12f*magni*sheight && touch.position.y <= (1f-0.27f*magni)*sheight)
+                    if(InputSTART.y >= 0.12f*magni*sheight && InputSTART.y <= (1f-0.27f*magni)*sheight)
                     {
-                      InputMOVE = Input.mousePosition;
+                      InputMOVE = touch.position;
                       SwipeCLC();
                     }
                   }
                   else if (touch.phase == TouchPhase.Ended)
                   {
-                    if(touch.position.y >= 0.12f*magni*sheight && touch.position.y <= (1f-0.27f*magni)*sheight)
+                    if(InputSTART.y >= 0.12f*magni*sheight && InputSTART.y <= (1f-0.27f*magni)*sheight)
                     {
                       InputEND = touch.position;
                       FlickCLC();
