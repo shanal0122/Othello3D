@@ -15,7 +15,8 @@ namespace Replay
       public GameObject leftCanvas;
       public GameObject rightCanvas;
       public GameObject iconCanvas;
-      public GameObject keyCanvas;
+      public GameObject keyCanvas1;
+      public GameObject keyCanvas2;
       public GameObject menuCanvas;
       public GameObject instructionCanvas;
 
@@ -33,9 +34,12 @@ namespace Replay
       private RectTransform instructionButton;
       private RectTransform loadTitleButton;
 
-      private RectTransform backButton;
-      private RectTransform aheadButton;
+      private RectTransform backButton1;
+      private RectTransform aheadButton1;
       private RectTransform replaySlider;
+
+      private RectTransform backButton2;
+      private RectTransform aheadButton2;
 
       private RectTransform menuPanel;
 
@@ -57,9 +61,12 @@ namespace Replay
           instructionButton = iconCanvas.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
           loadTitleButton = iconCanvas.transform.GetChild(2).gameObject.GetComponent<RectTransform>();
 
-          backButton = keyCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
-          aheadButton = keyCanvas.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
-          replaySlider = keyCanvas.transform.GetChild(2).gameObject.GetComponent<RectTransform>();
+          backButton1 = keyCanvas1.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+          aheadButton1 = keyCanvas1.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
+          replaySlider = keyCanvas1.transform.GetChild(2).gameObject.GetComponent<RectTransform>();
+
+          backButton2 = keyCanvas2.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+          aheadButton2 = keyCanvas2.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
 
           menuPanel = menuCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
 
@@ -92,12 +99,14 @@ namespace Replay
           instructionButton.localScale = new Vector3(0.5f,0.5f,1f); instructionButton.localPosition = new Vector3(0f,170f,0f);
           loadTitleButton.localScale = new Vector3(0.5f,0.5f,1f); loadTitleButton.localPosition = new Vector3(0f,90f,0f);
 
-          backButton.localScale = new Vector3(1f,1f,1f); backButton.localPosition = new Vector3(-50f,-10f,0f);
-          aheadButton.localScale = new Vector3(1f,1f,1f); aheadButton.localPosition = new Vector3(50f,-10f,0f);
+          keyCanvas1.layer = LayerMask.NameToLayer("LeftScreen");
+          keyCanvas1.GetComponent<Canvas>().worldCamera = leftCamera;
+
+          backButton1.localScale = new Vector3(1f,1f,1f); backButton1.localPosition = new Vector3(-50f,-10f,0f);
+          aheadButton1.localScale = new Vector3(1f,1f,1f); aheadButton1.localPosition = new Vector3(50f,-10f,0f);
           replaySlider.localScale = new Vector3(1f,1f,1f); replaySlider.localPosition = new Vector3(29f,-85f,0f);
 
-          keyCanvas.layer = LayerMask.NameToLayer("LeftScreen");
-          keyCanvas.GetComponent<Canvas>().worldCamera = leftCamera;
+          keyCanvas2.GetComponent<Canvas>().enabled = false;
 
           menuCanvas.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceCamera;
           menuPanel.localScale = new Vector3(1f,1f,1f); menuPanel.localPosition = new Vector3(0f,95f,0f);
@@ -129,13 +138,16 @@ namespace Replay
           instructionButton.gameObject.SetActive(false);
           loadTitleButton.localScale = new Vector3(magni*0.3f,magni*0.3f,1f); loadTitleButton.localPosition = new Vector3(160f*magni,0f,0f);
 
-          keyCanvas.layer = LayerMask.NameToLayer("KeyScreen");
-          keyCanvas.GetComponent<Canvas>().worldCamera = keyCamera;
+          keyCanvas1.layer = LayerMask.NameToLayer("KeyScreen");
+          keyCanvas1.GetComponent<Canvas>().worldCamera = keyCamera;
 
-          backButton.gameObject.SetActive(false);
-          aheadButton.gameObject.SetActive(false);
+          backButton1.gameObject.SetActive(false);
+          aheadButton1.gameObject.SetActive(false);
           replaySlider.localScale = new Vector3(magni,magni,1f);
-          replaySlider.sizeDelta = new Vector2(0.9f*pwidth/magni-0.9f*replaySlider.transform.GetChild(0).gameObject.GetComponent<Text>().preferredWidth,20f); replaySlider.localPosition = new Vector3(37f*magni,0f,0f);
+          replaySlider.sizeDelta = new Vector2(0.8f*pwidth/magni-0.9f*replaySlider.transform.GetChild(0).gameObject.GetComponent<Text>().preferredWidth,20f); replaySlider.localPosition = new Vector3(37f*magni,0f,0f);
+
+          backButton2.localScale = new Vector3(magni,magni,1f); backButton2.localPosition = new Vector3(-167.5f*magni,(233f*magni-pheight)/2f,0f);
+          aheadButton2.localScale = new Vector3(magni,magni,1f); aheadButton2.localPosition = new Vector3(167.5f*magni,(233f*magni-pheight)/2f,0f);
 
           magni = Mathf.Min(0.9f*pwidth/220f,0.9f*pheight/380f);
           float pos = (0.9f*pheight-magni*380f)/2f;
