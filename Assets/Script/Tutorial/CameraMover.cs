@@ -24,7 +24,7 @@ namespace Tutorial
       private Transform mainCameraTransform;
       public Game game;
 
-      [SerializeField] private Vector2 FlickMinRange = new Vector2(20.0f,20.0f); // フリック最小移動距離
+      [SerializeField] private Vector2 FlickMinRange = new Vector2(5.0f,5.0f); // フリック最小移動距離
       [SerializeField] private Vector2 SwipeMinRange = new Vector2(50.0f,50.0f); // スワイプ最小移動距離
       [SerializeField] private int NoneCountMax = 2; // TAPをNONEに戻すまでのカウント
       private int NoneCountNow = 0;
