@@ -13,7 +13,10 @@ namespace PvP
       public Transform informShinyBoard;
       public Transform lastPutSphere;
       public GameObject shineBoardPrefab;
-      public GameObject informShinyBoardPrefab;
+      public GameObject informShinyBoardPrefab1;
+      public GameObject informShinyBoardPrefab2;
+      public GameObject informShinyBoardPrefab3;
+      public GameObject informShinyBoardPrefab4;
       public GameObject lastPutSpherePrefab;
       private GameObject[,,] sb; //[x,y,z]にあるshineBoardを格納
       private GameObject[,,] isb; //[x,y,z]にあるinformShinyBoardを格納
@@ -34,13 +37,28 @@ namespace PvP
               sb[x,y,z] = Instantiate(shineBoardPrefab, shineBoard);
               sb[x,y,z].transform.position = new Vector3(x,y,z);
               sb[x,y,z].SetActive(false);
-              isb[x,y,z] = Instantiate(informShinyBoardPrefab, informShinyBoard);
-              isb[x,y,z].transform.position = new Vector3(x,y,z);
-              isb[x,y,z].SetActive(false);
               lpb[x,y,z] = Instantiate(lastPutSpherePrefab, lastPutSphere);
               lpb[x,y,z].transform.position = new Vector3(x,y,z);
               lpb[x,y,z].SetActive(false);
             }
+          }
+        }
+        for(int y=0; y<yLength; y++)
+        {
+          for(int z=0; z<zLength; z++)
+          {
+            isb[0,y,z] = Instantiate(informShinyBoardPrefab1, informShinyBoard);
+            isb[0,y,z].transform.position = new Vector3(0,y,z);
+            isb[0,y,z].SetActive(false);
+            isb[1,y,z] = Instantiate(informShinyBoardPrefab2, informShinyBoard);
+            isb[1,y,z].transform.position = new Vector3(1,y,z);
+            isb[1,y,z].SetActive(false);
+            isb[2,y,z] = Instantiate(informShinyBoardPrefab3, informShinyBoard);
+            isb[2,y,z].transform.position = new Vector3(2,y,z);
+            isb[2,y,z].SetActive(false);
+            isb[3,y,z] = Instantiate(informShinyBoardPrefab4, informShinyBoard);
+            isb[3,y,z].transform.position = new Vector3(3,y,z);
+            isb[3,y,z].SetActive(false);
           }
         }
       }

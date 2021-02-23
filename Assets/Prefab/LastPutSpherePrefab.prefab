@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4550492003710922207}
   - component: {fileID: 4550492003710922192}
   - component: {fileID: 4550492003710922193}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: LastPutSpherePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}

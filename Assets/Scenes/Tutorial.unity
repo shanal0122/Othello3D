@@ -1145,7 +1145,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1079
+    m_Bits: 5175
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1170,6 +1170,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   game: {fileID: 220036276}
+  FlickMinRange: {x: 20, y: 20}
+  SwipeMinRange: {x: 50, y: 50}
+  NoneCountMax: 2
+  swipeSpeed: 0.002
+  flickTime: 0.5
 --- !u!81 &142493766
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1657,7 +1662,13 @@ MonoBehaviour:
     type: 3}
   shineBoardPrefab: {fileID: 5223450581448488306, guid: e4afd04d2807b4ef4b5ec4f09c217334,
     type: 3}
-  informShinyBoardPrefab: {fileID: 7510467280233032906, guid: 2323057c020014002a7addf5aab7202e,
+  informShinyBoardPrefab1: {fileID: 2455973359359512380, guid: 45b4cf44acb3b4492a4f7fa130e7cbff,
+    type: 3}
+  informShinyBoardPrefab2: {fileID: 8329582538745268220, guid: ec3470ccf1c194430b3bc2027ebfc8e3,
+    type: 3}
+  informShinyBoardPrefab3: {fileID: 957471798297942364, guid: 0ecf53c2c357341c596089eb6824ed06,
+    type: 3}
+  informShinyBoardPrefab4: {fileID: 370108696715713710, guid: cd34cfa94033840cfaaaa697ab73c794,
     type: 3}
   lastPutSpherePrefab: {fileID: 4550492003710922194, guid: be90581fac18b4232a94bb9984b3452b,
     type: 3}
@@ -8257,7 +8268,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 3895
   m_RenderingLayerMask: 1
   m_Lightmapping: 2
   m_LightShadowCasterMode: 0
