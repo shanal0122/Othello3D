@@ -11,6 +11,7 @@ namespace Choose
       private float sheight; //画面サイズ（高さ）
       private float pwidth; //CanvasScalerのReference Resolution。（幅）
       private float pheight = 600; //CanvasScalerのReference Resolution。Heightで合わせているたためこれが高さの基準になる（高さ）
+      private int language;
       public GameObject optionCanvas;
       public GameObject chooseCanvas;
       public GameObject pvcCanvas;
@@ -21,13 +22,17 @@ namespace Choose
       public GameObject creditCanvas;
 
       private RectTransform menuButton;
+      private Text menuButtonText;
 
       private RectTransform choosePanel;
       private RectTransform chooseText;
       private Text chooseTextText;
       private RectTransform pvcButton;
+      private Text pvcButtonText;
       private RectTransform pvpButton;
+      private Text pvpButtonText;
       private RectTransform replayButton;
+      private Text replayButtonText;
 
       private RectTransform pvcPanel;
       private RectTransform pvcText;
@@ -35,6 +40,7 @@ namespace Choose
       private RectTransform pvc444Button;
       private RectTransform pvc464Button;
       private RectTransform pvcBackButton;
+      private Text pvcBackButtonText;
 
       private RectTransform pvpPanel;
       private RectTransform pvpText;
@@ -42,29 +48,53 @@ namespace Choose
       private RectTransform pvp444Button;
       private RectTransform pvp464Button;
       private RectTransform pvpBackButton;
+      private Text pvpBackButtonText;
 
       private RectTransform suspendConfirmPanel;
+      private Text suspendConfirmText;
+      private Text suspendConfirmYesText;
+      private Text suspendConfirmNoText;
 
       private RectTransform tutorialConfirmPanel;
+      private Text tutorialConfirmText;
+      private Text tutorialConfirmYesText;
+      private Text tutorialConfirmNoText;
 
       private RectTransform menuPanel;
       private RectTransform menuCloseButton;
       private RectTransform menuText;
       private Text menuTextText;
+      private RectTransform languageDropdown;
+      private RectTransform languageDropdownText;
+      private Text languageDropdownTextText;
       private RectTransform bgmDropdown;
       private RectTransform bgmDropdownText;
+      private Text bgmDropdownTextText;
       private RectTransform bgmVolumeSlide;
       private RectTransform bgmVolumeSlideText;
+      private Text bgmVolumeSlideTextText;
       private RectTransform playerTurnDropdown;
+      private Dropdown playerTurnDropdownDropdown;
       private RectTransform playerTurnDropdownText;
+      private Text playerTurnDropdownTextText;
+      private Text playerTurnDropdownLabelText;
       private RectTransform levelDropdown;
+      private Dropdown levelDropdownDropdown;
       private RectTransform levelDropdownText;
+      private Text levelDropdownTextText;
+      private Text levelDropdownLabelText;
       private RectTransform tutorialButton;
       private RectTransform tutorialButtonText;
+      private Text tutorialButtonTextText;
+      private Text tutorialButtonPlayText;
       private RectTransform creditButton;
       private RectTransform creditButtonText;
+      private Text creditButtonTextText;
+      private Text creditButtonDisplayText;
       private RectTransform loadTitleButton;
       private RectTransform loadTitleButtonText;
+      private Text loadTitleButtonTextText;
+      private Text loadTitleButtonPlayText;
 
       private RectTransform creditPanel;
       private RectTransform creditCloseButton;
@@ -73,80 +103,115 @@ namespace Choose
       private RectTransform creditScrollView;
       private RectTransform creditContent;
       private RectTransform creditIndexText;
+      private Text creditIndexTextText;
       private RectTransform creditNameText;
+      private Text creditNameTextText;
       private RectTransform LicenseText1;
       private RectTransform creditImage;
       private RectTransform creditReturnMenuButton;
+      private Text creditReturnMenuButtonText;
 
       void Start()
       {
         menuButton = optionCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+        menuButtonText = optionCanvas.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
 
         choosePanel = chooseCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
-        chooseText = chooseCanvas.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
-        chooseTextText = chooseCanvas.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
-        pvcButton = chooseCanvas.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
-        pvpButton = chooseCanvas.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject.GetComponent<RectTransform>();
-        replayButton = chooseCanvas.transform.GetChild(0).gameObject.transform.GetChild(3).gameObject.GetComponent<RectTransform>();
+        chooseText = chooseCanvas.transform.GetChild(0).GetChild(0).gameObject.GetComponent<RectTransform>();
+        chooseTextText = chooseCanvas.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
+        pvcButton = chooseCanvas.transform.GetChild(0).GetChild(1).gameObject.GetComponent<RectTransform>();
+        pvcButtonText = chooseCanvas.transform.GetChild(0).GetChild(1).GetChild(0).gameObject.GetComponent<Text>();
+        pvpButton = chooseCanvas.transform.GetChild(0).GetChild(2).gameObject.GetComponent<RectTransform>();
+        pvpButtonText = chooseCanvas.transform.GetChild(0).GetChild(2).GetChild(0).gameObject.GetComponent<Text>();
+        replayButton = chooseCanvas.transform.GetChild(0).GetChild(3).gameObject.GetComponent<RectTransform>();
+        replayButtonText = chooseCanvas.transform.GetChild(0).GetChild(3).GetChild(0).gameObject.GetComponent<Text>();
 
         pvcPanel = pvcCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
-        pvcText = pvcCanvas.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
-        pvcTextText = pvcCanvas.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
-        pvc444Button = pvcCanvas.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
-        pvc464Button = pvcCanvas.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject.GetComponent<RectTransform>();
-        pvcBackButton = pvcCanvas.transform.GetChild(0).gameObject.transform.GetChild(3).gameObject.GetComponent<RectTransform>();
+        pvcText = pvcCanvas.transform.GetChild(0).GetChild(0).gameObject.GetComponent<RectTransform>();
+        pvcTextText = pvcCanvas.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
+        pvc444Button = pvcCanvas.transform.GetChild(0).GetChild(1).gameObject.GetComponent<RectTransform>();
+        pvc464Button = pvcCanvas.transform.GetChild(0).GetChild(2).gameObject.GetComponent<RectTransform>();
+        pvcBackButton = pvcCanvas.transform.GetChild(0).GetChild(3).gameObject.GetComponent<RectTransform>();
+        pvcBackButtonText = pvcCanvas.transform.GetChild(0).GetChild(3).GetChild(0).gameObject.GetComponent<Text>();
 
         pvpPanel = pvpCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
-        pvpText = pvpCanvas.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
-        pvpTextText = pvpCanvas.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
-        pvp444Button = pvpCanvas.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
-        pvp464Button = pvpCanvas.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject.GetComponent<RectTransform>();
-        pvpBackButton = pvpCanvas.transform.GetChild(0).gameObject.transform.GetChild(3).gameObject.GetComponent<RectTransform>();
+        pvpText = pvpCanvas.transform.GetChild(0).GetChild(0).gameObject.GetComponent<RectTransform>();
+        pvpTextText = pvpCanvas.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
+        pvp444Button = pvpCanvas.transform.GetChild(0).GetChild(1).gameObject.GetComponent<RectTransform>();
+        pvp464Button = pvpCanvas.transform.GetChild(0).GetChild(2).gameObject.GetComponent<RectTransform>();
+        pvpBackButton = pvpCanvas.transform.GetChild(0).GetChild(3).gameObject.GetComponent<RectTransform>();
+        pvpBackButtonText = pvpCanvas.transform.GetChild(0).GetChild(3).GetChild(0).gameObject.GetComponent<Text>();
 
         suspendConfirmPanel = suspendConfirmCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+        suspendConfirmText = suspendConfirmCanvas.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
+        suspendConfirmYesText = suspendConfirmCanvas.transform.GetChild(0).GetChild(1).GetChild(0).gameObject.GetComponent<Text>();
+        suspendConfirmNoText = suspendConfirmCanvas.transform.GetChild(0).GetChild(2).GetChild(0).gameObject.GetComponent<Text>();
 
         tutorialConfirmPanel = tutorialConfirmCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+        tutorialConfirmText = tutorialConfirmCanvas.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
+        tutorialConfirmYesText = tutorialConfirmCanvas.transform.GetChild(0).GetChild(1).GetChild(0).gameObject.GetComponent<Text>();
+        tutorialConfirmNoText = tutorialConfirmCanvas.transform.GetChild(0).GetChild(2).GetChild(0).gameObject.GetComponent<Text>();
 
         menuPanel = menuCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
-        menuCloseButton = menuCanvas.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
-        menuText = menuCanvas.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
-        menuTextText = menuCanvas.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<Text>();
-        bgmDropdown = menuCanvas.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject.GetComponent<RectTransform>();
-        bgmDropdownText = menuCanvas.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
-        bgmVolumeSlide = menuCanvas.transform.GetChild(0).gameObject.transform.GetChild(3).gameObject.GetComponent<RectTransform>();
-        bgmVolumeSlideText = menuCanvas.transform.GetChild(0).gameObject.transform.GetChild(3).gameObject.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
-        playerTurnDropdown = menuCanvas.transform.GetChild(0).gameObject.transform.GetChild(4).gameObject.GetComponent<RectTransform>();
-        playerTurnDropdownText = menuCanvas.transform.GetChild(0).gameObject.transform.GetChild(4).gameObject.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
-        levelDropdown = menuCanvas.transform.GetChild(0).gameObject.transform.GetChild(5).gameObject.GetComponent<RectTransform>();
-        levelDropdownText = menuCanvas.transform.GetChild(0).gameObject.transform.GetChild(5).gameObject.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
-        tutorialButton = menuCanvas.transform.GetChild(0).gameObject.transform.GetChild(6).gameObject.GetComponent<RectTransform>();
-        tutorialButtonText = menuCanvas.transform.GetChild(0).gameObject.transform.GetChild(6).gameObject.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
-        creditButton = menuCanvas.transform.GetChild(0).gameObject.transform.GetChild(7).gameObject.GetComponent<RectTransform>();
-        creditButtonText = menuCanvas.transform.GetChild(0).gameObject.transform.GetChild(7).gameObject.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
-        loadTitleButton = menuCanvas.transform.GetChild(0).gameObject.transform.GetChild(8).gameObject.GetComponent<RectTransform>();
-        loadTitleButtonText = menuCanvas.transform.GetChild(0).gameObject.transform.GetChild(8).gameObject.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+        menuCloseButton = menuCanvas.transform.GetChild(0).GetChild(0).gameObject.GetComponent<RectTransform>();
+        menuText = menuCanvas.transform.GetChild(0).GetChild(1).gameObject.GetComponent<RectTransform>();
+        menuTextText = menuCanvas.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Text>();
+        languageDropdown = menuCanvas.transform.GetChild(0).GetChild(2).gameObject.GetComponent<RectTransform>();
+        languageDropdownText = menuCanvas.transform.GetChild(0).GetChild(2).GetChild(0).gameObject.GetComponent<RectTransform>();
+        languageDropdownTextText = menuCanvas.transform.GetChild(0).GetChild(2).GetChild(0).gameObject.GetComponent<Text>();
+        bgmDropdown = menuCanvas.transform.GetChild(0).GetChild(3).gameObject.GetComponent<RectTransform>();
+        bgmDropdownText = menuCanvas.transform.GetChild(0).GetChild(3).GetChild(0).gameObject.GetComponent<RectTransform>();
+        bgmDropdownTextText = menuCanvas.transform.GetChild(0).GetChild(3).GetChild(0).gameObject.GetComponent<Text>();
+        bgmVolumeSlide = menuCanvas.transform.GetChild(0).GetChild(4).gameObject.GetComponent<RectTransform>();
+        bgmVolumeSlideText = menuCanvas.transform.GetChild(0).GetChild(4).GetChild(0).gameObject.GetComponent<RectTransform>();
+        bgmVolumeSlideTextText = menuCanvas.transform.GetChild(0).GetChild(4).GetChild(0).gameObject.GetComponent<Text>();
+        playerTurnDropdown = menuCanvas.transform.GetChild(0).GetChild(5).gameObject.GetComponent<RectTransform>();
+        playerTurnDropdownDropdown = menuCanvas.transform.GetChild(0).GetChild(5).gameObject.GetComponent<Dropdown>();
+        playerTurnDropdownText = menuCanvas.transform.GetChild(0).GetChild(5).GetChild(0).gameObject.GetComponent<RectTransform>();
+        playerTurnDropdownTextText = menuCanvas.transform.GetChild(0).GetChild(5).GetChild(0).gameObject.GetComponent<Text>();
+        playerTurnDropdownLabelText = menuCanvas.transform.GetChild(0).GetChild(5).GetChild(1).gameObject.GetComponent<Text>();
+        levelDropdown = menuCanvas.transform.GetChild(0).GetChild(6).gameObject.GetComponent<RectTransform>();
+        levelDropdownDropdown = menuCanvas.transform.GetChild(0).GetChild(6).gameObject.GetComponent<Dropdown>();
+        levelDropdownText = menuCanvas.transform.GetChild(0).GetChild(6).GetChild(0).gameObject.GetComponent<RectTransform>();
+        levelDropdownTextText = menuCanvas.transform.GetChild(0).GetChild(6).GetChild(0).gameObject.GetComponent<Text>();
+        levelDropdownLabelText = menuCanvas.transform.GetChild(0).GetChild(6).GetChild(1).gameObject.GetComponent<Text>();
+        tutorialButton = menuCanvas.transform.GetChild(0).GetChild(7).gameObject.GetComponent<RectTransform>();
+        tutorialButtonText = menuCanvas.transform.GetChild(0).GetChild(7).GetChild(0).gameObject.GetComponent<RectTransform>();
+        tutorialButtonTextText = menuCanvas.transform.GetChild(0).GetChild(7).GetChild(0).gameObject.GetComponent<Text>();
+        tutorialButtonPlayText = menuCanvas.transform.GetChild(0).GetChild(7).GetChild(1).gameObject.GetComponent<Text>();
+        creditButton = menuCanvas.transform.GetChild(0).GetChild(8).gameObject.GetComponent<RectTransform>();
+        creditButtonText = menuCanvas.transform.GetChild(0).GetChild(8).GetChild(0).gameObject.GetComponent<RectTransform>();
+        creditButtonTextText = menuCanvas.transform.GetChild(0).GetChild(8).GetChild(0).gameObject.GetComponent<Text>();
+        creditButtonDisplayText = menuCanvas.transform.GetChild(0).GetChild(8).GetChild(1).gameObject.GetComponent<Text>();
+        loadTitleButton = menuCanvas.transform.GetChild(0).GetChild(9).gameObject.GetComponent<RectTransform>();
+        loadTitleButtonText = menuCanvas.transform.GetChild(0).GetChild(9).GetChild(0).gameObject.GetComponent<RectTransform>();
+        loadTitleButtonTextText = menuCanvas.transform.GetChild(0).GetChild(9).GetChild(0).gameObject.GetComponent<Text>();
+        loadTitleButtonPlayText = menuCanvas.transform.GetChild(0).GetChild(9).GetChild(1).gameObject.GetComponent<Text>();
 
         creditPanel = creditCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
-        creditCloseButton = creditCanvas.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
-        creditText = creditCanvas.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
-        creditTextText = creditCanvas.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<Text>();
-        creditScrollView = creditCanvas.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject.GetComponent<RectTransform>();
-        creditContent = creditCanvas.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
-        creditIndexText = creditCanvas.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
-        creditNameText = creditCanvas.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
-        LicenseText1 = creditCanvas.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject.GetComponent<RectTransform>();
-        creditImage = creditCanvas.transform.GetChild(0).gameObject.transform.GetChild(3).gameObject.GetComponent<RectTransform>();
-        creditReturnMenuButton = creditCanvas.transform.GetChild(0).gameObject.transform.GetChild(4).gameObject.GetComponent<RectTransform>();
+        creditCloseButton = creditCanvas.transform.GetChild(0).GetChild(0).gameObject.GetComponent<RectTransform>();
+        creditText = creditCanvas.transform.GetChild(0).GetChild(1).gameObject.GetComponent<RectTransform>();
+        creditTextText = creditCanvas.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Text>();
+        creditScrollView = creditCanvas.transform.GetChild(0).GetChild(2).gameObject.GetComponent<RectTransform>();
+        creditContent = creditCanvas.transform.GetChild(0).GetChild(2).GetChild(0).GetChild(0).gameObject.GetComponent<RectTransform>();
+        creditIndexText = creditCanvas.transform.GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).gameObject.GetComponent<RectTransform>();
+        creditIndexTextText = creditCanvas.transform.GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
+        creditNameText = creditCanvas.transform.GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(1).gameObject.GetComponent<RectTransform>();
+        creditNameTextText = creditCanvas.transform.GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(1).gameObject.GetComponent<Text>();
+        LicenseText1 = creditCanvas.transform.GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(2).gameObject.GetComponent<RectTransform>();
+        creditImage = creditCanvas.transform.GetChild(0).GetChild(3).gameObject.GetComponent<RectTransform>();
+        creditReturnMenuButton = creditCanvas.transform.GetChild(0).GetChild(4).gameObject.GetComponent<RectTransform>();
+        creditReturnMenuButtonText = creditCanvas.transform.GetChild(0).GetChild(4).GetChild(0).gameObject.GetComponent<Text>();
 
         SetuGUI();
+        SetLanguage();
       }
 
       public void SetuGUI()
       {
         swidth = Screen.width; sheight = Screen.height;
         pwidth = pheight * swidth / sheight;
-        //Debug.Log(swidth + " " + sheight + " " + pwidth + " " + pheight);////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+        //Debug.Log(swidth + " " + sheight + " " + pwidth + " " + pheight); ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         if(swidth > sheight)
         {
           menuButton.localScale = new Vector3(0.5f,0.5f,1f); menuButton.localPosition = new Vector3(360f,230f,0f);
@@ -176,20 +241,22 @@ namespace Choose
           menuPanel.sizeDelta = new Vector2(640f,540f); menuPanel.localScale = new Vector3(1f,1f,1f); menuPanel.localPosition = new Vector3(0f,0f,0f);
           menuCloseButton.localScale = new Vector3(1f,1f,1f); menuCloseButton.localPosition = new Vector3(275f,255f,0f);
           menuText.localScale = new Vector3(0.6f,0.6f,1f); menuText.localPosition = new Vector3(0f,230f,0f);
-          bgmDropdown.sizeDelta = new Vector2(200f,40f); bgmDropdown.localScale = new Vector3(1f,1f,1f); bgmDropdown.localPosition = new Vector3(130f,160f,0f);
+          languageDropdown.sizeDelta = new Vector2(200f,40f); languageDropdown.localScale = new Vector3(1f,1f,1f); languageDropdown.localPosition = new Vector3(130f,176f,0f);
+          languageDropdownText.localPosition = new Vector3(-330f,0f,0f);
+          bgmDropdown.sizeDelta = new Vector2(200f,40f); bgmDropdown.localScale = new Vector3(1f,1f,1f); bgmDropdown.localPosition = new Vector3(130f,118f,0f);
           bgmDropdownText.localPosition = new Vector3(-330f,0f,0f);
-          bgmVolumeSlide.sizeDelta = new Vector2(360f,24f); bgmVolumeSlide.localScale = new Vector3(1f,1f,1f); bgmVolumeSlide.localPosition = new Vector3(110f,95f,0f);
+          bgmVolumeSlide.sizeDelta = new Vector2(360f,24f); bgmVolumeSlide.localScale = new Vector3(1f,1f,1f); bgmVolumeSlide.localPosition = new Vector3(110f,60f,0f);
           bgmVolumeSlideText.localPosition = new Vector3(-310f,0f,0f);
-          playerTurnDropdown.sizeDelta = new Vector2(200f,40f); playerTurnDropdown.localScale = new Vector3(1f,1f,1f); playerTurnDropdown.localPosition = new Vector3(130f,30f,0f);
-          playerTurnDropdownText.localPosition = new Vector3(-275f,0f,0f);
-          levelDropdown.sizeDelta = new Vector2(200f,40f); levelDropdown.localScale = new Vector3(1f,1f,1f); levelDropdown.localPosition = new Vector3(130f,-35f,0f);
-          levelDropdownText.localPosition = new Vector3(-300f,0f,0f);
-          tutorialButton.sizeDelta = new Vector2(120f,45f); tutorialButton.localScale = new Vector3(1f,1f,1f); tutorialButton.localPosition = new Vector3(145f,-100f,0f);
-          tutorialButtonText.localPosition = new Vector3(-270f,0f,0f);
-          creditButton.sizeDelta = new Vector2(120f,45f); creditButton.localScale = new Vector3(1f,1f,1f); creditButton.localPosition = new Vector3(145f,-165f,0f);
-          creditButtonText.localPosition = new Vector3(-260f,0f,0f);
+          playerTurnDropdown.sizeDelta = new Vector2(200f,40f); playerTurnDropdown.localScale = new Vector3(1f,1f,1f); playerTurnDropdown.localPosition = new Vector3(130f,2f,0f);
+          playerTurnDropdownText.localPosition = new Vector3(-330f,0f,0f);
+          levelDropdown.sizeDelta = new Vector2(200f,40f); levelDropdown.localScale = new Vector3(1f,1f,1f); levelDropdown.localPosition = new Vector3(130f,-56f,0f);
+          levelDropdownText.localPosition = new Vector3(-330f,0f,0f);
+          tutorialButton.sizeDelta = new Vector2(120f,45f); tutorialButton.localScale = new Vector3(1f,1f,1f); tutorialButton.localPosition = new Vector3(145f,-114f,0f);
+          tutorialButtonText.localPosition = new Vector3(-345f,0f,0f);
+          creditButton.sizeDelta = new Vector2(120f,45f); creditButton.localScale = new Vector3(1f,1f,1f); creditButton.localPosition = new Vector3(145f,-172f,0f);
+          creditButtonText.localPosition = new Vector3(-345f,0f,0f);
           loadTitleButton.sizeDelta = new Vector2(120f,45f); loadTitleButton.localScale = new Vector3(1f,1f,1f); loadTitleButton.localPosition = new Vector3(145f,-230f,0f);
-          loadTitleButtonText.localPosition = new Vector3(-297f,0f,0f);
+          loadTitleButtonText.localPosition = new Vector3(-345f,0f,0f);
 
           creditPanel.sizeDelta = new Vector2(640f,540f); creditPanel.localScale = new Vector3(1f,1f,1f); creditPanel.localPosition = new Vector3(0f,0f,0f);
           creditCloseButton.localScale = new Vector3(1f,1f,1f); creditCloseButton.localPosition = new Vector3(275f,255f,0f);
@@ -234,20 +301,22 @@ namespace Choose
           else{ menuPanel.localScale = new Vector3((pheight-30f)/menuPanel.sizeDelta.y,(pheight-30f)/menuPanel.sizeDelta.y,1f); menuPanel.localPosition = new Vector3(0f,0f,0f); }
           menuCloseButton.localScale = new Vector3(0.8f,0.8f,1f); menuCloseButton.localPosition = new Vector3(175f,275f,0f);
           menuText.localScale = new Vector3(1.2f,1.2f,1f); menuText.localPosition = new Vector3(0f,230f,0f);
-          bgmDropdown.sizeDelta = new Vector2(200f,40f); bgmDropdown.localScale = new Vector3(0.8f,0.8f,1f); bgmDropdown.localPosition = new Vector3(100f,160f,0f);
-          bgmDropdownText.localPosition = new Vector3(-300f,0f,0f);
-          bgmVolumeSlide.sizeDelta = new Vector2(300f,24f); bgmVolumeSlide.localScale = new Vector3(0.8f,0.8f,1f); bgmVolumeSlide.localPosition = new Vector3(70f,95f,0f);
+          languageDropdown.sizeDelta = new Vector2(200f,40f); languageDropdown.localScale = new Vector3(0.8f,0.8f,1f); languageDropdown.localPosition = new Vector3(100f,166f,0f);
+          languageDropdownText.localPosition = new Vector3(-305f,0f,0f);
+          bgmDropdown.sizeDelta = new Vector2(200f,40f); bgmDropdown.localScale = new Vector3(0.8f,0.8f,1f); bgmDropdown.localPosition = new Vector3(100f,108f,0f);
+          bgmDropdownText.localPosition = new Vector3(-305f,0f,0f);
+          bgmVolumeSlide.sizeDelta = new Vector2(300f,24f); bgmVolumeSlide.localScale = new Vector3(0.8f,0.8f,1f); bgmVolumeSlide.localPosition = new Vector3(70f,50f,0f);
           bgmVolumeSlideText.localPosition = new Vector3(-265f,0f,0f);
-          playerTurnDropdown.sizeDelta = new Vector2(200f,40f); playerTurnDropdown.localScale = new Vector3(0.8f,0.8f,1f); playerTurnDropdown.localPosition = new Vector3(100f,30f,0f);
-          playerTurnDropdownText.localPosition = new Vector3(-243f,0f,0f);
-          levelDropdown.sizeDelta = new Vector2(200f,40f); levelDropdown.localScale = new Vector3(0.8f,0.8f,1f); levelDropdown.localPosition = new Vector3(100f,-35f,0f);
-          levelDropdownText.localPosition = new Vector3(-270f,0f,0f);
-          tutorialButton.sizeDelta = new Vector2(125f,50f); tutorialButton.localScale = new Vector3(0.8f,0.8f,1f); tutorialButton.localPosition = new Vector3(120f,-100f,0f);
-          tutorialButtonText.localPosition = new Vector3(-247f,0f,0f);
-          creditButton.sizeDelta = new Vector2(125f,50f); creditButton.localScale = new Vector3(0.8f,0.8f,1f); creditButton.localPosition = new Vector3(120f,-165f,0f);
-          creditButtonText.localPosition = new Vector3(-238f,0f,0f);
-          loadTitleButton.sizeDelta = new Vector2(125f,50f); loadTitleButton.localScale = new Vector3(0.8f,0.8f,1f); loadTitleButton.localPosition = new Vector3(120f,-230f,0f);
-          loadTitleButtonText.localPosition = new Vector3(-277f,0f,0f);
+          playerTurnDropdown.sizeDelta = new Vector2(200f,40f); playerTurnDropdown.localScale = new Vector3(0.8f,0.8f,1f); playerTurnDropdown.localPosition = new Vector3(100f,-8f,0f);
+          playerTurnDropdownText.localPosition = new Vector3(-305f,0f,0f);
+          levelDropdown.sizeDelta = new Vector2(200f,40f); levelDropdown.localScale = new Vector3(0.8f,0.8f,1f); levelDropdown.localPosition = new Vector3(100f,-66f,0f);
+          levelDropdownText.localPosition = new Vector3(-305f,0f,0f);
+          tutorialButton.sizeDelta = new Vector2(125f,50f); tutorialButton.localScale = new Vector3(0.8f,0.8f,1f); tutorialButton.localPosition = new Vector3(120f,-124f,0f);
+          tutorialButtonText.localPosition = new Vector3(-335f,0f,0f);
+          creditButton.sizeDelta = new Vector2(125f,50f); creditButton.localScale = new Vector3(0.8f,0.8f,1f); creditButton.localPosition = new Vector3(120f,-182f,0f);
+          creditButtonText.localPosition = new Vector3(-335f,0f,0f);
+          loadTitleButton.sizeDelta = new Vector2(125f,50f); loadTitleButton.localScale = new Vector3(0.8f,0.8f,1f); loadTitleButton.localPosition = new Vector3(120f,-240f,0f);
+          loadTitleButtonText.localPosition = new Vector3(-335f,0f,0f);
 
           creditPanel.sizeDelta = new Vector2(420f,570f);
           if(pheight/pwidth >= creditPanel.sizeDelta.y/creditPanel.sizeDelta.x){ creditPanel.localScale = new Vector3((pwidth-30f)/creditPanel.sizeDelta.x,(pwidth-30f)/creditPanel.sizeDelta.x,1f); creditPanel.localPosition = new Vector3(0f,pheight/2f-(25f+creditPanel.sizeDelta.y/2f)*creditPanel.localScale.y,0f); }
@@ -261,6 +330,112 @@ namespace Choose
           LicenseText1.localScale = new Vector3(0.4f,0.4f,1f); LicenseText1.localPosition = new Vector3(-120f,-330f,0f);
           creditImage.localScale = new Vector3(0.9f,0.9f,1f); creditImage.localPosition = new Vector3(-85f,-200f,0f);
           creditReturnMenuButton.sizeDelta = new Vector2(200f,60f); creditReturnMenuButton.localScale = new Vector3(0.8f,0.8f,1f); creditReturnMenuButton.localPosition = new Vector3(120f,-230f,0f);
+        }
+      }
+
+      public void SetLanguage()
+      {
+        language = PlayerPrefs.GetInt("Value_of_Language", 0);
+        Debug.Log(language);
+
+        if(language == 0)
+        {
+          menuButtonText.text = "メニュー";
+
+          chooseTextText.text = "3D オセロ";
+          pvcButtonText.text = "CPU戦";
+          pvpButtonText.text = "一人プレイ";
+          replayButtonText.text = "最新の棋譜を\nリプレイ";
+
+          pvcTextText.text = "CPU戦";
+          pvcBackButtonText.text = "戻る";
+
+          pvpTextText.text = "一人プレイ";
+          pvpBackButtonText.text = "戻る";
+
+          suspendConfirmText.text = "続きからプレイしますか？";
+          suspendConfirmYesText.text = "はい";
+          suspendConfirmNoText.text = "いいえ";
+
+          tutorialConfirmText.text = "チュートリアルをプレイしますか？\n（Menu からでもプレイできます）";
+          tutorialConfirmYesText.text = "はい";
+          tutorialConfirmNoText.text = "いいえ";
+
+          menuTextText.text = "メニュー";
+          languageDropdownTextText.text = "言語";
+          bgmDropdownTextText.text = "BGM選択";
+          bgmVolumeSlideTextText.text = "BGM音量";
+          playerTurnDropdownDropdown.options[0].text = "先手";
+          playerTurnDropdownDropdown.options[1].text = "後手";
+          playerTurnDropdownLabelText.text = playerTurnDropdownDropdown.options[PlayerPrefs.GetInt("Value_of_PlayerTurn", 0)].text;
+          playerTurnDropdownTextText.text = "CPU戦における手番";
+          levelDropdownDropdown.options[0].text = "よわい";
+          levelDropdownDropdown.options[1].text = "ふつう";
+          levelDropdownDropdown.options[2].text = "つよい";
+          levelDropdownDropdown.options[3].text = "とてもつよい";
+          levelDropdownLabelText.text = levelDropdownDropdown.options[PlayerPrefs.GetInt("Value_of_CPULevel", 0)].text;
+          levelDropdownTextText.text = "CPUのつよさ";
+          tutorialButtonTextText.text = "チュートリアルをプレイ";
+          tutorialButtonPlayText.text = "プレイ";
+          creditButtonTextText.text = "クレジットタイトルを表示";
+          creditButtonDisplayText.text = "表示";
+          loadTitleButtonTextText.text = "タイトル画面に戻る";
+          loadTitleButtonPlayText.text = "戻る";
+
+          creditTextText.text = "クレジットタイトル";
+          creditIndexTextText.text = "グループ名\n企画\nメインプログラマー\nサブプログラマー\n音楽\nロゴデザイン";
+          creditNameTextText.text = "/ D-imensions\n/ カフェラテ\n/ しゃなる\n/ はてぃーぽったー\n/ まっくす\n/ カフェラテ";
+          creditReturnMenuButtonText.text = "メニューに戻る";
+        }
+
+        if(language == 1)
+        {
+          menuButtonText.text = "Menu";
+
+          chooseTextText.text = "3D Othello";
+          pvcButtonText.text = "PvC Battle";
+          pvpButtonText.text = "PvP Battle";
+          replayButtonText.text = "Replay";
+
+          pvcTextText.text = "PvC Battle";
+          pvcBackButtonText.text = "Back";
+
+          pvpTextText.text = "PvP Battle";
+          pvpBackButtonText.text = "Back";
+
+          suspendConfirmText.text = "Do you want to play\nfrom the continuation?";
+          suspendConfirmYesText.text = "Yes";
+          suspendConfirmNoText.text = "No";
+
+          tutorialConfirmText.text = "Do you want to play the tutorial?\n（You can play it from the Menu.）";
+          tutorialConfirmYesText.text = "Yes";
+          tutorialConfirmNoText.text = "No";
+
+          menuTextText.text = "Menu";
+          languageDropdownTextText.text = "Language";
+          bgmDropdownTextText.text = "BGM selection";
+          bgmVolumeSlideTextText.text = "BGM volume";
+          playerTurnDropdownDropdown.options[0].text = "first move";
+          playerTurnDropdownDropdown.options[1].text = "second move";
+          playerTurnDropdownLabelText.text = playerTurnDropdownDropdown.options[PlayerPrefs.GetInt("Value_of_PlayerTurn", 0)].text;
+          playerTurnDropdownTextText.text = "Turn in a CPU game";
+          levelDropdownDropdown.options[0].text = "easy";
+          levelDropdownDropdown.options[1].text = "normal";
+          levelDropdownDropdown.options[2].text = "hard";
+          levelDropdownDropdown.options[3].text = "very hard";
+          levelDropdownLabelText.text = levelDropdownDropdown.options[PlayerPrefs.GetInt("Value_of_CPULevel", 0)].text;
+          levelDropdownTextText.text = "Difficulty level";
+          tutorialButtonTextText.text = "Play the tutorial.";
+          tutorialButtonPlayText.text = "Play";
+          creditButtonTextText.text = "Display the credit.";
+          creditButtonDisplayText.text = "Display";
+          loadTitleButtonTextText.text = "Go back to the title.";
+          loadTitleButtonPlayText.text = "Back";
+
+          creditTextText.text = "Credit Title";
+          creditIndexTextText.text = "Group name\nPlanning\nMain programmer\nSub programmer\nMusic\nLogo design";
+          creditNameTextText.text = "/ D-imensions\n/ カフェラテ\n/ しゃなる\n/ はてぃーぽったー\n/ まっくす\n/ カフェラテ";
+          creditReturnMenuButtonText.text = "Go back to the menu.";
         }
       }
   }

@@ -11,20 +11,32 @@ namespace Choose
       private AudioSource audioSource;
       public GameObject menuCanvas;
       public GameObject creditCanvas;
+      public GameObject languageDropdown;
       public GameObject bgmVolumeSlider;
       public GameObject bgmDropdown;
       public BGMManager bgmManager;
       public GameObject playerTurnDropdown;
       public GameObject levelDropdown;
+      public UGUI uGUI;
 
       void Awake()
       {
+        languageDropdown.GetComponent<Dropdown>().value = PlayerPrefs.GetInt("Value_of_Language", 0);
+        languageDropdown.GetComponent<Dropdown>().onValueChanged.AddListener(OnLanguageChange);
         audioSource = GameObject.FindGameObjectWithTag("BGM").GetComponent<AudioSource>();
         bgmVolumeSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Value_of_BGMVolume", 0.5f) * 10f;
         bgmDropdown.GetComponent<Dropdown>().value = PlayerPrefs.GetInt("Value_of_BGM", 0);
+        bgmDropdown.GetComponent<Dropdown>().onValueChanged.AddListener(OnBGMGhange);
         playerTurnDropdown.GetComponent<Dropdown>().value = PlayerPrefs.GetInt("Value_of_PlayerTurn", 0);
         levelDropdown.GetComponent<Dropdown>().value = PlayerPrefs.GetInt("Value_of_CPULevel", 0);
-        bgmDropdown.GetComponent<Dropdown>().onValueChanged.AddListener(OnBGMGhange);
+      }
+
+      public void OnLanguageChange(int value) //言語を変える
+      {
+        int language = languageDropdown.GetComponent<Dropdown>().value;
+        PlayerPrefs.SetInt("Value_of_Language", language);
+        PlayerPrefs.Save();
+        uGUI.SetLanguage();
       }
 
       public void OnBGMVolumeSlide() //BGMの音量のスライダーの値を取得
