@@ -681,7 +681,7 @@ GameObject:
   - component: {fileID: 83724631}
   - component: {fileID: 83724630}
   m_Layer: 8
-  m_Name: MenuButtonText1
+  m_Name: NextButtonText1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4304,7 +4304,7 @@ GameObject:
   - component: {fileID: 899479406}
   - component: {fileID: 899479405}
   m_Layer: 8
-  m_Name: MenuButtonText2
+  m_Name: PrevButtonText2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4319,7 +4319,7 @@ RectTransform:
   m_GameObject: {fileID: 899479403}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1183472219}
   m_RootOrder: 0
@@ -4351,7 +4351,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: e59db16c8b8e140e687b701548268665, type: 3}
-    m_FontSize: 11
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -4359,8 +4359,8 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: "\u25C0\uFE0E \u524D\u30DA\u30FC\u30B8\u3078"
 --- !u!222 &899479406

@@ -336,7 +336,6 @@ namespace Choose
       public void SetLanguage()
       {
         language = PlayerPrefs.GetInt("Value_of_Language", 0);
-        Debug.Log(language);
 
         if(language == 0)
         {
@@ -427,15 +426,15 @@ namespace Choose
           levelDropdownTextText.text = "Difficulty level";
           tutorialButtonTextText.text = "Play the tutorial.";
           tutorialButtonPlayText.text = "Play";
-          creditButtonTextText.text = "Display the credit.";
-          creditButtonDisplayText.text = "Display";
-          loadTitleButtonTextText.text = "Go back to the title.";
+          creditButtonTextText.text = "Display the Credit.";
+          creditButtonDisplayText.text = "Open";
+          loadTitleButtonTextText.text = "Go back to the Title.";
           loadTitleButtonPlayText.text = "Back";
 
           creditTextText.text = "Credit Title";
           creditIndexTextText.text = "Group name\nPlanning\nMain programmer\nSub programmer\nMusic\nLogo design";
           creditNameTextText.text = "/ D-imensions\n/ カフェラテ\n/ しゃなる\n/ はてぃーぽったー\n/ まっくす\n/ カフェラテ";
-          creditReturnMenuButtonText.text = "Go back to the menu.";
+          creditReturnMenuButtonText.text = "Back to Menu.";
         }
       }
   }

@@ -14,6 +14,7 @@ namespace PvP
       private float sheight; //画面サイズ（高さ）
       private float pwidth; //CanvasScalerのReference Resolution。（幅）
       private float pheight = 600; //CanvasScalerのReference Resolution。Heightで合わせているたためこれが高さの基準になる（高さ）
+      private int language;
       public GameObject cameras;
       public GameObject centerCanvas;
       public GameObject saveConfirmCanvas;
@@ -34,8 +35,12 @@ namespace PvP
       private RectTransform resultText;
       private Text resultTextText;
       private RectTransform playAgainButton;
+      private Text playAgainButtonText;
 
       private RectTransform saveConfirmPanel;
+      private Text saveConfirmText;
+      private Text saveConfirmYesText;
+      private Text saveConfirmNoText;
 
       private RectTransform blackCorkBoardImage;
 
@@ -43,11 +48,16 @@ namespace PvP
       private RectTransform claimCorkBoardImage;
 
       private RectTransform menuButton;
+      private Text menuButtonText;
       private RectTransform instructionButton;
+      private Text instructionButtonText1;
       private RectTransform cancelButton;
+      private Text cancelButtonText;
       private RectTransform loadTitleButton;
+      private Text loadTitleButtonText;
 
       private RectTransform keyBackspaceButton1;
+      private Text keyBackspaceButton1Text;
       private RectTransform key1Button;
       private RectTransform key2Button;
       private RectTransform key3Button;
@@ -55,15 +65,30 @@ namespace PvP
       private RectTransform key5Button;
       private RectTransform key6Button;
       private RectTransform keyReturnButton1;
+      private Text keyReturnButton1Text;
 
       private RectTransform keyBackspaceButton2;
+      private Text keyBackspaceButton2Text;
       private RectTransform keyReturnButton2;
+      private Text keyReturnButton2Text;
 
       private RectTransform menuPanel;
+      private Text menuIndicateText;
+      private Text cameraSensiSliderText;
+      private Text putableButtonText;
+      private Text stoneSizeSliderText;
+      private Text bgmVolumeSliderText;
+      private Text instructionButtonText2;
+      private Text instructionButtonOpenText;
 
       private RectTransform instructionPanel1;
+      private Text instructionText1;
+      private Text nextButtonText1;
 
       private RectTransform instructionPanel2;
+      private Text instructionText2_1;
+      private Text instructionText2_2;
+      private Text prevButtonText2;
 
       void Start()
       {
@@ -75,8 +100,12 @@ namespace PvP
           resultText = centerCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
           resultTextText = centerCanvas.transform.GetChild(0).gameObject.GetComponent<Text>();
           playAgainButton = centerCanvas.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
+          playAgainButtonText = centerCanvas.transform.GetChild(1).GetChild(0).gameObject.GetComponent<Text>();
 
           saveConfirmPanel = saveConfirmCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+          saveConfirmText = saveConfirmCanvas.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
+          saveConfirmYesText = saveConfirmCanvas.transform.GetChild(0).GetChild(1).GetChild(0).gameObject.GetComponent<Text>();
+          saveConfirmNoText = saveConfirmCanvas.transform.GetChild(0).GetChild(2).GetChild(0).gameObject.GetComponent<Text>();
 
           blackCorkBoardImage = leftCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
 
@@ -84,11 +113,16 @@ namespace PvP
           claimCorkBoardImage = rightCanvas.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
 
           menuButton = iconCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+          menuButtonText = iconCanvas.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
           instructionButton = iconCanvas.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
+          instructionButtonText1 = iconCanvas.transform.GetChild(1).GetChild(0).gameObject.GetComponent<Text>();
           cancelButton = iconCanvas.transform.GetChild(2).gameObject.GetComponent<RectTransform>();
+          cancelButtonText = iconCanvas.transform.GetChild(2).GetChild(0).gameObject.GetComponent<Text>();
           loadTitleButton = iconCanvas.transform.GetChild(3).gameObject.GetComponent<RectTransform>();
+          loadTitleButtonText = iconCanvas.transform.GetChild(3).GetChild(0).gameObject.GetComponent<Text>();
 
           keyBackspaceButton1 = keyCanvas1.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+          keyBackspaceButton1Text = keyCanvas1.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
           key1Button = keyCanvas1.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
           key2Button = keyCanvas1.transform.GetChild(2).gameObject.GetComponent<RectTransform>();
           key3Button = keyCanvas1.transform.GetChild(3).gameObject.GetComponent<RectTransform>();
@@ -96,17 +130,33 @@ namespace PvP
           key5Button = keyCanvas1.transform.GetChild(5).gameObject.GetComponent<RectTransform>();
           key6Button = keyCanvas1.transform.GetChild(6).gameObject.GetComponent<RectTransform>();
           keyReturnButton1 = keyCanvas1.transform.GetChild(7).gameObject.GetComponent<RectTransform>();
+          keyReturnButton1Text = keyCanvas1.transform.GetChild(7).GetChild(0).gameObject.GetComponent<Text>();
 
           keyBackspaceButton2 = keyCanvas2.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+          keyBackspaceButton2Text = keyCanvas2.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
           keyReturnButton2 = keyCanvas2.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
+          keyReturnButton2Text = keyCanvas2.transform.GetChild(1).GetChild(0).gameObject.GetComponent<Text>();
 
           menuPanel = menuCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+          menuIndicateText = menuCanvas.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Text>();
+          cameraSensiSliderText = menuCanvas.transform.GetChild(0).GetChild(2).GetChild(0).gameObject.GetComponent<Text>();
+          putableButtonText = menuCanvas.transform.GetChild(0).GetChild(3).GetChild(0).gameObject.GetComponent<Text>();
+          stoneSizeSliderText = menuCanvas.transform.GetChild(0).GetChild(4).GetChild(0).gameObject.GetComponent<Text>();
+          bgmVolumeSliderText = menuCanvas.transform.GetChild(0).GetChild(5).GetChild(0).gameObject.GetComponent<Text>();
+          instructionButtonText2 = menuCanvas.transform.GetChild(0).GetChild(6).GetChild(0).gameObject.GetComponent<Text>();
+          instructionButtonOpenText = menuCanvas.transform.GetChild(0).GetChild(6).GetChild(1).gameObject.GetComponent<Text>();
 
           instructionPanel1 = instructionCanvas1.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+          instructionText1 = instructionCanvas1.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Text>();
+          nextButtonText1 = instructionCanvas1.transform.GetChild(0).GetChild(2).GetChild(0).gameObject.GetComponent<Text>();
 
           instructionPanel2 = instructionCanvas2.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+          instructionText2_1 = instructionCanvas2.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Text>();
+          instructionText2_2 = instructionCanvas2.transform.GetChild(0).GetChild(4).gameObject.GetComponent<Text>();
+          prevButtonText2= instructionCanvas2.transform.GetChild(0).GetChild(6).GetChild(0).gameObject.GetComponent<Text>();
 
           SetuGUI();
+          SetLanguage();
       }
 
       private void SetuGUI()
@@ -219,6 +269,97 @@ namespace PvP
 
           instructionCanvas2.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
           instructionPanel2.localScale = new Vector3(magni,magni,1f); instructionPanel2.localPosition = new Vector3(0f,pos,0f);
+        }
+      }
+
+      public void SetLanguage()
+      {
+        language = PlayerPrefs.GetInt("Value_of_Language", 0);
+
+        if(language == 0)
+        {
+          playAgainButtonText.text = "もう一度遊ぶ";
+
+          saveConfirmText.text = "今の対局データを保存しますか？";
+          saveConfirmYesText.text = "はい";
+          saveConfirmNoText.text = "いいえ";
+
+          menuButtonText.text = "メニュー";
+          instructionButtonText1.text = "操作説明";
+          cancelButtonText.text = "まった";
+          loadTitleButtonText.text = "タイトルに戻る";
+
+          keyBackspaceButton1Text.text = "戻る";
+          keyReturnButton1Text.text = "決定";
+
+          keyBackspaceButton2Text.text = "戻る";
+          keyReturnButton2Text.text = "決定";
+
+          menuIndicateText.text = "設定";
+          cameraSensiSliderText.text = "カメラ感度\n(９段階)";
+          putableButtonText.text = "お助け機能";
+          stoneSizeSliderText.text = "石の大きさ\n(９段階)";
+          bgmVolumeSliderText.text = "BGM音量";
+          instructionButtonText2.text = "操作説明";
+          instructionButtonOpenText.text = "ひらく";
+
+          if(swidth > sheight)
+          {
+            instructionText1.text = "〜　用いるキー 　〜\n1~4(または1~6)の数字キー\nEnterキー\nbackspaceキー\n十字キー\n\n\n\n\n2→3→1→Enter のような順番で\nキーを押すと石が置ける。\n\n\n十字キーでカメラ操作\n\n\ndelete : キー操作を一つ戻る\n\n\n待った : 一手戻る";
+            nextButtonText1.text = "次ページへ ▶︎";
+          }
+          if(swidth <= sheight)
+          {
+            instructionText1.text = "下のキーを\n2→3→1→決定 のような順番で\n押すと石が置ける。\n\n\nフリックでカメラ操作\n\n\n戻る : キー操作を一つ戻る\n\n\n待った : 一手戻る";
+            nextButtonText1.text = "次ページへ ▶︎";
+          }
+
+          instructionText2_1.text = "このようには置けますが";
+          instructionText2_2.text = "下のように対角線上に\n置くことはできません！";
+          prevButtonText2.text = "◀︎ 前ページへ";
+        }
+
+        if(language == 1)
+        {
+          playAgainButtonText.text = "Play again.";
+
+          saveConfirmText.text = "Do you want to save the current game data?";
+          saveConfirmYesText.text = "Yes";
+          saveConfirmNoText.text = "No";
+
+          menuButtonText.text = "Menu";
+          instructionButtonText1.text = "Instruction";
+          cancelButtonText.text = "Wait";
+          loadTitleButtonText.text = "Back to Title.";
+
+          keyBackspaceButton1Text.text = "back";
+          keyReturnButton1Text.text = "enter";
+
+          keyBackspaceButton2Text.text = "back";
+          keyReturnButton2Text.text = "enter";
+
+          menuIndicateText.text = "Settings";
+          cameraSensiSliderText.text = "Sensitivity\n(9 levels)";
+          putableButtonText.text = "Help func.";
+          stoneSizeSliderText.text = "Stone size\n(9 levels)";
+          bgmVolumeSliderText.text = "BGM";
+          instructionButtonText2.text = "Instructions";
+          instructionButtonOpenText.text = "Open";
+
+          if(swidth > sheight)
+          {
+            instructionText1.text = "〜　Keys to use　〜\n1~4 (or 1~6) numeric keys\nEnter key\nBackspace key\nCross key\n\n\n\nPress the keys in the order of\n2, 3, 1, and Enter\nto put a stone.\n\n\nCross key : Control the camera.\n\n\ndelete : Go back one keystroke\n\n\nWait : Go back one move";
+            nextButtonText1.text = "Next Page ▶︎";
+          }
+          if(swidth <= sheight)
+          {
+            instructionText1.text = "Press the bottom keys in the order of\n2, 3, 1, and Enter\nto put a stone. \n\n\nFlick to control the camera.\n\n\nback : Go back one keystroke\n\n\nWait : Go back one move";
+            nextButtonText1.text = "Next Page ▶︎";
+          }
+
+          instructionText2_1.text = "You can put like this, but";
+          instructionText2_2.text = "You can't put\non a diagonal as follows!";
+          prevButtonText2.text = "◀︎ Pre. Page";
         }
       }
   }

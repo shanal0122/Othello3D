@@ -13,6 +13,7 @@ namespace PvP
       private int zLength = Choose.InitialSetting.zLength;
       private float swidth; //画面サイズ（幅）
       private float sheight; //画面サイズ（高さ）
+      private int language;
       private string recordOfSuspendedKeyName; //PlayerPrefsにセーブするためのマスの情報のキーの名前（中断後再開機能）
       public Stone stone;
       public Game game;
@@ -33,10 +34,19 @@ namespace PvP
 
       void Awake()
       {
+          language = PlayerPrefs.GetInt("Value_of_Language", 0);
           swidth = Screen.width; sheight = Screen.height;
           cameraSensiSlider.GetComponent<Slider>().value = 2 * PlayerPrefs.GetFloat("Value_of_MovingSpeed", 20f) / 5;
-          if(PlayerPrefs.GetFloat("Value_of_PutableInform", 1) == 1){ putableOnOffText.text = "オン"; }
-          else{ putableOnOffText.text = "オフ"; }
+          if(language == 0)
+          {
+            if(PlayerPrefs.GetFloat("Value_of_PutableInform", 1) == 1){ putableOnOffText.text = "オン"; }
+            else{ putableOnOffText.text = "オフ"; }
+          }
+          if(language == 1)
+          {
+            if(PlayerPrefs.GetFloat("Value_of_PutableInform", 1) == 1){ putableOnOffText.text = "On"; }
+            else{ putableOnOffText.text = "Off"; }
+          }
           stoneSizeSlider.GetComponent<Slider>().value = 20 * PlayerPrefs.GetFloat("Value_of_StoneSize", 0.6f);
           stoneSizeSlider.GetComponent<Slider>().onValueChanged.AddListener(OnStoneSizeSlide);
           audioSource = GameObject.FindGameObjectWithTag("BGM").GetComponent<AudioSource>();
@@ -92,7 +102,8 @@ namespace PvP
         if(s == 0)
         {
             game.PutableInform = false;
-            putableOnOffText.text = "オフ";
+            if(language == 0){ putableOnOffText.text = "オフ"; }
+            if(language == 1){ putableOnOffText.text = "Off"; }
             changeColor.UndoAllBoardColor();
             if(game.XCoordi == 0 && game.ZCoordi == 0 && game.YCoordi == 0)
             {
@@ -122,7 +133,8 @@ namespace PvP
         {
             int turn = game.Turn;
             game.PutableInform = true;
-            putableOnOffText.text = "オン";
+            if(language == 0){ putableOnOffText.text = "オン"; }
+            if(language == 1){ putableOnOffText.text = "On"; }
             if(game.XCoordi == 0 && game.ZCoordi == 0 && game.YCoordi == 0)
             {
                 for(int y=0; y<yLength; y++)
