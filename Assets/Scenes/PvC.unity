@@ -3482,7 +3482,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
-    m_LineSpacing: 1
+    m_LineSpacing: 0.85
   m_Text: "\u64CD\u4F5C\u8AAC\u660E"
 --- !u!222 &758686376
 CanvasRenderer:
@@ -4051,7 +4051,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
-    m_LineSpacing: 1
+    m_LineSpacing: 0.85
   m_Text: "\u30AB\u30E1\u30E9\u611F\u5EA6\n(\uFF19\u6BB5\u968E)"
 --- !u!222 &861531222
 CanvasRenderer:
@@ -6242,7 +6242,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
-    m_LineSpacing: 1
+    m_LineSpacing: 0.85
   m_Text: "\u304A\u52A9\u3051\u6A5F\u80FD"
 --- !u!222 &1317299190
 CanvasRenderer:
@@ -9451,7 +9451,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
-    m_LineSpacing: 1
+    m_LineSpacing: 0.85
   m_Text: "\u77F3\u306E\u5927\u304D\u3055\n(\uFF19\u6BB5\u968E)"
 --- !u!222 &1863328737
 CanvasRenderer:
@@ -9842,7 +9842,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
-    m_LineSpacing: 1
+    m_LineSpacing: 0.85
   m_Text: BGM
 --- !u!222 &1905674727
 CanvasRenderer:

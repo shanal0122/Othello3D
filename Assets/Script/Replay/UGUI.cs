@@ -11,6 +11,7 @@ namespace Replay
       private float sheight; //画面サイズ（高さ）
       private float pwidth; //CanvasScalerのReference Resolution。（幅）
       private float pheight = 600; //CanvasScalerのReference Resolution。Heightで合わせているたためこれが高さの基準になる（高さ）
+      private int language;
       public GameObject cameras;
       public GameObject leftCanvas;
       public GameObject rightCanvas;
@@ -31,17 +32,31 @@ namespace Replay
       private RectTransform claimCorkBoardImage;
 
       private RectTransform menuButton;
+      private Text menuButtonText;
       private RectTransform instructionButton;
+      private Text instructionButtonText1;
       private RectTransform loadTitleButton;
+      private Text loadTitleButtonText;
 
       private RectTransform backButton1;
+      private Text backButton1Text;
       private RectTransform aheadButton1;
+      private Text aheadButton1Text;
       private RectTransform replaySlider;
+      private Text replaySliderText;
 
       private RectTransform backButton2;
+      private Text backButton2Text;
       private RectTransform aheadButton2;
+      private Text aheadButton2Text;
 
       private RectTransform menuPanel;
+      private Text menuIndicateText;
+      private Text cameraSensiSliderText;
+      private Text stoneSizeSliderText;
+      private Text bgmVolumeSliderText;
+      private Text instructionButtonText2;
+      private Text instructionButtonOpenText;
 
       private RectTransform instructionPanel;
 
@@ -58,21 +73,36 @@ namespace Replay
           claimCorkBoardImage = rightCanvas.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
 
           menuButton = iconCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+          menuButtonText = iconCanvas.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
           instructionButton = iconCanvas.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
+          instructionButtonText1 = iconCanvas.transform.GetChild(1).GetChild(0).gameObject.GetComponent<Text>();
           loadTitleButton = iconCanvas.transform.GetChild(2).gameObject.GetComponent<RectTransform>();
+          loadTitleButtonText = iconCanvas.transform.GetChild(2).GetChild(0).gameObject.GetComponent<Text>();
 
           backButton1 = keyCanvas1.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+          backButton1Text = keyCanvas1.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
           aheadButton1 = keyCanvas1.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
+          aheadButton1Text = keyCanvas1.transform.GetChild(1).GetChild(0).gameObject.GetComponent<Text>();
           replaySlider = keyCanvas1.transform.GetChild(2).gameObject.GetComponent<RectTransform>();
+          replaySliderText = keyCanvas1.transform.GetChild(2).GetChild(0).gameObject.GetComponent<Text>();
 
           backButton2 = keyCanvas2.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+          backButton2Text = keyCanvas2.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
           aheadButton2 = keyCanvas2.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
+          aheadButton2Text = keyCanvas2.transform.GetChild(1).GetChild(0).gameObject.GetComponent<Text>();
 
           menuPanel = menuCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+          menuIndicateText = menuCanvas.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Text>();
+          cameraSensiSliderText = menuCanvas.transform.GetChild(0).GetChild(2).GetChild(0).gameObject.GetComponent<Text>();
+          stoneSizeSliderText = menuCanvas.transform.GetChild(0).GetChild(3).GetChild(0).gameObject.GetComponent<Text>();
+          bgmVolumeSliderText = menuCanvas.transform.GetChild(0).GetChild(4).GetChild(0).gameObject.GetComponent<Text>();
+          instructionButtonText2 = menuCanvas.transform.GetChild(0).GetChild(5).GetChild(0).gameObject.GetComponent<Text>();
+          instructionButtonOpenText = menuCanvas.transform.GetChild(0).GetChild(5).GetChild(1).gameObject.GetComponent<Text>();
 
           instructionPanel = instructionCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
 
           SetuGUI();
+          SetLanguage();
       }
 
       private void SetuGUI()
@@ -156,6 +186,53 @@ namespace Replay
 
           instructionCanvas.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
           instructionPanel.localScale = new Vector3(magni,magni,1f); instructionPanel.localPosition = new Vector3(0f,pos,0f);
+        }
+      }
+
+      public void SetLanguage()
+      {
+        language = PlayerPrefs.GetInt("Value_of_Language", 0);
+
+        if(language == 0)
+        {
+          menuButtonText.text = "メニュー";
+          instructionButtonText1.text = "操作説明";
+          loadTitleButtonText.text = "タイトルに戻る";
+
+          backButton1Text.text = "１手戻る";
+          aheadButton1Text.text = "１手進む";
+          replaySliderText.text = "手番を\n進める";
+
+          backButton2Text.text = "１手戻る";
+          aheadButton2Text.text = "１手進む";
+
+          menuIndicateText.text = "設定";
+          cameraSensiSliderText.text = "カメラ感度\n(９段階)";
+          stoneSizeSliderText.text = "石の大きさ\n(９段階)";
+          bgmVolumeSliderText.text = "BGM音量";
+          instructionButtonText2.text = "操作説明";
+          instructionButtonOpenText.text = "ひらく";
+        }
+
+        if(language == 1)
+        {
+          menuButtonText.text = "Menu";
+          instructionButtonText1.text = "Instruction";
+          loadTitleButtonText.text = "Back to Title.";
+
+          backButton1Text.text = "Back";
+          aheadButton1Text.text = "Forward";
+          replaySliderText.text = "Move\nsteps.";
+
+          backButton2Text.text = "Back";
+          aheadButton2Text.text = "Forward";
+
+          menuIndicateText.text = "Settings";
+          cameraSensiSliderText.text = "Sensitivity\n(9 levels)";
+          stoneSizeSliderText.text = "Stone size\n(9 levels)";
+          bgmVolumeSliderText.text = "BGM";
+          instructionButtonText2.text = "Instructions";
+          instructionButtonOpenText.text = "Open";
         }
       }
   }

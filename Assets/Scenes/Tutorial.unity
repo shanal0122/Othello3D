@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.8773585, g: 0.8773585, b: 0.8773585, a: 1}
+  m_AmbientSkyColor: {r: 1.4980392, g: 1.4980392, b: 1.4980392, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -315,7 +315,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2, y: 198}
+  m_AnchoredPosition: {x: -2, y: 208}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &38851838
@@ -509,7 +509,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
-    m_LineSpacing: 1.4
+    m_LineSpacing: 1.1
   m_Text: 
 --- !u!222 &59149912
 CanvasRenderer:
@@ -1719,6 +1719,16 @@ MonoBehaviour:
   centerCanvas: {fileID: 968541172}
   iconCanvas: {fileID: 1546836863}
   keyCanvas: {fileID: 1629239926}
+  canvas_1_L: {fileID: 762564321}
+  canvas0_L: {fileID: 539264180}
+  canvas1_L: {fileID: 1646446110}
+  canvas2_L: {fileID: 467808985}
+  canvas3_L: {fileID: 415439848}
+  canvas4_L: {fileID: 1275620751}
+  canvas5_L: {fileID: 1159076726}
+  canvas6to9_L: {fileID: 714928510}
+  canvas10_L: {fileID: 1365920154}
+  canvas11_L: {fileID: 253974225}
   canvas_1_P: {fileID: 1901231250}
   canvas0_P: {fileID: 344968614}
   canvas1_P: {fileID: 579648771}
@@ -2284,12 +2294,12 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 100
-    m_Alignment: 1
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
-    m_LineSpacing: 2
+    m_LineSpacing: 1.1
   m_Text: "\u76E4\u306E\u5468\u308A\u306E\u756A\u53F7\u901A\u308A\u306B\uFF01"
 --- !u!222 &347542158
 CanvasRenderer:
@@ -4324,12 +4334,12 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 100
-    m_Alignment: 1
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
-    m_LineSpacing: 2
+    m_LineSpacing: 1.1
   m_Text: "\u76E4\u306E\u5468\u308A\u306E\u756A\u53F7\u901A\u308A\u306B\uFF01"
 --- !u!222 &593501869
 CanvasRenderer:
@@ -6923,12 +6933,12 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 100
-    m_Alignment: 1
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
-    m_LineSpacing: 2
+    m_LineSpacing: 1.1
   m_Text: "\u76E4\u306E\u5468\u308A\u306E\u756A\u53F7\u901A\u308A\u306B\uFF01"
 --- !u!222 &1103545376
 CanvasRenderer:
@@ -7165,7 +7175,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
-    m_LineSpacing: 1.4
+    m_LineSpacing: 1.1
   m_Text: 
 --- !u!222 &1150156241
 CanvasRenderer:
@@ -10374,7 +10384,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: e59db16c8b8e140e687b701548268665, type: 3}
-    m_FontSize: 100
+    m_FontSize: 80
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -10384,7 +10394,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
-    m_LineSpacing: 1.8
+    m_LineSpacing: 1.5
   m_Text: "\u6700\u5F8C\u306B Enter\n\u3092\u62BC\u305B\u3070OK\uFF01"
 --- !u!222 &1673810418
 CanvasRenderer:
@@ -11790,12 +11800,12 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 100
-    m_Alignment: 1
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
-    m_LineSpacing: 2
+    m_LineSpacing: 1.1
   m_Text: "\u76E4\u306E\u5468\u308A\u306E\u756A\u53F7\u901A\u308A\u306B\uFF01"
 --- !u!222 &1938183014
 CanvasRenderer:

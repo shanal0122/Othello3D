@@ -323,7 +323,7 @@ namespace PvP
         {
           playAgainButtonText.text = "Play again.";
 
-          saveConfirmText.text = "Do you want to save the current game data?";
+          saveConfirmText.text = "Do you want to save\nthe current game data?";
           saveConfirmYesText.text = "Yes";
           saveConfirmNoText.text = "No";
 
@@ -332,11 +332,11 @@ namespace PvP
           cancelButtonText.text = "Wait";
           loadTitleButtonText.text = "Back to Title.";
 
-          keyBackspaceButton1Text.text = "back";
-          keyReturnButton1Text.text = "enter";
+          keyBackspaceButton1Text.text = "Back";
+          keyReturnButton1Text.text = "Enter";
 
-          keyBackspaceButton2Text.text = "back";
-          keyReturnButton2Text.text = "enter";
+          keyBackspaceButton2Text.text = "Back";
+          keyReturnButton2Text.text = "Enter";
 
           menuIndicateText.text = "Settings";
           cameraSensiSliderText.text = "Sensitivity\n(9 levels)";
@@ -348,18 +348,18 @@ namespace PvP
 
           if(swidth > sheight)
           {
-            instructionText1.text = "〜　Keys to use　〜\n1~4 (or 1~6) numeric keys\nEnter key\nBackspace key\nCross key\n\n\n\nPress the keys in the order of\n2, 3, 1, and Enter\nto put a stone.\n\n\nCross key : Control the camera.\n\n\ndelete : Go back one keystroke\n\n\nWait : Go back one move";
+            instructionText1.text = "〜　Keys to use　〜\n1~4 (or 1~6) numeric keys\nEnter key\nBackspace key\nCross key\n\n\n\nPress the keys in the order of\n2, 3, 1, and Enter\nto put a stone.\n\n\nCross key : Control the camera.\n\n\ndelete : Back one keystroke.\n\n\nWait : Back one move.";
             nextButtonText1.text = "Next Page ▶︎";
           }
           if(swidth <= sheight)
           {
-            instructionText1.text = "Press the bottom keys in the order of\n2, 3, 1, and Enter\nto put a stone. \n\n\nFlick to control the camera.\n\n\nback : Go back one keystroke\n\n\nWait : Go back one move";
+            instructionText1.text = "Press the bottom keys in the order of\n2, 3, 1, and Enter\nto put a stone. \n\n\nFlick to control the camera.\n\n\nBack : Back one keystroke.\n\n\nWait : Back one move.";
             nextButtonText1.text = "Next Page ▶︎";
           }
 
           instructionText2_1.text = "You can put like this, but";
           instructionText2_2.text = "You can't put\non a diagonal as follows!";
-          prevButtonText2.text = "◀︎ Pre. Page";
+          prevButtonText2.text = "◀︎ Prev Page";
         }
       }
   }

@@ -428,7 +428,7 @@ namespace Choose
           tutorialButtonPlayText.text = "Play";
           creditButtonTextText.text = "Display the Credit.";
           creditButtonDisplayText.text = "Open";
-          loadTitleButtonTextText.text = "Go back to the Title.";
+          loadTitleButtonTextText.text = "Back to Title.";
           loadTitleButtonPlayText.text = "Back";
 
           creditTextText.text = "Credit Title";

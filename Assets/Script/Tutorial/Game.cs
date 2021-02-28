@@ -13,6 +13,7 @@ namespace Tutorial
       private int zLength = 4;
       private float swidth; //画面サイズ（幅）
       private float sheight; //画面サイズ（高さ）
+      private int language;
       private Vector3 standard;
       private int degree = -1; //この値によって表示されるCanvasや受け付けるキーを制御する
       private int[] coordi; //大きさ3。degreeが6,7,8のときに入力された値を格納
@@ -81,6 +82,7 @@ namespace Tutorial
 
       void Start()
       {
+          language = PlayerPrefs.GetInt("Value_of_Language", 0);
           swidth = Screen.width; sheight = Screen.height;
           if(swidth > sheight)
           {
@@ -696,7 +698,8 @@ namespace Tutorial
 
       public void CantPutIndicate() //石を置けないはずの場所に置いた時に怒る
       {
-        claimText.text = "そこには\n置けません";
+        if(language == 0){ claimText.text = "そこには\n置けません"; }
+        if(language == 1){ claimText.text = "You can't\nput there"; }
         Invoke("ClaimTextClear",1);
       }
 

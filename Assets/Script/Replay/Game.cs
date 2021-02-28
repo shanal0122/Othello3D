@@ -13,6 +13,7 @@ namespace Replay
       private int zLength = Choose.InitialSetting.zLength;
       private float swidth; //画面サイズ（幅）
       private float sheight; //画面サイズ（高さ）
+      private int language;
       private int nowTurn = 0; //今表示しているターン。初期配置は0ターン目
       private int constantTotalTurn; //合計ターン数。定数
       private string recordstr; //PlayerPrefsの"Record_of_finised_game"を格納
@@ -44,6 +45,7 @@ namespace Replay
 
       void Awake()
       {
+          language = PlayerPrefs.GetInt("Value_of_Language", 0);
           swidth = Screen.width; sheight = Screen.height;
           cameraSensiSlider.GetComponent<Slider>().value = 2 * PlayerPrefs.GetFloat("Value_of_MovingSpeed", 20f) / 5;
           stoneSizeSlider.GetComponent<Slider>().value = 20 * PlayerPrefs.GetFloat("Value_of_StoneSize", 0.6f);
@@ -142,51 +144,85 @@ namespace Replay
 
       private void NowTurnIndicate() //現在のターンをclaimTextに表示
       {
-        claimText.text = nowTurn + " 手目";
+        if(language == 0){ claimText.text = nowTurn + " 手目"; }
+        if(language == 1){ claimText.text = "Turn : " + nowTurn; }
+
       }
 
       private void TurnIndicate() //テキストにターンを表示する
       {
-        if(gameMode == 1 || gameMode == 2)
+        if(language == 0)
         {
-          int t = turn[nowTurn];
-          if(nowTurn == constantTotalTurn)
+          if(gameMode == 1 || gameMode == 2)
           {
-            blackTurnText.text = "";
-            whiteTurnText.text = "";
-          }else if(t == 1)
-          {
-            blackTurnText.text = "あなたの番です";
-            whiteTurnText.text = "相手の番です";
-          }else if(t == -1)
-          {
-            blackTurnText.text = "相手の番です";
-            whiteTurnText.text = "あなたの番です";
+            int t = turn[nowTurn];
+            if(nowTurn == constantTotalTurn)
+            {
+              blackTurnText.text = "";
+              whiteTurnText.text = "";
+            }else if(t == 1)
+            {
+              blackTurnText.text = "あなたの番です";
+              whiteTurnText.text = "相手の番です";
+            }else if(t == -1)
+            {
+              blackTurnText.text = "相手の番です";
+              whiteTurnText.text = "あなたの番です";
+            }
           }
-          if(t != 1 && t != -1)
+          if(gameMode == 3 || gameMode == 4)
           {
-            Debug.Log("Error : Game/TurnIndicate");//////////////////////////////////////////////////////////////////////////////////////
+            int t = turn[nowTurn];
+            if(nowTurn == constantTotalTurn)
+            {
+              blackTurnText.text = "";
+              whiteTurnText.text = "";
+            }else if(t == 1)
+            {
+              blackTurnText.text = "あなたの番です";
+              whiteTurnText.text = "CPU";
+            }else if(t == -1)
+            {
+              blackTurnText.text = "あなた";
+              whiteTurnText.text = "CPUの番です";
+            }
           }
         }
-        if(gameMode == 3 || gameMode == 4)
+        if(language == 1)
         {
-          int t = turn[nowTurn];
-          if(nowTurn == constantTotalTurn)
+          if(gameMode == 1 || gameMode == 2)
           {
-            blackTurnText.text = "";
-            whiteTurnText.text = "";
-          }else if(t == 1)
-          {
-            blackTurnText.text = "あなたの番です";
-            whiteTurnText.text = "CPU";
-          }else if(t == -1)
-          {
-            blackTurnText.text = "あなた";
-            whiteTurnText.text = "CPUの番です";
+            int t = turn[nowTurn];
+            if(nowTurn == constantTotalTurn)
+            {
+              blackTurnText.text = "";
+              whiteTurnText.text = "";
+            }else if(t == 1)
+            {
+              blackTurnText.text = "your turn";
+              whiteTurnText.text = "opponent's turn";
+            }else if(t == -1)
+            {
+              blackTurnText.text = "opponent's turn";
+              whiteTurnText.text = "your turn";
+            }
           }
-          if(t != 1 && t != -1)
+          if(gameMode == 3 || gameMode == 4)
           {
-            Debug.Log("Error : Game/TurnIndicate");//////////////////////////////////////////////////////////////////////////////////////
+            int t = turn[nowTurn];
+            if(nowTurn == constantTotalTurn)
+            {
+              blackTurnText.text = "";
+              whiteTurnText.text = "";
+            }else if(t == 1)
+            {
+              blackTurnText.text = "your turn";
+              whiteTurnText.text = "CPU";
+            }else if(t == -1)
+            {
+              blackTurnText.text = "you";
+              whiteTurnText.text = "CPU's turn";
+            }
           }
         }
       }
