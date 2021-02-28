@@ -26,6 +26,7 @@ namespace Replay
       public GameObject blackStone;
       public GameObject whiteStone;
       public Transform stone;
+      public GameObject quitConfirmCanvas;
       public Text blackTurnText;
       public Text whiteTurnText;
       public Text blackStoneNumText;
@@ -348,7 +349,18 @@ namespace Replay
 
       public void OnLoadTitleClick()
       {
+        quitConfirmCanvas.GetComponent<Canvas>().enabled = true;
+      }
+
+      public void OnQuitYesClick()
+      {
+        quitConfirmCanvas.GetComponent<Canvas>().enabled = false;
         SceneManager.LoadScene("Choose");
+      }
+
+      public void OnQuitNoClick()
+      {
+        quitConfirmCanvas.GetComponent<Canvas>().enabled = false;
       }
 
       public void OnReplaySlide()

@@ -14,6 +14,7 @@ namespace Tutorial
       private int language;
       public GameObject cameras;
       public GameObject centerCanvas;
+      public GameObject quitConfirmCanvas;
       public GameObject iconCanvas;
       public GameObject keyCanvas;
       public GameObject canvas_1_L;
@@ -44,6 +45,11 @@ namespace Tutorial
       private Camera keyCamera;
 
       private RectTransform loadTitleBigButton;
+
+      private RectTransform quitConfirmPanel;
+      private Text quitConfirmText;
+      private Text quitConfirmYesText;
+      private Text quitConfirmNoText;
 
       private RectTransform tutorialText;
       private RectTransform loadTitleButton;
@@ -145,6 +151,11 @@ namespace Tutorial
           keyCamera = cameras.transform.GetChild(3).gameObject.GetComponent<Camera>();
 
           loadTitleBigButton = centerCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+
+          quitConfirmPanel = quitConfirmCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+          quitConfirmText = quitConfirmCanvas.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
+          quitConfirmYesText = quitConfirmCanvas.transform.GetChild(0).GetChild(1).GetChild(0).gameObject.GetComponent<Text>();
+          quitConfirmNoText = quitConfirmCanvas.transform.GetChild(0).GetChild(2).GetChild(0).gameObject.GetComponent<Text>();
 
           tutorialText = iconCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
           loadTitleButton = iconCanvas.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
@@ -257,6 +268,8 @@ namespace Tutorial
 
           loadTitleBigButton.localScale = new Vector3(1f,1f,1f); loadTitleBigButton.localPosition = new Vector3(0f,-190f,0f);
 
+          quitConfirmPanel.localScale = new Vector3(0.35f,0.35f,1f); quitConfirmPanel.localPosition = new Vector3(0f,-180f,0f);
+
           tutorialText.localScale = new Vector3(0.8f,1f,1f); tutorialText.localPosition = new Vector3(0f,250f,0f);
           loadTitleButton.localScale = new Vector3(0.5f,0.5f,1f); loadTitleButton.localPosition = new Vector3(0f,0f,0f);
 
@@ -276,6 +289,8 @@ namespace Tutorial
           mainCamera.fieldOfView = Mathf.Max(30.74f+18.45f*aspect,55f);
 
           loadTitleBigButton.localScale = new Vector3(0.6f*magni,0.6f*magni,1f); loadTitleBigButton.localPosition = new Vector3(0f,(0.205f*pheight+36f)*magni-pheight/2f,0f);
+
+          quitConfirmPanel.localScale = new Vector3(0.25f,0.25f,1f); quitConfirmPanel.localPosition = new Vector3(0f,-160f,0f);
 
           tutorialText.localScale = new Vector3(magni*0.8f,magni,1f); tutorialText.localPosition = new Vector3(0f,0f,0f);
           loadTitleButton.localScale = new Vector3(magni*0.3f,magni*0.3f,1f); loadTitleButton.localPosition = new Vector3(160f*magni,0f,0f);
@@ -307,6 +322,10 @@ namespace Tutorial
 
         if(language == 0)
         {
+          quitConfirmText.text = "チュートリアルを終了しますか？";
+          quitConfirmYesText.text = "はい";
+          quitConfirmNoText.text = "いいえ";
+
           keyBackspaceButtonText.text = "戻る";
           keyReturnButtonText.text = "決定";
 
@@ -382,6 +401,10 @@ namespace Tutorial
 
         if(language == 1)
         {
+          quitConfirmText.text = "Quit Tutorial?";
+          quitConfirmYesText.text = "Yes";
+          quitConfirmNoText.text = "No";
+
           keyBackspaceButtonText.text = "Back";
           keyReturnButtonText.text = "Enter";
 

@@ -13,6 +13,7 @@ namespace Replay
       private float pheight = 600; //CanvasScalerのReference Resolution。Heightで合わせているたためこれが高さの基準になる（高さ）
       private int language;
       public GameObject cameras;
+      public GameObject quitConfirmCanvas;
       public GameObject leftCanvas;
       public GameObject rightCanvas;
       public GameObject iconCanvas;
@@ -25,6 +26,11 @@ namespace Replay
       private Camera leftCamera;
       private Camera rightCamera;
       private Camera keyCamera;
+
+      private RectTransform quitConfirmPanel;
+      private Text quitConfirmText;
+      private Text quitConfirmYesText;
+      private Text quitConfirmNoText;
 
       private RectTransform blackCorkBoardImage;
 
@@ -66,6 +72,11 @@ namespace Replay
           leftCamera = cameras.transform.GetChild(1).gameObject.GetComponent<Camera>();
           rightCamera = cameras.transform.GetChild(2).gameObject.GetComponent<Camera>();
           keyCamera = cameras.transform.GetChild(3).gameObject.GetComponent<Camera>();
+
+          quitConfirmPanel = quitConfirmCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+          quitConfirmText = quitConfirmCanvas.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
+          quitConfirmYesText = quitConfirmCanvas.transform.GetChild(0).GetChild(1).GetChild(0).gameObject.GetComponent<Text>();
+          quitConfirmNoText = quitConfirmCanvas.transform.GetChild(0).GetChild(2).GetChild(0).gameObject.GetComponent<Text>();
 
           blackCorkBoardImage = leftCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
 
@@ -118,6 +129,8 @@ namespace Replay
           rightCamera.rect = new Rect(0.75f,0f,0.25f,1f);
           cameras.transform.GetChild(3).gameObject.gameObject.SetActive(false);
 
+          quitConfirmPanel.localScale = new Vector3(0.35f,0.35f,1f); quitConfirmPanel.localPosition = new Vector3(0f,-180f,0f);
+
           leftCanvas.layer = LayerMask.NameToLayer("LeftScreen");
           leftCanvas.GetComponent<Canvas>().worldCamera = leftCamera;
           blackCorkBoardImage.localScale = new Vector3(1f,1f,1f); blackCorkBoardImage.localPosition = new Vector3(0f,-205f,0f);
@@ -157,6 +170,8 @@ namespace Replay
 
           mainCamera.fieldOfView = Mathf.Max(30.74f+18.45f*aspect,55f);
 
+          quitConfirmPanel.localScale = new Vector3(0.25f,0.25f,1f); quitConfirmPanel.localPosition = new Vector3(0f,-160f,0f);
+
           leftCanvas.layer = LayerMask.NameToLayer("RightScreen");
           leftCanvas.GetComponent<Canvas>().worldCamera = rightCamera;
           blackCorkBoardImage.localScale = new Vector3(magni*0.7f,magni*0.7f,1f); blackCorkBoardImage.localPosition = new Vector3(-140f*magni,0f,0f);
@@ -195,6 +210,10 @@ namespace Replay
 
         if(language == 0)
         {
+          quitConfirmText.text = "リプレイを終了しますか？";
+          quitConfirmYesText.text = "はい";
+          quitConfirmNoText.text = "いいえ";
+
           menuButtonText.text = "メニュー";
           instructionButtonText1.text = "操作説明";
           loadTitleButtonText.text = "タイトルに戻る";
@@ -216,6 +235,10 @@ namespace Replay
 
         if(language == 1)
         {
+          quitConfirmText.text = "Quit Replay?";
+          quitConfirmYesText.text = "Yes";
+          quitConfirmNoText.text = "No";
+
           menuButtonText.text = "Menu";
           instructionButtonText1.text = "Instruction";
           loadTitleButtonText.text = "Back to Title.";

@@ -35,6 +35,7 @@ namespace Tutorial
       public CameraMover cameraMover;
       public GameObject coordinateCanvas;
       public GameObject centerCanvas;
+      public GameObject quitConfirmCanvas;
       public Text claimText1;
       public Text claimText2;
 
@@ -711,8 +712,19 @@ namespace Tutorial
 
       public void OnLoadTitleClick()
       {
+        quitConfirmCanvas.GetComponent<Canvas>().enabled = true;
+      }
+
+      public void OnQuitYesClick()
+      {
+        quitConfirmCanvas.GetComponent<Canvas>().enabled = false;
         SceneManager.LoadScene("Choose");
         PlayerPrefs.SetInt("Value_of_PlayerSkill", 1);
+      }
+
+      public void OnQuitNoClick()
+      {
+        quitConfirmCanvas.GetComponent<Canvas>().enabled = false;
       }
 
 

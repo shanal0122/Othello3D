@@ -18,6 +18,7 @@ namespace PvP
       public GameObject cameras;
       public GameObject centerCanvas;
       public GameObject saveConfirmCanvas;
+      public GameObject quitConfirmCanvas;
       public GameObject leftCanvas;
       public GameObject rightCanvas;
       public GameObject iconCanvas;
@@ -41,6 +42,11 @@ namespace PvP
       private Text saveConfirmText;
       private Text saveConfirmYesText;
       private Text saveConfirmNoText;
+
+      private RectTransform quitConfirmPanel;
+      private Text quitConfirmText;
+      private Text quitConfirmYesText;
+      private Text quitConfirmNoText;
 
       private RectTransform blackCorkBoardImage;
 
@@ -106,6 +112,11 @@ namespace PvP
           saveConfirmText = saveConfirmCanvas.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
           saveConfirmYesText = saveConfirmCanvas.transform.GetChild(0).GetChild(1).GetChild(0).gameObject.GetComponent<Text>();
           saveConfirmNoText = saveConfirmCanvas.transform.GetChild(0).GetChild(2).GetChild(0).gameObject.GetComponent<Text>();
+
+          quitConfirmPanel = quitConfirmCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+          quitConfirmText = quitConfirmCanvas.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
+          quitConfirmYesText = quitConfirmCanvas.transform.GetChild(0).GetChild(1).GetChild(0).gameObject.GetComponent<Text>();
+          quitConfirmNoText = quitConfirmCanvas.transform.GetChild(0).GetChild(2).GetChild(0).gameObject.GetComponent<Text>();
 
           blackCorkBoardImage = leftCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
 
@@ -177,6 +188,8 @@ namespace PvP
 
           saveConfirmPanel.localScale = new Vector3(0.35f,0.35f,1f); saveConfirmPanel.localPosition = new Vector3(0f,-180f,0f);
 
+          quitConfirmPanel.localScale = new Vector3(0.35f,0.35f,1f); quitConfirmPanel.localPosition = new Vector3(0f,-180f,0f);
+
           leftCanvas.layer = LayerMask.NameToLayer("LeftScreen");
           leftCanvas.GetComponent<Canvas>().worldCamera = leftCamera;
           blackCorkBoardImage.localScale = new Vector3(1f,1f,1f); blackCorkBoardImage.localPosition = new Vector3(0f,-205f,0f);
@@ -219,6 +232,8 @@ namespace PvP
           playAgainButton.localScale = new Vector3(0.6f*magni,0.6f*magni,1f); playAgainButton.localPosition = new Vector3(0f,-140f,0f);
 
           saveConfirmPanel.localScale = new Vector3(0.25f,0.25f,1f); saveConfirmPanel.localPosition = new Vector3(0f,-160f,0f);
+
+          quitConfirmPanel.localScale = new Vector3(0.25f,0.25f,1f); quitConfirmPanel.localPosition = new Vector3(0f,-160f,0f);
 
           magni = Mathf.Min(1.4f/aspect,1f);
           leftCanvas.layer = LayerMask.NameToLayer("RightScreen");
@@ -284,6 +299,10 @@ namespace PvP
           saveConfirmYesText.text = "はい";
           saveConfirmNoText.text = "いいえ";
 
+          quitConfirmText.text = "ゲームを終了しますか？";
+          quitConfirmYesText.text = "はい";
+          quitConfirmNoText.text = "いいえ";
+
           menuButtonText.text = "メニュー";
           instructionButtonText1.text = "操作説明";
           cancelButtonText.text = "まった";
@@ -326,6 +345,10 @@ namespace PvP
           saveConfirmText.text = "Do you want to save\nthe current game data?";
           saveConfirmYesText.text = "Yes";
           saveConfirmNoText.text = "No";
+
+          quitConfirmText.text = "Quit this game?";
+          quitConfirmYesText.text = "Yes";
+          quitConfirmNoText.text = "No";
 
           menuButtonText.text = "Menu";
           instructionButtonText1.text = "Instruction";

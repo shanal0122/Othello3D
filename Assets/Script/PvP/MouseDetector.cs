@@ -30,6 +30,7 @@ namespace PvP
       public GameObject instructionCanvas1;
       public GameObject instructionCanvas2;
       public GameObject saveConfirmCanvas;
+      public GameObject quitConfirmCanvas;
 
 
       void Awake()
@@ -213,8 +214,7 @@ namespace PvP
 
       public void OnLoadTitleClick()
       {
-        SceneManager.LoadScene("Choose");
-        if(game.GameSetFlug == true){ PlayerPrefs.DeleteKey(recordOfSuspendedKeyName); }
+        quitConfirmCanvas.GetComponent<Canvas>().enabled = true;
       }
 
       public void OnSaveYesClick()
@@ -227,6 +227,18 @@ namespace PvP
       public void OnSaveNoClick()
       {
         saveConfirmCanvas.GetComponent<Canvas>().enabled = false;
+      }
+
+      public void OnQuitYesClick()
+      {
+        quitConfirmCanvas.GetComponent<Canvas>().enabled = false;
+        SceneManager.LoadScene("Choose");
+        if(game.GameSetFlug == true){ PlayerPrefs.DeleteKey(recordOfSuspendedKeyName); }
+      }
+
+      public void OnQuitNoClick()
+      {
+        quitConfirmCanvas.GetComponent<Canvas>().enabled = false;
       }
 
       public void OnPlayAgainClick()
