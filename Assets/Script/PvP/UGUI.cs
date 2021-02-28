@@ -322,20 +322,13 @@ namespace PvP
           instructionButtonText2.text = "操作説明";
           instructionButtonOpenText.text = "ひらく";
 
-          if(swidth > sheight)
-          {
-            instructionText1.text = "〜　用いるキー 　〜\n1~4(または1~6)の数字キー\nEnterキー\nbackspaceキー\n十字キー\n\n\n\n\n2→3→1→Enter のような順番で\nキーを押すと石が置ける。\n\n\n十字キーでカメラ操作\n\n\ndelete : キー操作を一つ戻る\n\n\n待った : 一手戻る";
-            nextButtonText1.text = "次ページへ ▶︎";
-          }
-          if(swidth <= sheight)
-          {
-            instructionText1.text = "下のキーを\n2→3→1→決定 のような順番で\n押すと石が置ける。\n\n\nフリックでカメラ操作\n\n\n戻る : キー操作を一つ戻る\n\n\n待った : 一手戻る";
-            nextButtonText1.text = "次ページへ ▶︎";
-          }
+          if(swidth > sheight){ instructionText1.text = "〜　用いるキー 　〜\n1~4(または1~6)の数字キー\nEnterキー\nbackspaceキー\n十字キー\n\n\n\n\n2→3→1→Enter のような順番で\nキーを押すと石が置ける。\n\n\n十字キーでカメラ操作\n\n\ndelete : キー操作を一つ戻る\n\n\n待った : 一手戻る"; }
+          if(swidth <= sheight){ instructionText1.text = "下のキーを\n2→3→1→決定 のような順番で\n押すと石が置ける。\n\n\nフリックでカメラ操作\n\n\n戻る : キー操作を一つ戻る\n\n\n待った : 一手戻る"; }
+          nextButtonText1.text = "次ページへ →";
 
           instructionText2_1.text = "このようには置けますが";
           instructionText2_2.text = "下のように対角線上に\n置くことはできません！";
-          prevButtonText2.text = "◀︎ 前ページへ";
+          prevButtonText2.text = "← 前ページへ";
         }
 
         if(language == 1)
@@ -369,20 +362,13 @@ namespace PvP
           instructionButtonText2.text = "Instructions";
           instructionButtonOpenText.text = "Open";
 
-          if(swidth > sheight)
-          {
-            instructionText1.text = "〜　Keys to use　〜\n1~4 (or 1~6) numeric keys\nEnter key\nBackspace key\nCross key\n\n\n\nPress the keys in the order of\n2, 3, 1, and Enter\nto put a stone.\n\n\nCross key : Control the camera.\n\n\ndelete : Back one keystroke.\n\n\nWait : Back one move.";
-            nextButtonText1.text = "Next Page ▶︎";
-          }
-          if(swidth <= sheight)
-          {
-            instructionText1.text = "Press the bottom keys in the order of\n2, 3, 1, and Enter\nto put a stone. \n\n\nFlick to control the camera.\n\n\nBack : Back one keystroke.\n\n\nWait : Back one move.";
-            nextButtonText1.text = "Next Page ▶︎";
-          }
+          if(swidth > sheight){ instructionText1.text = "〜　Keys to use　〜\n1~4 (or 1~6) numeric keys\nEnter key\nBackspace key\nCross key\n\n\n\nPress the keys in the order of\n2, 3, 1, and Enter\nto put a stone.\n\n\nCross key : Control the camera.\n\n\ndelete : Back one keystroke.\n\n\nWait : Back one move."; }
+          if(swidth <= sheight){ instructionText1.text = "Press the bottom keys in the order of\n2, 3, 1, and Enter\nto put a stone. \n\n\nFlick to control the camera.\n\n\nBack : Back one keystroke.\n\n\nWait : Back one move."; }
+          nextButtonText1.text = "Next Page →";
 
           instructionText2_1.text = "You can put like this, but";
           instructionText2_2.text = "You can't put\non a diagonal as follows!";
-          prevButtonText2.text = "◀︎ Prev Page";
+          prevButtonText2.text = "← Prev Page";
         }
       }
   }
