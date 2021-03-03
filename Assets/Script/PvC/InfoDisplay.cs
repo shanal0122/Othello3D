@@ -101,15 +101,33 @@ namespace PvC
         whiteStoneNumText.text = wh.ToString();
         if(language == 0)
         {
-          if(bl > wh) {resultText.text = "ゲームセット\n\nあなたの勝ち";}
-          if(bl == wh) {resultText.text = "ゲームセット\n\n引き分け";}
-          if(bl < wh) {resultText.text = "ゲームセット\n\nCPUの勝ち";}
+          if(playerTurn == 1)
+          {
+            if(bl > wh) {resultText.text = "ゲームセット\n\nあなたの勝ち";}
+            if(bl == wh) {resultText.text = "ゲームセット\n\n引き分け";}
+            if(bl < wh) {resultText.text = "ゲームセット\n\nCPUの勝ち";}
+          }
+          if(playerTurn == -1)
+          {
+            if(bl < wh) {resultText.text = "ゲームセット\n\nあなたの勝ち";}
+            if(bl == wh) {resultText.text = "ゲームセット\n\n引き分け";}
+            if(bl > wh) {resultText.text = "ゲームセット\n\nCPUの勝ち";}
+          }
         }
         if(language == 1)
         {
-          if(bl > wh) {resultText.text = "Game Set.\n\nYou win!";}
-          if(bl == wh) {resultText.text = "Game Set.\n\nDraw!";}
-          if(bl < wh) {resultText.text = "Game Set.\n\nYou lose...";}
+          if(playerTurn == 1)
+          {
+            if(bl > wh) {resultText.text = "Game Set.\n\nYou win!";}
+            if(bl == wh) {resultText.text = "Game Set.\n\nDraw!";}
+            if(bl < wh) {resultText.text = "Game Set.\n\nYou lose...";}
+          }
+          if(playerTurn == -1)
+          {
+            if(bl < wh) {resultText.text = "Game Set.\n\nYou win!";}
+            if(bl == wh) {resultText.text = "Game Set.\n\nDraw!";}
+            if(bl > wh) {resultText.text = "Game Set.\n\nYou lose...";}
+          }
         }
       }
 
