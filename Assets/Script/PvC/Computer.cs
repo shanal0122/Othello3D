@@ -335,7 +335,7 @@ namespace PvC
                           willSqEnemy = TryFlip(willSq, -1*cpuStone, _x, _y, _z);
                           if(willSqEnemy[0,0,0] != 777)
                           {
-                            scoreEnemy = CulScoreBest(willSqEnemy);
+                            ChangeMap(); scoreEnemy = CulScoreBest(willSqEnemy); ChangeMap();
                             if(canPutEnemy == false){ bestScoreEnemy = scoreEnemy; sqListXEnemy.Add(_x); sqListYEnemy.Add(_y); sqListZEnemy.Add(_z); canPutEnemy = true;}
                             else
                             {
@@ -354,6 +354,7 @@ namespace PvC
                   }
                   if(canPutEnemy == true)
                   {
+                    //Debug.Log(x + " " + y + " " + z + " : " + sqListXEnemy[0] + " " + sqListYEnemy[0] + " " + sqListZEnemy[0] + " " + sqListXEnemy.Count + " " + canPutEnemy + " " + bestScore); ////////////////////////////////////////////////////////////////////////////////////////////////////
                     for(int n=0; n<sqListXEnemy.Count; n++)
                     {
                       willSqEnemy = TryFlip(willSq, -1*cpuStone, sqListXEnemy[n], sqListYEnemy[n], sqListZEnemy[n]);
@@ -520,6 +521,14 @@ namespace PvC
           Debug.Log("Error : Stone/CountStone");//////////////////////////////////////////////////////////////////////////////////////
         }
         return stoneNum;
+      }
+
+      private void ChangeMap() //プレイヤーが置いた後のスコア計算前と後にマップの値が変更
+      {
+        sideMap444[0,1,2,0] *= -1; sideMap444[0,2,1,0] *= -1;
+        surfaceMap444[0,1,2,0] *= -1; surfaceMap444[0,2,1,0] *= -1;
+        sideMap464[0,1,2,0] *= -1; sideMap464[0,2,1,0] *= -1;
+        surfaceMap464[0,1,2,0] *= -1; surfaceMap464[0,2,1,0] *= -1;
       }
 
       private float CulScoreBest(int[,,] sq)
