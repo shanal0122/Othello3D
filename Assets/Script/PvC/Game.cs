@@ -16,7 +16,8 @@ namespace PvC
       private Vector3 standard; //CoordinateDisplayクラスのテキストの向きを定めるために用いる
       private int turn = 1; //黒が1、白が-1。先行は黒
       private int playerTurn = Choose.InitialSetting.playerTurn; //プレイヤーの手番
-      private bool keyDetectable = true; //falseのときカメラ移動とキー入力を受け付けない（CPU行動中、AfterEnterPressed()の処理中（スマホ版のみ：Menu画面、Instruction画面を開いている時））
+      private bool keyDetectable = true; //falseのときキー入力を受け付けない（CPU行動中、AfterEnterPressed()の処理中（スマホ版のみ：Menu画面、Instruction画面を開いている時））
+      private bool cameraDetectable = true; //falseのときカメラ移動を受け付けない（（スマホ版のみ：Menu画面、Instruction画面を開いている時））
       private bool gameSetFlug = false; //CanPut()でどちらも置けないことがわかるとtrueになり、処理が終わるとゲームセット画面に移る
       public int XCoordi {get; set;}
       public int YCoordi {get; set;}
@@ -85,7 +86,7 @@ namespace PvC
         //LastDebug();////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         CanPut();
 
-　　　　　　recordstr = "0"; //"totalTurn"
+　　　　　recordstr = "0"; //"totalTurn"
         for(int _y=0; _y<yLength; _y++) //待った機能、セーブのための情報の格納
         {
           for(int _z=0; _z<zLength; _z++)
@@ -371,6 +372,8 @@ namespace PvC
       public int Turn{ get {return turn;} set {this.turn = value;} }
 
       public bool KeyDetectable{ get {return keyDetectable;} set {keyDetectable = value;}}
+
+      public bool CameraDetectable{ get {return cameraDetectable;} set {cameraDetectable = value;}}
 
       public bool GameSetFlug{ get {return gameSetFlug;} set {gameSetFlug = value;}}
 

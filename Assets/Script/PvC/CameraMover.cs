@@ -237,7 +237,7 @@ namespace PvC
 
       private void GetInputVector() // 入力の取得
       {
-          if (Application.isEditor && game.KeyDetectable) // Unity上での操作取得
+          if (Application.isEditor && game.CameraDetectable) // Unity上での操作取得
           {
               if (Input.GetMouseButtonDown(0))
               {
@@ -266,7 +266,7 @@ namespace PvC
           }
           else // 端末上での操作取得
           {
-              if (Input.touchCount > 0 && game.KeyDetectable)
+              if (Input.touchCount > 0 && game.CameraDetectable)
               {
                   Touch touch = Input.touches[0];
                   if (touch.phase == TouchPhase.Began)

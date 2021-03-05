@@ -77,13 +77,13 @@ namespace PvP
       public void OnMenuClick() //Menuボタンを押した時メニューウィンドウを表示させる。
       {
         menuCanvas.GetComponent<Canvas>().enabled = true;
-        if(swidth <= sheight){ game.KeyDetectable = false; }
+        if(swidth <= sheight){ game.KeyDetectable = false; game.CameraDetectable = false; }
       }
 
       public void OnMenuCloseClick() //メニューウィンドウのバツボタンを押した時メニューウィンドウを消す
       {
         menuCanvas.GetComponent<Canvas>().enabled = false;
-        if(swidth <= sheight){ game.KeyDetectable = true; }
+        if(swidth <= sheight){ game.KeyDetectable = true; game.CameraDetectable = true; }
       }
 
       public void OnCameraSensiSlide() //カメラ感度のスライダーの値を取得
@@ -190,14 +190,14 @@ namespace PvP
       {
         instructionCanvas1.GetComponent<Canvas>().enabled = true;
         menuCanvas.GetComponent<Canvas>().enabled = false;
-        if(swidth <= sheight){ game.KeyDetectable = false; }
+        if(swidth <= sheight){ game.KeyDetectable = false; game.CameraDetectable = false; }
       }
 
       public void OnInstructionCloseClick() //操作方法ウィンドウのバツボタンを押した時操作方法ウィンドウを消す
       {
         instructionCanvas1.GetComponent<Canvas>().enabled = false;
         instructionCanvas2.GetComponent<Canvas>().enabled = false;
-        if(swidth <= sheight){ game.KeyDetectable = true; }
+        if(swidth <= sheight){ game.KeyDetectable = true; game.CameraDetectable = true; }
       }
 
       public void OnInstructionNextClick() //操作方法ボタンの次ページへを押した時次のページを表示させる
