@@ -108,6 +108,7 @@ namespace Choose
       private RectTransform creditNameText;
       private Text creditNameTextText;
       private RectTransform LicenseText1;
+      private RectTransform LicenseText2;
       private RectTransform creditImage;
       private RectTransform creditReturnMenuButton;
       private Text creditReturnMenuButtonText;
@@ -201,6 +202,7 @@ namespace Choose
         creditNameText = creditCanvas.transform.GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(1).gameObject.GetComponent<RectTransform>();
         creditNameTextText = creditCanvas.transform.GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(1).gameObject.GetComponent<Text>();
         LicenseText1 = creditCanvas.transform.GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(2).gameObject.GetComponent<RectTransform>();
+        LicenseText2 = creditCanvas.transform.GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(3).gameObject.GetComponent<RectTransform>();
         creditImage = creditCanvas.transform.GetChild(0).GetChild(3).gameObject.GetComponent<RectTransform>();
         creditReturnMenuButton = creditCanvas.transform.GetChild(0).GetChild(4).gameObject.GetComponent<RectTransform>();
         creditReturnMenuButtonText = creditCanvas.transform.GetChild(0).GetChild(4).GetChild(0).gameObject.GetComponent<Text>();
@@ -265,10 +267,11 @@ namespace Choose
           creditCloseButton.localScale = new Vector3(1f,1f,1f); creditCloseButton.localPosition = new Vector3(275f,255f,0f);
           creditText.localScale = new Vector3(0.6f,0.6f,1f); creditText.localPosition = new Vector3(0f,230f,0f);
           creditScrollView.sizeDelta = new Vector2(600f,320f); creditScrollView.localScale = new Vector3(1f,1f,1f); creditScrollView.localPosition = new Vector3(0f,30f,0f);
-          creditContent.sizeDelta = new Vector2(0f,2400f);
+          creditContent.sizeDelta = new Vector2(0f,5000f);
           creditIndexText.localScale = new Vector3(0.72f,0.72f,1f); creditIndexText.localPosition = new Vector3(-2f,-160f,0f);
           creditNameText.localScale = new Vector3(0.72f,0.72f,1f); creditNameText.localPosition = new Vector3(17f,-160f,0f);
           LicenseText1.localScale = new Vector3(0.7f,0.7f,1f); LicenseText1.localPosition = new Vector3(-220f,-400f,0f);
+          LicenseText2.localScale = new Vector3(0.7f,0.7f,1f); LicenseText2.localPosition = new Vector3(-220f,-2380f,0f);
           creditImage.localScale = new Vector3(1f,1f,1f); creditImage.localPosition = new Vector3(-160f,-200f,0f);
           creditReturnMenuButton.sizeDelta = new Vector2(200f,50f); creditReturnMenuButton.localScale = new Vector3(1f,1.2f,1f); creditReturnMenuButton.localPosition = new Vector3(120f,-230f,0f);
         }
@@ -328,10 +331,11 @@ namespace Choose
           creditCloseButton.localScale = new Vector3(0.8f,0.8f,1f); creditCloseButton.localPosition = new Vector3(175f,275f,0f);
           creditText.localScale = new Vector3(1.2f,1.2f,1f); creditText.localPosition = new Vector3(0f,230f,0f);
           creditScrollView.sizeDelta = new Vector2(380f,320f); creditScrollView.localScale = new Vector3(1f,1f,1f); creditScrollView.localPosition = new Vector3(0f,30f,0f);
-          creditContent.sizeDelta = new Vector2(0f,1500f);
+          creditContent.sizeDelta = new Vector2(0f,3000f);
           creditIndexText.localScale = new Vector3(0.4f,0.4f,1f); creditIndexText.localPosition = new Vector3(-10f,-150f,0f);
           creditNameText.localScale = new Vector3(0.4f,0.4f,1f); creditNameText.localPosition = new Vector3(0f,-150f,0f);
           LicenseText1.localScale = new Vector3(0.4f,0.4f,1f); LicenseText1.localPosition = new Vector3(-120f,-330f,0f);
+          LicenseText2.localScale = new Vector3(0.4f,0.4f,1f); LicenseText2.localPosition = new Vector3(-120f,-1500f,0f);
           creditImage.localScale = new Vector3(0.9f,0.9f,1f); creditImage.localPosition = new Vector3(-85f,-200f,0f);
           creditReturnMenuButton.sizeDelta = new Vector2(200f,60f); creditReturnMenuButton.localScale = new Vector3(0.8f,0.8f,1f); creditReturnMenuButton.localPosition = new Vector3(120f,-230f,0f);
         }
