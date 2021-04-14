@@ -1068,7 +1068,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Please Tap !
+  m_Text: Tap Here !
 --- !u!222 &1954147750
 CanvasRenderer:
   m_ObjectHideFlags: 0

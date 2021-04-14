@@ -202,6 +202,10 @@ namespace Choose
         detectable = true;
       }
 
+      public void OpenReview()
+      {
+        Application.OpenURL("https://docs.google.com/forms/d/e/1FAIpQLSe8WEYdxBFFnxRkGotibx-VfGlPFrJ6Ik5VTWN3MRh90nscRQ/viewform?usp=sf_link");
+      }
 
       public void OnSuspendedYesClick()
       {

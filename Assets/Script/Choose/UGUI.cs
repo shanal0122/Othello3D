@@ -23,6 +23,7 @@ namespace Choose
 
       private RectTransform menuButton;
       private Text menuButtonText;
+      private RectTransform reviewButton;
 
       private RectTransform choosePanel;
       private RectTransform chooseText;
@@ -115,6 +116,7 @@ namespace Choose
       {
         menuButton = optionCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
         menuButtonText = optionCanvas.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
+        reviewButton = optionCanvas.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
 
         choosePanel = chooseCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
         chooseText = chooseCanvas.transform.GetChild(0).GetChild(0).gameObject.GetComponent<RectTransform>();
@@ -214,7 +216,8 @@ namespace Choose
         //Debug.Log(swidth + " " + sheight + " " + pwidth + " " + pheight); ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         if(swidth > sheight)
         {
-          menuButton.localScale = new Vector3(0.5f,0.5f,1f); menuButton.localPosition = new Vector3(360f,230f,0f);
+          menuButton.localScale = new Vector3(0.52f,0.52f,1f); menuButton.localPosition = new Vector3(360f,230f,0f);
+          reviewButton.localScale = new Vector3(0.52f,0.52f,1f); reviewButton.localPosition = new Vector3(180f,230f,0f);
 
           choosePanel.sizeDelta = new Vector2(pwidth+10f,pheight+10f);
           chooseText.localScale = new Vector3(1.2f,1.4f,1f); chooseText.localPosition = new Vector3(0f,100f,0);
@@ -272,7 +275,8 @@ namespace Choose
 
         if(swidth <= sheight)
         {
-          menuButton.localScale = new Vector3(0.3f,0.3f,1f); menuButton.localPosition = new Vector3(pwidth/2f-10f-menuButton.sizeDelta.x*menuButton.localScale.x/2f,pheight/2f-40f,0f);
+          menuButton.localScale = new Vector3(0.32f,0.32f,1f); menuButton.localPosition = new Vector3(pwidth/2f-10f-menuButton.sizeDelta.x*menuButton.localScale.x/2f,pheight/2f-40f,0f);
+          reviewButton.localScale = new Vector3(0.32f,0.32f,1f); reviewButton.localPosition = new Vector3(pwidth/2f-10f-340f*0.3f-10f-340f*0.3f/2f,pheight/2-40f,0f);
 
           choosePanel.sizeDelta = new Vector2(pwidth+10f,pheight+10f);
           chooseText.localScale = new Vector3(Mathf.Min(0.8f*pwidth/chooseTextText.preferredWidth,0.6f),Mathf.Min(0.8f*pwidth/chooseTextText.preferredWidth,0.6f)/0.6f,1f); chooseText.localPosition = new Vector3(0f,100f,0);
@@ -381,7 +385,7 @@ namespace Choose
           loadTitleButtonTextText.text = "タイトル画面に戻る";
           loadTitleButtonPlayText.text = "戻る";
 
-          creditTextText.text = "クレジットタイトル";
+          creditTextText.text = "クレジット";
           creditIndexTextText.text = "グループ名\n企画\nメインプログラマー\nサブプログラマー\n音楽\nロゴデザイン";
           creditNameTextText.text = "/ D-imensions\n/ カフェラテ\n/ しゃなる\n/ はてぃーぽったー\n/ まっくす\n/ カフェラテ";
           creditReturnMenuButtonText.text = "メニューに戻る";

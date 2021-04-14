@@ -55,7 +55,7 @@ namespace Title
           loadChooseButton.sizeDelta = new Vector2(pwidth+10f,pheight+10f);
 
           flashingText.localScale = new Vector3(0.8f*magni,1.2f*magni,1f); flashingText.localPosition = new Vector3(0f,-235f,0f);
-          flashingTextText.text = "Please Tap !";
+          flashingTextText.text = "Tap Here !";
         }
       }
   }
