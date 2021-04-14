@@ -229,13 +229,13 @@ namespace Choose
           pvcText.localScale = new Vector3(1.2f,1.4f,1f); pvcText.localPosition = new Vector3(0f,100f,0);
           pvc444Button.sizeDelta = new Vector2(750f,500f); pvc444Button.localScale = new Vector3(0.5f,0.5f,1f); pvc444Button.localPosition = new Vector3(-250f,-120f,0f);
           pvc464Button.sizeDelta = new Vector2(750f,500f); pvc464Button.localScale = new Vector3(0.5f,0.5f,1f); pvc464Button.localPosition = new Vector3(130f,-120f,0f);
-          pvcBackButton.sizeDelta = new Vector2(240f,120f); pvcBackButton.localScale = new Vector3(0.5f,0.5f,1f); pvcBackButton.localPosition = new Vector3(390f,-200f,0f);
+          pvcBackButton.sizeDelta = new Vector2(240f,120f); pvcBackButton.localScale = new Vector3(0.55f,0.55f,1f); pvcBackButton.localPosition = new Vector3(390f,-200f,0f);
 
           pvpPanel.sizeDelta = new Vector2(pwidth+10f,pheight+10f);
           pvpText.localScale = new Vector3(1.2f,1.4f,1f); pvpText.localPosition = new Vector3(0f,100f,0);
           pvp444Button.sizeDelta = new Vector2(750f,500f); pvp444Button.localScale = new Vector3(0.5f,0.5f,1f); pvp444Button.localPosition = new Vector3(-250f,-120f,0f);
           pvp464Button.sizeDelta = new Vector2(750f,500f); pvp464Button.localScale = new Vector3(0.5f,0.5f,1f); pvp464Button.localPosition = new Vector3(130f,-120f,0f);
-          pvpBackButton.sizeDelta = new Vector2(240f,120f); pvpBackButton.localScale = new Vector3(0.5f,0.5f,1f); pvpBackButton.localPosition = new Vector3(390f,-200f,0f);
+          pvpBackButton.sizeDelta = new Vector2(240f,120f); pvpBackButton.localScale = new Vector3(0.55f,0.55f,1f); pvpBackButton.localPosition = new Vector3(390f,-200f,0f);
 
           suspendConfirmPanel.localScale = new Vector3(0.3f,0.3f,1f); suspendConfirmPanel.localPosition = new Vector3(0f,0f,0f);
 
@@ -288,13 +288,13 @@ namespace Choose
           pvcText.localScale = new Vector3(Mathf.Min(0.8f*pwidth/pvcTextText.preferredWidth,0.6f),Mathf.Min(0.8f*pwidth/pvcTextText.preferredWidth,0.6f)/0.6f,1f); pvcText.localPosition = new Vector3(0f,100f,0);
           pvc444Button.localScale = new Vector3(0.4f,0.5f,1f); pvc444Button.sizeDelta = new Vector2(Mathf.Min(0.94f*pwidth/pvc444Button.localScale.x,750f),200f); pvc444Button.localPosition = new Vector3(0f,-30f,0f);
           pvc464Button.localScale = new Vector3(0.4f,0.5f,1f); pvc464Button.sizeDelta = new Vector2(Mathf.Min(0.94f*pwidth/pvc464Button.localScale.x,750f),200f); pvc464Button.localPosition = new Vector3(0f,-140f,0f);
-          pvcBackButton.sizeDelta = new Vector2(240f,120f); pvcBackButton.localScale = new Vector3(0.3f,0.3f,1f); pvcBackButton.localPosition = new Vector3(Mathf.Min(pwidth/2f-30f-pvcBackButton.sizeDelta.x*pvcBackButton.localScale.x/2f,80f),-220f,0f);
+          pvcBackButton.sizeDelta = new Vector2(240f,120f); pvcBackButton.localScale = new Vector3(0.35f,0.35f,1f); pvcBackButton.localPosition = new Vector3(Mathf.Min(pwidth/2f-30f-pvcBackButton.sizeDelta.x*pvcBackButton.localScale.x/2f,80f),-220f,0f);
 
           pvpPanel.sizeDelta = new Vector2(pwidth+10f,pheight+10f);
           pvpText.localScale = new Vector3(Mathf.Min(0.8f*pwidth/pvpTextText.preferredWidth,0.6f),Mathf.Min(0.8f*pwidth/pvpTextText.preferredWidth,0.6f)/0.6f,1f); pvpText.localPosition = new Vector3(0f,100f,0);
           pvp444Button.localScale = new Vector3(0.4f,0.5f,1f); pvp444Button.sizeDelta = new Vector2(Mathf.Min(0.94f*pwidth/pvp444Button.localScale.x,750f),200f); pvp444Button.localPosition = new Vector3(0f,-30f,0f);
           pvp464Button.localScale = new Vector3(0.4f,0.5f,1f); pvp464Button.sizeDelta = new Vector2(Mathf.Min(0.94f*pwidth/pvp464Button.localScale.x,750f),200f); pvp464Button.localPosition = new Vector3(0f,-140f,0f);
-          pvpBackButton.sizeDelta = new Vector2(240f,120f); pvpBackButton.localScale = new Vector3(0.3f,0.3f,1f); pvpBackButton.localPosition = new Vector3(Mathf.Min(pwidth/2f-30f-pvpBackButton.sizeDelta.x*pvpBackButton.localScale.x/2f,80f),-220f,0f);
+          pvpBackButton.sizeDelta = new Vector2(240f,120f); pvpBackButton.localScale = new Vector3(0.35f,0.35f,1f); pvpBackButton.localPosition = new Vector3(Mathf.Min(pwidth/2f-30f-pvpBackButton.sizeDelta.x*pvpBackButton.localScale.x/2f,80f),-220f,0f);
 
           suspendConfirmPanel.localScale = new Vector3(0.2f,0.2f,1f); suspendConfirmPanel.localPosition = new Vector3(0f,-20f,0f);
 

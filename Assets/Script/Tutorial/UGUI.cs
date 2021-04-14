@@ -45,6 +45,7 @@ namespace Tutorial
       private Camera keyCamera;
 
       private RectTransform loadTitleBigButton;
+      private Text loadTitleBigButtonText;
 
       private RectTransform quitConfirmPanel;
       private Text quitConfirmText;
@@ -52,7 +53,9 @@ namespace Tutorial
       private Text quitConfirmNoText;
 
       private RectTransform tutorialText;
+      private Text tutorialTextText;
       private RectTransform loadTitleButton;
+      private Text loadTitleButtonText;
 
       private RectTransform keyBackspaceButton;
       private Text keyBackspaceButtonText;
@@ -151,6 +154,7 @@ namespace Tutorial
           keyCamera = cameras.transform.GetChild(3).gameObject.GetComponent<Camera>();
 
           loadTitleBigButton = centerCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+          loadTitleBigButtonText = centerCanvas.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
 
           quitConfirmPanel = quitConfirmCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
           quitConfirmText = quitConfirmCanvas.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
@@ -158,7 +162,9 @@ namespace Tutorial
           quitConfirmNoText = quitConfirmCanvas.transform.GetChild(0).GetChild(2).GetChild(0).gameObject.GetComponent<Text>();
 
           tutorialText = iconCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+          tutorialTextText = iconCanvas.transform.GetChild(0).gameObject.GetComponent<Text>();
           loadTitleButton = iconCanvas.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
+          loadTitleButtonText = iconCanvas.transform.GetChild(1).GetChild(0).gameObject.GetComponent<Text>();
 
           keyBackspaceButton = keyCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
           keyBackspaceButtonText = keyCanvas.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
@@ -271,7 +277,7 @@ namespace Tutorial
           quitConfirmPanel.localScale = new Vector3(0.35f,0.35f,1f); quitConfirmPanel.localPosition = new Vector3(0f,-180f,0f);
 
           tutorialText.localScale = new Vector3(0.8f,1f,1f); tutorialText.localPosition = new Vector3(0f,250f,0f);
-          loadTitleButton.localScale = new Vector3(0.5f,0.5f,1f); loadTitleButton.localPosition = new Vector3(0f,0f,0f);
+          loadTitleButton.localScale = new Vector3(0.52f,0.52f,1f); loadTitleButton.localPosition = new Vector3(0f,0f,0f);
 
           keyCanvas.SetActive(false);
         }
@@ -293,7 +299,7 @@ namespace Tutorial
           quitConfirmPanel.localScale = new Vector3(0.25f,0.25f,1f); quitConfirmPanel.localPosition = new Vector3(0f,-160f,0f);
 
           tutorialText.localScale = new Vector3(magni*0.8f,magni,1f); tutorialText.localPosition = new Vector3(0f,0f,0f);
-          loadTitleButton.localScale = new Vector3(magni*0.3f,magni*0.3f,1f); loadTitleButton.localPosition = new Vector3(160f*magni,0f,0f);
+          loadTitleButton.localScale = new Vector3(magni*0.32f,magni*0.32f,1f); loadTitleButton.localPosition = new Vector3(160f*magni,0f,0f);
 
 
           keyBackspaceButton.localScale = new Vector3(magni,magni,1f); keyBackspaceButton.localPosition = new Vector3(-177.5f*magni,0f,0f);
@@ -322,9 +328,14 @@ namespace Tutorial
 
         if(language == 0)
         {
+          loadTitleBigButtonText.text = "タイトルに戻る";
+
           quitConfirmText.text = "チュートリアルを終了しますか？";
           quitConfirmYesText.text = "はい";
           quitConfirmNoText.text = "いいえ";
+
+          tutorialTextText.text = "チュートリアル";
+          loadTitleButtonText.text = "タイトルに戻る";
 
           keyBackspaceButtonText.text = "戻る";
           keyReturnButtonText.text = "決定";
@@ -401,9 +412,14 @@ namespace Tutorial
 
         if(language == 1)
         {
+          loadTitleBigButtonText.text = "Back to Title.";
+
           quitConfirmText.text = "Quit Tutorial?";
           quitConfirmYesText.text = "Yes";
           quitConfirmNoText.text = "No";
+
+          tutorialTextText.text = "Tutorial";
+          loadTitleButtonText.text = "Back to Title.";
 
           keyBackspaceButtonText.text = "Back";
           keyReturnButtonText.text = "Enter";

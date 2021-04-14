@@ -138,9 +138,9 @@ namespace Replay
           whiteCorkBoardImage.localScale = new Vector3(1f,1f,1f); whiteCorkBoardImage.localPosition = new Vector3(0f,-205f,0f);
           claimCorkBoardImage.localScale = new Vector3(1f,1f,1f); claimCorkBoardImage.localPosition = new Vector3(0f,-45f,0f);
 
-          menuButton.localScale = new Vector3(0.5f,0.5f,1f); menuButton.localPosition = new Vector3(0f,240f,0f);
-          instructionButton.localScale = new Vector3(0.5f,0.5f,1f); instructionButton.localPosition = new Vector3(0f,170f,0f);
-          loadTitleButton.localScale = new Vector3(0.5f,0.5f,1f); loadTitleButton.localPosition = new Vector3(0f,90f,0f);
+          menuButton.localScale = new Vector3(0.52f,0.52f,1f); menuButton.localPosition = new Vector3(0f,240f,0f);
+          instructionButton.localScale = new Vector3(0.52f,0.52f,1f); instructionButton.localPosition = new Vector3(0f,170f,0f);
+          loadTitleButton.localScale = new Vector3(0.52f,0.52f,1f); loadTitleButton.localPosition = new Vector3(0f,90f,0f);
 
           keyCanvas1.layer = LayerMask.NameToLayer("LeftScreen");
           keyCanvas1.GetComponent<Canvas>().worldCamera = leftCamera;
@@ -179,9 +179,9 @@ namespace Replay
           whiteCorkBoardImage.localScale = new Vector3(magni*0.7f,magni*0.7f,1f); whiteCorkBoardImage.localPosition = new Vector3(140f*magni,0f,0f);
           claimCorkBoardImage.localScale = new Vector3(magni*0.6f,magni*0.65f,1f); claimCorkBoardImage.localPosition = new Vector3(0f,0f,0f);
 
-          menuButton.localScale = new Vector3(magni*0.3f,magni*0.3f,1f); menuButton.localPosition = new Vector3(0f,0f,0f);
+          menuButton.localScale = new Vector3(magni*0.32f,magni*0.32f,1f); menuButton.localPosition = new Vector3(0f,0f,0f);
           instructionButton.gameObject.SetActive(false);
-          loadTitleButton.localScale = new Vector3(magni*0.3f,magni*0.3f,1f); loadTitleButton.localPosition = new Vector3(160f*magni,0f,0f);
+          loadTitleButton.localScale = new Vector3(magni*0.32f,magni*0.32f,1f); loadTitleButton.localPosition = new Vector3(160f*magni,0f,0f);
 
           keyCanvas1.layer = LayerMask.NameToLayer("KeyScreen");
           keyCanvas1.GetComponent<Canvas>().worldCamera = keyCamera;
