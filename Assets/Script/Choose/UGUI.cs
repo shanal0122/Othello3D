@@ -24,6 +24,7 @@ namespace Choose
       private RectTransform menuButton;
       private Text menuButtonText;
       private RectTransform reviewButton;
+      private Text reviewButtonText;
 
       private RectTransform choosePanel;
       private RectTransform chooseText;
@@ -118,6 +119,7 @@ namespace Choose
         menuButton = optionCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
         menuButtonText = optionCanvas.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
         reviewButton = optionCanvas.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
+        reviewButtonText = optionCanvas.transform.GetChild(1).GetChild(0).gameObject.GetComponent<Text>();
 
         choosePanel = chooseCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
         chooseText = chooseCanvas.transform.GetChild(0).GetChild(0).gameObject.GetComponent<RectTransform>();
@@ -348,16 +350,17 @@ namespace Choose
         if(language == 0)
         {
           menuButtonText.text = "メニュー";
+          reviewButtonText.text = "レビュー";
 
-          chooseTextText.text = "3D オセロ";
-          pvcButtonText.text = "CPU戦";
-          pvpButtonText.text = "一人プレイ";
+          chooseTextText.text = "3D Othello";
+          pvcButtonText.text = "CPU Battle";
+          pvpButtonText.text = "PvP Battle";
           replayButtonText.text = "最新の棋譜を\nリプレイ";
 
-          pvcTextText.text = "CPU戦";
+          pvcTextText.text = "CPU Battle";
           pvcBackButtonText.text = "戻る";
 
-          pvpTextText.text = "一人プレイ";
+          pvpTextText.text = "PvP Battle";
           pvpBackButtonText.text = "戻る";
 
           suspendConfirmText.text = "続きからプレイしますか？";
@@ -398,6 +401,7 @@ namespace Choose
         if(language == 1)
         {
           menuButtonText.text = "Menu";
+          reviewButtonText.text = "Review";
 
           chooseTextText.text = "3D Othello";
           pvcButtonText.text = "PvC Battle";

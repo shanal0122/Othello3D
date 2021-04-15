@@ -37,11 +37,11 @@ public class Review : MonoBehaviour
 
       if(swidth > sheight)
       {
-        betaText.localScale = new Vector3(1f,1f,1f); betaText.localPosition = new Vector3(-350f,200f,0);
+        betaText.localScale = new Vector3(1f,1f,1f); betaText.localPosition = new Vector3(-350f,220f,0);
       }
       if(swidth <= sheight)
       {
-        betaText.localScale = new Vector3(Mathf.Min(0.8f*pwidth/chooseTextText.preferredWidth,0.6f)/6f*5f,Mathf.Min(0.8f*pwidth/chooseTextText.preferredWidth,0.6f)/6f*5f,1f); betaText.localPosition = new Vector3(-1*Mathf.Min(0.8f*pwidth/chooseTextText.preferredWidth,0.6f)*chooseTextText.preferredWidth/2f,160f,0);
+        betaText.localScale = new Vector3(Mathf.Min(0.8f*pwidth/chooseTextText.preferredWidth,0.6f)/6f*5f,Mathf.Min(0.8f*pwidth/chooseTextText.preferredWidth,0.6f)/6f*5f,1f); betaText.localPosition = new Vector3(-1*Mathf.Min(0.8f*pwidth/chooseTextText.preferredWidth,0.6f)*chooseTextText.preferredWidth/2f,180f,0);
       }
     }
 }
