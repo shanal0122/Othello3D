@@ -239,9 +239,9 @@ namespace Choose
           pvp464Button.sizeDelta = new Vector2(750f,500f); pvp464Button.localScale = new Vector3(0.5f,0.5f,1f); pvp464Button.localPosition = new Vector3(130f,-120f,0f);
           pvpBackButton.sizeDelta = new Vector2(240f,120f); pvpBackButton.localScale = new Vector3(0.55f,0.55f,1f); pvpBackButton.localPosition = new Vector3(390f,-200f,0f);
 
-          suspendConfirmPanel.localScale = new Vector3(0.3f,0.3f,1f); suspendConfirmPanel.localPosition = new Vector3(0f,0f,0f);
+          suspendConfirmPanel.localScale = new Vector3(0.75f,0.75f,1f); suspendConfirmPanel.localPosition = new Vector3(0f,0f,0f);
 
-          tutorialConfirmPanel.localScale = new Vector3(0.3f,0.3f,1f); tutorialConfirmPanel.localPosition = new Vector3(0f,0f,0f);
+          tutorialConfirmPanel.localScale = new Vector3(0.75f,0.75f,1f); tutorialConfirmPanel.localPosition = new Vector3(0f,0f,0f);
 
           menuPanel.sizeDelta = new Vector2(640f,540f); menuPanel.localScale = new Vector3(1f,1f,1f); menuPanel.localPosition = new Vector3(0f,0f,0f);
           menuCloseButton.localScale = new Vector3(1f,1f,1f); menuCloseButton.localPosition = new Vector3(275f,255f,0f);
@@ -273,7 +273,7 @@ namespace Choose
           LicenseText1.localScale = new Vector3(0.7f,0.7f,1f); LicenseText1.localPosition = new Vector3(-220f,-400f,0f);
           LicenseText2.localScale = new Vector3(0.7f,0.7f,1f); LicenseText2.localPosition = new Vector3(-220f,-2380f,0f);
           creditImage.localScale = new Vector3(1f,1f,1f); creditImage.localPosition = new Vector3(-160f,-200f,0f);
-          creditReturnMenuButton.sizeDelta = new Vector2(200f,50f); creditReturnMenuButton.localScale = new Vector3(1f,1.2f,1f); creditReturnMenuButton.localPosition = new Vector3(120f,-230f,0f);
+          creditReturnMenuButton.sizeDelta = new Vector2(200f,50f); creditReturnMenuButton.localScale = new Vector3(1.1f,1.2f,1f); creditReturnMenuButton.localPosition = new Vector3(120f,-230f,0f);
         }
 
         if(swidth <= sheight)
@@ -299,9 +299,9 @@ namespace Choose
           pvp464Button.localScale = new Vector3(0.4f,0.5f,1f); pvp464Button.sizeDelta = new Vector2(Mathf.Min(0.94f*pwidth/pvp464Button.localScale.x,750f),200f); pvp464Button.localPosition = new Vector3(0f,-140f,0f);
           pvpBackButton.sizeDelta = new Vector2(240f,120f); pvpBackButton.localScale = new Vector3(0.35f,0.35f,1f); pvpBackButton.localPosition = new Vector3(Mathf.Min(pwidth/2f-30f-pvpBackButton.sizeDelta.x*pvpBackButton.localScale.x/2f,80f),-220f,0f);
 
-          suspendConfirmPanel.localScale = new Vector3(0.2f,0.2f,1f); suspendConfirmPanel.localPosition = new Vector3(0f,-20f,0f);
+          suspendConfirmPanel.localScale = new Vector3(0.5f,0.5f,1f); suspendConfirmPanel.localPosition = new Vector3(0f,-20f,0f);
 
-          tutorialConfirmPanel.localScale = new Vector3(0.2f,0.2f,1f); tutorialConfirmPanel.localPosition = new Vector3(0f,-20f,0f);
+          tutorialConfirmPanel.localScale = new Vector3(0.5f,0.5f,1f); tutorialConfirmPanel.localPosition = new Vector3(0f,-20f,0f);
 
           menuPanel.sizeDelta = new Vector2(420f,570f);
           if(pheight/pwidth >= menuPanel.sizeDelta.y/menuPanel.sizeDelta.x){ menuPanel.localScale = new Vector3((pwidth-30f)/menuPanel.sizeDelta.x,(pwidth-30f)/menuPanel.sizeDelta.x,1f); menuPanel.localPosition = new Vector3(0f,pheight/2f-(25f+menuPanel.sizeDelta.y/2f)*menuPanel.localScale.y,0f); }
@@ -337,7 +337,7 @@ namespace Choose
           LicenseText1.localScale = new Vector3(0.4f,0.4f,1f); LicenseText1.localPosition = new Vector3(-120f,-330f,0f);
           LicenseText2.localScale = new Vector3(0.4f,0.4f,1f); LicenseText2.localPosition = new Vector3(-120f,-1500f,0f);
           creditImage.localScale = new Vector3(0.9f,0.9f,1f); creditImage.localPosition = new Vector3(-85f,-200f,0f);
-          creditReturnMenuButton.sizeDelta = new Vector2(200f,60f); creditReturnMenuButton.localScale = new Vector3(0.8f,0.8f,1f); creditReturnMenuButton.localPosition = new Vector3(120f,-230f,0f);
+          creditReturnMenuButton.sizeDelta = new Vector2(200f,60f); creditReturnMenuButton.localScale = new Vector3(0.85f,0.9f,1f); creditReturnMenuButton.localPosition = new Vector3(120f,-230f,0f);
         }
       }
 

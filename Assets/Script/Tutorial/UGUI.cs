@@ -274,7 +274,7 @@ namespace Tutorial
 
           loadTitleBigButton.localScale = new Vector3(1f,1f,1f); loadTitleBigButton.localPosition = new Vector3(0f,-190f,0f);
 
-          quitConfirmPanel.localScale = new Vector3(0.35f,0.35f,1f); quitConfirmPanel.localPosition = new Vector3(0f,-180f,0f);
+          quitConfirmPanel.localScale = new Vector3(0.7f,0.7f,1f); quitConfirmPanel.localPosition = new Vector3(0f,-180f,0f);
 
           tutorialText.localScale = new Vector3(0.8f,1f,1f); tutorialText.localPosition = new Vector3(0f,250f,0f);
           loadTitleButton.localScale = new Vector3(0.52f,0.52f,1f); loadTitleButton.localPosition = new Vector3(0f,0f,0f);
@@ -296,7 +296,7 @@ namespace Tutorial
 
           loadTitleBigButton.localScale = new Vector3(0.6f*magni,0.6f*magni,1f); loadTitleBigButton.localPosition = new Vector3(0f,(0.205f*pheight+36f)*magni-pheight/2f,0f);
 
-          quitConfirmPanel.localScale = new Vector3(0.25f,0.25f,1f); quitConfirmPanel.localPosition = new Vector3(0f,-160f,0f);
+          quitConfirmPanel.localScale = new Vector3(0.5f,0.5f,1f); quitConfirmPanel.localPosition = new Vector3(0f,-160f,0f);
 
           tutorialText.localScale = new Vector3(magni*0.8f,magni,1f); tutorialText.localPosition = new Vector3(0f,0f,0f);
           loadTitleButton.localScale = new Vector3(magni*0.32f,magni*0.32f,1f); loadTitleButton.localPosition = new Vector3(160f*magni,0f,0f);

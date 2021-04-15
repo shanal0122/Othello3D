@@ -186,9 +186,9 @@ namespace PvP
           resultText.localScale = new Vector3(1f,1f,1f); resultText.localPosition = new Vector3(0f,100f,0f);
           playAgainButton.localScale = new Vector3(1f,1f,1f); playAgainButton.localPosition = new Vector3(0f,-220f,0f);
 
-          saveConfirmPanel.localScale = new Vector3(0.35f,0.35f,1f); saveConfirmPanel.localPosition = new Vector3(0f,-180f,0f);
+          saveConfirmPanel.localScale = new Vector3(0.7f,0.7f,1f); saveConfirmPanel.localPosition = new Vector3(0f,-180f,0f);
 
-          quitConfirmPanel.localScale = new Vector3(0.35f,0.35f,1f); quitConfirmPanel.localPosition = new Vector3(0f,-180f,0f);
+          quitConfirmPanel.localScale = new Vector3(0.7f,0.7f,1f); quitConfirmPanel.localPosition = new Vector3(0f,-180f,0f);
 
           leftCanvas.layer = LayerMask.NameToLayer("LeftScreen");
           leftCanvas.GetComponent<Canvas>().worldCamera = leftCamera;
@@ -231,9 +231,9 @@ namespace PvP
           resultText.localScale = new Vector3(0.6f*magni,0.6f*magni,1f); resultText.localPosition = new Vector3(0f,70f,0f);
           playAgainButton.localScale = new Vector3(0.6f*magni,0.6f*magni,1f); playAgainButton.localPosition = new Vector3(0f,-140f,0f);
 
-          saveConfirmPanel.localScale = new Vector3(0.25f,0.25f,1f); saveConfirmPanel.localPosition = new Vector3(0f,-160f,0f);
+          saveConfirmPanel.localScale = new Vector3(0.5f,0.5f,1f); saveConfirmPanel.localPosition = new Vector3(0f,-160f,0f);
 
-          quitConfirmPanel.localScale = new Vector3(0.25f,0.25f,1f); quitConfirmPanel.localPosition = new Vector3(0f,-160f,0f);
+          quitConfirmPanel.localScale = new Vector3(0.5f,0.5f,1f); quitConfirmPanel.localPosition = new Vector3(0f,-160f,0f);
 
           magni = Mathf.Min(1.4f/aspect,1f);
           leftCanvas.layer = LayerMask.NameToLayer("RightScreen");

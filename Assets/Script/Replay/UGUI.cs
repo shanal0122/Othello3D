@@ -129,7 +129,7 @@ namespace Replay
           rightCamera.rect = new Rect(0.75f,0f,0.25f,1f);
           cameras.transform.GetChild(3).gameObject.gameObject.SetActive(false);
 
-          quitConfirmPanel.localScale = new Vector3(0.35f,0.35f,1f); quitConfirmPanel.localPosition = new Vector3(0f,-180f,0f);
+          quitConfirmPanel.localScale = new Vector3(0.7f,0.7f,1f); quitConfirmPanel.localPosition = new Vector3(0f,-180f,0f);
 
           leftCanvas.layer = LayerMask.NameToLayer("LeftScreen");
           leftCanvas.GetComponent<Canvas>().worldCamera = leftCamera;
@@ -170,7 +170,7 @@ namespace Replay
 
           mainCamera.fieldOfView = Mathf.Max(30.74f+18.45f*aspect,55f);
 
-          quitConfirmPanel.localScale = new Vector3(0.25f,0.25f,1f); quitConfirmPanel.localPosition = new Vector3(0f,-160f,0f);
+          quitConfirmPanel.localScale = new Vector3(0.5f,0.5f,1f); quitConfirmPanel.localPosition = new Vector3(0f,-160f,0f);
 
           leftCanvas.layer = LayerMask.NameToLayer("RightScreen");
           leftCanvas.GetComponent<Canvas>().worldCamera = rightCamera;
