@@ -41,20 +41,20 @@ namespace Title
 
         if(swidth > sheight)
         {
-          mainText.localScale = new Vector3(0.8f,1f,1f); mainText.localPosition = new Vector3(0f,235f,0f);
+          mainText.localScale = new Vector3(0.8f,1f,1f); mainText.localPosition = new Vector3(0f,215f,0f);
           loadChooseButton.sizeDelta = new Vector2(pwidth+10f,pheight+10f);
 
-          flashingText.localScale = new Vector3(1.2f,1.5f,1f); flashingText.localPosition = new Vector3(0f,-245f,0f);
+          flashingText.localScale = new Vector3(1.2f,1.5f,1f); flashingText.localPosition = new Vector3(0f,-255f,0f);
           flashingTextText.text = "Press Enter or Click";
         }
 
         if(swidth <= sheight)
         {
           float magni = Mathf.Min(0.8f*pwidth/mainTextText.preferredWidth/0.6f,1f);
-          mainText.localScale = new Vector3(0.6f*magni,1f*magni,1f); mainText.localPosition = new Vector3(0f,235f,0f);
+          mainText.localScale = new Vector3(0.6f*magni,1f*magni,1f); mainText.localPosition = new Vector3(0f,215f,0f);
           loadChooseButton.sizeDelta = new Vector2(pwidth+10f,pheight+10f);
 
-          flashingText.localScale = new Vector3(0.8f*magni,1.2f*magni,1f); flashingText.localPosition = new Vector3(0f,-235f,0f);
+          flashingText.localScale = new Vector3(0.8f*magni,1.2f*magni,1f); flashingText.localPosition = new Vector3(0f,-255f,0f);
           flashingTextText.text = "Tap Here !";
         }
       }

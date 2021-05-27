@@ -9815,7 +9815,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: BGM 1
+  m_Text: Nostalgic memory
 --- !u!222 &1667684192
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13126,11 +13126,11 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: BGM 1
+    - m_Text: Nostalgic memory
       m_Image: {fileID: 0}
-    - m_Text: BGM 2
+    - m_Text: Windbloom
       m_Image: {fileID: 0}
-    - m_Text: BGM 3
+    - m_Text: HHS
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
