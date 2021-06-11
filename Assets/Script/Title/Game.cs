@@ -38,7 +38,7 @@ namespace Title
     {
       if(Input.GetKeyDown(KeyCode.Return))
       {
-        SceneManager.LoadScene("Choose");
+        SceneManager.LoadScene("LoadTitle");
       }
       othelloTransform.RotateAround(center,transform.up,10f*Time.deltaTime);
     }
@@ -104,7 +104,7 @@ namespace Title
 
     public void LoadChooseScene()
     {
-      SceneManager.LoadScene("Choose");
+      SceneManager.LoadScene("LoadTitle");
     }
 
   }
