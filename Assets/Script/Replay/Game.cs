@@ -33,6 +33,8 @@ namespace Replay
       public Text whiteStoneNumText;
       public GameObject menuCanvas;
       public GameObject cameraSensiSlider;
+      public GameObject scrollReverserButton;
+      public Text scrollReverserOnOffText;
       public GameObject stoneSizeSlider;
       private AudioSource audioSource;
       public GameObject bgmVolumeSlider;
@@ -49,6 +51,16 @@ namespace Replay
           language = PlayerPrefs.GetInt("Value_of_Language", 0);
           swidth = Screen.width; sheight = Screen.height;
           cameraSensiSlider.GetComponent<Slider>().value = 2 * PlayerPrefs.GetFloat("Value_of_MovingSpeed", 20f) / 5;
+          if(language == 0)
+          {
+            if(PlayerPrefs.GetInt("Value_of_ScrollReverser", 1) == 1){ scrollReverserOnOffText.text = "順方向"; }
+            else{ scrollReverserOnOffText.text = "逆方向"; }
+          }
+          if(language == 1)
+          {
+            if(PlayerPrefs.GetInt("Value_of_ScrollReverser", 1) == 1){ scrollReverserOnOffText.text = "Forward"; }
+            else{ scrollReverserOnOffText.text = "Reverse"; }
+          }
           stoneSizeSlider.GetComponent<Slider>().value = 20 * PlayerPrefs.GetFloat("Value_of_StoneSize", 0.6f);
           stoneSize = PlayerPrefs.GetFloat("Value_of_StoneSize", 0.6f);
           stoneSizeSlider.GetComponent<Slider>().onValueChanged.AddListener(OnStoneSizeSlide);
@@ -316,6 +328,23 @@ namespace Replay
         cameraMover.MovingSpeed = 5 * cameraSensiSlider.GetComponent<Slider>().value / 2;
         PlayerPrefs.SetFloat("Value_of_MovingSpeed", cameraMover.MovingSpeed);
         PlayerPrefs.Save();
+      }
+
+      public void OnScrollReverseClick() //スクロール反転の値を取得
+      {
+        int s;
+        if(cameraMover.ScrollReverser == 0){ s=1; } else{ s=0; } //ScrollReverserが1（順方向）の時に押すと0（逆方向）になるのでsは0
+        cameraMover.ScrollReverser = s;
+        PlayerPrefs.SetInt("Value_of_ScrollReverser", s);
+        PlayerPrefs.Save();
+        if(language == 0)
+        {
+          if(s == 1){ scrollReverserOnOffText.text = "順方向"; } else{ scrollReverserOnOffText.text = "逆方向"; }
+        }
+        if(language == 1)
+        {
+          if(s == 1){ scrollReverserOnOffText.text = "Forward"; } else{ scrollReverserOnOffText.text = "Reverse"; }
+        }
       }
 
       public void OnStoneSizeSlide(float value) //石のサイズのスライダーの値を取得

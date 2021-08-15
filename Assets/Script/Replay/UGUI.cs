@@ -59,6 +59,7 @@ namespace Replay
       private RectTransform menuPanel;
       private Text menuIndicateText;
       private Text cameraSensiSliderText;
+      private Text cameraReverserButtonText;
       private Text stoneSizeSliderText;
       private Text bgmVolumeSliderText;
       private Text instructionButtonText2;
@@ -105,10 +106,11 @@ namespace Replay
           menuPanel = menuCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
           menuIndicateText = menuCanvas.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Text>();
           cameraSensiSliderText = menuCanvas.transform.GetChild(0).GetChild(2).GetChild(0).gameObject.GetComponent<Text>();
-          stoneSizeSliderText = menuCanvas.transform.GetChild(0).GetChild(3).GetChild(0).gameObject.GetComponent<Text>();
-          bgmVolumeSliderText = menuCanvas.transform.GetChild(0).GetChild(4).GetChild(0).gameObject.GetComponent<Text>();
-          instructionButtonText2 = menuCanvas.transform.GetChild(0).GetChild(5).GetChild(0).gameObject.GetComponent<Text>();
-          instructionButtonOpenText = menuCanvas.transform.GetChild(0).GetChild(5).GetChild(1).gameObject.GetComponent<Text>();
+          cameraReverserButtonText = menuCanvas.transform.GetChild(0).GetChild(3).GetChild(0).gameObject.GetComponent<Text>();
+          stoneSizeSliderText = menuCanvas.transform.GetChild(0).GetChild(4).GetChild(0).gameObject.GetComponent<Text>();
+          bgmVolumeSliderText = menuCanvas.transform.GetChild(0).GetChild(5).GetChild(0).gameObject.GetComponent<Text>();
+          instructionButtonText2 = menuCanvas.transform.GetChild(0).GetChild(6).GetChild(0).gameObject.GetComponent<Text>();
+          instructionButtonOpenText = menuCanvas.transform.GetChild(0).GetChild(6).GetChild(1).gameObject.GetComponent<Text>();
 
           instructionPanel = instructionCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
 
@@ -227,6 +229,7 @@ namespace Replay
 
           menuIndicateText.text = "設定";
           cameraSensiSliderText.text = "カメラ感度\n(９段階)";
+          cameraReverserButtonText.text = "スクロール\n反転";
           stoneSizeSliderText.text = "石の大きさ\n(９段階)";
           bgmVolumeSliderText.text = "BGM音量";
           instructionButtonText2.text = "操作説明";
@@ -252,6 +255,7 @@ namespace Replay
 
           menuIndicateText.text = "Settings";
           cameraSensiSliderText.text = "Sensitivity\n(9 levels)";
+          cameraReverserButtonText.text = "Scroll\nReverse";
           stoneSizeSliderText.text = "Stone size\n(9 levels)";
           bgmVolumeSliderText.text = "BGM";
           instructionButtonText2.text = "Instructions";

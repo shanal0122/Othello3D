@@ -81,6 +81,7 @@ namespace PvP
       private RectTransform menuPanel;
       private Text menuIndicateText;
       private Text cameraSensiSliderText;
+      private Text cameraReverserButtonText;
       private Text putableButtonText;
       private Text stoneSizeSliderText;
       private Text bgmVolumeSliderText;
@@ -151,11 +152,12 @@ namespace PvP
           menuPanel = menuCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
           menuIndicateText = menuCanvas.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Text>();
           cameraSensiSliderText = menuCanvas.transform.GetChild(0).GetChild(2).GetChild(0).gameObject.GetComponent<Text>();
-          putableButtonText = menuCanvas.transform.GetChild(0).GetChild(3).GetChild(0).gameObject.GetComponent<Text>();
-          stoneSizeSliderText = menuCanvas.transform.GetChild(0).GetChild(4).GetChild(0).gameObject.GetComponent<Text>();
-          bgmVolumeSliderText = menuCanvas.transform.GetChild(0).GetChild(5).GetChild(0).gameObject.GetComponent<Text>();
-          instructionButtonText2 = menuCanvas.transform.GetChild(0).GetChild(6).GetChild(0).gameObject.GetComponent<Text>();
-          instructionButtonOpenText = menuCanvas.transform.GetChild(0).GetChild(6).GetChild(1).gameObject.GetComponent<Text>();
+          cameraReverserButtonText = menuCanvas.transform.GetChild(0).GetChild(3).GetChild(0).gameObject.GetComponent<Text>();
+          putableButtonText = menuCanvas.transform.GetChild(0).GetChild(4).GetChild(0).gameObject.GetComponent<Text>();
+          stoneSizeSliderText = menuCanvas.transform.GetChild(0).GetChild(5).GetChild(0).gameObject.GetComponent<Text>();
+          bgmVolumeSliderText = menuCanvas.transform.GetChild(0).GetChild(6).GetChild(0).gameObject.GetComponent<Text>();
+          instructionButtonText2 = menuCanvas.transform.GetChild(0).GetChild(7).GetChild(0).gameObject.GetComponent<Text>();
+          instructionButtonOpenText = menuCanvas.transform.GetChild(0).GetChild(7).GetChild(1).gameObject.GetComponent<Text>();
 
           instructionPanel1 = instructionCanvas1.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
           instructionText1 = instructionCanvas1.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Text>();
@@ -316,6 +318,7 @@ namespace PvP
 
           menuIndicateText.text = "設定";
           cameraSensiSliderText.text = "カメラ感度\n(９段階)";
+          cameraReverserButtonText.text = "スクロール\n反転";
           putableButtonText.text = "お助け機能";
           stoneSizeSliderText.text = "石の大きさ\n(９段階)";
           bgmVolumeSliderText.text = "BGM音量";
@@ -356,6 +359,7 @@ namespace PvP
 
           menuIndicateText.text = "Settings";
           cameraSensiSliderText.text = "Sensitivity\n(9 levels)";
+          cameraReverserButtonText.text = "Scroll\nReverse";
           putableButtonText.text = "Help func.";
           stoneSizeSliderText.text = "Stone size\n(9 levels)";
           bgmVolumeSliderText.text = "BGM";

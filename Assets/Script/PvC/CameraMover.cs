@@ -12,6 +12,7 @@ namespace PvC
       private int xLength = Choose.InitialSetting.xLength;
       private int yLength = Choose.InitialSetting.yLength;
       private int zLength = Choose.InitialSetting.zLength;
+      private int scrollReverser = 1; //スクロール方向。FlickCLC(),SwipeCLC()。順方向なら1、逆方向なら0（Menu画面で変更可能）
       private bool flickFlug = false; //フリック判定中true
       private float flickSpeed = 0f; //フリック判定がtrueの時、カメラが動くスピード
       private float flickSpeedFirst = 0f; //フリックし始めた瞬間の、カメラが動くスピード
@@ -68,6 +69,7 @@ namespace PvC
       void Awake()
       {
           movingSpeed = PlayerPrefs.GetFloat("Value_of_MovingSpeed", 20f);
+          scrollReverser = PlayerPrefs.GetInt("Value_of_ScrollReverser", 1);
       }
 
       void Start()
@@ -307,7 +309,9 @@ namespace PvC
           }
           else
           {
-              float _angle = Mathf.Atan2(InputEND.y - InputMOVE.y, InputEND.x - InputMOVE.x) * Mathf.Rad2Deg;
+              float _angle = 0f;
+              if(scrollReverser == 1){ _angle = Mathf.Atan2(InputEND.y - InputMOVE.y, InputEND.x - InputMOVE.x) * Mathf.Rad2Deg; }
+              if(scrollReverser == 0){ _angle = Mathf.Atan2(InputMOVE.y - InputEND.y, InputMOVE.x - InputEND.x) * Mathf.Rad2Deg; }
 
               if (-22.5f <= _angle && _angle < 22.5f) NowFlick = FlickDirection.RIGHT;
               else if (22.5f <= _angle && _angle < 67.5f) NowFlick = FlickDirection.UP_RIGHT;
@@ -333,7 +337,9 @@ namespace PvC
           }
           else
           {
-              float _angle = Mathf.Atan2(InputMOVE.y - InputSTART.y, InputMOVE.x - InputSTART.x) * Mathf.Rad2Deg;
+              float _angle = 0f;
+              if(scrollReverser == 1){ _angle = Mathf.Atan2(InputMOVE.y - InputSTART.y, InputMOVE.x - InputSTART.x) * Mathf.Rad2Deg; }
+              if(scrollReverser == 0){ _angle = Mathf.Atan2(InputSTART.y - InputMOVE.y, InputSTART.x - InputMOVE.x) * Mathf.Rad2Deg; }
 
               if(-22.5f <= _angle && _angle < 22.5f) NowSwipe = SwipeDirection.RIGHT;
               else if(22.5f <= _angle && _angle < 67.5f) NowSwipe = SwipeDirection.UP_RIGHT;
@@ -430,6 +436,7 @@ namespace PvC
       public Vector3 MainCameraTransformPosition {get {return this.mainCameraTransform.position;} }
 
       public float MovingSpeed {get {return this.movingSpeed;} set {this.movingSpeed = value;}}
+      public int ScrollReverser {get {return this.scrollReverser;} set {this.scrollReverser = value;}}
   }
 
 }
