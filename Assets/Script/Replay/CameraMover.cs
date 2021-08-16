@@ -109,10 +109,20 @@ namespace Replay
       private void CameraPosotionControlPC() //PCの矢印キーでメインカメラを動かす
       {
         Vector3 pos = mainCameraTransform.position;
-        if(Input.GetKey(KeyCode.RightArrow)){ mainCameraTransform.position = CulPosRight(pos,Time.deltaTime); }
-        if(Input.GetKey(KeyCode.LeftArrow)){ mainCameraTransform.position = CulPosLeft(pos,Time.deltaTime); }
-        if(Input.GetKey(KeyCode.UpArrow)){ mainCameraTransform.position = CulPosUp(pos,Time.deltaTime); }
-        if(Input.GetKey(KeyCode.DownArrow)){ mainCameraTransform.position = CulPosDown(pos,Time.deltaTime); }
+        if(scrollReverser == 1)
+        {
+          if(Input.GetKey(KeyCode.RightArrow)){ mainCameraTransform.position = CulPosRight(pos,Time.deltaTime); }
+          if(Input.GetKey(KeyCode.LeftArrow)){ mainCameraTransform.position = CulPosLeft(pos,Time.deltaTime); }
+          if(Input.GetKey(KeyCode.UpArrow)){ mainCameraTransform.position = CulPosUp(pos,Time.deltaTime); }
+          if(Input.GetKey(KeyCode.DownArrow)){ mainCameraTransform.position = CulPosDown(pos,Time.deltaTime); }
+        }
+        if(scrollReverser == 0)
+        {
+          if(Input.GetKey(KeyCode.LeftArrow)){ mainCameraTransform.position = CulPosRight(pos,Time.deltaTime); }
+          if(Input.GetKey(KeyCode.RightArrow)){ mainCameraTransform.position = CulPosLeft(pos,Time.deltaTime); }
+          if(Input.GetKey(KeyCode.DownArrow)){ mainCameraTransform.position = CulPosUp(pos,Time.deltaTime); }
+          if(Input.GetKey(KeyCode.UpArrow)){ mainCameraTransform.position = CulPosDown(pos,Time.deltaTime); }
+        }
         mainCameraTransform.LookAt(center,Vector3.up);
       }
 
